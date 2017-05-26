@@ -1,2 +1,1 @@
-# http://angular.partners
-
+# http://angular-buch.com
