@@ -1,1 +1,1 @@
-# http://angular-buch.com
+# https://angular-buch.com
