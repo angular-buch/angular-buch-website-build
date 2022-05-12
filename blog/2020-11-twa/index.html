@@ -1,0 +1,456 @@
+<!DOCTYPE html><html><head lang="de" prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#"><meta name="generator" content="Scully 0.0.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <title>Angular-Buch → Trusted Web Activitys (TWA) mit Angular</title>
+  
+
+  
+
+  <meta property="book:author" content="https://www.facebook.com/ferdinand.malcher">
+  <meta property="book:author" content="https://www.facebook.com/johannes.hoppe">
+  <meta property="book:author" content="https://www.facebook.com/dannykoppenhagen">
+
+  <meta property="book:isbn" content="9783864907791">
+  <meta property="book:release_date" content="2020-09-30">
+  <meta property="book:tag" content="Angular">
+  <meta property="book:tag" content="AngularJS">
+  <meta property="book:tag" content="TypeScript">
+  <meta property="book:tag" content="JavaScript">
+  <meta property="book:tag" content="HTML5">
+  <meta property="book:tag" content="CSS">
+  <meta property="book:tag" content="RxJS">
+  <meta property="book:tag" content="NativeScript">
+  <meta property="book:tag" content="Redux">
+  <meta property="book:tag" content="NgRx">
+
+  <base href="/">
+<style>@charset "UTF-8";@font-face{font-family:Roboto;src:url(Roboto-Thin.3025beb410a67d09.eot);src:local("Roboto Thin"),local("Roboto-Thin"),url(Roboto-Thin.3025beb410a67d09.eot?#iefix) format("embedded-opentype"),url(Roboto-Thin.a529f43f8b43a41b.woff2) format("woff2"),url(Roboto-Thin.0cfb6189823d7275.woff) format("woff"),url(Roboto-Thin.94d67324d95f59e5.ttf) format("truetype"),url(Roboto-Thin.761d85cbad1d4c0a.svg#Roboto) format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-ThinItalic.3c0494ed5066eddf.eot);src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url(Roboto-ThinItalic.3c0494ed5066eddf.eot?#iefix) format("embedded-opentype"),url(Roboto-ThinItalic.7d4425d4f9dfbd4d.woff2) format("woff2"),url(Roboto-ThinItalic.72445820525e265f.woff) format("woff"),url(Roboto-ThinItalic.72ab0263ccb0dc3f.ttf) format("truetype"),url(Roboto-ThinItalic.7d3f4f17bca5edb0.svg#Roboto) format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Light.9cff5f27f6ad3d59.eot);src:local("Roboto Light"),local("Roboto-Light"),url(Roboto-Light.9cff5f27f6ad3d59.eot?#iefix) format("embedded-opentype"),url(Roboto-Light.7117d83fbb0aa28a.woff2) format("woff2"),url(Roboto-Light.2188ea3f3f8ab51a.woff) format("woff"),url(Roboto-Light.5605865fb101be1a.ttf) format("truetype"),url(Roboto-Light.775a1d8f32378e56.svg#Roboto) format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-LightItalic.4a75ae9969c094a3.eot);src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url(Roboto-LightItalic.4a75ae9969c094a3.eot?#iefix) format("embedded-opentype"),url(Roboto-LightItalic.9669ba38989190d7.woff2) format("woff2"),url(Roboto-LightItalic.ead2698c38e2d858.woff) format("woff"),url(Roboto-LightItalic.ccdc52ada30d970f.ttf) format("truetype"),url(Roboto-LightItalic.293a6c412ebb5682.svg#Roboto) format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Regular.b21a0eefbec4f57f.eot);src:local("Roboto Regular"),local("Roboto-Regular"),url(Roboto-Regular.b21a0eefbec4f57f.eot?#iefix) format("embedded-opentype"),url(Roboto-Regular.e64b7e5db276537f.woff2) format("woff2"),url(Roboto-Regular.2313f68c10458709.woff) format("woff"),url(Roboto-Regular.b796ce65a81adc41.ttf) format("truetype"),url(Roboto-Regular.18c20975d2f2578c.svg#Roboto) format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-RegularItalic.e6e0d5b40d74c833.eot);src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url(Roboto-RegularItalic.e6e0d5b40d74c833.eot?#iefix) format("embedded-opentype"),url(Roboto-RegularItalic.d448549043fc24e3.woff2) format("woff2"),url(Roboto-RegularItalic.6c93c3855305929c.woff) format("woff"),url(Roboto-RegularItalic.c6469a92f47f72b9.ttf) format("truetype"),url(Roboto-RegularItalic.f83754e74962d444.svg#Roboto) format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Medium.9a9c9421bcdef79c.eot);src:local("Roboto Medium"),local("Roboto-Medium"),url(Roboto-Medium.9a9c9421bcdef79c.eot?#iefix) format("embedded-opentype"),url(Roboto-Medium.31c42d9dbee477e5.woff2) format("woff2"),url(Roboto-Medium.769ea541b3eef14d.woff) format("woff"),url(Roboto-Medium.03501557d620ee6b.ttf) format("truetype"),url(Roboto-Medium.8a59a67632175b0b.svg#Roboto) format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-MediumItalic.eda8bf9be9c607a9.eot);src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url(Roboto-MediumItalic.eda8bf9be9c607a9.eot?#iefix) format("embedded-opentype"),url(Roboto-MediumItalic.2b1343b2d0b09b92.woff2) format("woff2"),url(Roboto-MediumItalic.226e2a5000081685.woff) format("woff"),url(Roboto-MediumItalic.ce75fe30feef2519.ttf) format("truetype"),url(Roboto-MediumItalic.b51310a741b5d779.svg#Roboto) format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Bold.0d2870f5e1759c7a.eot);src:local("Roboto Bold"),local("Roboto-Bold"),url(Roboto-Bold.0d2870f5e1759c7a.eot?#iefix) format("embedded-opentype"),url(Roboto-Bold.6980f6575e8c2cbd.woff2) format("woff2"),url(Roboto-Bold.313d5de65a92aae6.woff) format("woff"),url(Roboto-Bold.ed694f411e0b3a82.ttf) format("truetype"),url(Roboto-Bold.a5d983d959171823.svg#Roboto) format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-BoldItalic.24d4fc9379818f4d.eot);src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url(Roboto-BoldItalic.24d4fc9379818f4d.eot?#iefix) format("embedded-opentype"),url(Roboto-BoldItalic.986a9dba772d1a7a.woff2) format("woff2"),url(Roboto-BoldItalic.d0b1358f293918c7.woff) format("woff"),url(Roboto-BoldItalic.e3188bd071401a05.ttf) format("truetype"),url(Roboto-BoldItalic.98e79b0548caa896.svg#Roboto) format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Black.2a430d2577a70997.eot);src:local("Roboto Black"),local("Roboto-Black"),url(Roboto-Black.2a430d2577a70997.eot?#iefix) format("embedded-opentype"),url(Roboto-Black.710dab121b2a7bc2.woff2) format("woff2"),url(Roboto-Black.06740b883cfa8a2e.woff) format("woff"),url(Roboto-Black.41a719429c37346e.ttf) format("truetype"),url(Roboto-Black.711c7acb0aa346bb.svg#Roboto) format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-BlackItalic.65db2fd69db01cd5.eot);src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url(Roboto-BlackItalic.65db2fd69db01cd5.eot?#iefix) format("embedded-opentype"),url(Roboto-BlackItalic.f4307ac32c9ad43b.woff2) format("woff2"),url(Roboto-BlackItalic.fc1832915de70c44.woff) format("woff"),url(Roboto-BlackItalic.ba2ec768f43dbc84.ttf) format("truetype"),url(Roboto-BlackItalic.26186c8936090567.svg#Roboto) format("svg");font-weight:900;font-style:italic}:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}img{vertical-align:middle;border-style:none}svg{overflow:hidden;vertical-align:middle}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}img{page-break-inside:avoid}@page{size:a3}body{min-width:992px!important}}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#F8F8F8}html{overflow-y:scroll}</style><link rel="stylesheet" href="styles.607dfae58d172176.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.607dfae58d172176.css"></noscript><meta property="og:title" content="Angular-Buch → Trusted Web Activitys (TWA) mit Angular"><meta name="twitter:title" content="Angular-Buch → Trusted Web Activitys (TWA) mit Angular"><meta name="description" content="📙 Progressive Web Apps sind in den letzten Jahren immer populärer geworden.
+Sie erlauben es uns, Webanwendungen auf dem Home-Bildschirm des Smartphones zu installieren und wie eine nativ installierte App zu benutzen.
+Mit einer PWA können wir Daten mithilfe eines Service Workers cachen, um die Anwendung auch offline zu verwenden.
+Weiterhin kann eine PWA im Hintergrund Push-Benachrichtigungen vom Server empfangen und anzeigen."><meta property="og:description" content="📙 Progressive Web Apps sind in den letzten Jahren immer populärer geworden.
+Sie erlauben es uns, Webanwendungen auf dem Home-Bildschirm des Smartphones zu installieren und wie eine nativ installierte App zu benutzen.
+Mit einer PWA können wir Daten mithilfe eines Service Workers cachen, um die Anwendung auch offline zu verwenden.
+Weiterhin kann eine PWA im Hintergrund Push-Benachrichtigungen vom Server empfangen und anzeigen."><meta name="twitter:description" content="📙 Progressive Web Apps sind in den letzten Jahren immer populärer geworden.
+Sie erlauben es uns, Webanwendungen auf dem Home-Bildschirm des Smartphones zu installieren und wie eine nativ installierte App zu benutzen.
+Mit einer PWA können wir Daten mithilfe eines Service Workers cachen, um die Anwendung auch offline zu verwenden.
+Weiterhin kann eine PWA im Hintergrund Push-Benachrichtigungen vom Server empfangen und anzeigen."><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/blog/2020-11-twa"><style>.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
+</style><style>.content img{max-width:100%}.details-page-autor{margin-top:-110px}.details-thumbnail{margin-bottom:-18px}.details-thumbnail .details-thumbnail-inner{border-bottom:23px solid #dfdede;height:300px;overflow:hidden;background-color:#fff;border-radius:4px;display:flex;justify-content:center}.details-thumbnail .details-thumbnail-inner .darken-overlay{display:block;position:absolute;height:300px;width:100%;padding-left:15px;padding-right:15px;padding-bottom:23px}.details-thumbnail .details-thumbnail-inner .darken-overlay div{display:block;position:relative;width:100%;height:100%;background-color:#0003;border-radius:4px 4px 0 0/4px 4px 0px 0px}.details-thumbnail img{width:100%;align-self:center}.video-container{position:relative;padding-bottom:56.25%;padding-top:0;height:0;overflow:hidden;margin-top:2rem;margin-bottom:2rem}.video-container iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;height:100%}
+</style><style>a[_ngcontent-jia-c12]:link, a[_ngcontent-jia-c12]:visited{text-decoration:underline}a[_ngcontent-jia-c12]:hover, a[_ngcontent-jia-c12]:active{text-decoration:none}</style><meta property="og:image" content="https://website-articles.angular-buch.com/blog/2020-11-twa/./header-twa.jpg"><meta name="twitter:image" content="https://website-articles.angular-buch.com/blog/2020-11-twa/./header-twa.jpg"><meta name="twitter:card" content="summary_large_image"><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+  <app-root ng-version="13.3.6"><header><div class="nav__overlay"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/" href="/"><img src="assets/img/brand.svg" alt="" class="img-fluid" style="height: 40px;"></a></div><div class="col-6 col-md-10"><nav><ul><li><app-link><!----><!----><!----><a routerlinkactive="nav__current" href="/"><!----> Buch </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" href="/blog" class="nav__current"><!----> Blog </a><!----><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" href="/material"><!----> Begleitmaterial </a><!----><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="//angular.schule/"><img alt="" class="linkImage lazyloaded" data-src="assets/img/symbol-calendar.svg" src="assets/img/symbol-calendar.svg"><!----> Angular-Schulungen </a><!----><!----><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="https://amzn.to/30s4mVX"><img alt="" class="linkImage lazyloaded" data-src="assets/img/symbol-basket.svg" src="assets/img/symbol-basket.svg"><!----> Jetzt bestellen </a><!----><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" class="nav__toggle"><img src="assets/img/symbol-menu.svg" alt=""></a></div></div></div></header><main><router-outlet></router-outlet><app-blog-details><app-hero-header headline="Blog" headlinelink="/blog"><section class="hero hero--smallest"><div class="hero__lines hero__lines--smallest"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;" href="/blog">Blog</a><!----><!----></h1></div><div class="col-5 d-none d-md-block text-center"><img src="assets/img/angular.png" alt="" class="hero__angular--smallest"></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list blog"><div class="index__stripe index__stripe--list"><!----><div class="container"><a name="post" id="post"></a><div class="row details-thumbnail"><div class="col-12"><div class="details-thumbnail-inner"><img alt="" class="img-fluid rounded" src="https://website-articles.angular-buch.com/blog/2020-11-twa/./header-twa.jpg"><!----></div></div><!----></div><div class="row"><div class="col-12"><div class="index__item index__item--list"><div class="row align-items-top"><div class="col-12 col-sm-3 col-md-2 text-center details-page-autor"><img alt="" class="blog__portrait img-fluid rounded-circle" src="//www.gravatar.com/avatar/be2ebed82ed399218b89e90abd5bdcc2?size=200&amp;rating=pg&amp;d=mm"><span class="blog__author">Danny Koppenhagen <br><a target="_blank" class="twitter" href="https://twitter.com/d_koppenhagen"> @d_koppenhagen</a> &nbsp; <!----><!----></span></div><div class="col-12 col-sm-9 col-md-10 col-lg-10"><h1>Trusted Web Activitys (TWA) mit Angular</h1><p class="blog__date">17.11.2020</p><p class="content markdown-body"><p>Progressive Web Apps sind in den letzten Jahren immer populärer geworden.
+Sie erlauben es uns, Webanwendungen auf dem Home-Bildschirm des Smartphones zu installieren und wie eine nativ installierte App zu benutzen.
+Mit einer PWA können wir Daten mithilfe eines Service Workers cachen, um die Anwendung auch offline zu verwenden.
+Weiterhin kann eine PWA im Hintergrund Push-Benachrichtigungen vom Server empfangen und anzeigen.</p>
+<blockquote>
+<p>Wenn Sie noch keine Erfahrung mit der Umsetzung einer Angular-App als PWA haben, schauen Sie sich unseren Blog-Post <a href="blog/2019-07-progressive-web-app"><em>"Mach aus deiner Angular-App eine PWA"</em></a> an oder werfen Sie einen Blick in unser <a href="angular-buch.com"><em>Angular-Buch</em></a>, wo wir dieses Thema detailliert erläutern.</p>
+</blockquote>
+<p>Nach der Entwicklung einer PWA bleibt jedoch eine Hürde bestehen: Nutzer der Anwendung müssen die URL kennen, über welche die PWA abrufbar ist und installiert werden kann.
+Viele Smartphone-Nutzer sind jedoch einen anderen Weg gewohnt, um eine App zu installieren:
+Sie suchen danach in einem App Store wie dem <em>Google Play Store</em> unter Android oder <em>App Store</em> unter iOS.</p>
+<p>In diesem Blogpost wollen wir Ihnen zeigen, wie Sie Ihre PWA auf einfachem Weg in den Google Play Store für Android bringen können, ohne eine echte Android-App mit Webview zu entwickeln, die lediglich eine Website aufruft.</p>
+<blockquote>
+<p><strong>Zur Zeit gibt es noch keine Möglichkeit, PWAs in Apples App Store zu deployen.</strong></p>
+</blockquote>
+<hr>
+<p>Inhalt:</p>
+<ul>
+<li><a href="/blog/2020-11-twa#trusted-web-activities-vs-webview-integration">Trusted Web Activities vs. Webview-Integration</a></li>
+<li><a href="/blog/2020-11-twa#twas-im-detail">TWAs im Detail</a></li>
+<li><a href="/blog/2020-11-twa#eine-pwa-als-twa-in-den-android-store-bringen">Eine PWA als TWA in den Android Store bringen</a><ul>
+<li><a href="/blog/2020-11-twa#einen-android-developer-account-registrieren">Einen Android Developer Account registrieren</a></li>
+<li><a href="/blog/2020-11-twa#die-android-app-in-der-google-play-console-erstellen">Die Android-App in der Google Play Console erstellen</a></li>
+<li><a href="/blog/2020-11-twa#die-app-signatur-und-das-release-erzeugen">Die App-Signatur und das Release erzeugen</a></li>
+<li><a href="/blog/2020-11-twa#den-app-signaturschl-ssel-in-der-pwa-hinterlegen">Den App-Signaturschlüssel in der PWA hinterlegen</a></li>
+</ul>
+</li>
+<li><a href="/blog/2020-11-twa#die-twa-mit-der-bubblewrap-cli-erzeugen">Die TWA mit der Bubblewrap CLI erzeugen</a></li>
+<li><a href="/blog/2020-11-twa#die-signierte-app-bauen">Die signierte App bauen</a><ul>
+<li><a href="/blog/2020-11-twa#mit-der-bublewrap-cli">Mit der Bublewrap CLI</a></li>
+<li><a href="/blog/2020-11-twa#mithilfe-von-android-studio">Mithilfe von Android Studio</a></li>
+</ul>
+</li>
+<li><a href="/blog/2020-11-twa#die-app-ber-die-google-play-console-ver-ffentlichen">Die App über die Google Play Console veröffentlichen</a></li>
+</ul>
+<hr>
+<h2 id="trusted-web-activities-vs-webview-integration">Trusted Web Activities vs. Webview-Integration</h2>
+<p>Um PWAs als Android-App bereitzustellen, benötigen wir eine Art App-Wrapper, der schließlich die PWA aufruft und somit unsere Webanwendung darstellen kann.</p>
+<p>In der Vergangenheit wurde dies oft durch Android-Apps umgesetzt, die lediglich einen sogenannten <a href="https://developer.android.com/reference/android/webkit/WebView"><em>WebView</em></a> integrieren.
+Hinter diesem Feature versteckt sich ein integrierter Webbrowser in der Android-App, der lediglich den Inhalt der Website darstellt.
+Dieser Weg funktioniert für eine Vielzahl von Websites, gerät jedoch an seine Grenzen, wenn es sich bei der Website um eine PWA handelt.
+Der Grund: In einem Webview funktionieren die essenziellen Service Worker nicht.
+Somit können wir Features wie die Offlinefähigkeit nicht einfach in die Anwendung integrieren.
+Weiterhin birgt ein Webview ein gewisses Sicherheitsrisiko, weil lediglich die URL den Inhalt der Anwendung bestimmt und keinerlei Überprüfung des tatsächlichen Contents stattfindet.
+Wird also beispielsweise eine Website <em>"gekapert"</em>, bekommt der Nutzer ggf. den Inhalt einer falschen Seite angezeigt.</p>
+<p>Bei einer TWA hingegen wird die PWA lediglich so erweitert, dass sie als Android-App direkt deployt werden kann.
+Über einen Sicherheitsschlüssel kann verifiziert werden, dass die aufgerufene URL zur App passt.</p>
+<h2 id="twas-im-detail">TWAs im Detail</h2>
+<p>Die Grundidee einer TWA ist schnell erklärt: Statt einer vollumfänglichen Android-App, die einen Browser implementiert und eine URL aufruft, wird bei einer TWA leidglich die PWA um eine App-Schicht erweitert, sodass sie im Google Play Store veröffentlicht werden kann.
+Es muss also auch kein eingebetteter Browser in der App integriert werden, sondern es wird auf den vorhandenen Google Chrome Browser zurückgegriffen.
+Voraussetzung hierfür ist, dass auf dem Android-Gerät die Version 72 oder höher von Google Chrome verfügbar ist.
+Beim Öffnen der PWA wird Chrome mit der hinterlegten URL geöffnet, und es werden sämtliche UI-Elemente des Browsers ausgeblendet.
+Im Prinzip passiert also genau das, was auch geschieht, wenn wir eine PWA über die Funktion <em>"Add To Homescreen"</em> auf Smartphone speichern, jedoch in Form einer App, die über den Google Play Store gefunden und installiert werden kann.
+Somit bleiben Features wie Push-Benachrichtigungen, Hintergrundsynchronisierungen, Autofill bei Eingabeformularen, Media Source Extensions oder die Sharing API vollumfänglich erhalten.
+Ein weiterer Vorteil einer solchen TWA ist, dass Session-Daten und der Cache im Google Chrome geteilt werden.
+Haben wir uns also beispielsweise bei unserer Web-Anwendung zuvor im Browser angemeldet, so belibt die Anmeldung in der Android-App (TWA) bestehen.</p>
+<p>Die Bezeichnung "Trusted Web Activity" lässt bereits darauf schließen: TWAs sind <em>trusted</em>, also vertraulich.
+Durch eine spezielle Datei, die mit der Webanwendung ausgeliefert wird und die einen Fingerprint enthält, kann sichergestellt werden, dass die Anwendung vertrauenswürdig ist, und der Inhalt kann somit sicher geladen werden.</p>
+<h2 id="eine-pwa-als-twa-in-den-android-store-bringen">Eine PWA als TWA in den Android Store bringen</h2>
+<p>Genug der Theorie -- wir wollen nun erfahren, wie wir eine PWA im Android Store als TWA bereitstellen können.</p>
+<p>Dafür müssen wir folgende Schritte durchführen:</p>
+<ul>
+<li>Einen Android Developer Account registieren</li>
+<li>Die Android-App in der Google Play Console erstellen</li>
+<li>Die App-Signatur erzeugen</li>
+<li>Den App-Signaturschlüssel in der PWA hinterlegen</li>
+<li>Die TWA mit der <em>Bubblewrap CLI</em> erzeugen</li>
+<li>Die signierte App bauen</li>
+<li>Die App über die Google Play Console veröffentlichen</li>
+</ul>
+<p>Wir wollen als Grundlage für dieses Beispiel die Angular-Anwendung <em>BookMonkey</em> aus dem Angular-Buch verwenden, die bereits als PWA vorliegt.
+Möchten Sie die Schritte selbst nachvollziehen, können Sie die Anwendung über GitHub herunterladen:</p>
+<p><a href="https://github.com/book-monkey4/book-monkey4-pwa">https://github.com/book-monkey4/book-monkey4-pwa</a></p>
+<pre><code>git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://ng-buch.de/bm4-pwa.git
+</code></pre>
+<p>Die Online-Version der PWA können Sie unter der folgenden URL abrufen:</p>
+<p><a href="https://bm4-pwa.angular-buch.com/">https://bm4-pwa.angular-buch.com/</a></p>
+<p>Weiterhin benötigen Sie für die Erstellung der TWA folgende Voraussetzungen auf dem Entwicklungssystem:</p>
+<ul>
+<li><a href="https://openjdk.java.net/install/">Java SDK 8.0</a></li>
+<li><a href="https://developer.android.com/studio">Android SDK (vorzugsweise Android Studio inkl. SDK)</a></li>
+<li><a href="https://nodejs.org">Node.js 10.0 oder höher</a></li>
+</ul>
+<h3 id="einen-android-developer-account-registrieren">Einen Android Developer Account registrieren</h3>
+<blockquote>
+<p>Sofern Sie bereits einen Account für die <em>Google Play Console</em> besitzen, können Sie diesen Schritt überspringen.</p>
+</blockquote>
+<p>Um eine App im Google Play Store einzustellen, benötigen wir zunächst einen Account für die <em>Google Play Console</em>.
+Den Account können Sie über den folgenden Link registrieren:</p>
+<p><a href="https://play.google.com/apps/publish/signup">https://play.google.com/apps/publish/signup</a></p>
+<p>Bei der Registrierung wird eine einmalige Registrierungsgebühr in Höhe von 25 USD erhoben. Diese Gebühr gilt für sämtliche Apps, die Sie mit dem hinterlegten Google-Account registrieren wollen.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/play-register.png" alt="Google Play Console: Registrierung"></p>
+<h3 id="die-android-app-in-der-google-play-console-erstellen">Die Android-App in der Google Play Console erstellen</h3>
+<p>Nach der Registierungs müssen wir uns in der <a href="https://play.google.com/apps/publish"><em>Google Play Console</em> einloggen</a>.
+Anschließend können wir über den Menüpunkt <em>"Alle Apps"</em> mit dem Button <em>"App erstellen"</em> eine neue Anwendung anlegen.
+Hier legen wir den Namen der Anwendung, die Standardsprache, den Anwendungstypen (App oder Spiel) sowie den Preis der Anwendung fest.
+Weiterhin müssen wir den Programmierrichtlinien für Entwickler sowie den Exportbestimmungen der USA zustimmen.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/play-create.png" alt="Google Play Console: Eine neue Anwendung erzeugen"></p>
+<p>Danach gelangen wir zum Dashboard für die neue Android-App.
+Hier arbeiten wir uns im folgenden durch die Ersteinrichtung der App durch.
+Jeder abgeschlossene Punkt wird entsprechend in der Liste markiert.
+Alle Einstellungen finden sich auch im Nachhinein links im Menü wieder und können auch noch später angepasst werden.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/play-after-create.png" alt="Google Play Console: Dashboard - Ersteinrichtung"></p>
+<ul>
+<li><strong>App-Zugriff</strong>: Hier hinterlegen Sie informationen, die darlegen, wie auf die App bei der Überprüfung vor der Freigabe im Google Play Store zugegriffen werden kann.
+Benötigen die Tester z. B. einen speziellen Account oder Standort oder ist die Anwendung frei zugänglich?</li>
+<li><strong>Anzeigen</strong>: An dieser Stelle geben Sie an, ob ihre App Werbung enthält oder nicht.</li>
+<li><strong>Einstufung des Inhalts</strong>: Sie werden zu einem Fragebogen zur Überprüfung der Altersfreigaben geleitet, den Sie ausfüllen müssen.
+Anschließend erhalten Sie eine Bewertung, die Ihnen die Alterseinstufung der Anwendung für verschiedene Länder angibt.</li>
+<li><strong>Zielgruppe</strong>: An dieser Stelle geben Sie an, welche Zielgruppe (Altersgruppe) von ihrer Anwendung adressiert wird und ob die Anwendung auch für Kinder interessant ist.
+Je nach Auswahl kann es sein, dass Sie zusätzlich eine Datenschutzerklärung hinterlegen müssen.</li>
+<li><strong>App-Kategorie auswählen und Kontaktdaten angeben</strong>: Hier gelangen Sie zu den <em>Play Store Einstellungen</em>.
+Sie legen hier die Kategorie der App fest in der sie später im Play Store auftauchen soll.
+Weiterhin können Sie Tags vergeben und Sie müssen Kontaktdaten für den Store-Eintrag hinterlegen.</li>
+<li><strong>Store-Eintrag einrichten</strong>: Dieser Punkt führt Sie zur Hauptkonfiguration des Eintrags für den Google Play Store.
+Sie müssen hier eine kurze sowie eine vollständige Beschreibung der Anwendung, eine App Icon und Screenshots der Anwendung hinterlegen.</li>
+</ul>
+<p>Haben wir alle Punkte für die Ersteinrichtung abgeschlossen, verschwindet der Abschnitt auf unserem Dashboard und wir können uns der Bereitstellung der App widmen.
+Dafür benötigen wir ein Release und eine App-Signatur.</p>
+<h3 id="die-app-signatur-und-das-release-erzeugen">Die App-Signatur und das Release erzeugen</h3>
+<p>Nach der Ersteinrichtung gilt es unsere App im Play Store bereitzustellen.
+Befinden wir uns auf dem Dashboard, so wird uns eine Übersicht über verschiedene Möglichkeiten zur Veröffentlichung der Anwendung gezeigt.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/play-dashboard-release.png" alt="Google Play Console: Dashboard - App veröffentlichen"></p>
+<p>Diese Wege repräsentieren die sogenannten <em>Tracks</em>.
+Ein solcher Track kann verschiedene Ausprägungen haben:</p>
+<ul>
+<li><strong>Interner Test</strong>: Releases, die zum Test für einen bestimmten Personenkreis beispielsweise über einen Link bereitgestellt werden können</li>
+<li><strong>Geschlossener Test</strong>: Releases, die nur bestimmten Personen zum Download als Vorab-Release (Alpha Release) zur Verfügung stehen.</li>
+<li><strong>Offener Test</strong>: Releases, die für jeden Nutzer im Google Play Store bereitgestellt werden, aber als Vorab-Release (Beta Release) gekennzeichnet sind. Offene Tracks können auch auf eine bestimmte Anzahl von Nutzer begrenzt werden</li>
+<li><strong>Vorregistrierung</strong>: Releases, deren Store-Eintrag bereits vor Veröffentlichung der Anwendung erstellt werden soll. Nutzer können sich bereits registrieren und erhalten eine Benachrichtigung, sobald die Anwendung verfügbar ist.</li>
+<li><strong>Produktion</strong>: Releases, die für jeden Nutzer im Google Play Store bereitgestellt werden</li>
+</ul>
+<p>In unserem Szenario wollen wir unsere App direkt bis in den Google Play Store bringen, um zu verifizieren, dass diese auch tatsächlich von allen Nutzern gefunden und installiert werden kann.
+Hierfür nutzen wir den Track für den offenen Test und erstellen ein Beta-Release.
+Dafür klicken wir unter der Überschrift <em>"Beliebigen Nutzern die Registrierung für das Testen deiner App bei Google Play erlauben"</em> auf <em>"Aufgaben einblenden"</em>.
+Hier klicken wir zunächst auf <em>"Länder und Regionen auswählen"</em>.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/play-dashboard-open-track.png" alt="Google Play Console: Dashboard - Einen offenen Track anlegen"></p>
+<p>Wir gelangen nun in das Untermenü zur Erstellung eines offenen Test Tracks und legen die Länder fest, in denen unsere Anwendung im Google Play Store verfügbar sein soll.
+Anschließend erstellen wir ein neues Release.</p>
+<p>Im nächsten Schritt benötigen wir nun die App, die wir unter <em>"App Bundles und APKs"</em> hinterlegen müssen.
+Damit diese App jedoch erzeugt und verifiziert werden kann, erzeugen wir zunächst unter dem Abschnitt <em>App-Signatur von Google Play</em> über den Button <em>"Weiter"</em> eine neue App Signatur.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/play-beta-sign.png" alt="Google Play Console: Offenes Testrelease erstellen"></p>
+<h3 id="den-app-signaturschlüssel-in-der-pwa-hinterlegen">Den App-Signaturschlüssel in der PWA hinterlegen</h3>
+<p>Wir verlassen zunächst wieder den Menüpunkt zur Erzeugung des Releases und gehen ins Menü <em>"Einrichten"</em> &gt; <em>"App-Signatur"</em>.
+Hier kopieren wir uns den Fingerabdruck des SHA-256-Zertifikats in die Zwischenablage.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/play-signature.png" alt="Google Play Console: Kopieren des App-Signaturschlüssels"></p>
+<p>Dieser Fingerabdruck stellt später sicher, dass beim Aufruf der PWA durch unsere TWA verifiziert werden kann, dass die Anwendung <em>trusted</em> ist, also von Google verifiziert.</p>
+<p>Um den Fingerabdruck aufspüren zu können, müssen wir diesen über die spezielle Datei <code>assetlinks.json</code> bereitstellen.
+Weiterhin muss die Datei und ihr Inhalt über die spezielle URL <code>https://my-app.com/.well-known/assetlinks.json</code> aufrufbar sein.</p>
+<p>Dafür erzeugen wir in unserem Angular-Workspace ein neues Verzeichnis <code>.well-known</code> unter <code>src</code>.
+Darin legen wir die Datei <code>assetlinks.json</code> mit dem folgenden Inhalt an:</p>
+<pre><code class="language-json">[
+  {
+    <span class="hljs-attr">"relation"</span>: [<span class="hljs-string">"delegate_permission/common.handle_all_urls"</span>],
+    <span class="hljs-attr">"target"</span>: {
+      <span class="hljs-attr">"namespace"</span>: <span class="hljs-string">"allfront"</span>,
+      <span class="hljs-attr">"package_name"</span>: <span class="hljs-string">"com.angular_buch.book_monkey4"</span>,
+      <span class="hljs-attr">"sha256_cert_fingerprints"</span>: [
+        <span class="hljs-string">"D1:63:25:CE...A4:FF:79:C0"</span>
+      ]
+    }
+  }
+]
+</code></pre>
+<p>Als <code>package_name</code> legen wir die Anwendungs-ID fest, die im Google Play Store eindeutig sein muss und genau auf eine App zeigt.
+Die ID wird in der Regel aus einer Domain gebildet und rückwärts gelistet.
+Sie muss mindestens einen Punkt enthalten, Zeichen hinter einem Punkt dürfen nur Buchstaben sein, und die gesamte ID darf lediglich Alphanumerische Zeichen enthalten.
+Zeichen wie "<code>-</code>" sind nicht erlaubt.
+Alle Regeln zur Definition einer validen ID können Sie der <a href="https://developer.android.com/studio/build/application-id">Android Entwicklerdokumentstion</a> entnehmen.</p>
+<p>Unter <code>sha256_cert_fingerprints</code> müssen wir außerdem den kopierten App-Signaturschlüssel eintragen.</p>
+<p>Jetzt müssen wir der Angular CLI noch beibringen, dass der URL-Pfad <code>/.well-known/assetlinks.json</code> nicht durch den Angular-Router behandelt und umgeleitet werden soll, sondern dass sich dahinter ein statisches Asset verbrigt, das direkt über die URL aufrufbar sein soll.</p>
+<p>Dafür bearbeiten wir die Datei <code>angular.json</code>: Im Abschnitt <code>build</code> &gt; <code>options</code> ergänzen wir den Eintrag <code>assets</code>.
+Dort geben wir an, dass alle Dateien unter <code>src/.well-known</code> über den relativen Pfad <code>/.well-known/</code> bereitgestellt werden sollen:</p>
+<pre><code class="language-json">{
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">"projects"</span>: {
+    <span class="hljs-attr">"book-monkey"</span>: {
+      <span class="hljs-comment">// ...</span>
+      <span class="hljs-attr">"architect"</span>: {
+        <span class="hljs-attr">"build"</span>: {
+          <span class="hljs-comment">// ...</span>
+          <span class="hljs-attr">"options"</span>: {
+            <span class="hljs-comment">// ...</span>
+            <span class="hljs-attr">"assets"</span>: [
+              <span class="hljs-comment">// ...</span>
+              {
+                <span class="hljs-attr">"glob"</span>: <span class="hljs-string">"**/*"</span>,
+                <span class="hljs-attr">"input"</span>: <span class="hljs-string">"src/.well-known/"</span>,
+                <span class="hljs-attr">"output"</span>: <span class="hljs-string">"/.well-known/"</span>
+              }
+              <span class="hljs-comment">// ...</span>
+            ],
+            <span class="hljs-comment">// ...</span>
+          },
+          <span class="hljs-comment">// ...</span>
+        },
+        <span class="hljs-comment">// ...</span>
+      },
+      <span class="hljs-comment">// ...</span>
+    },
+    <span class="hljs-comment">// ...</span>
+  },
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>Wir überprüfen das Ergebnis am Besten, indem wir einen Produktiiv-Build ausführen und einen einfachen Webserver starten:</p>
+<pre><code class="language-bash">ng build <span class="hljs-params">--prod</span>
+<span class="hljs-keyword">cd</span> dist/book-monkey
+npx http-server
+</code></pre>
+<p>Rufen wir nun die URL <code>http://localhost:8080/.well-known/assetlinks.json</code> im Browser auf, sehen wir, dass unsere Datei <code>assetlinks.json</code> dargestellt wird:</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/assetlinks-browser.png" alt="Test der Auslieferung der Datei `assetlinks.json` im Browser"></p>
+<p>War der Test erfolgreich, können wir unsere PWA deployen.
+Wichtig ist, dass diese zwingend per <code>HTTPS</code> ausgeleifert werden muss.</p>
+<blockquote>
+<p>Achtung: Nutzen Sie beispielsweise Github Pages zur Auslieferung Ihrer Anwendung, so müssen Sie vor dem Deployment im <code>dist</code>-Verzeichnis (<code>dist/book-monkey</code>) eine Datei <code>_config.yml</code> mit dem Inhalt <code>include: [".well-known"]</code> anlegen, da alle Verzeichnisse beginnend mit "<code>.</code>" per Default <a href="https://github.com/keybase/keybase-issues/issues/366#issuecomment-38749201">von Github Pages ignoriert werden</a>. Diesen Schritt integrieren Sie am besten in Ihre Deployment-Pipeline.</p>
+</blockquote>
+<p>Überprüfen Sie nach dem Deployment am Besten noch einmal, ob Sie die URL <code>http://mydomain/.well-known/assetlinks.json</code> aufrufen können.
+In unserem Fall wäre das: <a href="https://bm4-pwa.angular-buch.com/.well-known/assetlinks.json"><code>https://bm4-pwa.angular-buch.com/.well-known/assetlinks.json</code></a>.</p>
+<h2 id="die-twa-mit-der-bubblewrap-cli-erzeugen">Die TWA mit der Bubblewrap CLI erzeugen</h2>
+<p>Wir haben nun unsere PWA so vorbereitet, dass sie als TWA genutzt werden kann. Alle nötigen Vorbereitungen in der Google Play Console haben wir getroffen.
+Als nächstes wollen wir die Android-App erstellen, die unsere PWA als TWA aufruft und als eigenständige App kapselt.</p>
+<p>Hierfür nutzen wir die <a href="https://www.npmjs.com/package/@bubblewrap/cli"><em>Bubblewrap CLI</em></a>:
+Wir können das Tool direkt als NPM-Paket über <code>npx</code> aufrufen und so die App erzeugen lassen.
+Der interaktive Wizard führt uns durch das Setup:</p>
+<pre><code class="language-bash">mkdir monkey4-pwa-twa-<span class="hljs-keyword">wrapper</span>
+cd monkey4-pwa-twa-<span class="hljs-keyword">wrapper</span>
+npx @bubblewrap/cli init <span class="hljs-comment">--manifest https://bm4-pwa.angular-buch.com/manifest.json</span>
+</code></pre>
+<p>Nutzen wir die Bubblewrap CLI zum ersten Mal, so werden wir in den ersten zwei Schritten nach den Verzeichnissen für das <a href="https://openjdk.java.net/">Java OpenJDK</a> und das <a href="https://developer.android.com/studio">AndroidSDK</a> gefragt.
+Hier geben wir die Pfade zu den entsprechenden Verzeichnissen an.
+Unter macOS lauten sie zum Beispiel:</p>
+<pre><code class="language-bash">? Path to the JDK: <span class="hljs-regexp">/Library/</span>Java<span class="hljs-regexp">/JavaVirtualMachines/</span>adoptopenjdk-<span class="hljs-number">8</span>.jdk
+? Path to the Android SDK: <span class="hljs-regexp">/Users/my</span>-user<span class="hljs-regexp">/Library/</span>Android/sdk
+</code></pre>
+<blockquote>
+<p>Diese Angaben werden für spätere Installationen in der Datei <code>~/.llama-pack/llama-pack-config.json</code> gespeichert und können bei Bedarf angepasst werden.</p>
+</blockquote>
+<p>Im nächsten Schritt liest die Bubblewrap CLI das Web App Manifest unserer PWA aus und stellt einige Fragen zu den Metadaten der App: Bezeichnung, hinterlegte Icons und Pfade.
+Diese Einstellungen werden in der Regel schon korrekt ausgelesen und müssen nicht manuell angepasst werden:</p>
+<pre><code class="language-bash">init Fetching Manifest:  <span class="hljs-keyword">https</span>://bm4-pwa.angular-buch.com/manifest.json
+? Domain being opened <span class="hljs-keyword">in</span> <span class="hljs-keyword">the</span> TWA: bm4-pwa.angular-buch.com
+? Name <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> application: BookMonkey <span class="hljs-number">4</span> PWA
+? Name <span class="hljs-built_in">to</span> be shown <span class="hljs-keyword">on</span> <span class="hljs-title">the</span> <span class="hljs-title">Android</span> <span class="hljs-title">Launcher</span>: <span class="hljs-title">BookMonkey</span>
+? Color <span class="hljs-built_in">to</span> be used <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> status bar: <span class="hljs-comment">#DB2828</span>
+? Color <span class="hljs-built_in">to</span> be used <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> splash screen background: <span class="hljs-comment">#FAFAFA</span>
+? Relative path <span class="hljs-built_in">to</span> <span class="hljs-built_in">open</span> <span class="hljs-keyword">the</span> TWA: /
+? <span class="hljs-built_in">URL</span> <span class="hljs-built_in">to</span> <span class="hljs-keyword">an</span> image that is <span class="hljs-keyword">at</span> least <span class="hljs-number">512</span>x512px: <span class="hljs-keyword">https</span>://bm4-pwa.angular-buch.com/assets/icons/icon<span class="hljs-number">-512</span>x512.png
+? <span class="hljs-built_in">URL</span> <span class="hljs-built_in">to</span> <span class="hljs-keyword">an</span> image that is <span class="hljs-keyword">at</span> least <span class="hljs-number">512</span>x512px <span class="hljs-built_in">to</span> be used when generating maskable icons undefined
+? Include app shortcuts?
+  Yes
+? Android Package Name (<span class="hljs-keyword">or</span> Application ID): com.angular_buch.bm4_pwa.twa
+</code></pre>
+<p>In der nächsten Abfrage müssen wir den Schlüssel zur Signierung der App angeben.
+Haben wir hier noch keinen Schlüssel erzeugt, werden wir darauf hingewiesen und können einen neuen Schlüssel anlegen.
+Dafür müssen wir einige Infos zum Ersteller des Schlüssels hinterlegen.
+Außerdem müssen wir ein Passwort für den <em>Key Store</em> und eines für den einzelnen <em>Key</em> der Anwendung angeben.
+Dieses benötigen wir später beim Build und beim Signieren der App erneut.</p>
+<pre><code class="language-bash">? Location <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> Signing Key: ./android.keystore
+? Key name: android
+...
+? Signing Key could <span class="hljs-keyword">not</span> be found <span class="hljs-keyword">at</span> <span class="hljs-string">"./android.keystore"</span>. Do you want <span class="hljs-built_in">to</span> <span class="hljs-built_in">create</span> <span class="hljs-literal">one</span> now? Yes
+? First <span class="hljs-keyword">and</span> Last names (eg: John Doe): John Doe
+? Organizational Unit (eg: Engineering Dept): Engineering Dept
+? Organization (eg: Company Name): My Company
+? Country (<span class="hljs-number">2</span> letter code): DE
+? Password <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> Key Store: [hidden]
+? Password <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> Key: [hidden]
+keytool Signing Key created successfully
+init
+init Project generated successfully. Build <span class="hljs-keyword">it</span> <span class="hljs-keyword">by</span> running <span class="hljs-string">"@bubblewrap/cli build"</span>
+</code></pre>
+<p>Im Ergebnis sollten wir folgende Dateistruktur erhalten:</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/twa-bubblewrap.png" alt="Dateistruktur nach Erzeugung der TWA mithilfe der Bubblewrap CLI"></p>
+<p>Prinzipiell sind wir damit auch schon fertig.
+Wir müssen nun noch die fertige Android-App (<code>*.apk</code>-Datei) erzeugen.</p>
+<p>Das Ergebnis der TWA-Generierung können Sie auch in folgendem Repository nachvollziehen:</p>
+<p><a href="https://github.com/book-monkey4/book-monkey4-pwa-twa-wrapper">https://github.com/book-monkey4/book-monkey4-pwa-twa-wrapper</a></p>
+<h2 id="die-signierte-app-bauen">Die signierte App bauen</h2>
+<p>Wir können unsere signierte Android-App entwerder direkt mithilfe der Bubblewrap CLI bauen, oder wir nutzen hierfür Android Studio.</p>
+<h3 id="mit-der-bublewrap-cli">Mit der Bublewrap CLI</h3>
+<p>Wir rufen das <code>build</code>-Kommando der Bubblewrap CLI auf.
+Hier müssen wir zunächst das von uns vergebene Passwort für den Key Store und anschließend das Passwort für den konkreten Key eingeben:</p>
+<pre><code class="language-bash">npx @bubblewrap/cli build
+? KeyStore password: ********
+? Key password: ********
+build Building the Android<span class="hljs-params">-App...</span>
+build Zip Aligning<span class="hljs-params">...</span>
+build Checking PWA Quality Criteria<span class="hljs-params">...</span>
+build
+build Check the <span class="hljs-literal">full</span> PageSpeed Insights report at:
+build - https:<span class="hljs-comment">//developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fbm4-pwa.angular-buch.com%2F</span>
+build
+build
+build Quality Criteria scores
+build Lighthouse Performance score: <span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span>. <span class="hljs-number">80</span>
+build Lighthouse PWA check: <span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span> NO
+build
+build Web Vitals
+build Largest Contentful Paint (LCP) <span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span> <span class="hljs-number">3.7</span> s
+build Maximum Potential First Input Delay (<span class="hljs-keyword">Max</span> FID) <span class="hljs-params">...</span> <span class="hljs-number">391</span> ms
+build Cumulative Layout Shift (CLS) <span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span>. <span class="hljs-number">0.00</span>
+build
+build Other scores
+build Lighthouse Accessibility score<span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span>. <span class="hljs-number">67</span>
+build
+build Summary
+build Overall result: <span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span><span class="hljs-params">...</span> <span class="hljs-keyword">FAIL</span>
+build WARNING PWA Quality Criteria check failed.
+build Signing<span class="hljs-params">...</span>
+build Signed Android<span class="hljs-params">-App</span> generated at <span class="hljs-string">"./app-release-signed.apk"</span>
+build Digital Asset Links file generated at ./assetlinks.json
+build Read more about setting up Digital Asset Links at https:<span class="hljs-comment">//developers.google.com/web/android/trusted-web-activity/quick-start#creating-your-asset-link-file</span>
+</code></pre>
+<p>Wenn wir keinen Fehler erhalten, sollte sich die fertige signierte App im Hauptverzeichnis befinden und <code>app-release-signed.apk</code> heißen.</p>
+<p>Vereinzelt kann es dazu kommen, dass wir eine Fehlermeldung wie die folgende erhalten:</p>
+<pre><code>UnhandledPromiseRejectionWarning: Error: <span class="hljs-builtin-name">Error</span> calling the PageSpeed Insights API: Error: Failed <span class="hljs-keyword">to</span> <span class="hljs-builtin-name">run</span> the PageSpeed Insight report
+</code></pre>
+<p>In diesem Fall schlägt die Analyse der App fehl, weil beispielsweise die Website gerade nicht erreichbar ist. Wir können den Build erneut aufrufen und das Flag <code>--skipPwaValidation</code> verwenden, um die Überprüfung der PWA zu überspringen.</p>
+<pre><code class="language-bash">npx @bubblewrap/cli <span class="hljs-keyword">build</span> --skipPwaValidation
+? KeyStore <span class="hljs-keyword">password</span>: ********
+? <span class="hljs-keyword">Key</span> <span class="hljs-keyword">password</span>: ********
+<span class="hljs-keyword">build</span> Building the Android-App...
+<span class="hljs-keyword">build</span> Zip Aligning...
+<span class="hljs-keyword">build</span> Signing...
+<span class="hljs-keyword">build</span> Signed Android-App generated at <span class="hljs-string">"./app-release-signed.apk"</span>
+<span class="hljs-keyword">build</span> Digital Asset Links file generated at ./assetlinks.json
+<span class="hljs-keyword">build</span> Read more about setting up Digital Asset Links at https://developers.google.com/web/android/trusted-web-activity/quick-<span class="hljs-keyword">start</span>#creating-your-asset-link-file
+</code></pre>
+<p>Kommt es zu dem nachfolgenden Fehler, prüfen Sie bitte den Pfad unter <code>jdkPath</code> in der Datei <code>~/.llama-pack/llama-pack-config.json</code>.
+Dieser sollte auf das lokale Hauptverzeichnis des Java JDK 8 zeigen.
+Alternativ können Sie den Build mithilfe von Android Studio anstoßen.</p>
+<pre><code class="language-bash">cli ERROR Command failed: <span class="hljs-string">./gradlew</span> assembleRelease <span class="hljs-params">--stacktrace</span>
+</code></pre>
+<h3 id="mithilfe-von-android-studio">Mithilfe von Android Studio</h3>
+<p>Bei dieser Variante öffnen wir zunächst das Projektverzeichnis in Android Studio.
+Nun warten wir ab, bis der automatische Gradle-Build nach dem Öffnen des Projekts durchgelaufen ist.
+Den Fortschritt können wir unten rechts in Android Studio betrachten.
+Anschließend klicken wür im Menü <em>"Build"</em> auf <em>"Generate Signed Bundle / APK"</em>.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/android-studio-generate-signed-apk.png" alt="Android Studio: Signierte APK erstellen"></p>
+<p>Wir wählen hier den Punkt <em>"APK"</em> aus und klicken auf <em>"Next"</em>.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/android-studio-generate-signed-apk2.png" alt="Android Studio: Signierte APK erstellen"></p>
+<p>Im nächsten Schritt wählen wir den erstellten Keystore (<code>android.keystore</code>) aus dem Projektverzeichnis aus und geben das festgelegte Passwort ein.
+Alternativ können wir auch einen neuen Keystore erstellen.
+Anschließend können wir aus dem Keystore den <em>"Key alias"</em> auswählen (<code>android</code>).
+Auch hier müssen wir das Passwort eingeben, das wir zuvor für den konkreten Key vergeben haben.
+Haben wir alle Angaben korrekt getätigt, gehen wir weiter mit <em>"Next"</em>.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/android-studio-generate-signed-apk3.png" alt="Android Studio: Signierte APK erstellen"></p>
+<p>Im nächsten Schritt wählen wir als Build-Variante <em>release</em> aus und setzen die beiden Checkboxen bei <em>"V1 (Jar Signature)"</em> und <em>"V2 (Full APK Signature)"</em>.
+Anschließend können wir die Erzeugung mit <em>"Finish"</em> starten.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/android-studio-generate-signed-apk3.png" alt="Android Studio: Signierte APK erstellen"></p>
+<p>Die erzeugte APK befindet sich nun unter <code>./app/release/app-release.apk</code>.</p>
+<blockquote>
+<p>Kommt es beim Erzeugen der signierten APK zu einem Fehler, kann dies ggf. an einem defekten/falschen Keystore liegen. Versuchen Sie in diesem Fall, einen neuen Keystore während der vorherigen Schritte zu erzeugen.</p>
+</blockquote>
+<h2 id="die-app-über-die-google-play-console-veröffentlichen">Die App über die Google Play Console veröffentlichen</h2>
+<p>Im letzten Schritt müssen wir unsere signierte und erzeugte Android-App noch bereitstellen und veröffentlichen.
+Dazu gehen wir in der Google Play Console in das Menü <em>"Test"</em> &gt; <em>"Offene Tests"</em> und öffnen unser zuvor bereits vorbereitetes Release im Abschnitt <em>"Releases</em>", welches im Status <em>"Entwurf"</em> ist durch Klick auf den Button <em>"Bearbeiten"</em>.</p>
+<p>Im nächsten Schritt können wir nun die zuvor erzeugte APK-Datei hochladen.
+Weiterhin geben wir eine Versionsnummer und eine Beschreibung zum Release an.
+Haben wir alles ausgefüllt, klicken wir auf <em>"Überprüfen"</em>.</p>
+<!-- TODO: @JohannesHoppe ab hier weiter :) (Text und Screenshots anpassen) -->
+
+<p>Jetzt haben wir es fast geschafft:
+Das Beta-Release wurde erstellt.
+Auf der nächsten Seite können wir die App nun veröffentlichen.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/play-beta-release.png" alt="Google Play Console: Das Beta-Release veröffentlichen"></p>
+<p>Haben wir diesen Schritt erledigt, ändert sich unser Menü auf der linken Seite ein wenig, und wir können unter <em>"Übersicht"</em> den aktuellen Status zur Veröffentlichung der Android-App einsehen.
+Bis die App tatsächlich veröffentlicht und freigegeben wird, können ggf. ein paar Tage vergehen.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2020-11-twa/play-release-overview.png" alt="Google Play Console: Übersicht mit Veröffentlichungsstatus"></p>
+<p>Geschafft! Wir haben nun erfolgreich unsere Angular-PWA in eine Android-App integriert und sie im Google Play Store veröffentlicht.
+Dabei haben wir das Konzept der Trusted Web Activity (TWA) genutzt.
+Nun müssen wir nur noch auf die Freigabe warten, und wir können unsere App im Store finden und installieren.</p>
+<!-- TODO: @JohannesHoppe Bild von veröffentlichter App in Play Store -->
+
+<p><strong>Viel Spaß wünschen
+Johannes, Danny und Ferdinand</strong></p>
+</p><!----><!----><a routerlink="/blog" ripple-radius="" class="btn btn-sm btn-primary mt-4" href="/blog"><i class="fa fa-backward mr-2"></i> Zurück</a><hr> Suggestions? Feedback? Bugs? Please <a target="_blank" class="content" href="https://github.com/angular-buch/website-articles/blob/gh-pages/blog/2020-11-twa/README.md"><i class="fa fa-github mr-1" style="font-size: 1.6rem; position: relative; bottom: -3px;"></i>fork/edit this page on Github</a>. </div></div></div></div></div><!----></div><!----></div></section><ngx-json-ld><script type="application/ld+json">{
+  "url": "https://angular.schule/blog/2020-11-twa",
+  "headline": "Trusted Web Activitys (TWA) mit Angular",
+  "description": "Progressive Web Apps sind in den letzten Jahren immer populärer geworden.\nSie erlauben es uns, Webanwendungen auf dem Home-Bildschirm des Smartphones zu installieren und wie eine nativ installierte App zu benutzen.\nMit einer PWA können wir Daten mithilfe eines Service Workers cachen, um die Anwendung auch offline zu verwenden.\nWeiterhin kann eine PWA im Hintergrund Push-Benachrichtigungen vom Server empfangen und anzeigen.",
+  "datePublished": "2020-11-17",
+  "dateModified": "2020-11-17",
+  "publisher": {
+    "name": "Angular-Buch",
+    "url": "https://angular-buch.com",
+    "@type": "Organization",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://angular-buch.com/assets/img/brand_export.png"
+    }
+  },
+  "image": "https://website-articles.angular-buch.com/blog/2020-11-twa/./header-twa.jpg",
+  "thumbnailUrl": "https://website-articles.angular-buch.com/blog/2020-11-twa/./header-twa.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Danny Koppenhagen",
+    "email": "mail@d-koppenhagen.de"
+  },
+  "keywords": [
+    "TWA",
+    "Trusted Web Activity",
+    "PWA",
+    "Progressive Web App",
+    "Angular",
+    "Android",
+    "Android Store"
+  ],
+  "mainEntityOfPage": "http://schema.org/WebPage",
+  "@type": "Article",
+  "@context": "http://schema.org"
+}</script></ngx-json-ld></app-blog-details><!----><footer><div class="container"><div class="row align-items-center"><div class="col-sm-9"><div class="links"><app-link><!----><!----><!----><a routerlinkactive="nav__current" class="links__item" href="/"><!----> Home </a><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" class="links__item" href="/impressum"><!----> Impressum </a><!----><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" class="links__item" href="/datenschutz"><!----> Datenschutzerklärung </a><!----><!----><!----><!----></app-link>|<!----><app-link><!----><a class="links__item links__twitter" href="https://twitter.com/angular_buch" rel="nofollow"><!----> Twitter </a><!----><!----><!----><!----><!----></app-link><!----><!----></div></div><div class="col-sm-3 text-right"></div></div></div></footer></main><ngx-json-ld><script type="application/ld+json"></script></ngx-json-ld><ngx-json-ld><script type="application/ld+json"></script></ngx-json-ld></app-root>
+<script src="runtime.f673cc3b01b066f4.js" type="module"></script><script src="polyfills.4fb83ea39e28c35b.js" type="module"></script><script src="main.c30c9948330c0f04.js" type="module"></script>
+
+</body></html>
