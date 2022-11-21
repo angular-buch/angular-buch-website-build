@@ -1,0 +1,176 @@
+<!DOCTYPE html><html><head lang="de" prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#"><meta name="generator" content="Scully 0.0.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <title>Angular-Buch → Angular 5: Änderungen für i18n</title>
+  
+
+  
+
+  <meta property="book:author" content="https://www.facebook.com/ferdinand.malcher">
+  <meta property="book:author" content="https://www.facebook.com/johannes.hoppe">
+  <meta property="book:author" content="https://www.facebook.com/dannykoppenhagen">
+
+  <meta property="book:isbn" content="9783864907791">
+  <meta property="book:release_date" content="2020-09-30">
+  <meta property="book:tag" content="Angular">
+  <meta property="book:tag" content="AngularJS">
+  <meta property="book:tag" content="TypeScript">
+  <meta property="book:tag" content="JavaScript">
+  <meta property="book:tag" content="HTML5">
+  <meta property="book:tag" content="CSS">
+  <meta property="book:tag" content="RxJS">
+  <meta property="book:tag" content="NativeScript">
+  <meta property="book:tag" content="Redux">
+  <meta property="book:tag" content="NgRx">
+
+  <base href="/">
+<style>@font-face{font-family:Roboto;src:url(Roboto-Thin.3025beb410a67d09.eot);src:local("Roboto Thin"),local("Roboto-Thin"),url(Roboto-Thin.3025beb410a67d09.eot?#iefix) format("embedded-opentype"),url(Roboto-Thin.a529f43f8b43a41b.woff2) format("woff2"),url(Roboto-Thin.0cfb6189823d7275.woff) format("woff"),url(Roboto-Thin.94d67324d95f59e5.ttf) format("truetype"),url(Roboto-Thin.761d85cbad1d4c0a.svg#Roboto) format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-ThinItalic.3c0494ed5066eddf.eot);src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url(Roboto-ThinItalic.3c0494ed5066eddf.eot?#iefix) format("embedded-opentype"),url(Roboto-ThinItalic.7d4425d4f9dfbd4d.woff2) format("woff2"),url(Roboto-ThinItalic.72445820525e265f.woff) format("woff"),url(Roboto-ThinItalic.72ab0263ccb0dc3f.ttf) format("truetype"),url(Roboto-ThinItalic.7d3f4f17bca5edb0.svg#Roboto) format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Light.9cff5f27f6ad3d59.eot);src:local("Roboto Light"),local("Roboto-Light"),url(Roboto-Light.9cff5f27f6ad3d59.eot?#iefix) format("embedded-opentype"),url(Roboto-Light.7117d83fbb0aa28a.woff2) format("woff2"),url(Roboto-Light.2188ea3f3f8ab51a.woff) format("woff"),url(Roboto-Light.5605865fb101be1a.ttf) format("truetype"),url(Roboto-Light.775a1d8f32378e56.svg#Roboto) format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-LightItalic.4a75ae9969c094a3.eot);src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url(Roboto-LightItalic.4a75ae9969c094a3.eot?#iefix) format("embedded-opentype"),url(Roboto-LightItalic.9669ba38989190d7.woff2) format("woff2"),url(Roboto-LightItalic.ead2698c38e2d858.woff) format("woff"),url(Roboto-LightItalic.ccdc52ada30d970f.ttf) format("truetype"),url(Roboto-LightItalic.293a6c412ebb5682.svg#Roboto) format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Regular.b21a0eefbec4f57f.eot);src:local("Roboto Regular"),local("Roboto-Regular"),url(Roboto-Regular.b21a0eefbec4f57f.eot?#iefix) format("embedded-opentype"),url(Roboto-Regular.e64b7e5db276537f.woff2) format("woff2"),url(Roboto-Regular.2313f68c10458709.woff) format("woff"),url(Roboto-Regular.b796ce65a81adc41.ttf) format("truetype"),url(Roboto-Regular.18c20975d2f2578c.svg#Roboto) format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-RegularItalic.e6e0d5b40d74c833.eot);src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url(Roboto-RegularItalic.e6e0d5b40d74c833.eot?#iefix) format("embedded-opentype"),url(Roboto-RegularItalic.d448549043fc24e3.woff2) format("woff2"),url(Roboto-RegularItalic.6c93c3855305929c.woff) format("woff"),url(Roboto-RegularItalic.c6469a92f47f72b9.ttf) format("truetype"),url(Roboto-RegularItalic.f83754e74962d444.svg#Roboto) format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Medium.9a9c9421bcdef79c.eot);src:local("Roboto Medium"),local("Roboto-Medium"),url(Roboto-Medium.9a9c9421bcdef79c.eot?#iefix) format("embedded-opentype"),url(Roboto-Medium.31c42d9dbee477e5.woff2) format("woff2"),url(Roboto-Medium.769ea541b3eef14d.woff) format("woff"),url(Roboto-Medium.03501557d620ee6b.ttf) format("truetype"),url(Roboto-Medium.8a59a67632175b0b.svg#Roboto) format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-MediumItalic.eda8bf9be9c607a9.eot);src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url(Roboto-MediumItalic.eda8bf9be9c607a9.eot?#iefix) format("embedded-opentype"),url(Roboto-MediumItalic.2b1343b2d0b09b92.woff2) format("woff2"),url(Roboto-MediumItalic.226e2a5000081685.woff) format("woff"),url(Roboto-MediumItalic.ce75fe30feef2519.ttf) format("truetype"),url(Roboto-MediumItalic.b51310a741b5d779.svg#Roboto) format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Bold.0d2870f5e1759c7a.eot);src:local("Roboto Bold"),local("Roboto-Bold"),url(Roboto-Bold.0d2870f5e1759c7a.eot?#iefix) format("embedded-opentype"),url(Roboto-Bold.6980f6575e8c2cbd.woff2) format("woff2"),url(Roboto-Bold.313d5de65a92aae6.woff) format("woff"),url(Roboto-Bold.ed694f411e0b3a82.ttf) format("truetype"),url(Roboto-Bold.a5d983d959171823.svg#Roboto) format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-BoldItalic.24d4fc9379818f4d.eot);src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url(Roboto-BoldItalic.24d4fc9379818f4d.eot?#iefix) format("embedded-opentype"),url(Roboto-BoldItalic.986a9dba772d1a7a.woff2) format("woff2"),url(Roboto-BoldItalic.d0b1358f293918c7.woff) format("woff"),url(Roboto-BoldItalic.e3188bd071401a05.ttf) format("truetype"),url(Roboto-BoldItalic.98e79b0548caa896.svg#Roboto) format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Black.2a430d2577a70997.eot);src:local("Roboto Black"),local("Roboto-Black"),url(Roboto-Black.2a430d2577a70997.eot?#iefix) format("embedded-opentype"),url(Roboto-Black.710dab121b2a7bc2.woff2) format("woff2"),url(Roboto-Black.06740b883cfa8a2e.woff) format("woff"),url(Roboto-Black.41a719429c37346e.ttf) format("truetype"),url(Roboto-Black.711c7acb0aa346bb.svg#Roboto) format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-BlackItalic.65db2fd69db01cd5.eot);src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url(Roboto-BlackItalic.65db2fd69db01cd5.eot?#iefix) format("embedded-opentype"),url(Roboto-BlackItalic.f4307ac32c9ad43b.woff2) format("woff2"),url(Roboto-BlackItalic.fc1832915de70c44.woff) format("woff"),url(Roboto-BlackItalic.ba2ec768f43dbc84.ttf) format("truetype"),url(Roboto-BlackItalic.26186c8936090567.svg#Roboto) format("svg");font-weight:900;font-style:italic}@charset "UTF-8";:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}img{vertical-align:middle;border-style:none}svg{overflow:hidden;vertical-align:middle}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}img{page-break-inside:avoid}@page{size:a3}body{min-width:992px!important}}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#F8F8F8}html{overflow-y:scroll}</style><link rel="stylesheet" href="styles.1b90ca75cc2833ca.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.1b90ca75cc2833ca.css"></noscript><meta property="og:title" content="Angular-Buch → Angular 5: Änderungen für i18n"><meta name="twitter:title" content="Angular-Buch → Angular 5: Änderungen für i18n"><meta name="description" content="📙 Bis Version 4 setzte Angular auf die Intl-API.
+In Angular 5 wurde diese Abhängigkeit verworfen – dadurch ändern sich einige Details bei der Internationalisierung und den lokalisierten Pipes.
+In diesem Artikel haben wir die wichtigsten Änderungen zusammengefasst."><meta property="og:description" content="📙 Bis Version 4 setzte Angular auf die Intl-API.
+In Angular 5 wurde diese Abhängigkeit verworfen – dadurch ändern sich einige Details bei der Internationalisierung und den lokalisierten Pipes.
+In diesem Artikel haben wir die wichtigsten Änderungen zusammengefasst."><meta name="twitter:description" content="📙 Bis Version 4 setzte Angular auf die Intl-API.
+In Angular 5 wurde diese Abhängigkeit verworfen – dadurch ändern sich einige Details bei der Internationalisierung und den lokalisierten Pipes.
+In diesem Artikel haben wir die wichtigsten Änderungen zusammengefasst."><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/blog/2017-12-ng5-i18n"><style>.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
+</style><style>.content img{max-width:100%}.details-page-autor{margin-top:-110px}.details-thumbnail{margin-bottom:-18px}.details-thumbnail .details-thumbnail-inner{border-bottom:23px solid #dfdede;height:300px;overflow:hidden;background-color:#fff;border-radius:4px;display:flex;justify-content:center}.details-thumbnail .details-thumbnail-inner .darken-overlay{display:block;position:absolute;height:300px;width:100%;padding-left:15px;padding-right:15px;padding-bottom:23px}.details-thumbnail .details-thumbnail-inner .darken-overlay div{display:block;position:relative;width:100%;height:100%;background-color:#0003;border-radius:4px 4px 0 0/4px 4px 0px 0px}.details-thumbnail img{width:100%;align-self:center}.video-container{position:relative;padding-bottom:56.25%;padding-top:0;height:0;overflow:hidden;margin-top:2rem;margin-bottom:2rem}.video-container iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;height:100%}
+</style><style>a[_ngcontent-bdr-c14]:link, a[_ngcontent-bdr-c14]:visited{text-decoration:underline}a[_ngcontent-bdr-c14]:hover, a[_ngcontent-bdr-c14]:active{text-decoration:none}</style><meta property="og:image" content="https://website-articles.angular-buch.com/blog/2017-12-ng5-i18n/../x_shared/angular5.png"><meta name="twitter:image" content="https://website-articles.angular-buch.com/blog/2017-12-ng5-i18n/../x_shared/angular5.png"><meta name="twitter:card" content="summary_large_image"><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+  <app-root ng-version="15.0.0"><header><div class="nav__overlay"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/"><img src="assets/img/brand.svg" alt="" class="img-fluid" style="height: 40px;"></a></div><div class="col-6 col-md-10"><nav><ul><li><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/"><!----> Buch </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/blog" class="nav__current" aria-current="page"><!----> Blog </a><!----><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/material"><!----> Begleitmaterial </a><!----><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="//angular.schule/"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-calendar.svg" src="assets/img/symbol-calendar.svg"><!----> Angular-Schulungen </a><!----><!----><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="https://amzn.eu/d/8fgTIWL"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-basket.svg" src="assets/img/symbol-basket.svg"><!----> Jetzt vorbestellen </a><!----><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" class="nav__toggle"><img src="assets/img/symbol-menu.svg" alt=""></a></div></div></div></header><main><router-outlet></router-outlet><app-blog-details><app-hero-header headline="Blog" headlinelink="/blog"><section class="hero hero--smallest"><div class="hero__lines hero__lines--smallest"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;">Blog</a><!----><!----></h1></div><div class="col-5 d-none d-md-block text-center"><img src="assets/img/angular.png" alt="" class="hero__angular--smallest"></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list blog"><div class="index__stripe index__stripe--list"><!----><div class="container"><a name="post" id="post"></a><div class="row details-thumbnail"><div class="col-12"><div class="details-thumbnail-inner"><img alt="" class="img-fluid rounded" src="https://website-articles.angular-buch.com/blog/2017-12-ng5-i18n/../x_shared/angular5.png"><!----></div></div><!----></div><div class="row"><div class="col-12"><div class="index__item index__item--list"><div class="row align-items-top"><div class="col-12 col-sm-3 col-md-2 text-center details-page-autor"><img alt="" class="blog__portrait img-fluid rounded-circle" src="//www.gravatar.com/avatar/d5c9183b21d274284f9ff858b108f43b?size=200&amp;rating=pg&amp;d=mm"><span class="blog__author">Ferdinand Malcher <br><a target="_blank" class="twitter" href="https://twitter.com/fmalcher01"> @fmalcher01</a> &nbsp; <!----><!----></span></div><div class="col-12 col-sm-9 col-md-10 col-lg-10"><h1>Angular 5: Änderungen für i18n</h1><p class="blog__date">07.12.2017</p><p class="content markdown-body"><p>Bis Version 4 setzte Angular auf die <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Intl">Intl-API</a>.
+In Angular 5 wurde diese Abhängigkeit verworfen – dadurch ändern sich einige Details bei der Internationalisierung und den lokalisierten Pipes.
+In diesem Artikel haben wir die wichtigsten Änderungen zusammengefasst.</p>
+<h2 id="intl-api">Intl-API</h2>
+<p>Bis Angular 4 kam zur Lokalisierung die Intl-API zum Einsatz, die in den modernen Browsern nativ implementiert ist.
+Dieser Weg bringt allerdings zwei wesentliche Nachteile mit sich:</p>
+<ol>
+<li>Die API ist in den Browsern unterschiedlich implementiert.</li>
+<li>In älteren Browsern ist ein Polyfill nötig, um die Funktionalität nachzurüsten.</li>
+</ol>
+<p>In Angular 5.0.0 wurde die Abhängigkeit auf die Intl-API entfernt.
+Das betrifft besonders die Pipes, die auf Lokalisierung setzen: <code>DatePipe</code>, <code>DecimalPipe</code> und <code>CurrencyPipe</code>.</p>
+<h2 id="sprache-festlegen">Sprache festlegen</h2>
+<p>Die genannten Pipes verarbeiten Informationen, die spezifisch für eine Region sind.
+Beispielsweise werden Datumsangaben im Locale <code>en_US</code> anders dargestellt als für <code>de_DE</code>.
+Ein weiteres Beispiel sind Dezimal- und Tausendertrennzeichen (Punkt und Komma) bei Zahlen.</p>
+<p>In der Anwendung muss immer ein aktives Locale festgelegt werden.
+Im einfachsten Fall legen wir die Sprache schon zur Entwicklungszeit fest, aber es existieren natürlich auch dynamische und flexiblere Wege.</p>
+<p>Das aktuelle Locale ist im Token <code>LOCALE_ID</code> hinterlegt.
+Um den Wert zu ändern, können wir das Token im DI-Container überladen.
+Diesen Weg beschreiben wir so auch im Buch im Abschnitt 13.1.2 "Die Sprache einstellen":</p>
+<pre><code class="language-typescript"><span class="hljs-variable">@NgModule</span>({
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attribute">providers</span>: [
+    { <span class="hljs-attribute">provide</span>: LOCALE_ID, <span class="hljs-attribute">useValue</span>: <span class="hljs-string">'de'</span> }
+  ]
+})
+</code></pre>
+<p>Ab Angular 5 müssen die verfügbaren Locales einzeln importiert und registriert werden.
+Dafür wurde die Funktion <code>registerLocaleData()</code> eingeführt, die z.B. im <code>AppModule</code> aufgerufen werden kann:</p>
+<pre><code class="language-typescript"><span class="hljs-comment">// app.module.ts</span>
+<span class="hljs-keyword">import</span> { LOCALE_ID } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { registerLocaleData } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common'</span>;
+<span class="hljs-keyword">import</span> localeDe <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common/locales/de'</span>;
+
+<span class="hljs-meta">@NgModule</span>({
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">providers</span>: [
+    { <span class="hljs-attr">provide</span>: LOCALE_ID, <span class="hljs-attr">useValue</span>: <span class="hljs-string">'de'</span> }
+  ]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppModule</span> </span>{
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
+    registerLocaleData(localeDe);
+  }
+}
+</code></pre>
+<h2 id="änderungen-bei-den-pipes">Änderungen bei den Pipes</h2>
+<h3 id="datepipe">DatePipe</h3>
+<p>Im Zuge dieser Änderungen hat sich auch das Verhalten der lokalisierten Pipes geändert.
+Die Tabellen mit den Platzhaltern für das Format der <code>DatePipe</code> (Seite 263 f. im Angular-Buch) sind damit nicht mehr komplett zutreffend, denn einige Platzhalter haben sich verändert.
+Besonders die vordefinierten Aliase (z.B. <code>medium</code>) haben eine geänderte Signatur und es sind einige neue Patterns hinzugekommen.</p>
+<p>In den meisten Fällen sind hier nur wenige Änderungen nötig.
+Überprüfen Sie aber unbedingt alle Datumsangaben in Ihren Anwendungen.
+Alle aktuellen Platzhalter finden Sie in der <a href="https://angular.io/api/common/DatePipe">Dokumentation für die DatePipe</a>.</p>
+<h3 id="currencypipe">CurrencyPipe</h3>
+<p>Die <a href="https://angular.io/api/common/CurrencyPipe">CurrencyPipe</a> hat ab Angular 5 eine geänderte Signatur:</p>
+<pre><code>expression | currency[<span class="hljs-symbol">:currencyCode</span>[<span class="hljs-symbol">:display</span>[<span class="hljs-symbol">:digitInfo</span>[<span class="hljs-symbol">:locale</span>]]]]
+</code></pre>
+<p>Damit fällt das alte Argument <code>symbolDisplay</code> weg und macht Platz für das neue <code>display</code>:</p>
+<pre><code><span class="hljs-attr">display</span> = { <span class="hljs-string">'code'</span> | <span class="hljs-string">'symbol'</span> | <span class="hljs-string">'symbol-narrow'</span> }
+</code></pre>
+<p><code>display</code> entscheidet, ob das Währungskürzel als Text (z.B. <em>EUR</em>), Symbol (z.B. <em>€</em>) oder gekürztes Symbol (relevant bei zusammengesetzten Währungen wie <em>AU$</em>, wird angezeigt als <em>$</em>) angezeigt werden soll.</p>
+<p>Außerdem kann über das Argument <code>locale</code> ein spezifisches Locale angegeben werden, nach dem die Währungsangabe geparst wird.</p>
+<p>Diese Beispiele veranschaulichen das neue Verhalten:</p>
+<pre><code><span class="hljs-number">3.141</span> | currency:<span class="hljs-string">'EUR'</span>                          <span class="hljs-regexp">//</span> <span class="hljs-number">3</span>,<span class="hljs-number">14</span> €
+<span class="hljs-number">3.141</span> | currency:<span class="hljs-string">'USD'</span>:<span class="hljs-string">'code'</span>                   <span class="hljs-regexp">//</span> <span class="hljs-number">3</span>,<span class="hljs-number">14</span> USD
+<span class="hljs-number">3.141</span> | currency:<span class="hljs-string">'EUR'</span>:<span class="hljs-string">'code'</span>:<span class="hljs-string">'1.2-2'</span>           <span class="hljs-regexp">//</span> <span class="hljs-number">3</span>,<span class="hljs-number">14</span> EUR
+<span class="hljs-number">3.141</span> | currency:<span class="hljs-string">'USD'</span>:<span class="hljs-string">'symbol'</span>:<span class="hljs-string">'1.2-2'</span>:<span class="hljs-string">'en_US'</span> <span class="hljs-regexp">//</span> <span class="hljs-variable">$3</span>.<span class="hljs-number">14</span>
+</code></pre>
+<h2 id="i18n-kommentare">i18n-Kommentare</h2>
+<p>Eine kleine Änderung gibt es in Sachen Mehrsprachigkeit.
+Um Textknoten zur Übersetzung zu markieren, wird das <code>i18n</code>-Attribut eingesetzt.
+Diese Syntax beschreiben wir im Angular-Buch auf Seite 352:</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">i18n</span>=<span class="hljs-string">"meaning|description"</span>&gt;</span>Hallo Welt!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+</code></pre>
+<p>Für Text ohne abgegrenztes DOM-Element konnten wir bis Angular 4 auch HTML-Kommentare verwenden.
+<strong>Diese Magic Comments werden ab Angular 5 nicht mehr unterstützt!</strong></p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!--i18n: meaning|description --&gt;</span>
+Meine Nachricht
+<span class="hljs-comment">&lt;!--/i18n--&gt;</span>
+</code></pre>
+<p>Stattdessen müssen wir in diesem Fall nun den <code>&lt;ng-container&gt;</code> als umgebendes Element einsetzen.
+Auf dem Container können wir dann wie gewohnt das <code>i18n</code>-Attribut verwenden:</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> <span class="hljs-attr">i18n</span>=<span class="hljs-string">"meaning/description"</span>&gt;</span>
+Meine Nachricht
+<span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
+</code></pre>
+<p>Der <code>&lt;ng-container&gt;</code> ist ein Hilfselement für Angular und ist im Browser später nicht mehr sichtbar.</p>
+<p>Mit dieser Änderung ist die Markierung von Texten nun konsistent: Es wird in jedem Fall das <code>i18n</code>-Attribut eingesetzt.</p>
+<h3 id="i18n-attribute-mit-css-markieren">i18n-Attribute mit CSS markieren</h3>
+<p>Um bei der Arbeit mit i18n nicht den Überblick zu verlieren, konnten wir Elemente mit dem <code>i18n</code>-Attribut per CSS markieren.
+Diesen Tipp geben wir auch im Angular-Buch auf Seite 359:</p>
+<pre><code class="language-css"><span class="hljs-selector-attr">[i18n]</span>,
+<span class="hljs-selector-attr">[i18n-placeholder]</span>,
+<span class="hljs-selector-attr">[i18n-title]</span> {
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid green <span class="hljs-meta">!important</span>;
+}
+</code></pre>
+<p>Leider funktioniert dieses Hilfsmittel seit Angular 4.3 nicht mehr, da alle <code>i18n</code>-Attribute automatisch aus dem Kompilat entfernt werden (siehe <a href="https://github.com/angular/angular/issues/11042">#11042</a>). Dies geschieht leider immer, egal ob die Anwendung übersetzt wird, oder nicht. Vielleicht kommen die Attribute aber irgendwann wieder zurück. Das Problem wurde immerhin als Feature-Request klassifiziert (siehe <a href="https://github.com/angular/angular/issues/20055">#20055</a>).</p>
+</p><!----><!----><a routerlink="/blog" ripple-radius="" class="btn btn-sm btn-primary mt-4" href="/blog"><i class="fa fa-backward mr-2"></i> Zurück</a><hr> Suggestions? Feedback? Bugs? Please <a target="_blank" class="content" href="https://github.com/angular-buch/website-articles/blob/gh-pages/blog/2017-12-ng5-i18n/README.md"><i class="fa fa-github mr-1" style="font-size: 1.6rem; position: relative; bottom: -3px;"></i>fork/edit this page on Github</a>. </div></div></div></div></div><!----></div><!----></div></section><ngx-json-ld><script type="application/ld+json">{
+  "url": "https://angular.schule/blog/2017-12-ng5-i18n",
+  "headline": "Angular 5: Änderungen für i18n",
+  "description": "Bis Version 4 setzte Angular auf die Intl-API.\nIn Angular 5 wurde diese Abhängigkeit verworfen – dadurch ändern sich einige Details bei der Internationalisierung und den lokalisierten Pipes.\nIn diesem Artikel haben wir die wichtigsten Änderungen zusammengefasst.",
+  "datePublished": "2017-12-07",
+  "dateModified": "2017-12-07",
+  "publisher": {
+    "name": "Angular-Buch",
+    "url": "https://angular-buch.com",
+    "@type": "Organization",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://angular-buch.com/assets/img/brand_export.png"
+    }
+  },
+  "image": "https://website-articles.angular-buch.com/blog/2017-12-ng5-i18n/../x_shared/angular5.png",
+  "thumbnailUrl": "https://website-articles.angular-buch.com/blog/2017-12-ng5-i18n/../x_shared/angular5.png",
+  "author": {
+    "@type": "Person",
+    "name": "Ferdinand Malcher",
+    "email": "mail@fmalcher.de"
+  },
+  "keywords": [
+    "Angular",
+    "Angular 5",
+    "i18n",
+    "Internationalisierung",
+    "Pipes",
+    "Locale"
+  ],
+  "mainEntityOfPage": "http://schema.org/WebPage",
+  "@type": "Article",
+  "@context": "http://schema.org"
+}</script></ngx-json-ld></app-blog-details><!----><footer><div class="container"><div class="row align-items-center"><div class="col-sm-9"><div class="links"><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/"><!----> Home </a><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/impressum"><!----> Impressum </a><!----><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/datenschutz"><!----> Datenschutzerklärung </a><!----><!----><!----><!----></app-link>|<!----><app-link><!----><a class="links__item links__twitter" href="https://twitter.com/angular_buch" rel="nofollow"><!----> Twitter </a><!----><!----><!----><!----><!----></app-link><!----><!----></div></div><div class="col-sm-3 text-right"></div></div></div></footer></main><ngx-json-ld><script type="application/ld+json"></script></ngx-json-ld><ngx-json-ld><script type="application/ld+json"></script></ngx-json-ld></app-root>
+<script src="runtime.2127feb1097cc098.js" type="module"></script><script src="polyfills.6d539c7e65933a8f.js" type="module"></script><script src="main.5c350166e2c255c1.js" type="module"></script>
+
+</body></html>

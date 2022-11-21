@@ -1,0 +1,642 @@
+<!DOCTYPE html><html><head lang="de" prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#"><meta name="generator" content="Scully 0.0.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <title>Angular-Buch → Den Book-Monkey v4 updaten (3. Ausgabe)</title>
+  
+
+  
+
+  <meta property="book:author" content="https://www.facebook.com/ferdinand.malcher">
+  <meta property="book:author" content="https://www.facebook.com/johannes.hoppe">
+  <meta property="book:author" content="https://www.facebook.com/dannykoppenhagen">
+
+  <meta property="book:isbn" content="9783864907791">
+  <meta property="book:release_date" content="2020-09-30">
+  <meta property="book:tag" content="Angular">
+  <meta property="book:tag" content="AngularJS">
+  <meta property="book:tag" content="TypeScript">
+  <meta property="book:tag" content="JavaScript">
+  <meta property="book:tag" content="HTML5">
+  <meta property="book:tag" content="CSS">
+  <meta property="book:tag" content="RxJS">
+  <meta property="book:tag" content="NativeScript">
+  <meta property="book:tag" content="Redux">
+  <meta property="book:tag" content="NgRx">
+
+  <base href="/">
+<style>@font-face{font-family:Roboto;src:url(Roboto-Thin.3025beb410a67d09.eot);src:local("Roboto Thin"),local("Roboto-Thin"),url(Roboto-Thin.3025beb410a67d09.eot?#iefix) format("embedded-opentype"),url(Roboto-Thin.a529f43f8b43a41b.woff2) format("woff2"),url(Roboto-Thin.0cfb6189823d7275.woff) format("woff"),url(Roboto-Thin.94d67324d95f59e5.ttf) format("truetype"),url(Roboto-Thin.761d85cbad1d4c0a.svg#Roboto) format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-ThinItalic.3c0494ed5066eddf.eot);src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url(Roboto-ThinItalic.3c0494ed5066eddf.eot?#iefix) format("embedded-opentype"),url(Roboto-ThinItalic.7d4425d4f9dfbd4d.woff2) format("woff2"),url(Roboto-ThinItalic.72445820525e265f.woff) format("woff"),url(Roboto-ThinItalic.72ab0263ccb0dc3f.ttf) format("truetype"),url(Roboto-ThinItalic.7d3f4f17bca5edb0.svg#Roboto) format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Light.9cff5f27f6ad3d59.eot);src:local("Roboto Light"),local("Roboto-Light"),url(Roboto-Light.9cff5f27f6ad3d59.eot?#iefix) format("embedded-opentype"),url(Roboto-Light.7117d83fbb0aa28a.woff2) format("woff2"),url(Roboto-Light.2188ea3f3f8ab51a.woff) format("woff"),url(Roboto-Light.5605865fb101be1a.ttf) format("truetype"),url(Roboto-Light.775a1d8f32378e56.svg#Roboto) format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-LightItalic.4a75ae9969c094a3.eot);src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url(Roboto-LightItalic.4a75ae9969c094a3.eot?#iefix) format("embedded-opentype"),url(Roboto-LightItalic.9669ba38989190d7.woff2) format("woff2"),url(Roboto-LightItalic.ead2698c38e2d858.woff) format("woff"),url(Roboto-LightItalic.ccdc52ada30d970f.ttf) format("truetype"),url(Roboto-LightItalic.293a6c412ebb5682.svg#Roboto) format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Regular.b21a0eefbec4f57f.eot);src:local("Roboto Regular"),local("Roboto-Regular"),url(Roboto-Regular.b21a0eefbec4f57f.eot?#iefix) format("embedded-opentype"),url(Roboto-Regular.e64b7e5db276537f.woff2) format("woff2"),url(Roboto-Regular.2313f68c10458709.woff) format("woff"),url(Roboto-Regular.b796ce65a81adc41.ttf) format("truetype"),url(Roboto-Regular.18c20975d2f2578c.svg#Roboto) format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-RegularItalic.e6e0d5b40d74c833.eot);src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url(Roboto-RegularItalic.e6e0d5b40d74c833.eot?#iefix) format("embedded-opentype"),url(Roboto-RegularItalic.d448549043fc24e3.woff2) format("woff2"),url(Roboto-RegularItalic.6c93c3855305929c.woff) format("woff"),url(Roboto-RegularItalic.c6469a92f47f72b9.ttf) format("truetype"),url(Roboto-RegularItalic.f83754e74962d444.svg#Roboto) format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Medium.9a9c9421bcdef79c.eot);src:local("Roboto Medium"),local("Roboto-Medium"),url(Roboto-Medium.9a9c9421bcdef79c.eot?#iefix) format("embedded-opentype"),url(Roboto-Medium.31c42d9dbee477e5.woff2) format("woff2"),url(Roboto-Medium.769ea541b3eef14d.woff) format("woff"),url(Roboto-Medium.03501557d620ee6b.ttf) format("truetype"),url(Roboto-Medium.8a59a67632175b0b.svg#Roboto) format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-MediumItalic.eda8bf9be9c607a9.eot);src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url(Roboto-MediumItalic.eda8bf9be9c607a9.eot?#iefix) format("embedded-opentype"),url(Roboto-MediumItalic.2b1343b2d0b09b92.woff2) format("woff2"),url(Roboto-MediumItalic.226e2a5000081685.woff) format("woff"),url(Roboto-MediumItalic.ce75fe30feef2519.ttf) format("truetype"),url(Roboto-MediumItalic.b51310a741b5d779.svg#Roboto) format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Bold.0d2870f5e1759c7a.eot);src:local("Roboto Bold"),local("Roboto-Bold"),url(Roboto-Bold.0d2870f5e1759c7a.eot?#iefix) format("embedded-opentype"),url(Roboto-Bold.6980f6575e8c2cbd.woff2) format("woff2"),url(Roboto-Bold.313d5de65a92aae6.woff) format("woff"),url(Roboto-Bold.ed694f411e0b3a82.ttf) format("truetype"),url(Roboto-Bold.a5d983d959171823.svg#Roboto) format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-BoldItalic.24d4fc9379818f4d.eot);src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url(Roboto-BoldItalic.24d4fc9379818f4d.eot?#iefix) format("embedded-opentype"),url(Roboto-BoldItalic.986a9dba772d1a7a.woff2) format("woff2"),url(Roboto-BoldItalic.d0b1358f293918c7.woff) format("woff"),url(Roboto-BoldItalic.e3188bd071401a05.ttf) format("truetype"),url(Roboto-BoldItalic.98e79b0548caa896.svg#Roboto) format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Black.2a430d2577a70997.eot);src:local("Roboto Black"),local("Roboto-Black"),url(Roboto-Black.2a430d2577a70997.eot?#iefix) format("embedded-opentype"),url(Roboto-Black.710dab121b2a7bc2.woff2) format("woff2"),url(Roboto-Black.06740b883cfa8a2e.woff) format("woff"),url(Roboto-Black.41a719429c37346e.ttf) format("truetype"),url(Roboto-Black.711c7acb0aa346bb.svg#Roboto) format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-BlackItalic.65db2fd69db01cd5.eot);src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url(Roboto-BlackItalic.65db2fd69db01cd5.eot?#iefix) format("embedded-opentype"),url(Roboto-BlackItalic.f4307ac32c9ad43b.woff2) format("woff2"),url(Roboto-BlackItalic.fc1832915de70c44.woff) format("woff"),url(Roboto-BlackItalic.ba2ec768f43dbc84.ttf) format("truetype"),url(Roboto-BlackItalic.26186c8936090567.svg#Roboto) format("svg");font-weight:900;font-style:italic}@charset "UTF-8";:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}img{vertical-align:middle;border-style:none}svg{overflow:hidden;vertical-align:middle}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}img{page-break-inside:avoid}@page{size:a3}body{min-width:992px!important}}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#F8F8F8}html{overflow-y:scroll}</style><link rel="stylesheet" href="styles.1b90ca75cc2833ca.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.1b90ca75cc2833ca.css"></noscript><meta property="og:title" content="Angular-Buch → Den Book-Monkey v4 updaten (3. Ausgabe)"><meta name="twitter:title" content="Angular-Buch → Den Book-Monkey v4 updaten (3. Ausgabe)"><meta name="description" content="📙 Das Angular-Ökosystem wird kontinuierlich verbessert.
+Das Release einer neuen Major-Version von Angular bedeutet keineswegs, dass alle Ideen verworfen werden und Ihre Software nach einem Update nicht mehr funktioniert.
+Die Grundideen von Angular sind seit Version 2 konsistent und auf Beständigkeit über einen langen Zeitraum ausgelegt.
+Die in unserem Buch beschriebenen Konzepte behalten ihre Gültigkeit."><meta property="og:description" content="📙 Das Angular-Ökosystem wird kontinuierlich verbessert.
+Das Release einer neuen Major-Version von Angular bedeutet keineswegs, dass alle Ideen verworfen werden und Ihre Software nach einem Update nicht mehr funktioniert.
+Die Grundideen von Angular sind seit Version 2 konsistent und auf Beständigkeit über einen langen Zeitraum ausgelegt.
+Die in unserem Buch beschriebenen Konzepte behalten ihre Gültigkeit."><meta name="twitter:description" content="📙 Das Angular-Ökosystem wird kontinuierlich verbessert.
+Das Release einer neuen Major-Version von Angular bedeutet keineswegs, dass alle Ideen verworfen werden und Ihre Software nach einem Update nicht mehr funktioniert.
+Die Grundideen von Angular sind seit Version 2 konsistent und auf Beständigkeit über einen langen Zeitraum ausgelegt.
+Die in unserem Buch beschriebenen Konzepte behalten ihre Gültigkeit."><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/blog/2022-06-bm4-update"><style>.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
+</style><style>.content img{max-width:100%}.details-page-autor{margin-top:-110px}.details-thumbnail{margin-bottom:-18px}.details-thumbnail .details-thumbnail-inner{border-bottom:23px solid #dfdede;height:300px;overflow:hidden;background-color:#fff;border-radius:4px;display:flex;justify-content:center}.details-thumbnail .details-thumbnail-inner .darken-overlay{display:block;position:absolute;height:300px;width:100%;padding-left:15px;padding-right:15px;padding-bottom:23px}.details-thumbnail .details-thumbnail-inner .darken-overlay div{display:block;position:relative;width:100%;height:100%;background-color:#0003;border-radius:4px 4px 0 0/4px 4px 0px 0px}.details-thumbnail img{width:100%;align-self:center}.video-container{position:relative;padding-bottom:56.25%;padding-top:0;height:0;overflow:hidden;margin-top:2rem;margin-bottom:2rem}.video-container iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;height:100%}
+</style><style>a[_ngcontent-jub-c14]:link, a[_ngcontent-jub-c14]:visited{text-decoration:underline}a[_ngcontent-jub-c14]:hover, a[_ngcontent-jub-c14]:active{text-decoration:none}</style><meta property="og:image" content="https://website-articles.angular-buch.com/blog/2022-06-bm4-update/./bm4update.jpg"><meta name="twitter:image" content="https://website-articles.angular-buch.com/blog/2022-06-bm4-update/./bm4update.jpg"><meta name="twitter:card" content="summary_large_image"><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+  <app-root ng-version="15.0.0"><header><div class="nav__overlay"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/"><img src="assets/img/brand.svg" alt="" class="img-fluid" style="height: 40px;"></a></div><div class="col-6 col-md-10"><nav><ul><li><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/"><!----> Buch </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/blog" class="nav__current" aria-current="page"><!----> Blog </a><!----><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/material"><!----> Begleitmaterial </a><!----><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="//angular.schule/"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-calendar.svg" src="assets/img/symbol-calendar.svg"><!----> Angular-Schulungen </a><!----><!----><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="https://amzn.eu/d/8fgTIWL"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-basket.svg" src="assets/img/symbol-basket.svg"><!----> Jetzt vorbestellen </a><!----><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" class="nav__toggle"><img src="assets/img/symbol-menu.svg" alt=""></a></div></div></div></header><main><router-outlet></router-outlet><app-blog-details><app-hero-header headline="Blog" headlinelink="/blog"><section class="hero hero--smallest"><div class="hero__lines hero__lines--smallest"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;">Blog</a><!----><!----></h1></div><div class="col-5 d-none d-md-block text-center"><img src="assets/img/angular.png" alt="" class="hero__angular--smallest"></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list blog"><div class="index__stripe index__stripe--list"><!----><div class="container"><a name="post" id="post"></a><div class="row details-thumbnail"><div class="col-12"><div class="details-thumbnail-inner"><img alt="" class="img-fluid rounded" src="https://website-articles.angular-buch.com/blog/2022-06-bm4-update/./bm4update.jpg"><!----></div></div><!----></div><div class="row"><div class="col-12"><div class="index__item index__item--list"><div class="row align-items-top"><div class="col-12 col-sm-3 col-md-2 text-center details-page-autor"><img alt="" class="blog__portrait img-fluid rounded-circle" src="//www.gravatar.com/avatar/be546eb804b80c7e8c1ac0fc082b5463?size=200&amp;rating=pg&amp;d=mm"><span class="blog__author">Angular Buch Team <br><a target="_blank" class="twitter" href="https://twitter.com/angular_buch"> @angular_buch</a> &nbsp; <!----><!----></span></div><div class="col-12 col-sm-9 col-md-10 col-lg-10"><h1>Den Book-Monkey v4 updaten (3. Ausgabe)</h1><p class="blog__date">30.06.2022</p><p class="content markdown-body"><p>Das Angular-Ökosystem wird kontinuierlich verbessert.
+Das Release einer neuen Major-Version von Angular bedeutet keineswegs, dass alle Ideen verworfen werden und Ihre Software nach einem Update nicht mehr funktioniert.
+Die Grundideen von Angular sind seit Version 2 konsistent und auf Beständigkeit über einen langen Zeitraum ausgelegt.
+Die in unserem Buch beschriebenen Konzepte behalten ihre Gültigkeit.</p>
+<p>Ein paar Änderungen haben sich jedoch seit der Veröffentlichung der 3. Ausgabe unseres Buchs ergeben.
+Diese wollen wir hier detailiert besprechen.
+Es geht vor allem daraum, dass seit <strong>Angular 12</strong> diverse strikte Einstellungen für neue Projekte standardmäßig aktiviert sind.
+Als wir das Buch im Oktober 2020 veröffentlicht haben, war das noch nicht so.
+Sind die strikten Einstellungen aktiv, brechen nun leider einige gedruckte Beispiele, die sich aber mit moderatem Aufwand beheben lassen.</p>
+<h2 id="der-bookmonkey">Der BookMonkey</h2>
+<p>Der "BookMonkey" ist das Demo-Projekt zum Buch.
+Anhand des Beispielprojekts führen wir Sie schrittweise an die Entwicklung mit Angular heran.</p>
+<p>Alle Entwicklungsschritte im Buch stellen wir in <a href="https://github.com/angular-buch/book-monkey4">separaten Repositorys</a> zur Verfügung.
+Wenn man den Anleitungen im Buch folgt, sieht die eigene Codebasis im Idealfall genauso aus, wie unser Stand auf GitHub.</p>
+<h2 id="einen-bestehenden-bookmonkey-updaten">Einen bestehenden BookMonkey updaten</h2>
+<p>Wenn Sie unser Buch gleich nach der Veröffentlichung gekauft haben und alle Beispiele daraufhin nach Anleitung umgesetzt haben, dann haben Sie keinen großen Aufwand.
+Zum Zeitpunkt der Veröffentlichung war Angular 10 die neueste Version, kurz danach folgte Angular 11.
+Wurde Ihr BookMonkey in dieser Zeit erstellt, dann sind in ihrem Projekt noch keinen strikten Einstellungen aktiv.</p>
+<p>Sie können die verwendete Angular-Version in der Datei <code>package.json</code> ablesen.
+Der Befehl <code>ng version</code> liefert ebenfalls ausführliche Infos zur Angular-Version im jeweiligen Projekt.</p>
+<p>Um auf den neuesten Stand von Angular zu gelangen, benutzen Sie bitte den Befehl <code>ng update</code> in der Kommandozeile und folgen Sie den Anweisungen auf dem Bildschirm.</p>
+<p>Lesen Sie dazu auch gerne unsere Blogposts mit den neuesten Änderungen zu Angular:</p>
+<ul>
+<li><a href="/blog/2020-11-angular11">Angular 11 ist da!</a></li>
+<li><a href="/blog/2021-06-angular12">Angular 12 ist da!</a></li>
+<li><a href="/blog/2021-11-angular13">Angular 13 ist da!</a></li>
+<li><a href="/blog/2022-06-angular14">Angular 14 ist da!</a></li>
+</ul>
+<h2 id="einen-neuen-bookmonkey-erstellen">Einen neuen BookMonkey erstellen</h2>
+<p>Wenn Sie nach Juni 2021 wie im Buch beschrieben den BookMonkey mit <code>ng new</code> erzeugen, so wird das Projekt standardmäßig mit strikten Einstellungen erstellt.
+Dieser <strong>"Strict Mode"</strong> bewirkt eine Reihe an neuen Einstellungen, welche auf der <a href="https://angular.io/guide/strict-mode">offiziellen Website von Angular</a> näher beschrieben sind.
+Zum einen sind die <a href="https://www.typescriptlang.org/tsconfig#strict">Einstellungen von TypeScript</a> restriktiver gesetzt.
+Zum anderen kommt eine Reihe von Prüfungen im Angular-Compiler hinzu.
+Diese sind in der Doku zu den <a href="https://angular.io/guide/angular-compiler-options">Angular Compiler Options</a> näher beschrieben.</p>
+<h2 id="walkthrough-den-bookmonkey-refactoren">Walkthrough: Den BookMonkey "refactoren"</h2>
+<p>Wir haben unseren "alten" BookMonkey (Stand Angular 10) mithilfe von <code>ng update</code> aktualisiert und anschließend die strikten Einstellungen manuell aktiviert:</p>
+<p><code>tsconfig.json</code></p>
+<pre><code class="language-ts">{
+  <span class="hljs-attr">"compilerOptions"</span>: {
+    <span class="hljs-attr">"strict"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"noImplicitReturns"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"noFallthroughCasesInSwitch"</span>: <span class="hljs-literal">true</span>
+  },
+  <span class="hljs-attr">"angularCompilerOptions"</span>: {
+    <span class="hljs-attr">"strictInjectionParameters"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"strictInputAccessModifiers"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"strictTemplates"</span>: <span class="hljs-literal">true</span>
+  }
+}
+</code></pre>
+<p>Sobald diese Einstellungen gewählt wurden, kompiliert das Projekt nicht mehr!
+Die gleiche Situation ergibt sich, wenn Sie mit einem strikten Projekt beginnen und die Beispiele aus dem Angular-Buch direkt übernehmen.
+In beiden Fällen müssen wir Alternativen für den gedruckten Code finden.
+Im Folgenden wollen wir nun die problematischen Codestellen kommentieren und mögliche Lösungen aufzeigen.
+Die Reihenfolge dieses Walkthroughs entspricht unseren Iterationen im Buch.
+Wenn Sie also den BookMonkey zum ersten Mal implementieren,
+dann halten Sie am Besten diese Anleitung gleich bereit.</p>
+<p>Im Quellcode auf GitHub haben wir die betroffenen Stellen ebenfalls kurz kommentiert.</p>
+<h3 id="kapitel-61-strikte-initialisierung-von-propertys">Kapitel 6.1: Strikte Initialisierung von Propertys</h3>
+<p>Gleich in der ersten Iteration zum Thema Komponenten (Kapitel 6.1) bei der <code>BookListComponent</code> (<code>src/app/book-list/book-list.component.ts</code>) erhalten wir einen der häufigsten Fehler:</p>
+<blockquote>
+<p>Property 'books' has no initializer and is not definitely assigned in the constructor.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-comment">// VORHER: book-list.component.ts</span>
+export <span class="hljs-keyword">class</span> <span class="hljs-symbol">BookListComponent</span> <span class="hljs-symbol">implements</span> <span class="hljs-symbol">OnInit</span> {
+  books: Book[];
+
+  ngOnInit(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">this</span>.books = [<span class="hljs-comment">/* ... */</span>]
+  }
+}
+</code></pre>
+<p>Hier prüft der Type-Checker, dass jede in einer Klasse deklarierte Eigenschaft entweder...</p>
+<p><strong>1.</strong> einen Typ hat, der <code>undefined</code> enthält oder<br><strong>2.</strong> explizit initialisiert wird bzw. im Konstruktor zugewiesen wird.</p>
+<p>Die Lifecycle-Methode <code>ngOnInit()</code> wird hingegen erst nach Konstruktor ausgeführt.
+Aus Sicht des TypeScript-Compilers ist <code>ngOnInit()</code> also eine normale Methode der Klasse.
+Die Zuweisung eines Propertys ist hier nur möglich, wenn es bereits definiert wurde.</p>
+<p>Eine mögliche Lösung besteht darin, der Eigenschaft einen Typ zu geben, der <code>undefined</code> enthält.
+Denselben Effekt erhalten wir, wenn wir das Property mit einem Fragezeichen (<code>?</code>) auf optional setzen.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// 1. mögliche Lösung</span>
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookListComponent</span> {</span>
+  books: Book[] | undefined;
+  <span class="hljs-comment">// ODER</span>
+  books?: Book[];
+}
+</code></pre>
+<p>Allerdings würde dies weitere Änderungen im Template und im Code zur Folge haben, da wir nun den Typ <code>undefined</code> berücksichtigen müssen, sobald wir das Property verwenden.</p>
+<p>Wir könnten ebenso das Array mit allen Werten sofort im Konstruktor initialisieren.
+Dadurch müssen wir den bisherigen Typ (Array aus <code>Book</code>) nicht ändern.
+Auf die Methode <code>ngOnInit()</code> können wir dann ganz verzichten:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// 2. mögliche Lösung</span>
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookListComponent</span> </span>{
+  <span class="hljs-attr">books</span>: Book[];
+
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-built_in">this</span>.books = [<span class="hljs-comment">/* ... */</span>]
+  }
+}
+</code></pre>
+<p>Für unser Refactoring haben wir uns für die letzte Variante entschieden.
+Wir haben das Property explizit mit einem leeren Array initialisiert.
+Dadurch müssen wir den bestehenden Code kaum anpassen.
+Die konkreten Werte werden weiterhin in der Methode <code>ngOnInit()</code> zugewiesen:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHHER: book-list.component.ts</span>
+<span class="hljs-comment">// 3. mögliche Lösung </span>
+export <span class="hljs-keyword">class</span> <span class="hljs-symbol">BookListComponent</span> <span class="hljs-symbol">implements</span> <span class="hljs-symbol">OnInit</span> {
+  books: Book[] = [];
+
+  ngOnInit(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-keyword">this</span>.books = [<span class="hljs-comment">/* ... */</span>]
+  }
+}
+</code></pre>
+<p>Beim Start der Komponente ist <code>books</code> also sofort mit einem leeren Array belegt.
+Sobald <code>ngOnInit()</code> ausgeführt wird (das geschieht etwas später), wird dieses leere Array überschrieben.</p>
+<!--
+https://mariusschulz.com/blog/strict-property-initialization-in-typescript
+https://www.typescriptlang.org/tsconfig#strictPropertyInitialization
+-->
+
+<h3 id="kapitel-62-properties-mit-input-decorator">Kapitel 6.2: Properties mit <code>@Input()</code>-Decorator</h3>
+<p>In der ersten Iteration erläutern wir im Kapitel 6.2 die Verwendung von Property Bindings, um Werte an eine Kindkomponente zu übergeben.
+Dazu dekorieren wir das entsprechende Property in der Kindkomponente mit einem <code>@Input()</code>-Decorator:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// VORHER: book-list-item.component.ts</span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookListItemComponent</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">OnInit</span> </span>{
+  <span class="hljs-meta">@Input()</span> book: Book;
+
+  ngOnInit(): <span class="hljs-keyword">void</span> {
+  }
+}
+</code></pre>
+<p>Erneut erhalten wir hier den Fehler, dass das Property nicht korrekt initialisiert wurde.
+Hier wäre es sehr aufwendig und unschön, das Property mit einem Dummy-Ersatzbuch zu initalisieren.</p>
+<p>Die <code>BookListItemComponent</code> wird zusammen mit <code>*ngFor</code> verwendet.
+Hier wird immer ein Buch über das Property Binding zur Verfügung gestellt:</p>
+<pre><code class="language-html">&lt;bm-book-<span class="hljs-built_in">list</span>-<span class="hljs-built_in">item</span>
+  *ngFor=<span class="hljs-string">"let b of books"</span>
+  [book]=<span class="hljs-string">"b"</span>&gt;&lt;/bm-book-<span class="hljs-built_in">list</span>-<span class="hljs-built_in">item</span>&gt;
+</code></pre>
+<p>Das Input-Property wird aber erst <strong>zur Laufzeit von Angular</strong> durch das Property Binding zugewiesen.
+Diesen Umstand berücksichtigt die strikte Prüfung <strong>von TypeScript</strong> nicht.
+Laut TypeScript muss bereits zum Zeitpunkt der Initialisierung der Klasse ein Wert bereitstehen. </p>
+<p>Da der Wert des Propertys aber erst zu einem späteren Zeitpunkt gesetzt wird, sollten wir dies auch folgerichtig im Code ausdrücken:</p>
+<pre><code class="language-ts">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookListItemComponent</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">OnInit</span> </span>{
+  <span class="hljs-meta">@Input()</span> book: Book | undefined;
+
+  ngOnInit(): <span class="hljs-keyword">void</span> {
+  }
+}
+</code></pre>
+<p>Statt dieser Schreibweise können wir auch einen äquivalenten Shortcut verwenden und das Property als optional markieren:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHER: book-list-item.component.ts</span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookListItemComponent</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">OnInit</span> </span>{
+  <span class="hljs-meta">@Input()</span> book?: Book;
+
+  ngOnInit(): <span class="hljs-keyword">void</span> {
+  }
+}
+</code></pre>
+<p>Wenn Sie möchten, können Sie auch gerne die nicht verwendete Methode <code>ngOnInit()</code> entfernen:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHER: book-list-item.component.ts</span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookListItemComponent</span> </span>{
+  <span class="hljs-meta">@Input()</span> book?: Book;
+}
+</code></pre>
+<p>Man kann Property Bindings in Angular leider nicht verpflichtend machen.
+Daher empfehlen wir bei komplexen Input-Propertys grundsätzlich, den Wert <code>undefined</code> zu berücksichtigen.</p>
+<p>Da das Buch nun also <code>undefined</code> sein kann, greift eine weitere Typprüfung:</p>
+<blockquote>
+<p>optional (property) Book.thumbnails?: Thumbnail[] | undefined<br>Object is possibly 'undefined'.
+book-list-item.component.ts: Error occurs in the template of component BookListItemComponent.</p>
+</blockquote>
+<pre><code class="language-html"><span class="xml"><span class="hljs-comment">&lt;!-- VORHER: book-list-item.component.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ui tiny image"</span>
+     *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"book.thumbnails &amp;&amp; book.thumbnails[0] &amp;&amp; book.thumbnails[0].url"</span>
+     [<span class="hljs-attr">src</span>]=<span class="hljs-string">"book.thumbnails[0].url"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"header"</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">book.title</span> }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"book.subtitle"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"description"</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">book.subtitle</span> }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"metadata"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let author of book.authors; last as l"</span>&gt;</span>
+      </span><span class="hljs-template-variable">{{ <span class="hljs-name">author</span> }}</span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"!l"</span>&gt;</span>, <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+    ISBN </span><span class="hljs-template-variable">{{ <span class="hljs-name">book.isbn</span> }}</span><span class="xml">
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+</code></pre>
+<p>Die Prüfung bemängelt zu Recht, dass das Property <code>book</code> den Wert <code>undefined</code> haben kann und dann auch der Zugriff auf <code>book.thumbnails</code> oder <code>book.isbn</code> fehlschlagen könnte.
+Würden wir dies dennoch tun, dann käme es zur Laufzeit zu folgender Fehlermeldung: <code>TypeError: Cannot read property of undefined</code>.
+Dies ist einer der häufigsten Typfehler in JavaScript.
+Er tritt immer dann auf, wenn auf einer undefinierten Variable eine Eigenschaft gelesen oder eine Funktion aufgerufen wird.
+Es ist gut, dass uns die strenge Typprüfung schon zur Kompilierzeit vor diesem Problem bewahrt.</p>
+<p>Wir haben das Markup wie folgt verbessert:
+Das gesamte Template wird mit mit einem <code>&lt;ng-container&gt;</code> und <code>*ngIf</code> nur dann eingeblendet, wenn ein Buch vorhanden ist:</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- NACHER: book-list-item.component.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ng-container</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"book"</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Vorheriger Code --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ui tiny image"</span> <span class="hljs-attr">...</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span> <span class="hljs-attr">...</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ng-container</span>&gt;</span>
+</code></pre>
+<p>Der <code>&lt;ng-container&gt;</code> ist ein Hilfselement, das nicht als DOM-Element gerendert wird.
+Er sorgt nur für eine logische Gruppierung.
+Innerhalb des Containers ist <code>book</code> durch die Verwendung von <code>*ngIf</code> immer definiert.</p>
+<h3 id="kapitel-63-weitere-property-prüfungen">Kapitel 6.3: Weitere Property-Prüfungen</h3>
+<p>Im Kapitel zu den Event Bindings übergeben wir ein Buch von der Kindkomponente <code>BookListComponent</code> zur Elternkomponente <code>AppComponent</code> und zeigen damit eine Detailansicht an.
+Das Buch speichern wir im Property <code>book</code>.
+Dieses Property sollten wir ebenso mit dem Fragezeichen als optional kennzeichnen, denn es ist nicht immer mit einem Wert belegt:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// VORHER: app.component.ts </span>
+export <span class="hljs-keyword">class</span> <span class="hljs-symbol">AppComponent</span> {
+  book: Book;
+}
+</code></pre>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHHER: app.component.ts </span>
+export <span class="hljs-keyword">class</span> <span class="hljs-symbol">AppComponent</span> {
+  book?: Book;
+}
+</code></pre>
+<p>Das Template der <code>AppComponent</code> muss in diesem Fall nicht angepasst werden.</p>
+<p>Die Anzeige des Buchs geschieht in der <code>BookDetailsComponent</code>.
+Erneut müssen wir den Code aufgrund der strikten Prüfungen anpassen:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// VORHER: book-details.component.ts </span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookDetailsComponent</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">OnInit</span> </span>{
+  <span class="hljs-meta">@Input()</span> book: Book;
+}
+</code></pre>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHHER: book-details.component.ts </span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookDetailsComponent</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">OnInit</span> </span>{
+  <span class="hljs-meta">@Input()</span> book?: Book;
+}
+</code></pre>
+<p>Die <code>BookDetailsComponent</code> hat eine Methode <code>getRating()</code>, welche nur eine Zahl akzeptiert.
+Diese Methode wird im Template verwendet:</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- VORHER: book-details.component.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"four wide column"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Rating<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"yellow star icon"</span>
+    *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let r of getRating(book.rating)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>Damit der Code wieder kompiliert, müssen wir sicherstellen, dass es keinen Fall geben kann, bei dem das Rating <code>undefined</code> ist. 
+Nun kann sowohl das Buch an sich <code>undefined</code> sein, als auch dessen Property <code>rating</code>.
+Dies ergibt sich auch dem Interface <code>Book</code>, wo das Rating als optional markiert ist:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Book {
+  <span class="hljs-comment">// [...]</span>
+  rating?: <span class="hljs-built_in">number</span>;
+}
+</code></pre>
+<p>Auch hier haben wir wieder das umschließende <code>&lt;div&gt;</code> für eine Prüfung verwendet.
+Das Div-Element und sein Inhalt werden nur angezeigt, wenn <code>book.rating</code> definiert ist:</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!--  NACHHER: book-details.component.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"four wide column"</span> *<span class="hljs-attr">ngIf</span>=<span class="hljs-string">"book.rating"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Rating<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"yellow star icon"</span>
+    *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">"let r of getRating(book.rating)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<h3 id="kapitel-82-werte-vom-router">Kapitel 8.2: Werte vom Router</h3>
+<p>Im Kapitel 8.2 stellen wir die Anwendung auf Routing um und ändern in diesem Zuge die <code>BookDetailsComponent</code>.
+Statt eines Input-Propertys verwenden wir nun die ISBN, die wir aus der aktuellen Route ermitteln.
+Diese ISBN verwenden wir, um das richtige Buch vom <code>BookStoreService</code> zu erhalten.</p>
+<p>Im gedruckten Buch finden Sie den folgenden Code:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// VORHER: book-details.component.ts </span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookDetailsComponent</span> <span class="hljs-title">implements</span> <span class="hljs-title">OnInit</span> </span>{
+  book: Book;
+
+  <span class="hljs-keyword">constructor</span>(
+    <span class="hljs-keyword">private</span> bs: BookStoreService,
+    <span class="hljs-keyword">private</span> route: ActivatedRoute
+  ) { }
+
+  ngOnInit(): void {
+    <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">this</span>.route.snapshot.paramMap;
+    <span class="hljs-keyword">this</span>.book = <span class="hljs-keyword">this</span>.bs.getSingle(params.<span class="hljs-keyword">get</span>(<span class="hljs-string">'isbn'</span>));
+  }
+}
+</code></pre>
+<p>Das Property <code>book</code> müssen wir mittels des Fragezeichens wieder als optional markieren.
+Eine neue Herausforderung bietet dann allerdings folgende Fehlermeldung:</p>
+<blockquote>
+<p>const params: ParamMap<br>Argument of type 'string | null' is not assignable to parameter of type 'string'.<br>Type 'null' is not assignable to type 'string'.</p>
+</blockquote>
+<p>Die Methode <code>ParamMap.get()</code> liefert entweder einen String zurück (wenn der Parameter verfügbar ist) oder <code>null</code> (wenn der Parameter nicht in der Map vorhanden ist).
+Erst zur Laufzeit der Anwendung kann sicher ermittelt werden, ob ein bestimmter Routen-Parameter verfügbar ist.
+Um diesem Umstand gerecht zu werden, liefert <code>get()</code> einen Union-Type von <code>string | null</code> zurück.  </p>
+<p>Die Methode <code>getSingle()</code> erwartet allerdings nur <code>string</code>.
+Vor den strikten Prüfungen von TypeScript war der gedruckte Code mit der Diskrepanz zwischen den beiden Typen valide, jetzt ist dies nicht mehr der Fall.</p>
+<p>Wir können deshalb einen leeren String als Fallback-Wert definieren.
+Auf diese Weise wird immer ein String übergeben:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHHER: book-details.component.ts </span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookDetailsComponent</span> <span class="hljs-title">implements</span> <span class="hljs-title">OnInit</span> </span>{
+  book?: Book;
+
+  <span class="hljs-keyword">constructor</span>(
+    <span class="hljs-keyword">private</span> bs: BookStoreService,
+    <span class="hljs-keyword">private</span> route: ActivatedRoute
+  ) { }
+
+  ngOnInit(): void {
+    <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">this</span>.route.snapshot.paramMap;
+    <span class="hljs-comment">// verwendet den String ODER den leeren String falls der Ausdruck falsy ist</span>
+    <span class="hljs-keyword">this</span>.book = <span class="hljs-keyword">this</span>.bs.getSingle(params.<span class="hljs-keyword">get</span>(<span class="hljs-string">'isbn'</span>) || <span class="hljs-string">''</span>);
+  }
+}
+</code></pre>
+<p>Das Template der <code>BookDetailsComponent</code> müssen wir in diesem Fall nicht anpassen.
+Bereits in der gedruckten Fassung haben wir den gesamten Block mit einem <code>&lt;div *ngIf="book"&gt;</code> geschützt.</p>
+<p>Es wird natürlich nie geschehen, dass wir die Route ohne eine ISBN erreichen.
+Hätten wir das Routing anders konfiguriert (sodass keine ISBN notwendig ist),
+dann würden wir in diesem Fall einen leeren String an die Methode übergeben.</p>
+<p>Eine weitere Möglichkeit besteht darin, die Typprüfung mit dem <strong>"Non-Null Assertion Operator"</strong> anzupassen.
+Mit einem Ausrufezeichen (<code>!</code>) teilen wir dem Compiler mit, dass der Wert niemals <code>null</code> sein wird.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// alternative Möglichkeit</span>
+<span class="hljs-keyword">this</span>.book = <span class="hljs-keyword">this</span>.bs.getSingle(params.<span class="hljs-keyword">get</span>(<span class="hljs-string">'isbn'</span>)!);
+</code></pre>
+<p>Wir müssen uns dann aber auch wirklich sicher sein, dass dieser Fall wirklich niemals auftreten wird.
+Verwenden Sie die Non-Null Assertion daher bitte mit Vorsicht!</p>
+<p>Auch der <code>BookStoreService</code> benötigt eine kleine Korrektur.
+Zuvor hatten wir den Rückgabewert für die Methode <code>getSingle()</code> als <code>Book</code> angegeben:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHHER: book-store.service.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookStoreService</span> {</span>
+
+  <span class="hljs-built_in">getSingle</span>(isbn: string): Book {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.books.<span class="hljs-built_in">find</span>(book =&gt; book.isbn === isbn);
+  }
+}
+</code></pre>
+<p>Das war nicht ganz korrekt, denn wenn es bei der Suche mit <code>find()</code> keinen Treffer gibt, dann ist der Rückgabewert <code>undefined</code>.
+Diese Nachlässigkeit unsererseits führt jetzt zu einem Fehler, daher lautet die korrekte Signatur wie folgt:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHHER: book-store.service.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookStoreService</span> {</span>
+
+  <span class="hljs-built_in">getSingle</span>(isbn: string): Book | undefined {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.books.<span class="hljs-built_in">find</span>(book =&gt; book.isbn === isbn);
+  }
+}
+</code></pre>
+<h3 id="kapitel-101-eine-weitere-property-prüfung">Kapitel 10.1: Eine weitere Property-Prüfung</h3>
+<p>Im Kapitel zum Thema HTTP tauschen wir vor allem die Datenquelle vom <code>BookStoreService</code> aus.
+Erfreulicherweise behalten alle gezeigten Codebeispiele in diesem Kapitel ihre Gültigkeit – bis auf eine kleine Ausnahme.</p>
+<p>Die <code>BookDetailsComponent</code> hat nun eine Methode <code>removeBook()</code>, welche in der gedruckten Fassung wie folgt aussieht:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// VORHER: book-details.component.ts </span>
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookDetailsComponent</span> <span class="hljs-title">implements</span> <span class="hljs-title">OnInit</span> </span>{
+  <span class="hljs-attr">book</span>: Book;
+
+  <span class="hljs-function"><span class="hljs-title">removeBook</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">if</span> (confirm(<span class="hljs-string">'Buch wirklich löschen?'</span>)) {
+      <span class="hljs-built_in">this</span>.bs.remove(<span class="hljs-built_in">this</span>.book.isbn)
+        .subscribe(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> <span class="hljs-built_in">this</span>.router.navigate([<span class="hljs-string">'../'</span>], { <span class="hljs-attr">relativeTo</span>: <span class="hljs-built_in">this</span>.route }));
+    }
+  }
+}
+</code></pre>
+<p>Allerdings mussten wir bereits zuvor das Property <code>book</code> mit einem Fragezeichen als optional kennzeichnen.
+Nun besteht die Gefahr, dass beim Zugriff auf die ISBN per <code>this.book.isbn</code> der Wert für das Buch <code>undefined</code> ist.
+Diesen Fall müssen wir ausschließen, damit TypeScript keine Beanstandungen mehr hat.
+Wir haben uns dazu entschieden, gleich in der Fallunterscheidung zu prüfen, ob <code>this.book</code> einen <em>truthy</em> Wert hat:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHHER: book-details.component.ts </span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookDetailsComponent</span> <span class="hljs-title">implements</span> <span class="hljs-title">OnInit</span> </span>{
+  book?: Book;
+
+  removeBook() {
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.book &amp;&amp; confirm(<span class="hljs-string">'Buch wirklich löschen?'</span>)) {
+      <span class="hljs-keyword">this</span>.bs.remove(<span class="hljs-keyword">this</span>.book.isbn)
+        .subscribe(res =&gt; <span class="hljs-keyword">this</span>.router.navigate([<span class="hljs-string">'../'</span>], { relativeTo: <span class="hljs-keyword">this</span>.route }));
+    }
+  }
+}
+</code></pre>
+<h3 id="kapitel-102-typprüfung-bei-events">Kapitel 10.2: Typprüfung bei Events</h3>
+<p>Im Kapitel 10.2 gehen wir auf die Bibliothek RxJS genauer ein und erstellen die <code>SearchComponent</code>.
+Für die Suche haben wir folgendes Markup verwendet:</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- VORHER: search.component.html --&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"prompt"</span>
+  (<span class="hljs-attr">keyup</span>)=<span class="hljs-string">"keyUp$.next($event.target.value)"</span>&gt;</span>
+</code></pre>
+<p>Bei jedem Tastendruck wird zunächst der Wert des Events ausgewertet und an das Subject mit der Methode <code>next()</code> übergeben.
+Leider ist aber das Property <code>target</code> aber vom Typ <code>EventTarget | null</code>.
+Der Zugriff auf <code>value</code> könnte demnach fehlschlagen.
+TypeScript bemängelt dies entsprechend:</p>
+<blockquote>
+<p>Object is possibly 'null'.<br>Property 'value' does not exist on type 'EventTarget'.</p>
+</blockquote>
+<p>Um das Problem zu umgehen, greifen wir daher nun mithilfe der Elementreferenz <code>#input</code> auf den Formularwert zu.</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- NACHHER: search.component.html --&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"prompt"</span> #<span class="hljs-attr">input</span>
+  (<span class="hljs-attr">keyup</span>)=<span class="hljs-string">"keyUp$.next(input.value)"</span>&gt;</span>
+</code></pre>
+<p>Die Referenzvariable <code>input</code> ist vom Typ <code>HTMLInputElement</code>, und da diese immer vorhanden ist, können wir nun ohne Einschränkungen auf <code>value</code> zugreifen.</p>
+<h3 id="kapitel-122-template-driven-forms">Kapitel 12.2: Template-Driven Forms</h3>
+<p>Im Kapitel zu den Template-Driven Forms zeigen wir, wie man ein Formular zum Erstellen von Büchern realisiert.
+Hierzu führen wir die Komponente <code>CreateBookComponent</code> und deren Kindkomponente <code>BookFormComponent</code> ein.
+Zur Anzeige von Fehlermeldungen verwenden wir die <code>FormMessagesComponent</code>.</p>
+<p>Zunächst möchten wir uns für einen Fehler im gedruckten Buch entschuldigen:
+Wir zeigen im Template der <code>BookFormComponent</code>, wie man über Referenzvariablen auf Formular-Controls zugreifen kann.
+Diese Stelle ist aber schon seit jeher fehlerhaft gewesen:</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- VORHER (fehlerhaft!): book-form.component.html --&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+  <span class="hljs-attr">name</span>=<span class="hljs-string">"title"</span>
+  [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"book.title"</span>
+  <span class="hljs-attr">required</span>
+  #<span class="hljs-attr">titleInput</span>=<span class="hljs-string">"ngModel"</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">bm-form-messages</span>
+  [<span class="hljs-attr">control</span>]=<span class="hljs-string">"titleInput"</span>
+  <span class="hljs-attr">controlName</span>=<span class="hljs-string">"title"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bm-form-messages</span>&gt;</span>
+</code></pre>
+<p>Die Referenz <code>titleInput</code> zeigt auf die Direktive <code>ngModel</code> – nicht auf ein Control!
+Den benötigten Zugriff auf das Control erhalten wir stattdessen über das Property <code>control</code> auf <code>ngModel</code>. </p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- NACHHER: book-form.component.html --&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+  <span class="hljs-attr">name</span>=<span class="hljs-string">"title"</span>
+  [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"book.title"</span>
+  <span class="hljs-attr">required</span>
+  #<span class="hljs-attr">titleInput</span>=<span class="hljs-string">"ngModel"</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">bm-form-messages</span>
+  [<span class="hljs-attr">control</span>]=<span class="hljs-string">"titleInput.control"</span>
+  <span class="hljs-attr">controlName</span>=<span class="hljs-string">"title"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bm-form-messages</span>&gt;</span>
+</code></pre>
+<p>Diese Änderung gilt auch für alle anderen Stellen in diesem Template.
+Das bedeutet, diese Korrektur muss auch für <code>isbnInput</code>, <code>dateInput</code> sowie <code>authorInput</code> durchgeführt werden.</p>
+<p>Ein paar Zeilen später verwenden wir im Template der <code>FormMessagesComponent</code> einen recht komplexen Ausdruck für das Two-Way Binding:</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- VORHER: book-form.component.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+  <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span>
+  [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"book.thumbnails[0].url"</span>
+  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"URL"</span>&gt;</span>
+</code></pre>
+<p>Laut dem Interface <code>Book</code> ist das Property <code>thumbnails</code> optional.
+Das führt durch die strengeren Prüfungen natürlich nun zu einer Fehlermeldung:</p>
+<blockquote>
+<p>optional (property) Book.thumbnails?: Thumbnail[] | undefined<br>Object is possibly 'undefined'.</p>
+</blockquote>
+<p>Unter den heutigen Umständen hätten wir wohl einfach das Property nicht als optional deklariert.
+Da wir aber diese zentrale Stelle im Zuge des Refactorings nicht abändern wollen,
+haben wir uns an dieser Stelle für den "letzten Ausweg" entschieden.
+Mit <code>$any()</code> haben wir hier die Typprüfung deaktiviert!
+Das ist ausdrücklich ein Workaround!</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- NACHHER: book-form.component.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+  <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span>
+  [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"$any(book).thumbnails[0].url"</span>
+  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"URL"</span>&gt;</span>
+</code></pre>
+<p>Auch der TypeScript-Teil der <code>BookFormComponent</code> benötigt eine Anpassung.
+Um das Formular resetten zu können, benötigen wir eine Referenz auf die Instanz von <code>NgForm</code>.
+Diese erhalten wir über den den Decorator <code>@ViewChild()</code>:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// VORHER: book-form.component.ts</span>
+<span class="hljs-variable">@ViewChild</span>(<span class="hljs-string">'bookForm'</span>, { <span class="hljs-attribute">static</span>: true }) <span class="hljs-attribute">bookForm</span>: NgForm;
+</code></pre>
+<p>Da das Property nicht sofort zugewiesen werden kann, müssen wir dieses ebenfalls mit dem Fragezeichen (<code>?</code>) auf optional setzen:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHHER: book-form.component.ts</span>
+<span class="hljs-keyword">@ViewChild</span>(<span class="hljs-string">'bookForm'</span>, { static: true }) bookForm?: NgForm;
+</code></pre>
+<p>Uns ist in diesem Zuge aufgefallen, dass der Name <code>bookForm</code> mit der Elementreferenz <code>#bookForm</code> im Template kollidiert.
+Wir haben daher das Property daher auch gleich noch sauber zu <code>form</code> umbenannt:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHHER, mit Umbennenung: book-form.component.ts</span>
+<span class="hljs-keyword">@ViewChild</span>(<span class="hljs-string">'bookForm'</span>, { static: true }) form?: NgForm;
+</code></pre>
+<p>Folgerichtig müssen wir nun beim Resetten zuvor eine Existenzprüfung durchführen:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// VORHER: book-form.component.ts</span>
+<span class="hljs-function"><span class="hljs-title">submitForm</span>(<span class="hljs-params"></span>)</span> {
+  <span class="hljs-comment">// [...]</span>
+  <span class="hljs-built_in">this</span>.bookForm.reset();
+}
+</code></pre>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHHER: book-form.component.ts</span>
+<span class="hljs-function"><span class="hljs-title">submitForm</span>(<span class="hljs-params"></span>)</span> {
+  <span class="hljs-comment">// [...]</span>
+  <span class="hljs-built_in">this</span>.form?.reset();
+}
+</code></pre>
+<p>Weitere Property-Prüfungen müssen wir dann noch in der <code>FormMessagesComponent</code> berücksichtigen:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// VORHER: form-messages.component.ts</span>
+  <span class="hljs-variable">@Input</span>() <span class="hljs-attribute">control</span>: AbstractControl;
+  <span class="hljs-variable">@Input</span>() <span class="hljs-attribute">controlName</span>: string;
+</code></pre>
+<p>Auch hier markieren wir die Propertys als optional, sonst müssten sie direkt zugewiesen werden.
+Der Typ von <code>control</code> muss auf <code>AbstractControl | null</code> korrigiert werden, denn das ist der tatsächliche Rückgabetyp von <code>FormGroup.get()</code>.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHHER: form-messages.component.ts</span>
+  <span class="hljs-meta">@Input()</span> control?: AbstractControl | <span class="hljs-keyword">null</span>;
+  <span class="hljs-meta">@Input()</span> controlName?: string;
+</code></pre>
+<p>Das Property mit den fest eingebauten Fehlermeldungen des Formulars war bislang nur implizit typisiert: </p>
+<pre><code class="language-ts"><span class="hljs-regexp">//</span> VORHER: form-messages.component.ts
+private allMessages = {
+  title: {
+    required: <span class="hljs-string">'Ein Buchtitel muss angegeben werden.'</span>
+  },
+  <span class="hljs-regexp">//</span> [...]
+}
+</code></pre>
+<p>Damit wir das Objekt weiterhin in der Methode <code>errorsForControl()</code> verwenden können, müssen wir den Typ konkretisieren:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHHER: form-messages.component.ts</span>
+private allMessages: { [<span class="hljs-built_in">key</span>: <span class="hljs-keyword">string</span>]: { [<span class="hljs-built_in">key</span>: <span class="hljs-keyword">string</span>]: <span class="hljs-keyword">string</span> } } = {
+  <span class="hljs-built_in">title</span>: {
+    required: 'Ein Buchtitel muss angegeben werden.'
+  },
+  <span class="hljs-comment">// [...]</span>
+}
+</code></pre>
+<p>Die verbesserte und korrekte Typisierung dieser Methode sieht dann wie folgt aus:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// VORHER: form-messages.component.ts</span>
+errorsForControl(): string[] {
+  <span class="hljs-keyword">const</span> messages = <span class="hljs-keyword">this</span>.allMessages[<span class="hljs-keyword">this</span>.controlName];
+  <span class="hljs-comment">// [...]</span>
+}
+</code></pre>
+<pre><code class="language-ts"><span class="hljs-comment">// NACHHER: form-messages.component.ts</span>
+errorsForControl(): string[] {
+  type allMessagesKey = keyof FormMessagesComponent[<span class="hljs-string">'allMessages'</span>];
+  <span class="hljs-keyword">const</span> messages = <span class="hljs-keyword">this</span>.allMessages[<span class="hljs-keyword">this</span>.controlName <span class="hljs-keyword">as</span> keyof allMessagesKey];
+  <span class="hljs-comment">// [...]</span>
+}
+</code></pre>
+<!--
+### Kapitel 12.3: Reactive Forms
+
+Wer das Buch gelesen hat, der weiß es bereits:
+Nachdem wir das Formular mit dem Template-Driven-Ansatz implementiert haben,
+stellen wir im nächsten Kapitel schon alles wieder auf den alternativen Ansatz der Reactive Forms um.
+
+-->
+
+<h2 id="es-geht-weiter-">Es geht weiter …</h2>
+<p>Wir ergänzen diesen Blogartikel von Zeit zu Zeit.
+Alle notwendigen Änderungen haben wir auf GitHub direkt im Code kommentiert.</p>
+<p>Wenn Sie Fehler finden oder diesen Blogpost ergänzen möchten, freuen wir uns über eine E-Mail oder einen <a href="https://github.com/angular-buch/website-articles/tree/gh-pages/blog/2022-06-bm4-update">Pull Request auf GitHub</a>!</p>
+<h2 id="alle-änderungen">Alle Änderungen</h2>
+<p>Hier sehen Sie noch einmal alle notwendigen Änderungen am Code als Differenzanzeige.</p>
+<!-- * **[Alle Änderungen vom großen BookMonkey 4<br>von Angular 10 auf Angular 12](https://github.com/angular-buch/book-monkey4/commit/1c9fca396de63605494b1859f4492ef7bdf5b222)** -->
+
+<ul>
+<li><strong><a href="https://github.com/book-monkey4/iteration-1-components/commit/4c32571ef9ce2d2f746ec0c3939a0fa48ac5540b">Iteration 1: Komponenten (Kapitel 6.1)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-1-property-bindings/commit/02b1a286f03808f0094f0c85ea4825b4824a7c3b">Iteration 1: Property-Bindings (Kapitel 6.2)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-1-event-bindings/commit/8cf96312ae178d628df782583a36dd34f7f4b666">Iteration 1: Event-Bindings (Kapitel 6.3)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-2-di/commit/f2db935c2df1a1af3eabf88f4fa223d9ce5bec81">Iteration 2: Dependency Injection (Kapitel 8.1)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-2-routing/commit/11fabf50b5b46501305a8d6c929d8f4f8a4e0228">Iteration 2: Routing (Kapitel 8.2)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-3-http/commit/b4a106a1778d94626a5cadb295fd31b18ac79f23">Iteration 3: HTTP (Kapitel 10.1)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-3-rxjs/commit/f304d932c095982a64de0e4649769e59c25f8569">Iteration 3: RxJS (Kapitel 10.2)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-3-interceptors/commit/0d6c18002e4af0cc93ee493854b8caec5115d9a2">Iteration 3: Interceptoren (Kapitel 10.3)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-4-template-driven-forms/compare/e096ade..33fe9db">Iteration 4: Template-Driven Forms (Kapitel 12.2)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-4-reactive-forms/commit/550f61684483710bb110d86b95768dc1d38313e0">Iteration 4: Reactive Forms (Kapitel 12.3)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-4-custom-validation/compare/228bd47..b41530e">Iteration 4: Eigene Validatoren (Kapitel 12.4)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-5-pipes/compare/e00ade1..829abfe">Iteration 5: Pipes (Kapitel 13.1)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-5-directives/compare/66801ed..fe97efd">Iteration 5: Direktiven (Kapitel 13.2)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-6-modules/compare/2edd6e7..9d65223">Iteration 6: Module (Kapitel 14.1)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-6-lazy-loading/compare/d0bc5ef..e699f26">Iteration 6: Lazy Loading (Kapitel 14.2)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-6-guards/compare/1fba833..d7e2a70">Iteration 6: Guards (Kapitel 14.3)</a></strong></li>
+<li><strong><a href="https://github.com/book-monkey4/iteration-7-i18n/commit/8c3ecd42e67cd0c38eab155f910ba83717bfeb96">Iteration 7: Internationalisierung (Kapitel 15.1)</a></strong></li>
+</ul>
+<p>Wir wünschen Ihnen viel Spaß mit Angular!
+Haben Sie Fragen zur neuen Version, zum Update oder zu Angular? Schreiben Sie uns!</p>
+<p><strong>Viel Spaß wünschen<br>Danny, Ferdinand und Johannes</strong></p>
+<p><small><strong>Titelbild:</strong> Photo by <a href="https://unsplash.com/@fotograw">Dmitriy Demidov</a> on <a href="https://unsplash.com/s/photos/wrench">Unsplash</a>
+  </small></p>
+</p><!----><!----><a routerlink="/blog" ripple-radius="" class="btn btn-sm btn-primary mt-4" href="/blog"><i class="fa fa-backward mr-2"></i> Zurück</a><hr> Suggestions? Feedback? Bugs? Please <a target="_blank" class="content" href="https://github.com/angular-buch/website-articles/blob/gh-pages/blog/2022-06-bm4-update/README.md"><i class="fa fa-github mr-1" style="font-size: 1.6rem; position: relative; bottom: -3px;"></i>fork/edit this page on Github</a>. </div></div></div></div></div><!----></div><!----></div></section><ngx-json-ld><script type="application/ld+json">{
+  "url": "https://angular.schule/blog/2022-06-bm4-update",
+  "headline": "Den Book-Monkey v4 updaten (3. Ausgabe)",
+  "description": "Das Angular-Ökosystem wird kontinuierlich verbessert.\nDas Release einer neuen Major-Version von Angular bedeutet keineswegs, dass alle Ideen verworfen werden und Ihre Software nach einem Update nicht mehr funktioniert.\nDie Grundideen von Angular sind seit Version 2 konsistent und auf Beständigkeit über einen langen Zeitraum ausgelegt.\nDie in unserem Buch beschriebenen Konzepte behalten ihre Gültigkeit.",
+  "datePublished": "2022-06-30",
+  "dateModified": "2022-06-30",
+  "publisher": {
+    "name": "Angular-Buch",
+    "url": "https://angular-buch.com",
+    "@type": "Organization",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://angular-buch.com/assets/img/brand_export.png"
+    }
+  },
+  "image": "https://website-articles.angular-buch.com/blog/2022-06-bm4-update/./bm4update.jpg",
+  "thumbnailUrl": "https://website-articles.angular-buch.com/blog/2022-06-bm4-update/./bm4update.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Angular Buch Team",
+    "email": "team@angular-buch.com"
+  },
+  "keywords": [
+    "Angular",
+    "Angular 12",
+    "Angular 13",
+    "Angular 14",
+    "Strict Mode"
+  ],
+  "mainEntityOfPage": "http://schema.org/WebPage",
+  "@type": "Article",
+  "@context": "http://schema.org"
+}</script></ngx-json-ld></app-blog-details><!----><footer><div class="container"><div class="row align-items-center"><div class="col-sm-9"><div class="links"><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/"><!----> Home </a><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/impressum"><!----> Impressum </a><!----><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/datenschutz"><!----> Datenschutzerklärung </a><!----><!----><!----><!----></app-link>|<!----><app-link><!----><a class="links__item links__twitter" href="https://twitter.com/angular_buch" rel="nofollow"><!----> Twitter </a><!----><!----><!----><!----><!----></app-link><!----><!----></div></div><div class="col-sm-3 text-right"></div></div></div></footer></main><ngx-json-ld><script type="application/ld+json"></script></ngx-json-ld><ngx-json-ld><script type="application/ld+json"></script></ngx-json-ld></app-root>
+<script src="runtime.2127feb1097cc098.js" type="module"></script><script src="polyfills.6d539c7e65933a8f.js" type="module"></script><script src="main.5c350166e2c255c1.js" type="module"></script>
+
+</body></html>

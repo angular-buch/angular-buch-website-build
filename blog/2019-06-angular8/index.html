@@ -1,0 +1,213 @@
+<!DOCTYPE html><html><head lang="de" prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#"><meta name="generator" content="Scully 0.0.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <title>Angular-Buch → Angular 8 ist da!</title>
+  
+
+  
+
+  <meta property="book:author" content="https://www.facebook.com/ferdinand.malcher">
+  <meta property="book:author" content="https://www.facebook.com/johannes.hoppe">
+  <meta property="book:author" content="https://www.facebook.com/dannykoppenhagen">
+
+  <meta property="book:isbn" content="9783864907791">
+  <meta property="book:release_date" content="2020-09-30">
+  <meta property="book:tag" content="Angular">
+  <meta property="book:tag" content="AngularJS">
+  <meta property="book:tag" content="TypeScript">
+  <meta property="book:tag" content="JavaScript">
+  <meta property="book:tag" content="HTML5">
+  <meta property="book:tag" content="CSS">
+  <meta property="book:tag" content="RxJS">
+  <meta property="book:tag" content="NativeScript">
+  <meta property="book:tag" content="Redux">
+  <meta property="book:tag" content="NgRx">
+
+  <base href="/">
+<style>@font-face{font-family:Roboto;src:url(Roboto-Thin.3025beb410a67d09.eot);src:local("Roboto Thin"),local("Roboto-Thin"),url(Roboto-Thin.3025beb410a67d09.eot?#iefix) format("embedded-opentype"),url(Roboto-Thin.a529f43f8b43a41b.woff2) format("woff2"),url(Roboto-Thin.0cfb6189823d7275.woff) format("woff"),url(Roboto-Thin.94d67324d95f59e5.ttf) format("truetype"),url(Roboto-Thin.761d85cbad1d4c0a.svg#Roboto) format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-ThinItalic.3c0494ed5066eddf.eot);src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url(Roboto-ThinItalic.3c0494ed5066eddf.eot?#iefix) format("embedded-opentype"),url(Roboto-ThinItalic.7d4425d4f9dfbd4d.woff2) format("woff2"),url(Roboto-ThinItalic.72445820525e265f.woff) format("woff"),url(Roboto-ThinItalic.72ab0263ccb0dc3f.ttf) format("truetype"),url(Roboto-ThinItalic.7d3f4f17bca5edb0.svg#Roboto) format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Light.9cff5f27f6ad3d59.eot);src:local("Roboto Light"),local("Roboto-Light"),url(Roboto-Light.9cff5f27f6ad3d59.eot?#iefix) format("embedded-opentype"),url(Roboto-Light.7117d83fbb0aa28a.woff2) format("woff2"),url(Roboto-Light.2188ea3f3f8ab51a.woff) format("woff"),url(Roboto-Light.5605865fb101be1a.ttf) format("truetype"),url(Roboto-Light.775a1d8f32378e56.svg#Roboto) format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-LightItalic.4a75ae9969c094a3.eot);src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url(Roboto-LightItalic.4a75ae9969c094a3.eot?#iefix) format("embedded-opentype"),url(Roboto-LightItalic.9669ba38989190d7.woff2) format("woff2"),url(Roboto-LightItalic.ead2698c38e2d858.woff) format("woff"),url(Roboto-LightItalic.ccdc52ada30d970f.ttf) format("truetype"),url(Roboto-LightItalic.293a6c412ebb5682.svg#Roboto) format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Regular.b21a0eefbec4f57f.eot);src:local("Roboto Regular"),local("Roboto-Regular"),url(Roboto-Regular.b21a0eefbec4f57f.eot?#iefix) format("embedded-opentype"),url(Roboto-Regular.e64b7e5db276537f.woff2) format("woff2"),url(Roboto-Regular.2313f68c10458709.woff) format("woff"),url(Roboto-Regular.b796ce65a81adc41.ttf) format("truetype"),url(Roboto-Regular.18c20975d2f2578c.svg#Roboto) format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-RegularItalic.e6e0d5b40d74c833.eot);src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url(Roboto-RegularItalic.e6e0d5b40d74c833.eot?#iefix) format("embedded-opentype"),url(Roboto-RegularItalic.d448549043fc24e3.woff2) format("woff2"),url(Roboto-RegularItalic.6c93c3855305929c.woff) format("woff"),url(Roboto-RegularItalic.c6469a92f47f72b9.ttf) format("truetype"),url(Roboto-RegularItalic.f83754e74962d444.svg#Roboto) format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Medium.9a9c9421bcdef79c.eot);src:local("Roboto Medium"),local("Roboto-Medium"),url(Roboto-Medium.9a9c9421bcdef79c.eot?#iefix) format("embedded-opentype"),url(Roboto-Medium.31c42d9dbee477e5.woff2) format("woff2"),url(Roboto-Medium.769ea541b3eef14d.woff) format("woff"),url(Roboto-Medium.03501557d620ee6b.ttf) format("truetype"),url(Roboto-Medium.8a59a67632175b0b.svg#Roboto) format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-MediumItalic.eda8bf9be9c607a9.eot);src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url(Roboto-MediumItalic.eda8bf9be9c607a9.eot?#iefix) format("embedded-opentype"),url(Roboto-MediumItalic.2b1343b2d0b09b92.woff2) format("woff2"),url(Roboto-MediumItalic.226e2a5000081685.woff) format("woff"),url(Roboto-MediumItalic.ce75fe30feef2519.ttf) format("truetype"),url(Roboto-MediumItalic.b51310a741b5d779.svg#Roboto) format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Bold.0d2870f5e1759c7a.eot);src:local("Roboto Bold"),local("Roboto-Bold"),url(Roboto-Bold.0d2870f5e1759c7a.eot?#iefix) format("embedded-opentype"),url(Roboto-Bold.6980f6575e8c2cbd.woff2) format("woff2"),url(Roboto-Bold.313d5de65a92aae6.woff) format("woff"),url(Roboto-Bold.ed694f411e0b3a82.ttf) format("truetype"),url(Roboto-Bold.a5d983d959171823.svg#Roboto) format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-BoldItalic.24d4fc9379818f4d.eot);src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url(Roboto-BoldItalic.24d4fc9379818f4d.eot?#iefix) format("embedded-opentype"),url(Roboto-BoldItalic.986a9dba772d1a7a.woff2) format("woff2"),url(Roboto-BoldItalic.d0b1358f293918c7.woff) format("woff"),url(Roboto-BoldItalic.e3188bd071401a05.ttf) format("truetype"),url(Roboto-BoldItalic.98e79b0548caa896.svg#Roboto) format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Black.2a430d2577a70997.eot);src:local("Roboto Black"),local("Roboto-Black"),url(Roboto-Black.2a430d2577a70997.eot?#iefix) format("embedded-opentype"),url(Roboto-Black.710dab121b2a7bc2.woff2) format("woff2"),url(Roboto-Black.06740b883cfa8a2e.woff) format("woff"),url(Roboto-Black.41a719429c37346e.ttf) format("truetype"),url(Roboto-Black.711c7acb0aa346bb.svg#Roboto) format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-BlackItalic.65db2fd69db01cd5.eot);src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url(Roboto-BlackItalic.65db2fd69db01cd5.eot?#iefix) format("embedded-opentype"),url(Roboto-BlackItalic.f4307ac32c9ad43b.woff2) format("woff2"),url(Roboto-BlackItalic.fc1832915de70c44.woff) format("woff"),url(Roboto-BlackItalic.ba2ec768f43dbc84.ttf) format("truetype"),url(Roboto-BlackItalic.26186c8936090567.svg#Roboto) format("svg");font-weight:900;font-style:italic}@charset "UTF-8";:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}img{vertical-align:middle;border-style:none}svg{overflow:hidden;vertical-align:middle}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}img{page-break-inside:avoid}@page{size:a3}body{min-width:992px!important}}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#F8F8F8}html{overflow-y:scroll}</style><link rel="stylesheet" href="styles.1b90ca75cc2833ca.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.1b90ca75cc2833ca.css"></noscript><meta property="og:title" content="Angular-Buch → Angular 8 ist da!"><meta name="twitter:title" content="Angular-Buch → Angular 8 ist da!"><meta name="description" content="📙 Der neueste Wurf aus der Softwareschmiede Google ist vollbracht: Angular 8 ist da!
+Am 28. Mai 2019 erschien die neue Major-Version 8.0.0 und bringt wieder einige interessante Neuerungen mit sich."><meta property="og:description" content="📙 Der neueste Wurf aus der Softwareschmiede Google ist vollbracht: Angular 8 ist da!
+Am 28. Mai 2019 erschien die neue Major-Version 8.0.0 und bringt wieder einige interessante Neuerungen mit sich."><meta name="twitter:description" content="📙 Der neueste Wurf aus der Softwareschmiede Google ist vollbracht: Angular 8 ist da!
+Am 28. Mai 2019 erschien die neue Major-Version 8.0.0 und bringt wieder einige interessante Neuerungen mit sich."><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/blog/2019-06-angular8"><style>.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
+</style><style>.content img{max-width:100%}.details-page-autor{margin-top:-110px}.details-thumbnail{margin-bottom:-18px}.details-thumbnail .details-thumbnail-inner{border-bottom:23px solid #dfdede;height:300px;overflow:hidden;background-color:#fff;border-radius:4px;display:flex;justify-content:center}.details-thumbnail .details-thumbnail-inner .darken-overlay{display:block;position:absolute;height:300px;width:100%;padding-left:15px;padding-right:15px;padding-bottom:23px}.details-thumbnail .details-thumbnail-inner .darken-overlay div{display:block;position:relative;width:100%;height:100%;background-color:#0003;border-radius:4px 4px 0 0/4px 4px 0px 0px}.details-thumbnail img{width:100%;align-self:center}.video-container{position:relative;padding-bottom:56.25%;padding-top:0;height:0;overflow:hidden;margin-top:2rem;margin-bottom:2rem}.video-container iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;height:100%}
+</style><style>a[_ngcontent-uad-c14]:link, a[_ngcontent-uad-c14]:visited{text-decoration:underline}a[_ngcontent-uad-c14]:hover, a[_ngcontent-uad-c14]:active{text-decoration:none}</style><meta property="og:image" content="https://website-articles.angular-buch.com/blog/2019-06-angular8/./angular8.jpg"><meta name="twitter:image" content="https://website-articles.angular-buch.com/blog/2019-06-angular8/./angular8.jpg"><meta name="twitter:card" content="summary_large_image"><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+  <app-root ng-version="15.0.0"><header><div class="nav__overlay"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/"><img src="assets/img/brand.svg" alt="" class="img-fluid" style="height: 40px;"></a></div><div class="col-6 col-md-10"><nav><ul><li><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/"><!----> Buch </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/blog" class="nav__current" aria-current="page"><!----> Blog </a><!----><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/material"><!----> Begleitmaterial </a><!----><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="//angular.schule/"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-calendar.svg" src="assets/img/symbol-calendar.svg"><!----> Angular-Schulungen </a><!----><!----><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="https://amzn.eu/d/8fgTIWL"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-basket.svg" src="assets/img/symbol-basket.svg"><!----> Jetzt vorbestellen </a><!----><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" class="nav__toggle"><img src="assets/img/symbol-menu.svg" alt=""></a></div></div></div></header><main><router-outlet></router-outlet><app-blog-details><app-hero-header headline="Blog" headlinelink="/blog"><section class="hero hero--smallest"><div class="hero__lines hero__lines--smallest"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;">Blog</a><!----><!----></h1></div><div class="col-5 d-none d-md-block text-center"><img src="assets/img/angular.png" alt="" class="hero__angular--smallest"></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list blog"><div class="index__stripe index__stripe--list"><!----><div class="container"><a name="post" id="post"></a><div class="row details-thumbnail"><div class="col-12"><div class="details-thumbnail-inner"><img alt="" class="img-fluid rounded" src="https://website-articles.angular-buch.com/blog/2019-06-angular8/./angular8.jpg"><!----></div></div><!----></div><div class="row"><div class="col-12"><div class="index__item index__item--list"><div class="row align-items-top"><div class="col-12 col-sm-3 col-md-2 text-center details-page-autor"><img alt="" class="blog__portrait img-fluid rounded-circle" src="//www.gravatar.com/avatar/be546eb804b80c7e8c1ac0fc082b5463?size=200&amp;rating=pg&amp;d=mm"><span class="blog__author">Angular Buch Team <br><a target="_blank" class="twitter" href="https://twitter.com/angular_buch"> @angular_buch</a> &nbsp; <!----><!----></span></div><div class="col-12 col-sm-9 col-md-10 col-lg-10"><h1>Angular 8 ist da!</h1><p class="blog__date">28.05.2019</p><p class="content markdown-body"><p>Der neueste Wurf aus der Softwareschmiede Google ist vollbracht: <strong>Angular 8 ist da!</strong>
+Am 28. Mai 2019 erschien die neue Major-Version 8.0.0 und bringt wieder einige interessante Neuerungen mit sich.</p>
+<p>Die wichtigsten Punkte sind Differential Loading und die neue Syntax für Lazy Loading.
+Es gibt kleine Breaking Changes, doch seien Sie beruhigt: Das Update geht leicht von der Hand, und es sind nur selten manuelle Anpassungen nötig.</p>
+<p>In diesem Artikel möchten wir kurz die wichtigsten Neuigkeiten vorstellen.
+Die offizielle Ankündigung zum neuen Release finden Sie im <a href="https://blog.angular.io/af0261112a27">Angular Blog</a>.</p>
+<blockquote>
+<p><strong>Die Update-Infos für neuere Versionen von Angular finden Sie in separaten Blogartikeln. Wenn Sie das Update durchführen möchten, lesen Sie bitte alle Artikel in der gegebenen Reihenfolge.</strong></p>
+<ul>
+<li><a href="/blog/2020-02-angular9">Angular 9 ist da!</a></li>
+<li><a href="/blog/2020-06-angular10">Angular 10 ist da!</a></li>
+<li><a href="/blog/2020-11-angular11">Angular 11 ist da!</a></li>
+<li><a href="/blog/2021-06-angular12">Angular 12 ist da!</a></li>
+<li><a href="/blog/2021-11-angular13">Angular 13 ist da!</a></li>
+<li><a href="/blog/2022-06-angular14">Angular 14 ist da!</a></li>
+</ul>
+</blockquote>
+<h2 id="update-auf-angular-8">Update auf Angular 8</h2>
+<p>Das Update zur neuen Angular-Version ist kinderleicht. Hierzu führen Sie einfach den folgenden Befehl in einem bestehenden Projekt aus:</p>
+<pre><code class="language-sh">ng update <span class="hljs-meta">@angular</span>/cli <span class="hljs-meta">@angular</span>/core
+</code></pre>
+<p>Die Angular CLI führt automatisch alle nötigen Anpassungen am Code der Anwendung durch.
+Auf <a href="https://update.angular.io/#7.0:8.0">update.angular.io</a> können Sie außerdem alle Migrationsschritte nachvollziehen.</p>
+<h2 id="differential-loading-mehrere-bundles-für-unterschiedliche-browser">Differential Loading: Mehrere Bundles für unterschiedliche Browser</h2>
+<p>Ein bekanntes Praxisproblem mit Angular ist die Größe der ausgelieferten Bundles.
+Warum ein Bundle groß und "unhandlich" wird, kann verschiedene Ursachen haben und kann auf verschiedene Weise strategisch gelöst werden, z. B. durch Code Splitting, Tree Shaking oder Lazy Loading.</p>
+<p>Alle modernen Browser unterstützen mindestens den JavaScript-Standard ES2015.
+Dennoch werden die meisten Angular-Anwendungen weiterhin in ES5 kompiliert, um auch in älteren Browsern lauffähig zu sein – ein wichtiger Grund für wachsende Bundles.
+Außerdem müssen Polyfills ausgeliefert werden, um Funktionalitäten in älteren Browsern nachzurüsten.</p>
+<p>An dieser Stelle kommt ein neues Feature der Angular CLI ins Spiel: Differential Loading.
+Die Angular CLI produziert dabei verschiedene Bundles der Anwendung – für ältere Browser in ES5 und für neuere Browser in ES2015 oder höher.
+Der Browser lädt schließlich nur die Bundles herunter, die für ihn relevant sind.
+Somit können moderne Browser auf neuere Features zugreifen und müssen nicht zusätzlich Polyfills für Features laden, die Sie bereits nativ unterstützen.
+Ältere Browser greifen auf die sogenannten "Legacy Bundles" zurück und laden Polyfills und fehlende Funktionen zusätzlich zum Anwendungscode.</p>
+<p>Die Neuerung führt vor allem bei modernen Browsern zu Performance-Verbessungen, weil weniger Code geladen werden muss.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2019-06-angular8/diffloading.png" alt="Screenshot Build mit Differential Loading"></p>
+<h2 id="lazy-loading-dynamische-imports-statt-magic-strings">Lazy Loading: Dynamische Imports statt Magic-Strings</h2>
+<p>Angular unterstützt nun von Haus aus das <code>import()</code>-Statement zum programmatischen Nachladen von Modulen.
+Dadurch ändert sich die Schreibweise beim Routing, um Lazy Loading zu konfigurieren.
+Die bisherige Syntax verwendet einen "Magic String", um das zu ladende Modul anzugeben:</p>
+<pre><code class="language-ts">{
+  path: <span class="hljs-string">'mypath'</span>,
+  loadChildren: <span class="hljs-string">'./foo/foo.module#FooModule'</span>
+}
+</code></pre>
+<p>Diese Schreibweise ist <strong>ab Angular 8</strong> <a href="https://github.com/angular/angular/pull/30073">als <strong>deprecated</strong> gekennzeichnet</a>.
+Stattdessen wird ein dynamischer Import verwendet, um das Modul beim Routing nachzuladen:</p>
+<pre><code class="language-ts">{
+  <span class="hljs-attr">path</span>: <span class="hljs-string">'mypath'</span>,
+  <span class="hljs-attr">loadChildren</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> import(<span class="hljs-string">'./foo/foo.module'</span>).then(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m.FooModule)
+}
+</code></pre>
+<p>Die Syntax sieht zunächst ungewohnt aus.
+Im Wesentlichen besteht der Befehl allerdings nur aus einer anonymen Funktion, die aufgerufen wird, wenn die Route aktiviert wird.
+Sie ruft <code>import()</code> auf und extrahiert im zweiten Schritt das Angular-Modul <code>FooModule</code> aus dem heruntergeladenen Bundle.
+Diese neue Variante arbeitet vollständig mit nativen Features und ohne einen Magic String, der spezifisch für Angular ist.
+Dadurch unterstützt die IDE den Entwickler mit Autovervollständigung und Typprüfung.</p>
+<p>Wenn Sie das Update mit der Angular CLI durchführen, werden die Magic Strings automatisch zur neuen Schreibweise migriert.
+In der zweiten Auflage des Angular-Buchs, die im Juni 2019 erscheint, ist der neue Weg übrigens schon beschrieben.</p>
+<p>Mehr zur neuen Schreibweise für Lazy Loading erfahren Sie auch in der <a href="https://v8.angular.io/guide/deprecations#loadchildren-string-syntax">Angular-Dokumentation</a>.</p>
+<h2 id="breaking-change-viewchild-und-contentchild">Breaking Change: <code>@ViewChild()</code> und <code>@ContentChild()</code></h2>
+<p>Mit den Dekoratoren <code>@ViewChild()</code> und <code>@ContentChild()</code> können Querys auf DOM-Elemente in der View einer Komponente/Direktive gestellt werden.
+Bisher war das Verhalten der Querys nicht gut nachvollziehbar.
+Das Verhalten ist nun besser dokumentiert, und man soll sich bei bestehendem Code über die Auswirkungen Gedanken machen.
+In Angular 8 gibt zu diesem Zweck eine Übergangsphase, in der man das Verhalten explizit angeben muss. Hierzu müssen Querys zusätzlich mit dem Flag <code>static</code> versehen werden: Damit wird definiert, ob es sich bei der Abfrage um eine statisches oder dynamisch veränderbares Element handelt.
+Statische Elemente werden einmalig gerendert und sind dann zur Laufzeit der Komponente verfügbar, dynamische Elemente werden zur Laufzeit verändert.</p>
+<p><strong>Bis Angular 7</strong> wurden <code>@ViewChild()</code> und <code>@ContentChild()</code> wie folgt verwendet.
+Das Ergebnis ist dann im LifeCycle-Hook <code>ngOnInit()</code> <em>oder</em> <code>ngAfterViewInit()</code> verfügbar – das genaue Verhalten richtet sich jedoch nach der Struktur des Templates und ist nicht sicher vorhersehbar:</p>
+<pre><code class="language-ts"><span class="hljs-variable">@ViewChild</span>(<span class="hljs-string">'foo'</span>) <span class="hljs-attribute">foo</span>: ElementRef;
+<span class="hljs-variable">@ViewChild</span>(<span class="hljs-string">'bar'</span>) <span class="hljs-attribute">bar</span>: ElementRef;
+</code></pre>
+<p><strong>Ab Angular 8</strong> müssen <code>@ViewChild()</code> und <code>@ContentChild()</code> immer das Flag <code>static</code> tragen:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// Statische Query: Ergebnis ist im LifeCycle-Hook `ngOnInit()` verfügbar</span>
+<span class="hljs-variable">@ViewChild</span>(<span class="hljs-string">'foo'</span>, { <span class="hljs-attribute">static</span>: true }) <span class="hljs-attribute">foo</span>: ElementRef;
+<span class="hljs-variable">@ContentChild</span>(<span class="hljs-string">'bar'</span>, { <span class="hljs-attribute">static</span>: true }) <span class="hljs-attribute">bar</span>: ElementRef;
+
+<span class="hljs-comment">// Dynamische Query: Ergebnis ist im LifeCycle-Hook `ngAfterViewInit()` verfügbar</span>
+<span class="hljs-variable">@ViewChild</span>(<span class="hljs-string">'foo'</span>, { <span class="hljs-attribute">static</span>: false }) <span class="hljs-attribute">foo</span>: ElementRef;
+<span class="hljs-variable">@ContentChild</span>(<span class="hljs-string">'bar'</span>, { <span class="hljs-attribute">static</span>: false }) <span class="hljs-attribute">bar</span>: ElementRef;
+</code></pre>
+<p><strong>Ab Angular 9</strong> wird der Wert <code>false</code> wieder das Standardverhalten sein.</p>
+<h3 id="automatische-migration">Automatische Migration</h3>
+<p>Verwenden Sie die Angular CLI für das Update auf Angular 8, so wird die Migration automatisch durchgeführt.
+Sollte das Migrationsskript nicht identifizieren können, welcher Wert für <code>static</code> gesetzt werden muss, so wird an der entsprechenden Stelle ein Hinweis eingefügt, und Sie müssen manuell „Hand anlegen“:</p>
+<pre><code class="language-ts"><span class="hljs-regexp">/* TODO: add static flag */</span>
+</code></pre>
+<h3 id="statisch-oder-dynamisch--die-richtige-einstellung-wählen">Statisch oder dynamisch? – die richtige Einstellung wählen</h3>
+<p>Wir empfehlen Ihnen, im Regelfall die Einstellung <code>false</code> zu verwenden.
+Das führt dazu, dass das Ergebnis der Abfrage im Lifecycle-Hook <code>ngAfterViewInit()</code> bzw. <code>ngAfterContentInit()</code> verfügbar ist.
+Somit können Sie sichergehen, dass die Change Detection vollständig ausgeführt wurde und das angefragte Element vollständig geladen wurde.</p>
+<p>Die Einstellung <code>{ static: true }</code> benötigen Sie nur in wenigen Fällen, beispielsweise wenn Sie auf ein <code>TemplateRef</code> zugreifen wollen, um daraus eine eingebettete View zu generieren.
+Diese Aktion können Sie nicht in <code>ngAfterViewInit()</code> ausführen, weil die Change Detection bereits ausgeführt wurde und die Aktion dann nicht in der View sichtbar wäre.</p>
+<p>Lesen Sie mehr zum Thema in der offiziellen <a href="https://v8.angular.io/guide/static-query-migration">Angular-Dokumentation</a>.</p>
+<p>Übrigens: Falls Sie <code>@ViewChildren()</code> oder <code>@ContentChildren()</code> verwenden, müssen Sie nichts ändern – solche Querys sind immer dynamisch.</p>
+<h2 id="der-neue-ivy-renderer-opt-in-preview">Der neue Ivy-Renderer: Opt-In Preview</h2>
+<p>Die neue Rendering-Engine <em>Ivy</em> kann in Angular 8 als freiwilliges Opt-In aktiviert und genutzt werden.
+Zum Ausprobieren können Sie in einem Projekt mit Angular 8 in der Datei <code>src/tsconfig.app.json</code> das Flag <code>enableIvy</code> setzen:</p>
+<pre><code class="language-json">{
+  ...
+  <span class="hljs-string">"angularCompilerOptions"</span>: {
+    <span class="hljs-string">"enableIvy"</span>: <span class="hljs-literal">true</span>,
+    ...
+  }
+}
+</code></pre>
+<p>Alternativ können Sie beim Anlegen eines neuen Angular-Projekts auch direkt die Option <code>--enable-ivy</code> nutzen:</p>
+<pre><code class="language-bash">ng <span class="hljs-keyword">new</span> my-app <span class="hljs-comment">--enable-ivy</span>
+</code></pre>
+<p>Ivy soll mit Angular 9 standardmäßig für alle Projekte aktiviert werden.
+Bis dahin wird die neue Engine noch einem umfangreichen Praxistest unterzogen.
+Einige Features lassen auf sich warten, zum Beispiel die Integration für Internationalisierung (i18n).
+Das neue Tooling soll Übersetzungen zur Laufzeit erlauben und auch einen Service zur programmatischen Übersetzung mitbringen. Bis dahin müssen wir uns aber noch gedulden.
+Sollte Ihre Anwendung die Internationalisierung von Angular verwenden, so können Sie Ivy noch nicht aktivieren.</p>
+<p>Für detaillierte Informationen zu Ivy können wir den Blogartikel <a href="https://blog.nrwl.io/243be844bf36">"Understanding Angular Ivy: Incremental DOM and Virtual DOM"</a> von Victor Savkin empfehlen.</p>
+<h2 id="weitere-neuigkeiten">Weitere Neuigkeiten</h2>
+<p>Wir haben in diesem Artikel natürlich nur die wichtigsten Änderungen und Neuigkeiten erwähnt.
+Das neue Major-Release bringt dazu eine Vielzahl von Bugfixes, Optimierungen unter der Haube und kleinere Features, die für die meisten Entwicklerinnen und Entwickler zunächst nicht relevant sind.</p>
+<p>Beispielsweise verfügt die Angular CLI 8 über die neue <strong>Builders API</strong>.
+Damit kann der Buildprozess für ein Projekt durch eigene Skripte gesteuert werden.
+Einen Einstieg in die neue Schnittstelle <a href="https://blog.angular.io/d012d4489f1b">liefert Hans Larsen in einem Blogartikel</a>.
+Außerdem soll es perspektivisch möglich sein, die Anwendung mit der Angular CLI auf verschiedene Cloud Services zu deployen.</p>
+<p>Zusätzlich wird die Integration von <strong>Googles Buildwerkzeug <a href="https://bazel.angular.io/">Bazel</a></strong> stetig verbessert – auch hierzu sind im neuen Release von Angular einige Commits zu finden.
+Bazel für Angular ist derzeit als Opt-In Preview verfügbar.
+Zum Thema möchten wir einen <a href="https://www.youtube.com/watch?v=J1lnp-nU4wM">Vortrag von Alex Eagle von der ng-conf 2019</a> empfehlen.</p>
+<p>Außerdem sind die folgenden Änderungen interessant:</p>
+<ul>
+<li>Das <code>FormArray</code> verfügt jetzt über eine Methode <code>clear()</code>, um alle Bestandteile aus der Liste zu entfernen (siehe <a href="https://github.com/angular/angular/pull/28918">#28918</a>).</li>
+<li><code>AbstractControl</code> (und damit auch <code>FormGroup</code>, <code>FormArray</code> und <code>FormControl</code>) besitzen eine Methode <code>markAllAsTouched()</code>, um alle Felder rekursiv als <code>touched</code> zu markieren. Das kann dann sinnvoll sein, wenn ein Formular vor dem Absenden alle fehlenden Felder visualisieren soll (siehe <a href="https://github.com/angular/angular/pull/26812">#26812</a>).</li>
+<li><code>TestBed.get()</code> erhält ab sofort typisierte Argumente, liefert aber nach wie vor <code>any</code> zurück (siehe <a href="https://github.com/angular/angular/pull/29290">#29290</a>).</li>
+<li>Das DI-Token <code>DOCUMENT</code> wird nur noch von <code>@angular/common</code> exportiert, nicht mehr von <code>@angular/platform-browser</code> (siehe <a href="https://github.com/angular/angular/pull/28117">#28117</a>).</li>
+</ul>
+<p>Generell lohnt sich immer ein Blick in den <a href="https://github.com/angular/angular/CHANGELOG.md">Changelog von Angular</a>, um die Entwicklung aktiv mitzuverfolgen.</p>
+<hr>
+
+<p>Haben Sie Fragen zur neuen Version, zum Update oder zu Angular? Schreiben Sie uns!</p>
+<p><strong>Viel Spaß mit Angular wünschen<br>
+Johannes, Danny und Ferdinand</strong></p>
+<blockquote>
+<p><strong>Übrigens: Unser neues Angular-Buch erscheint am 14. Juni 2019 im Handel – vollständig aktualisiert und erweitert. Alle Beispiele sind bereits auf dem Stand von Angular 8. 😊</strong></p>
+</blockquote>
+<p><small><strong>Titelbild:</strong> Badwater Basin, Death Valley National Park, California, 2019. Foto von Ferdinand Malcher</small></p>
+</p><!----><!----><a routerlink="/blog" ripple-radius="" class="btn btn-sm btn-primary mt-4" href="/blog"><i class="fa fa-backward mr-2"></i> Zurück</a><hr> Suggestions? Feedback? Bugs? Please <a target="_blank" class="content" href="https://github.com/angular-buch/website-articles/blob/gh-pages/blog/2019-06-angular8/README.md"><i class="fa fa-github mr-1" style="font-size: 1.6rem; position: relative; bottom: -3px;"></i>fork/edit this page on Github</a>. </div></div></div></div></div><!----></div><!----></div></section><ngx-json-ld><script type="application/ld+json">{
+  "url": "https://angular.schule/blog/2019-06-angular8",
+  "headline": "Angular 8 ist da!",
+  "description": "Der neueste Wurf aus der Softwareschmiede Google ist vollbracht: Angular 8 ist da!\nAm 28. Mai 2019 erschien die neue Major-Version 8.0.0 und bringt wieder einige interessante Neuerungen mit sich.",
+  "datePublished": "2019-05-28",
+  "dateModified": "2019-05-28",
+  "publisher": {
+    "name": "Angular-Buch",
+    "url": "https://angular-buch.com",
+    "@type": "Organization",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://angular-buch.com/assets/img/brand_export.png"
+    }
+  },
+  "image": "https://website-articles.angular-buch.com/blog/2019-06-angular8/./angular8.jpg",
+  "thumbnailUrl": "https://website-articles.angular-buch.com/blog/2019-06-angular8/./angular8.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Angular Buch Team",
+    "email": "team@angular-buch.com"
+  },
+  "keywords": [
+    "Angular",
+    "Angular 8",
+    "Differential Loading",
+    "Lazy Loading",
+    "Ivy"
+  ],
+  "mainEntityOfPage": "http://schema.org/WebPage",
+  "@type": "Article",
+  "@context": "http://schema.org"
+}</script></ngx-json-ld></app-blog-details><!----><footer><div class="container"><div class="row align-items-center"><div class="col-sm-9"><div class="links"><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/"><!----> Home </a><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/impressum"><!----> Impressum </a><!----><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/datenschutz"><!----> Datenschutzerklärung </a><!----><!----><!----><!----></app-link>|<!----><app-link><!----><a class="links__item links__twitter" href="https://twitter.com/angular_buch" rel="nofollow"><!----> Twitter </a><!----><!----><!----><!----><!----></app-link><!----><!----></div></div><div class="col-sm-3 text-right"></div></div></div></footer></main><ngx-json-ld><script type="application/ld+json"></script></ngx-json-ld><ngx-json-ld><script type="application/ld+json"></script></ngx-json-ld></app-root>
+<script src="runtime.2127feb1097cc098.js" type="module"></script><script src="polyfills.6d539c7e65933a8f.js" type="module"></script><script src="main.5c350166e2c255c1.js" type="module"></script>
+
+</body></html>
