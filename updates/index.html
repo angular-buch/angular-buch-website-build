@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <title>Angular-Buch → Angular 14 ist da!</title>
+  <title>Angular-Buch → Angular 15 ist da!</title>
   
 
   
@@ -27,217 +27,322 @@
   <meta property="book:tag" content="NgRx">
 
   <base href="/">
-<style>@font-face{font-family:Roboto;src:url(Roboto-Thin.3025beb410a67d09.eot);src:local("Roboto Thin"),local("Roboto-Thin"),url(Roboto-Thin.3025beb410a67d09.eot?#iefix) format("embedded-opentype"),url(Roboto-Thin.a529f43f8b43a41b.woff2) format("woff2"),url(Roboto-Thin.0cfb6189823d7275.woff) format("woff"),url(Roboto-Thin.94d67324d95f59e5.ttf) format("truetype"),url(Roboto-Thin.761d85cbad1d4c0a.svg#Roboto) format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-ThinItalic.3c0494ed5066eddf.eot);src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url(Roboto-ThinItalic.3c0494ed5066eddf.eot?#iefix) format("embedded-opentype"),url(Roboto-ThinItalic.7d4425d4f9dfbd4d.woff2) format("woff2"),url(Roboto-ThinItalic.72445820525e265f.woff) format("woff"),url(Roboto-ThinItalic.72ab0263ccb0dc3f.ttf) format("truetype"),url(Roboto-ThinItalic.7d3f4f17bca5edb0.svg#Roboto) format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Light.9cff5f27f6ad3d59.eot);src:local("Roboto Light"),local("Roboto-Light"),url(Roboto-Light.9cff5f27f6ad3d59.eot?#iefix) format("embedded-opentype"),url(Roboto-Light.7117d83fbb0aa28a.woff2) format("woff2"),url(Roboto-Light.2188ea3f3f8ab51a.woff) format("woff"),url(Roboto-Light.5605865fb101be1a.ttf) format("truetype"),url(Roboto-Light.775a1d8f32378e56.svg#Roboto) format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-LightItalic.4a75ae9969c094a3.eot);src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url(Roboto-LightItalic.4a75ae9969c094a3.eot?#iefix) format("embedded-opentype"),url(Roboto-LightItalic.9669ba38989190d7.woff2) format("woff2"),url(Roboto-LightItalic.ead2698c38e2d858.woff) format("woff"),url(Roboto-LightItalic.ccdc52ada30d970f.ttf) format("truetype"),url(Roboto-LightItalic.293a6c412ebb5682.svg#Roboto) format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Regular.b21a0eefbec4f57f.eot);src:local("Roboto Regular"),local("Roboto-Regular"),url(Roboto-Regular.b21a0eefbec4f57f.eot?#iefix) format("embedded-opentype"),url(Roboto-Regular.e64b7e5db276537f.woff2) format("woff2"),url(Roboto-Regular.2313f68c10458709.woff) format("woff"),url(Roboto-Regular.b796ce65a81adc41.ttf) format("truetype"),url(Roboto-Regular.18c20975d2f2578c.svg#Roboto) format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-RegularItalic.e6e0d5b40d74c833.eot);src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url(Roboto-RegularItalic.e6e0d5b40d74c833.eot?#iefix) format("embedded-opentype"),url(Roboto-RegularItalic.d448549043fc24e3.woff2) format("woff2"),url(Roboto-RegularItalic.6c93c3855305929c.woff) format("woff"),url(Roboto-RegularItalic.c6469a92f47f72b9.ttf) format("truetype"),url(Roboto-RegularItalic.f83754e74962d444.svg#Roboto) format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Medium.9a9c9421bcdef79c.eot);src:local("Roboto Medium"),local("Roboto-Medium"),url(Roboto-Medium.9a9c9421bcdef79c.eot?#iefix) format("embedded-opentype"),url(Roboto-Medium.31c42d9dbee477e5.woff2) format("woff2"),url(Roboto-Medium.769ea541b3eef14d.woff) format("woff"),url(Roboto-Medium.03501557d620ee6b.ttf) format("truetype"),url(Roboto-Medium.8a59a67632175b0b.svg#Roboto) format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-MediumItalic.eda8bf9be9c607a9.eot);src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url(Roboto-MediumItalic.eda8bf9be9c607a9.eot?#iefix) format("embedded-opentype"),url(Roboto-MediumItalic.2b1343b2d0b09b92.woff2) format("woff2"),url(Roboto-MediumItalic.226e2a5000081685.woff) format("woff"),url(Roboto-MediumItalic.ce75fe30feef2519.ttf) format("truetype"),url(Roboto-MediumItalic.b51310a741b5d779.svg#Roboto) format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Bold.0d2870f5e1759c7a.eot);src:local("Roboto Bold"),local("Roboto-Bold"),url(Roboto-Bold.0d2870f5e1759c7a.eot?#iefix) format("embedded-opentype"),url(Roboto-Bold.6980f6575e8c2cbd.woff2) format("woff2"),url(Roboto-Bold.313d5de65a92aae6.woff) format("woff"),url(Roboto-Bold.ed694f411e0b3a82.ttf) format("truetype"),url(Roboto-Bold.a5d983d959171823.svg#Roboto) format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-BoldItalic.24d4fc9379818f4d.eot);src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url(Roboto-BoldItalic.24d4fc9379818f4d.eot?#iefix) format("embedded-opentype"),url(Roboto-BoldItalic.986a9dba772d1a7a.woff2) format("woff2"),url(Roboto-BoldItalic.d0b1358f293918c7.woff) format("woff"),url(Roboto-BoldItalic.e3188bd071401a05.ttf) format("truetype"),url(Roboto-BoldItalic.98e79b0548caa896.svg#Roboto) format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Black.2a430d2577a70997.eot);src:local("Roboto Black"),local("Roboto-Black"),url(Roboto-Black.2a430d2577a70997.eot?#iefix) format("embedded-opentype"),url(Roboto-Black.710dab121b2a7bc2.woff2) format("woff2"),url(Roboto-Black.06740b883cfa8a2e.woff) format("woff"),url(Roboto-Black.41a719429c37346e.ttf) format("truetype"),url(Roboto-Black.711c7acb0aa346bb.svg#Roboto) format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-BlackItalic.65db2fd69db01cd5.eot);src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url(Roboto-BlackItalic.65db2fd69db01cd5.eot?#iefix) format("embedded-opentype"),url(Roboto-BlackItalic.f4307ac32c9ad43b.woff2) format("woff2"),url(Roboto-BlackItalic.fc1832915de70c44.woff) format("woff"),url(Roboto-BlackItalic.ba2ec768f43dbc84.ttf) format("truetype"),url(Roboto-BlackItalic.26186c8936090567.svg#Roboto) format("svg");font-weight:900;font-style:italic}@charset "UTF-8";:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}img{vertical-align:middle;border-style:none}svg{overflow:hidden;vertical-align:middle}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}img{page-break-inside:avoid}@page{size:a3}body{min-width:992px!important}}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#F8F8F8}html{overflow-y:scroll}</style><link rel="stylesheet" href="styles.1b90ca75cc2833ca.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.1b90ca75cc2833ca.css"></noscript><meta property="og:title" content="Angular-Buch → Angular 14 ist da!"><meta name="twitter:title" content="Angular-Buch → Angular 14 ist da!"><meta name="description" content="📙 Noch bevor die Sommer- und Urlaubszeit beginnt, wartet Angular mit tollen Neuigkeiten auf: Am 2. Juni 2022 erschien die neue Major-Version Angular 14!
-Während die letzten Hauptreleases vor allem interne Verbesserungen für das Tooling mitbrachten, hat Angular 14 einige spannende neue Features mit an Bord."><meta property="og:description" content="📙 Noch bevor die Sommer- und Urlaubszeit beginnt, wartet Angular mit tollen Neuigkeiten auf: Am 2. Juni 2022 erschien die neue Major-Version Angular 14!
-Während die letzten Hauptreleases vor allem interne Verbesserungen für das Tooling mitbrachten, hat Angular 14 einige spannende neue Features mit an Bord."><meta name="twitter:description" content="📙 Noch bevor die Sommer- und Urlaubszeit beginnt, wartet Angular mit tollen Neuigkeiten auf: Am 2. Juni 2022 erschien die neue Major-Version Angular 14!
-Während die letzten Hauptreleases vor allem interne Verbesserungen für das Tooling mitbrachten, hat Angular 14 einige spannende neue Features mit an Bord."><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/blog/2022-06-angular14"><style>.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
+<style>@font-face{font-family:Roboto;src:url(Roboto-Thin.3025beb410a67d09.eot);src:local("Roboto Thin"),local("Roboto-Thin"),url(Roboto-Thin.3025beb410a67d09.eot?#iefix) format("embedded-opentype"),url(Roboto-Thin.a529f43f8b43a41b.woff2) format("woff2"),url(Roboto-Thin.0cfb6189823d7275.woff) format("woff"),url(Roboto-Thin.94d67324d95f59e5.ttf) format("truetype"),url(Roboto-Thin.761d85cbad1d4c0a.svg#Roboto) format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-ThinItalic.3c0494ed5066eddf.eot);src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url(Roboto-ThinItalic.3c0494ed5066eddf.eot?#iefix) format("embedded-opentype"),url(Roboto-ThinItalic.7d4425d4f9dfbd4d.woff2) format("woff2"),url(Roboto-ThinItalic.72445820525e265f.woff) format("woff"),url(Roboto-ThinItalic.72ab0263ccb0dc3f.ttf) format("truetype"),url(Roboto-ThinItalic.7d3f4f17bca5edb0.svg#Roboto) format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Light.9cff5f27f6ad3d59.eot);src:local("Roboto Light"),local("Roboto-Light"),url(Roboto-Light.9cff5f27f6ad3d59.eot?#iefix) format("embedded-opentype"),url(Roboto-Light.7117d83fbb0aa28a.woff2) format("woff2"),url(Roboto-Light.2188ea3f3f8ab51a.woff) format("woff"),url(Roboto-Light.5605865fb101be1a.ttf) format("truetype"),url(Roboto-Light.775a1d8f32378e56.svg#Roboto) format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-LightItalic.4a75ae9969c094a3.eot);src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url(Roboto-LightItalic.4a75ae9969c094a3.eot?#iefix) format("embedded-opentype"),url(Roboto-LightItalic.9669ba38989190d7.woff2) format("woff2"),url(Roboto-LightItalic.ead2698c38e2d858.woff) format("woff"),url(Roboto-LightItalic.ccdc52ada30d970f.ttf) format("truetype"),url(Roboto-LightItalic.293a6c412ebb5682.svg#Roboto) format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Regular.b21a0eefbec4f57f.eot);src:local("Roboto Regular"),local("Roboto-Regular"),url(Roboto-Regular.b21a0eefbec4f57f.eot?#iefix) format("embedded-opentype"),url(Roboto-Regular.e64b7e5db276537f.woff2) format("woff2"),url(Roboto-Regular.2313f68c10458709.woff) format("woff"),url(Roboto-Regular.b796ce65a81adc41.ttf) format("truetype"),url(Roboto-Regular.18c20975d2f2578c.svg#Roboto) format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-RegularItalic.e6e0d5b40d74c833.eot);src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url(Roboto-RegularItalic.e6e0d5b40d74c833.eot?#iefix) format("embedded-opentype"),url(Roboto-RegularItalic.d448549043fc24e3.woff2) format("woff2"),url(Roboto-RegularItalic.6c93c3855305929c.woff) format("woff"),url(Roboto-RegularItalic.c6469a92f47f72b9.ttf) format("truetype"),url(Roboto-RegularItalic.f83754e74962d444.svg#Roboto) format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Medium.9a9c9421bcdef79c.eot);src:local("Roboto Medium"),local("Roboto-Medium"),url(Roboto-Medium.9a9c9421bcdef79c.eot?#iefix) format("embedded-opentype"),url(Roboto-Medium.31c42d9dbee477e5.woff2) format("woff2"),url(Roboto-Medium.769ea541b3eef14d.woff) format("woff"),url(Roboto-Medium.03501557d620ee6b.ttf) format("truetype"),url(Roboto-Medium.8a59a67632175b0b.svg#Roboto) format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-MediumItalic.eda8bf9be9c607a9.eot);src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url(Roboto-MediumItalic.eda8bf9be9c607a9.eot?#iefix) format("embedded-opentype"),url(Roboto-MediumItalic.2b1343b2d0b09b92.woff2) format("woff2"),url(Roboto-MediumItalic.226e2a5000081685.woff) format("woff"),url(Roboto-MediumItalic.ce75fe30feef2519.ttf) format("truetype"),url(Roboto-MediumItalic.b51310a741b5d779.svg#Roboto) format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Bold.0d2870f5e1759c7a.eot);src:local("Roboto Bold"),local("Roboto-Bold"),url(Roboto-Bold.0d2870f5e1759c7a.eot?#iefix) format("embedded-opentype"),url(Roboto-Bold.6980f6575e8c2cbd.woff2) format("woff2"),url(Roboto-Bold.313d5de65a92aae6.woff) format("woff"),url(Roboto-Bold.ed694f411e0b3a82.ttf) format("truetype"),url(Roboto-Bold.a5d983d959171823.svg#Roboto) format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-BoldItalic.24d4fc9379818f4d.eot);src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url(Roboto-BoldItalic.24d4fc9379818f4d.eot?#iefix) format("embedded-opentype"),url(Roboto-BoldItalic.986a9dba772d1a7a.woff2) format("woff2"),url(Roboto-BoldItalic.d0b1358f293918c7.woff) format("woff"),url(Roboto-BoldItalic.e3188bd071401a05.ttf) format("truetype"),url(Roboto-BoldItalic.98e79b0548caa896.svg#Roboto) format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url(Roboto-Black.2a430d2577a70997.eot);src:local("Roboto Black"),local("Roboto-Black"),url(Roboto-Black.2a430d2577a70997.eot?#iefix) format("embedded-opentype"),url(Roboto-Black.710dab121b2a7bc2.woff2) format("woff2"),url(Roboto-Black.06740b883cfa8a2e.woff) format("woff"),url(Roboto-Black.41a719429c37346e.ttf) format("truetype"),url(Roboto-Black.711c7acb0aa346bb.svg#Roboto) format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url(Roboto-BlackItalic.65db2fd69db01cd5.eot);src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url(Roboto-BlackItalic.65db2fd69db01cd5.eot?#iefix) format("embedded-opentype"),url(Roboto-BlackItalic.f4307ac32c9ad43b.woff2) format("woff2"),url(Roboto-BlackItalic.fc1832915de70c44.woff) format("woff"),url(Roboto-BlackItalic.ba2ec768f43dbc84.ttf) format("truetype"),url(Roboto-BlackItalic.26186c8936090567.svg#Roboto) format("svg");font-weight:900;font-style:italic}@charset "UTF-8";:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}img{vertical-align:middle;border-style:none}svg{overflow:hidden;vertical-align:middle}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}img{page-break-inside:avoid}@page{size:a3}body{min-width:992px!important}}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#F8F8F8}html{overflow-y:scroll}</style><link rel="stylesheet" href="styles.1b90ca75cc2833ca.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.1b90ca75cc2833ca.css"></noscript><meta property="og:title" content="Angular-Buch → Angular 15 ist da!"><meta name="twitter:title" content="Angular-Buch → Angular 15 ist da!"><meta name="description" content="📙 Am 16. November 2022 erschien die neue Major-Version von Angular: Angular 15.0.0!
+Im Fokus des neuen Releases standen vor allem diese drei Themen:"><meta property="og:description" content="📙 Am 16. November 2022 erschien die neue Major-Version von Angular: Angular 15.0.0!
+Im Fokus des neuen Releases standen vor allem diese drei Themen:"><meta name="twitter:description" content="📙 Am 16. November 2022 erschien die neue Major-Version von Angular: Angular 15.0.0!
+Im Fokus des neuen Releases standen vor allem diese drei Themen:"><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/blog/2022-11-angular15"><style>.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
 </style><style>.content img{max-width:100%}.details-page-autor{margin-top:-110px}.details-thumbnail{margin-bottom:-18px}.details-thumbnail .details-thumbnail-inner{border-bottom:23px solid #dfdede;height:300px;overflow:hidden;background-color:#fff;border-radius:4px;display:flex;justify-content:center}.details-thumbnail .details-thumbnail-inner .darken-overlay{display:block;position:absolute;height:300px;width:100%;padding-left:15px;padding-right:15px;padding-bottom:23px}.details-thumbnail .details-thumbnail-inner .darken-overlay div{display:block;position:relative;width:100%;height:100%;background-color:#0003;border-radius:4px 4px 0 0/4px 4px 0px 0px}.details-thumbnail img{width:100%;align-self:center}.video-container{position:relative;padding-bottom:56.25%;padding-top:0;height:0;overflow:hidden;margin-top:2rem;margin-bottom:2rem}.video-container iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;height:100%}
-</style><style>a[_ngcontent-arg-c14]:link, a[_ngcontent-arg-c14]:visited{text-decoration:underline}a[_ngcontent-arg-c14]:hover, a[_ngcontent-arg-c14]:active{text-decoration:none}</style><meta property="og:image" content="https://website-articles.angular-buch.com/blog/2022-06-angular14/./angular14.jpg"><meta name="twitter:image" content="https://website-articles.angular-buch.com/blog/2022-06-angular14/./angular14.jpg"><meta name="twitter:card" content="summary_large_image"><script>window['ScullyIO']='generated';</script></head>
+</style><style>a[_ngcontent-jhq-c14]:link, a[_ngcontent-jhq-c14]:visited{text-decoration:underline}a[_ngcontent-jhq-c14]:hover, a[_ngcontent-jhq-c14]:active{text-decoration:none}</style><meta property="og:image" content="https://website-articles.angular-buch.com/blog/2022-11-angular15/./angular15.jpg"><meta name="twitter:image" content="https://website-articles.angular-buch.com/blog/2022-11-angular15/./angular15.jpg"><meta name="twitter:card" content="summary_large_image"><script>window['ScullyIO']='generated';</script></head>
 <body scully-version="0.0.0">
-  <app-root ng-version="15.0.0"><header><div class="nav__overlay"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/"><img src="assets/img/brand.svg" alt="" class="img-fluid" style="height: 40px;"></a></div><div class="col-6 col-md-10"><nav><ul><li><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/"><!----> Buch </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/blog" class="nav__current" aria-current="page"><!----> Blog </a><!----><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/material"><!----> Begleitmaterial </a><!----><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="//angular.schule/"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-calendar.svg" src="assets/img/symbol-calendar.svg"><!----> Angular-Schulungen </a><!----><!----><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="https://amzn.eu/d/8fgTIWL"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-basket.svg" src="assets/img/symbol-basket.svg"><!----> Jetzt vorbestellen </a><!----><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" class="nav__toggle"><img src="assets/img/symbol-menu.svg" alt=""></a></div></div></div></header><main><router-outlet></router-outlet><app-blog-details><app-hero-header headline="Blog" headlinelink="/blog"><section class="hero hero--smallest"><div class="hero__lines hero__lines--smallest"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;">Blog</a><!----><!----></h1></div><div class="col-5 d-none d-md-block text-center"><img src="assets/img/angular.png" alt="" class="hero__angular--smallest"></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list blog"><div class="index__stripe index__stripe--list"><!----><div class="container"><a name="post" id="post"></a><div class="row details-thumbnail"><div class="col-12"><div class="details-thumbnail-inner"><img alt="" class="img-fluid rounded" src="https://website-articles.angular-buch.com/blog/2022-06-angular14/./angular14.jpg"><!----></div></div><!----></div><div class="row"><div class="col-12"><div class="index__item index__item--list"><div class="row align-items-top"><div class="col-12 col-sm-3 col-md-2 text-center details-page-autor"><img alt="" class="blog__portrait img-fluid rounded-circle" src="//www.gravatar.com/avatar/be546eb804b80c7e8c1ac0fc082b5463?size=200&amp;rating=pg&amp;d=mm"><span class="blog__author">Angular Buch Team <br><a target="_blank" class="twitter" href="https://twitter.com/angular_buch"> @angular_buch</a> &nbsp; <!----><!----></span></div><div class="col-12 col-sm-9 col-md-10 col-lg-10"><h1>Angular 14 ist da!</h1><p class="blog__date">02.06.2022</p><p class="content markdown-body"><p>Noch bevor die Sommer- und Urlaubszeit beginnt, wartet Angular mit tollen Neuigkeiten auf: Am 2. Juni 2022 erschien die neue Major-Version <strong>Angular 14</strong>!
-Während die letzten Hauptreleases vor allem interne Verbesserungen für das Tooling mitbrachten, hat Angular 14 einige spannende neue Features mit an Bord.</p>
-<p>In diesem Blogpost fassen wir wie immer die wichtigsten Neuigkeiten zusammen.
-Im englischsprachigen <a href="https://blog.angular.io/angular-v14-is-now-available-391a6db736af">Angular-Blog</a> finden Sie außerdem die offizielle Mitteilung des Angular-Teams.
+  <app-root ng-version="15.0.0"><header><div class="nav__overlay"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/"><img src="assets/img/brand.svg" alt="" class="img-fluid" style="height: 40px;"></a></div><div class="col-6 col-md-10"><nav><ul><li><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/"><!----> Buch </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/blog" class="nav__current" aria-current="page"><!----> Blog </a><!----><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/material"><!----> Begleitmaterial </a><!----><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="//angular.schule/"><img alt="" class="linkImage lazyloaded" data-src="assets/img/symbol-calendar.svg" src="assets/img/symbol-calendar.svg"><!----> Angular-Schulungen </a><!----><!----><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="https://amzn.eu/d/8fgTIWL"><img alt="" class="linkImage lazyloaded" data-src="assets/img/symbol-basket.svg" src="assets/img/symbol-basket.svg"><!----> Jetzt vorbestellen </a><!----><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" class="nav__toggle"><img src="assets/img/symbol-menu.svg" alt=""></a></div></div></div></header><main><router-outlet></router-outlet><app-blog-details><app-hero-header headline="Blog" headlinelink="/blog"><section class="hero hero--smallest"><div class="hero__lines hero__lines--smallest"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;">Blog</a><!----><!----></h1></div><div class="col-5 d-none d-md-block text-center"><img src="assets/img/angular.png" alt="" class="hero__angular--smallest"></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list blog"><div class="index__stripe index__stripe--list"><!----><div class="container"><a name="post" id="post"></a><div class="row details-thumbnail"><div class="col-12"><div class="details-thumbnail-inner"><img alt="" class="img-fluid rounded" src="https://website-articles.angular-buch.com/blog/2022-11-angular15/./angular15.jpg"><!----></div></div><!----></div><div class="row"><div class="col-12"><div class="index__item index__item--list"><div class="row align-items-top"><div class="col-12 col-sm-3 col-md-2 text-center details-page-autor"><img alt="" class="blog__portrait img-fluid rounded-circle" src="//www.gravatar.com/avatar/be546eb804b80c7e8c1ac0fc082b5463?size=200&amp;rating=pg&amp;d=mm"><span class="blog__author">Angular Buch Team <br><a target="_blank" class="twitter" href="https://twitter.com/angular_buch"> @angular_buch</a> &nbsp; <!----><!----></span></div><div class="col-12 col-sm-9 col-md-10 col-lg-10"><h1>Angular 15 ist da!</h1><p class="blog__date">25.11.2022</p><p class="content markdown-body"><p>Am 16. November 2022 erschien die neue Major-Version von Angular: <strong>Angular 15.0.0</strong>!
+Im Fokus des neuen Releases standen vor allem diese drei Themen:</p>
+<ul>
+<li>Standalone Components gelten nun als <em>stable</em>.</li>
+<li>funktionale Guards, Resolver und Interceptors</li>
+<li>Vereinfachung der initial generierten Projektdateien</li>
+</ul>
+<p>In diesem Blogpost fassen wir wieder die wichtigsten Neuigkeiten zusammen.
+Im englischsprachigen <a href="https://blog.angular.io/angular-v15-is-now-available-df7be7f2f4c8">Angular-Blog</a> finden Sie außerdem die offizielle Mitteilung des Angular-Teams.
 Außerdem empfehlen wir Ihnen einen Blick in die Changelogs von <a href="https://github.com/angular/angular/blob/master/CHANGELOG.md">Angular</a> und der <a href="https://github.com/angular/angular-cli/blob/master/CHANGELOG.md">Angular CLI</a>.</p>
 <h2 id="projekt-updaten">Projekt updaten</h2>
-<p>Um ein existierendes Projekt zu aktualisieren, nutzen Sie bitte den <a href="https://update.angular.io/?v=13.0-14.0">Angular Update Guide</a>.
+<p>Um ein existierendes Projekt zu aktualisieren, nutzen Sie bitte den <a href="https://update.angular.io/?v=14.0-15.0">Angular Update Guide</a>.
 Der Befehl <code>ng update</code> liefert außerdem Infos zu möglichen Updates direkt im Projekt.</p>
-<pre><code class="language-bash"><span class="hljs-meta"># Projekt auf Angular 14 aktualisieren</span>
-ng update <span class="hljs-symbol">@angular</span>/core<span class="hljs-symbol">@14</span> <span class="hljs-symbol">@angular</span>/cli<span class="hljs-symbol">@14</span>
+<pre><code class="language-bash"><span class="hljs-meta"># Projekt auf Angular 15 aktualisieren</span>
+ng update <span class="hljs-symbol">@angular</span>/core<span class="hljs-symbol">@15</span> <span class="hljs-symbol">@angular</span>/cli<span class="hljs-symbol">@15</span>
 </code></pre>
 <p>Dadurch werden nicht nur die Pakete aktualisiert, sondern auch notwendige Migrationen im Code durchgeführt.
 Prüfen Sie danach am Besten mithilfe der Differenzansicht von Git die Änderungen.</p>
+<h2 id="funktionale-guards-resolver-und-interceptors">Funktionale Guards, Resolver und Interceptors</h2>
+<p>Guards, Resolver und Interceptors sind zusätzliche Features von Angular, mit denen wir Router und HttpClient steuern können:</p>
+<ul>
+<li>Ein Guard entscheidet, ob eine Navigation ausgeführt werden darf.</li>
+<li>Ein Resolver löst (asynchrone) Daten auf, bevor eine Route geladen wird.</li>
+<li>Ein Interceptor verarbeitet einen HTTP-Request oder -Response, z. B. um Headerfelder für die Authentifizierung global hinzuzufügen.</li>
+</ul>
+<p>Alle drei Bausteine existieren seit vielen Jahren – sie wurden aber bislang stets in Form einer Klasse implementiert.
+Nun können Guards, Resolver und Interceptors auch als einfache Funktionen definiert werden.
+Der Code wird damit leichtgewichtiger und flexibler.
+Wollen wir innerhalb der Funktion Abhängigkeiten über die Dependency Injection anfordern, müssen wir die Funktion <code>inject()</code> nutzen.</p>
+<pre><code class="language-ts">export <span class="hljs-keyword">const</span> authGuard: CanActivateFn = (<span class="hljs-keyword">route</span>, <span class="hljs-keyword">state</span>) =&gt; {
+  <span class="hljs-keyword">const</span> authService = inject(AuthService);
+  return authService.isAuthenticated;
+};
+</code></pre>
+<pre><code class="language-ts">export <span class="hljs-keyword">const</span> dataResolver: ResolveFn<span class="hljs-variable">&lt;MyData&gt;</span> = (<span class="hljs-keyword">route</span>, <span class="hljs-keyword">state</span>) =&gt; {
+  return inject(MyDataService).getData();
+}
+</code></pre>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> myInterceptor: HttpInterceptorFn = <span class="hljs-function">(<span class="hljs-params">
+  req: HttpRequest&lt;unknown&gt;,
+  next: HttpHandlerFn
+</span>) =&gt;</span> {
+  <span class="hljs-comment">// HTTP-Request weitergeben</span>
+  <span class="hljs-keyword">return</span> next(req).pipe(
+    <span class="hljs-comment">// HTTP-Response verarbeiten</span>
+  );
+}
+</code></pre>
+<p>Funktionale Guards und Resolver werden auf dieselbe Weise bereitgestellt wie die klassenbasierten Implementierungen.
+Funktionale Interceptors können derzeit nur mit der neuen Funktion <code>provideHttpClient()</code> genutzt werden, siehe der nächste Abschnitt.</p>
+<p>Voraussichtlich mit Angular 15.1 werden klassenbasierte Guards und Resolver als <em>deprecated</em> markiert.
+Wir empfehlen also, den Code in Ihren Projekten auf die neuen Schnittstellen zu migrieren.</p>
+<p>In diesem <a href="https://twitter.com/Enea_Jahollari/status/1591433703678672896">Twitter-Post von Enea Jahollari</a> finden Sie ein gelungenes Beispiel für 
+das Zusammenspiel von Functional Guard, <code>inject()</code>, <code>CanMatch</code> und <code>loadComponent</code>.</p>
 <h2 id="standalone-components">Standalone Components</h2>
-<p>Damit eine Komponente genutzt werden kann, musste sie bisher immer in einem NgModule deklariert werden.
-Insbesondere bei wiederverwendbaren Komponenten führte das leicht zu unübersichtlichem Code.
-Das Konzept der NgModules mit allen Details (insbesondere Imports, Exports, Providers) erschwert außerdem den Einstieg in das Framework Angular.</p>
-<p>Mit Angular 14 wurde dieses lang diskutierte Thema angegangen: Angular unterstützt nun <em>Standalone Components</em>.</p>
-<p>Komponenten, Pipes und Direktiven müssen damit nicht mehr in einem Modul deklariert werden, sondern können alleinstehend verwendet werden.
-Damit eine Komponente genutzt werden kann, wird sie direkt am Ort der Verwendung importiert.
-Im folgenden Codebeispiel möchte die <code>AppComponent</code> die andere Komponente <code>DashboardComponent</code> in ihrem Template nutzen: </p>
-<pre><code class="language-ts"><span class="hljs-variable">@Component</span>({
-  <span class="hljs-attribute">selector</span>: <span class="hljs-string">'app-root'</span>,
-  <span class="hljs-attribute">standalone</span>: true,
-  <span class="hljs-attribute">imports</span>: [DashboardComponent]
-  <span class="hljs-comment">// ...</span>
-})
-export class AppComponent {}
-</code></pre>
-<p>Dadurch vereinfacht sich die Struktur der Anwendung, denn die Gruppierung in NgModules entfällt.
-NgModules und Standalone Components sind kompatibel, können also auch in Kombination genutzt werden.</p>
-<p>Das neue Feature ist zunächst als <em>Developer Preview</em> verfügbar.
-Das bedeutet, dass die Schnittstelle vor dem finalen Release noch verändert werden kann.</p>
-<blockquote>
-<p>Wir behandeln das Thema ausführlich in einem separaten Blogpost:<br>
-<strong><a href="https://angular.schule/blog/2022-05-standalone-components">Standalone Components – neu ab Angular 14</a></strong></p>
-</blockquote>
-<h2 id="strikt-typisierte-formulare">Strikt typisierte Formulare</h2>
-<p>Reactive Forms sind ein mächtiger Ansatz, um komplexe Formulare mit Angular zu entwickeln.
-Die bisherige Umsetzung hatte allerdings Schwächen, denn die Modelle waren stets mit <code>any</code> typisiert:</p>
-<pre><code class="language-ts"><span class="hljs-keyword">const</span> myForm = <span class="hljs-keyword">new</span> FormGroup({ <span class="hljs-comment">/* ... */</span> })
-<span class="hljs-keyword">const</span> value = myForm.value; <span class="hljs-comment">// any ❌</span>
-</code></pre>
-<p>Mit Angular 14 ändert sich dieses Verhalten: Die Formularmodelle für Reactive Forms sind jetzt strikt typisiert!
-Das Design für die neue Typisierung war nicht trivial, deshalb wurde der Prozess von einem <a href="https://github.com/angular/angular/discussions/44513">öffentlichen RFC</a> begleitet.</p>
-<blockquote>
-<p>Wir behandeln das Thema ausführlich in einem separaten Blogpost:<br>
-<strong><a href="https://angular.schule/blog/2022-05-typed-forms">Typisierte Reactive Forms – neu ab Angular 14</a></strong></p>
-</blockquote>
-<p>Beim Update auf Angular 14 werden bestehende Formulare automatisch auf eine untypisierte Variante migriert, z. B. wird <code>FormControl</code> ersetzt durch <code>UntypedFormControl</code>.
-Alte Formulare können so zunächst unverändert bleiben, und die Migration zum neuen Ansatz kann schrittweise durchgeführt werden.</p>
-<h2 id="seitentitel-setzen-mit-dem-router">Seitentitel setzen mit dem Router</h2>
-<p>Um den Titel der Seite mit Angular zu setzen, existiert schon seit einiger Zeit der Service <code>Title</code>.
-Der Nachteil an dieser Strategie ist, dass man das tatsächliche Setzen des Titels selbst in der Anwendung implementieren muss.
-Dazu muss entweder jede geroutete Komponente die passende Funktionalität mitbringen, oder wir müssen in einem Service selbst eine zentrale Logik dafür platzieren.</p>
-<p>Seit Angular 14 bringt der Router eine passende Funktionalität mit, um den Titel der Seite automatisch zu setzen.
-Dazu können wir in den Routen das Property <code>title</code> definieren, und der Seitentitel wird beim Aktivieren der Route automatisch angepasst:</p>
-<pre><code class="language-ts">const routes: <span class="hljs-type">Routes</span> = [
-  {
-    path: <span class="hljs-symbol">'admin</span>/create',
-    component: <span class="hljs-type">BookCreateComponent</span>,
-    title: <span class="hljs-symbol">'Buch</span> erstellen'
-  },
-  {
-    path: <span class="hljs-symbol">'admin</span>/edit/:isbn',
-    component: <span class="hljs-type">BookEditComponent</span>,
-    title: <span class="hljs-symbol">'Buch</span> bearbeiten'
-  }
-];
-</code></pre>
-<p>Leider wird der Titel nur verändert, wenn eine Route einen Eintrag <code>title</code> hat.
-Betreten wir also eine Route ohne Titel, bleibt der zuletzt gesetzte Titel erhalten.</p>
-<p>Um komplexere Anwendungsfälle zu lösen, können wir die Logik des Routers überschreiben.
-Dafür müssen wir eine eigene <code>TitleStrategy</code> implementieren.
-Die folgende Klasse setzt zum Beispiel den Titel auf den in der Route definierten Wert – oder auf den Default <code>BookMonkey</code>, wenn kein Titel gegeben ist:</p>
-<pre><code class="language-ts"><span class="hljs-meta">@Injectable</span>()
-export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomTitleStrategy</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">TitleStrategy</span> </span>{
-  constructor(<span class="hljs-keyword">private</span> title: <span class="hljs-type">Title</span>) {
-    <span class="hljs-keyword">super</span>();
-  }
+<p>Die mit Angular 14 eingeführten Standalone Components sind nun als <em>stable</em> eingestuft und können ohne Einschränkungen verwendet werden.
+Im Blog der Angular.Schule haben wir dieses Thema ausführlich beleuchtet: <a href="https://angular.schule/blog/2022-05-standalone-components">Standalone Components – neu ab Angular 14 (von Ferdinand Malcher)</a>.</p>
+<h3 id="neue-standalone-apis">Neue Standalone APIs</h3>
+<p>In diesem Zuge wurde ein alternativer Weg eingeführt, um den <code>HttpClient</code> in der Anwendung bereitzustellen.
+Bisher mussten wir dazu das <code>HttpClientModule</code> importieren.
+Im Zusammenhang mit Standalone Components können wir die neue Funktion <code>provideHttpClient()</code> nutzen.</p>
+<p>Als Argumente können wir sogenannte <em>Features</em> übergeben – zusätzliche Funktionen des HttpClients, die einzeln aktiviert werden können.
+Auf diese Weise können wir z. B. funktionale Interceptors registrieren.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> {
+  provideHttpClient,
+  withInterceptors,
+  withInterceptorsFromDi
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common/http'</span>;
 
-  updateTitle(routerState: <span class="hljs-type">RouterStateSnapshot</span>) {
-    const title = <span class="hljs-keyword">this</span>.buildTitle(routerState) ?? <span class="hljs-symbol">'BookMonke</span>y';
-    <span class="hljs-keyword">this</span>.title.setTitle(title);
-  }
-}
-</code></pre>
-<p>So können wir zum Beispiel den Titel auch nach einem bestimmten Muster zusammensetzen, sodass immer der Text <code>BookMonkey</code> erhalten ist:</p>
-<pre><code class="language-ts"><span class="hljs-function"><span class="hljs-title">updateTitle</span>(<span class="hljs-params">routerState: RouterStateSnapshot</span>)</span> {
-  <span class="hljs-keyword">const</span> title = <span class="hljs-built_in">this</span>.buildTitle(routerState);
-  <span class="hljs-keyword">if</span> (title) {
-    <span class="hljs-built_in">this</span>.title.setTitle(<span class="hljs-string">`<span class="hljs-subst">${title}</span> | BookMonkey`</span>);
-  } <span class="hljs-keyword">else</span> {
-    <span class="hljs-built_in">this</span>.title.setTitle(<span class="hljs-string">'BookMonkey'</span>)
-  }
-}
-</code></pre>
-<p>Die selbst definierte <code>TitleStrategy</code> muss mithilfe eines Providers bekannt gemacht werden:</p>
-<pre><code class="language-ts"><span class="hljs-variable">@NgModule</span>({
-  <span class="hljs-attribute">imports</span>: [RouterModule.forRoot(routes)],
-  <span class="hljs-attribute">exports</span>: [RouterModule],
-  <span class="hljs-attribute">providers</span>: [
-    { <span class="hljs-attribute">provide</span>: TitleStrategy, <span class="hljs-attribute">useClass</span>: CustomTitleStrategy }
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideHttpClient(
+      withInterceptors([myInterceptor]),
+      withInterceptorsFromDi()       
+    )
   ]
+});
+</code></pre>
+<h3 id="routerlinkwithhref">RouterLinkWithHref</h3>
+<p>Mit Standalone Components müssen alle Abhängigkeiten einer Komponente direkt importiert werden.
+Dazu gehören auch die Direktiven des Routers.
+Bislang existierten zwei Implementierungen für den RouterLink: die Direktiven <code>RouterLink</code> und <code>RouterLinkWithHref</code>.
+Diese beiden Implementierungen wurden nun zusammengeführt, sodass wir stets nur noch <code>RouterLink</code> importieren müssen.</p>
+<pre><code class="language-diff"> @Component({
+   template: `<span class="javascript">
+   &lt;ul&gt;
+     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/books/1"</span>&gt;</span>Book 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">"/books/2"</span>&gt;</span>Book 2<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+   &lt;/ul&gt;
+   </span>`,
+   standalone: <span class="hljs-literal">true</span>,
+-  imports: [RouterLinkWithHref, RouterLink],
++  imports: [RouterLink],
+ })
+ <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookListComponent</span> {}</span>
+</code></pre>
+<h2 id="weniger-projektdateien">Weniger Projektdateien</h2>
+<p>Ein neu erstelltes Projekt mit der Angular CLI beinhaltet viele Konfigurationsdateien, die für den Einstieg in das Framework zunächst nicht relevant sind.
+Deshalb hat das Angular-Team daran gearbeitet, die generierten Projektdateien zu reduzieren.
+Für die im Folgenden aufgelisteten Konfigurationsdateien stellt Angular intern eine Standardkonfiguration bereit.
+Wollen wir die Werte selbst anpassen, können wir die Dateien manuell anlegen – es wird dann die eigene Konfiguration genutzt.</p>
+<ul>
+<li><code>.browserslistrc</code> wird nicht automatisch von <code>ng new</code> generiert.</li>
+<li>Die Karma-Konfiguration <code>karma.conf.js</code> und die Einstiegsdatei für die Testausführung <code>src/test.ts</code> werden nun nicht mehr mit angelegt.</li>
+<li>Die bisher erzeugte Datei <code>polyfills.ts</code> wird nun nicht mehr mit angelegt. Stattdessen akzeptiert die Konfigurationsoption <code>polyfills</code> in der Datei <code>angular.json</code> nun alternativ ein Array von referenzierten Polyfills.</li>
+<li>Die Umgebungsdateien <code>environment.ts</code> und <code>environment.prod.ts</code> werden in neuen Projekten nicht generiert. Der Mechanismus der <code>fileReplacements</code> in der Datei <code>angular.json</code>, der dafür sorgt, dass abhängig vom Build-Target eine andere Datei geladen werden kann, bleibt jedoch weiterhin erhalten. Bei Bedarf können Sie die Environment-Dateien also selbst anlegen und konfigurieren.</li>
+</ul>
+<p>Beim Update auf die neue Angular-Version werden die genannten Dateien nicht entfernt, sondern bleiben bestehen.</p>
+<h2 id="komponenten-ohne-konstruktor-und-ngoninit">Komponenten ohne Konstruktor und <code>ngOnInit()</code></h2>
+<p>Bei neu erzeugten Komponenten wird nun nicht mehr automatisch der Lifecycle-Hook <code>ngOnInit()</code> generiert.
+Benötigen wir die Methode, können wir sie jederzeit manuell implementieren.
+Auch der leere Konstruktor wird für neue Komponenten nicht mehr automatisch erzeugt.</p>
+<h2 id="support-für-nodejs-18">Support für Node.js 18</h2>
+<p>Mit Angular 15 wird nun Node.js in der Version 18 unterstützt, die am 25.10.2022 in den LTS-Status übergegangen ist.
+Die von Angular offiziell unterstützten Node.js-Versionen sind damit:</p>
+<ul>
+<li><code>14.20.x</code></li>
+<li><code>16.13.x</code></li>
+<li><code>18.10.x</code></li>
+</ul>
+<p>Höhere Nebenversionsnummern wie die aktuelle Version 18.12.1 (LTS) funktionieren nach unserer Erfahrung ebenso einwandfrei. Node.js 19 wird jedoch nicht offiziell unterstützt.</p>
+<h2 id="typescript-48-und-es2022">TypeScript 4.8 und ES2022</h2>
+<p>Angular setzt nun auf TypeScript in der Version 4.8.
+Ältere Versionen als 4.8.2 werden nicht mehr unterstützt.
+Außerdem werden Projekte mit Angular 15 standardmäßig zu ES2022 kompiliert.
+In der Datei <code>tsconfig.json</code> finden wir dazu die folgenden Angaben:</p>
+<pre><code class="language-json">{
+  <span class="hljs-attr">"compilerOptions"</span>: {
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-attr">"useDefineForClassFields"</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">"target"</span>: <span class="hljs-string">"ES2022"</span>,
+    <span class="hljs-attr">"module"</span>: <span class="hljs-string">"ES2022"</span>,
+    <span class="hljs-attr">"lib"</span>: [<span class="hljs-string">"ES2022"</span>, <span class="hljs-string">"dom"</span>]
+  }
+}
+</code></pre>
+<p>Die Option <code>useDefineForClassFields</code> ist notwendig, weil sich das Verhalten von TypeScript und nativem JavaScript bei der Initialisierung von Klassen-Propertys unterscheidet.
+Angular setzt die Option vorsorglich auf <code>false</code>, um das gewohnte Verhalten zu aktivieren und bestehenden Code nicht zu brechen.</p>
+<blockquote>
+<p>Wir haben die Hintergründe dieser Option ausführlich in einem <a href="/blog/2022-11-use-define-for-class-fields">separaten Blogartikel</a> erläutert.</p>
+</blockquote>
+<p>Derzeit sind an bestehenden Angular-Projekten keine Änderungen notwendig.
+Wir empfehlen Ihnen jedoch, schon jetzt den Code zukunftssicher zu implementieren.
+Abhängigkeiten, die über den Konstruktor mittels Dependency Injection angefordert werden, sollten nicht mehr bei der direkten Initialisierung eines Propertys verwendet werden:</p>
+<pre><code class="language-ts">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> </span>{
+  <span class="hljs-comment">// funktioniert NICHT in JavaScript!</span>
+  <span class="hljs-keyword">data</span>$ = <span class="hljs-keyword">this</span>.service.getData();
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-keyword">private</span> service: MyDataService) {}
+}
+</code></pre>
+<p>Um das Problem zu lösen, gibt es zwei Ansätze:</p>
+<ul>
+<li>a) wir nutzen den Konstruktor oder</li>
+<li>b) wir setzen die Funktion <code>inject()</code> ein.</li>
+</ul>
+<p>Verschieben wir die Initialisierung vollständig in den Konstruktor, sind die Argumente bereits vorhanden, bevor wir das Property initialisieren.</p>
+<pre><code class="language-ts">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> </span>{
+  <span class="hljs-keyword">data</span>$: Observable&lt;MyData&gt;;
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-keyword">private</span> service: MyDataService) {
+    <span class="hljs-keyword">this</span>.<span class="hljs-keyword">data</span>$ = <span class="hljs-keyword">this</span>.service.getData();
+  }
+}
+</code></pre>
+<p>Mit der Funktion <code>inject()</code> können wir eine Abhängigkeit direkt anfordern. Verwenden wir die Funktion bei der Initialisierung eines Propertys, steht die Serviceinstanz sofort zur Verfügung:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-keyword">inject</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+export <span class="hljs-keyword">class</span> MyComponent {
+  data$ = <span class="hljs-keyword">inject</span>(MyDataService).getData();
+}
+</code></pre>
+<p>Mit beiden Varianten ist der Code zukunftssicher und funktioniert sowohl in TypeScript als auch ES2022.
+Es ist davon auszugehen, dass in Angular irgendwann einmal die Einstellung <code>useDefineForClassFields</code> auf den Standardwert <code>true</code> gesetzt wird.
+Wir empfehlen Ihnen also, Ihren Code schon heute möglichst robust zu entwickeln.</p>
+<blockquote>
+<p>Mehr zur Option <code>useDefineForClassFields</code> finden Sie in unserem separaten Blogartikel: <a href="/blog/2022-11-use-define-for-class-fields">TypeScript: useDefineForClassFields – zukünftige Breaking Changes vermeiden (von Johannes Hoppe und Ferdinand Malcher)</a>.</p>
+</blockquote>
+<h2 id="directive-composition-api">Directive Composition API</h2>
+<p>In Angular können wir Direktiven implementieren, um Elemente in den Templates mit weiteren Funktionalitäten zu versehen.
+Dabei werden solche Direktiven aber stets von außen auf einem Element notiert, in der Regel als Attribut.</p>
+<p>Mit der neuen <em>Directive Composition API</em> können wir Direktiven auch von innen heraus anwenden:
+Eine Direktive oder Komponente kann damit selbst deklarativ entscheiden, welche weiteren Direktiven auf ihrem Host-Element erzeugt werden.
+Dadurch ist es möglich, einzelne Funktionalitäten in Direktiven auszulagern und diese dann in Komposition zu verwenden.</p>
+<p>In den Metadaten von Direktiven und Komponenten wird dafür die Eigenschaft <code>hostDirectives</code> verwendet.
+Setzen wir die folgende <code>MyComponent</code> in der Anwendung ein, so werden auf ihrem Host-Element automatisch Instanzen der <code>ToggleOnClickDirective</code> und <code>CoolDirective</code> erzeugt.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">@Component</span>({
+  <span class="hljs-comment">// ...</span>
+  hostDirectives: [ToggleOnClickDirective, CoolDirective]
 })
-export class AppRoutingModule { }
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {}
 </code></pre>
-<blockquote>
-<p>Für eine ausführlichere Auseinandersetzung empfehlen wir den folgenden Blogartikel von Brandon Roberts:<br>
-<strong><a href="https://dev.to/brandontroberts/setting-page-titles-natively-with-the-angular-router-393j">Setting Page Titles Natively With The Angular Router</a></strong></p>
-</blockquote>
-<h2 id="autovervollständigung-mit-der-angular-cli">Autovervollständigung mit der Angular CLI</h2>
-<p>Die Angular CLI bietet ein praktisches neues Feature an: eine integrierte automatische Vervollständigung für die Kommandozeile.
-Zur Einrichtung muss einmalig der Befehl <code>ng completion</code> ansgeführt werden.
-Er ergänzt die Konfiguration der Kommandozeile (z. B. <code>.bashrc</code> oder <code>.zshrc</code>), sodass für die Autovervollständigung automatisch im Hintergrund die Angular CLI aufgerufen wird.</p>
-<p>Tippen wir also z. B. in der Kommandozeile den Befehl <code>ng</code> und drücken die Tab-Taste, erhalten wir automatisch passende Vorschläge:</p>
-<pre><code class="language-bash">➜  book-monkey git:(main) ng
-<span class="hljs-built_in">add</span>           <span class="hljs-comment">-- Adds support for an external library to your project.</span>
-build         <span class="hljs-comment">-- Compiles an Angular application or library into an output directory named dist/ at the given output</span>
-cache         <span class="hljs-comment">-- Configure persistent disk cache and retrieve cache statistics.</span>
-completion    <span class="hljs-comment">-- Set up Angular CLI autocompletion for your terminal.</span>
-config        <span class="hljs-comment">-- Retrieves or sets Angular configuration values in the angular.json file for the workspace.</span>
-deploy        <span class="hljs-comment">-- Invokes the deploy builder for a specified project or for the default project in the workspace.</span>
-doc           <span class="hljs-comment">-- Opens the official Angular documentation (angular.io) in a browser, and searches for a given keyword</span>
-e2e           <span class="hljs-comment">-- Builds and serves an Angular application, then runs end-to-end tests.</span>
-extract-i18n  <span class="hljs-comment">-- Extracts i18n messages from source code.</span>
-generate      <span class="hljs-comment">-- Generates and/or modifies files based on a schematic.</span>
-<span class="hljs-comment"># ...</span>
-</code></pre>
-<p>Dadurch, dass die Autovervollständigung stets die Angular CLI nutzt, bezieht sich die Vervollständigung auf den aktuellen Kontext.
-Zum Beispiel liefert die Vervollständigung für <code>ng generate</code> alle möglichen Schematics, die wir im Projekt installiert haben.
-Damit verbessert sich sich Developer Experience enorm.</p>
-<h2 id="neue-funktion-inject">Neue Funktion <code>inject()</code></h2>
-<p>Um Abhängigkeiten per Dependency Injection anzufordern, wird üblicherweise der Konstruktor von Komponenten und Services verwendet:</p>
-<pre><code class="language-ts"><span class="hljs-meta">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
-<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> </span>{
-  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> service: BookStoreService</span>)</span> {}
-}
-</code></pre>
-<p>Alternativ konnte auch bisher schon die Klasse <code>Injector</code> mit der Methode <code>get()</code> verwendet werden.
-Diese Klasse musste aber wiederum auch mittels Dependency Injection angefordert werden:</p>
-<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Injector } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<p>Um mit den erzeugten Direktiven zu interagieren, können wir die Klassen mittels Dependency Injection anfordern.
+Wir erhalten Zugriff auf die Instanzen und können dort die Propertys und Methoden direkt verwenden.</p>
+<p>Außerdem können wir die Inputs und Outputs der Host-Direktiven deklarativ verfügbar machen.
+Für alle Möglichkeiten der neuen Schnittstelle möchten wir Sie auf die <a href="https://angular.io/guide/directive-composition-api">offizielle Angular-Dokumentation</a> verweisen.</p>
+<h2 id="image-directive-optimierte-verwendung-von-bildern">Image Directive: optimierte Verwendung von Bildern</h2>
+<p>Die neue Direktive <code>NgOptimizedImage</code> ist nun offiziell stabil und kann uneingeschränkt verwendet werden. 
+Sie wurde in Angular 14.2 eingeführt und ermöglicht es, das Laden von Bildern zu verbessern, indem sie verschiedene Best Practices durchsetzt.
+Bitte beachten Sie, dass es mit Angular 15 eine Änderung in der finalen API gibt:
+Die Direktive besitzt jetzt Inputs mit den Namen <code>ngSrc</code> und <code>ngSrcset</code> (statt ursprünglich <code>rawSrc</code> und <code>rawSrcset</code>).</p>
+<p>Die Einbindung der neuen Direktive ist sehr einfach:
+Wir können die Klasse entweder über ein NgModule oder in einer Standalone Component importieren:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { NgOptimizedImage } from <span class="hljs-string">'@angular/common'</span>;
+    
+<span class="hljs-comment">// einbinden in Standalone Component</span>
+<span class="hljs-meta">@Component({
+  standalone: true
+  imports: [NgOptimizedImage],
+})</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyStandaloneComponent</span> </span>{}
 
-<span class="hljs-meta">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
-<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> </span>{
-  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> injector: Injector</span>)</span> {
-    <span class="hljs-keyword">const</span> service = injector.get(BookStoreService);
-  }
-}
+<span class="hljs-comment">// einbinden in NgModule</span>
+<span class="hljs-meta">@NgModule({
+  imports: [NgOptimizedImage],
+})</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppModule</span> </span>{}
 </code></pre>
-<p>In Angular 14 kommt die neue Funktion <code>inject()</code> hinzu.
-Im Gegensatz zum <code>Injector</code> muss sie nicht erst über Dependency Injection angefordert werden, sondern kann komplett eigenständig verwendet werden.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
- 
-<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getService</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> inject(BookStoreService);
-}
+<p>Anschließend können wir im Template der Angular-Komponenten das <code>src</code>-Attribut der Bilder durch <code>ngSrc</code> ersetzen:</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- VORHER: --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"angular-buch.jpg"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span>&gt;</span>
 
-<span class="hljs-meta">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
-<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> </span>{
-  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
-    <span class="hljs-keyword">const</span> service = getService();
-  }
-}
+<span class="hljs-comment">&lt;!-- NEU: --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">ngSrc</span>=<span class="hljs-string">"angular-buch.jpg"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span>&gt;</span>
 </code></pre>
-<p>Eine Einschränkung ist hierbei zu beachten: Der Aufruf von <code>inject()</code> muss immer indirekt über den Konstruktor erfolgen, also aus einem sogenannten <em>Injection Context</em>. Tut man das nicht, wird der folgende Fehler geworfen:</p>
+<p>Die Direktive <code>NgOptimizedImage</code> wird automatisch aktiv, sobald dieses Attribut eingesetzt wird.
+Sie hilft dabei, diverse Best Practices für Bilder anzuwenden.
+Vergisst man etwa, die Attribute <code>width</code> und <code>height</code> für das <code>img</code>-Element zu verwenden (wie oben gezeigt), so erscheint eine hilfreiche Fehlermeldung:</p>
 <blockquote>
-<p><code>ERROR Error: NG0203: inject() must be called from an injection context</code></p>
+<p>Error: NG02954: The NgOptimizedImage directive (activated on an <code>&lt;img&gt;</code> element with the <code>ngSrc="angular-buch.jpg"</code>) has detected that these required attributes are missing: "width", "height". Including "width" and "height" attributes will prevent image-related layout shifts. To fix this, include "width" and "height" attributes on the image tag or turn on "fill" mode with the <code>fill</code> attribute.</p>
 </blockquote>
-<p>Durch die Unabhängigkeit von der Komponentenklasse ergeben sich viele spannende Möglichkeiten zur Komposition.
-Es gilt jedoch abzuwarten, wie sich die neuen Patterns etablieren werden.
-Wir empfehlen also, Abhängigkeiten zunächst weiterhin direkt über den Konstruktor anzufordern.</p>
+<p>Wir bekommen ebenso eine Warnung, wenn wir versehentlich eine falsche <code>width</code> und <code>height</code> eintragen. Natürlich gibt die Direktive nicht nur Fehlermeldungen aus. 
+Eines der wichtigsten Features ist das "faule" (lazy) Laden von Bildern, sodass die Ladezeiten der einzelnen Routen deutlich verbessert werden können.
+In diesem Beispiel wird keine Priorität angegeben:</p>
+<pre><code class="language-html">&lt;img <span class="hljs-attribute">ngSrc</span>=<span class="hljs-string">"angular-buch.jpg"</span>  <span class="hljs-attribute">alt</span>=<span class="hljs-string">""</span> <span class="hljs-attribute">width</span>=<span class="hljs-string">"800"</span> <span class="hljs-attribute">height</span>=<span class="hljs-string">"1152"</span>&gt;
+</code></pre>
+<p>Dadurch wird der Browser angewiesen, mit dem Laden des Bilds zu warten, bis der Browser schätzt, dass es unmittelbar benötigt wird.
+Das Bild wird z. B. beim Scrollen erst dann geladen, wenn es kurz davor ist, im sichtbaren Bereich zu erscheinen.</p>
+<p>Im folgenden Beispiel wird die Priorität gesetzt.
+Diese Option weist den Browser an, das Bild möglichst schnell zu laden.
+Dies bietet sich zum Beispiel beim Headerbild eines Blogs an, das wichtig für den ersten Eindruck ist.</p>
+<pre><code class="language-html">&lt;img <span class="hljs-attribute">ngSrc</span>=<span class="hljs-string">"https://example.org/angular-buch.jpg"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-string">""</span> <span class="hljs-attribute">width</span>=<span class="hljs-string">"800"</span> <span class="hljs-attribute">height</span>=<span class="hljs-string">"1152"</span> priority&gt;
+</code></pre>
+<p>Zusätzlich sollte man dann einen Preconnect-Link zum Header der Seite in der Datei <code>index.html</code> hinzufügen, wenn die Bilder von einer anderen Domain geladen werden.
+Dies weist den Browser an, frühzeitig eine Netzwerkverbindung zum anderen Server aufzubauen.</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"preconnect"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://example.org"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+</code></pre>
+<p>Auch hier gibt die Direktive im Debug-Modus eine Warnung aus, wenn man diese Optimierung vergessen hat:</p>
 <blockquote>
-<p>Für einige Ideen zur Funktion <code>inject()</code> möchten wir auf einen Blogartikel von Younes Jaaidi verweisen:<br>
-<strong><a href="https://marmicode.io/blog/angular-inject-and-injection-functions">Angular Inject &amp; Injection Functions - Patterns &amp; Anti-Patterns</a></strong></p>
+<p>NG02956: The NgOptimizedImage directive (activated on an <code>&lt;img&gt;</code> element with the <code>ngSrc="https://example.org/angular-buch.jpg"</code>) has detected that there is no preconnect tag present for this image. Preconnecting to the origin(s) that serve priority images ensures that these images are delivered as soon as possible. To fix this, please add the following element into the <code>&lt;head&gt;</code> of the document:
+<code>&lt;link rel="preconnect" href="https://angular-buch.com"&gt;</code></p>
 </blockquote>
+<p>Moderne Browser akzeptieren mehrere Varianten für ein Bild (<code>srcset</code>), sodass für die jeweilige Auflösung das optimale Bild geladen wird.
+Zusammen mit einem (vorkonfigurierten oder eigenen) Loader können wir dem Browser mitteilen, wo das optimale Bild für die aktuelle Auflösung zu finden ist. Angular bringt bereits Unterstützung für folgende kommerzielle Anbieter mit:</p>
+<ul>
+<li>Cloudflare</li>
+<li>Cloudinary</li>
+<li>ImageKit</li>
+<li>Imgix</li>
+</ul>
+<p>Diese Anbieter bereiten die bestehenden Bilder passend auf, sodass man dasselbe Bild nicht manuell in diversen Auflösungen abspeichern muss.
+In der offiziellen <a href="https://angular.io/guide/image-directive">Dokumentation zur Direktive</a> und in der <a href="https://angular.io/api/common/NgOptimizedImage">dazugehörigen API-Dokumentation</a> wird detailliert beschrieben, wie Loader eingebunden werden können.
+Ebenso werden dort noch weitere Details zu dem großen Funktionsumfang der Direktive beschrieben.</p>
+<p>Probieren Sie die neue Direktive doch gleich einmal aus.
+Wir haben hierfür eine Stackblitz-Demo vorbereitet:<br><strong><a href="https://stackblitz.com/edit/angular-ivy-98yfkn?file=src%2Fapp%2Fapp.component.html">👉 Demo auf Stackblitz: NgOptimizedImage</a></strong></p>
+<h3 id="css-imports-ohne-tilde">CSS-Imports ohne Tilde</h3>
+<p>Style-Imports aus dem Ordner <code>node_modules</code> wurden bisher mit einer vorangestellten Tilde (<code>~</code>) notiert.
+Dieser Weg ist <em>deprecated</em>, und es ist nicht mehr notwendig, die Tilde anzugeben:</p>
+<pre><code class="language-diff">-<span class="hljs-keyword">@import</span> <span class="hljs-string">'~foo/styles.css'</span>;
++<span class="hljs-keyword">@import</span> <span class="hljs-string">'foo/styles.css'</span>;
+</code></pre>
 <h2 id="sonstiges">Sonstiges</h2>
 <p>Neben den großen neuen Features hat das neue Release viele kleine Verbesserungen und Bug Fixes an Bord.
 Eine Auswahl haben wir hier zusammengestellt:</p>
 <ul>
-<li><strong>TypeScript-Unterstützung:</strong> Angular unterstützt offiziell TypeScript in der Version 4.7, siehe <a href="https://github.com/angular/angular/commit/29039fcdbcb8cab040d88dabe2dcb1abae34cb4e">Commit</a>. Ältere Versionen als 4.6 werden hingegen nicht mehr supportet, siehe <a href="https://github.com/angular/angular/commit/c9d566ce4b6e9097d9eceb7ac3964a0b25c404ad">Commit</a>.</li>
-<li><strong>Types für Router Events:</strong> Die Events des Routers (über <code>Router.events</code>) besitzen jetzt ein neues Property <code>type</code>. Um bestimmte Events zu filtern, war es bisher immer notwendig, mithilfe von <code>instanceof</code> nach der Klasse zu filtern. Das neue Property vereinfacht den Umgang, siehe <a href="https://github.com/angular/angular/commit/41e2a68e30c12e5ad3e26047c3a4032e9aa1a6e1">Commit</a>.</li>
-<li><strong>Schematics Default Collection:</strong> In der <code>angular.json</code> konnte mit dem Property <code>defaultCollection</code> die Standard-Kollektion definiert werden, die für die Schematics (z. B. <code>ng generate</code>) genutzt wird. Bei der Installation von Drittbibliotheken wie <code>@ngrx/schematics</code> konnte diese Einstellung gesetzt werden. Dieses Property wurde nun ersetzt durch <code>schematicCollections</code>. Hier kann ein Array mit mehreren Collections definiert werden, die in der angegebenen Reihenfolge durchsucht werden. Damit entfällt bei wiederholten Befehlen die Notwendigkeit, die Collection manuell anzugeben. Siehe <a href="https://github.com/angular/angular-cli/commit/366cabc66c3dd836e2fdfea8dad6c4c7c2096b1d">Commit</a>.</li>
-<li><strong>defaultProject:</strong> Die Einstellung <code>defaultProject</code> in der <code>angular.json</code> ist deprecated. Stattdessen wird das aktuelle Projekt jetzt anhand des Arbeitsverzeichnisses ermittelt, siehe <a href="https://github.com/angular/angular-cli/commit/036327e9ca838f9ef3f117fbd18949d9d357e68d">Commit</a>.</li>
-<li><strong>Protected Propertys:</strong> In Komponenten ist es jetzt auch möglich, Propertys und Methoden im Template zu binden, die als <code>protected</code> markiert sind. Bisher funktionierte das nur für <code>public</code>.</li>
-<li><strong>Angular DevTools für Firefox:</strong> Die offizielle Browser-Extension zum Debuggen von Angular-Anwendungen ist jetzt auch für Firefox verfügbar. Der Download ist über <a href="https://addons.mozilla.org/en-US/firefox/addon/angular-devtools/">das offizielle Verzeichnis von Mozilla</a> möglich.</li>
+<li><strong>Utility-Funktionen für Reactive Forms:</strong> Das Paket <code>@angular/forms</code> exportiert nun die Hilfsfunktionen <code>isFormControl()</code>, <code>isFormGroup()</code> und <code>isFormArray()</code>. Diese Funktionen sind praktisch, wenn der Typ eines Controls im Code geprüft werden muss, z. B. in einem Validator.</li>
+<li><strong>Optionen für Tree-Shakable Providers:</strong> Das Property <code>providedIn</code> im Decorator <code>@Injectable()</code> trägt in den meisten Fällen den Wert <code>root</code>. Zwei mögliche andere Optionen wurden nun entfernt: Es ist <em>nicht</em> mehr möglich, dort den Wert <code>any</code> oder eine Modulklasse anzugeben.</li>
+<li><strong>Import für Localize:</strong> Das Paket <code>@angular/localize</code> muss nicht mehr unter Polyfills eingetragen werden, sondern wird nun über die <code>tsconfig.json</code> referenziert. Die Umstellung wird vom Migrationsskript automatisch vorgenommen.</li>
+<li><strong>Stylus-Support eingestellt:</strong> Angular unterstützt Style-Definitionen nicht nur in reinem CSS, sondern es können CSS-Präprozessoren genutzt werden: Sass/SCSS und LESS. Der weniger bekannte Präprozessor <em>Stylus</em> wird seit Angular 15 nicht mehr unterstützt.</li>
 </ul>
-<br>
-<br>
-
 <p>Die Roadmap für die zukünftige Entwicklung von Angular wird regelmäßig in der Dokumentation veröffentlicht: <a href="https://angular.io/guide/roadmap">https://angular.io/guide/roadmap</a>.</p>
-<p>Wir wünschen Ihnen viel Spaß mit Angular 14!
-Haben Sie Fragen zur neuen Version, zum Update oder zu Angular? Schreiben Sie uns!</p>
+<h2 id="neue-auflage-des-angular-buchs">Neue Auflage des Angular-Buchs</h2>
+<p>Wir haben in den letzten Monaten intensiv an einer Neuauflage des deutschsprachigen Angular-Buchs gearbeitet! Das neue Buch erscheint im Februar 2023 in allen Buchhandlungen und Onlineshops.</p>
+<p>Wir haben das Buch neu strukturiert und alle Beispiele neu entwickelt.
+Die neuen Features von Angular 15 werden ebenfalls ausführlich behandelt.
+Bestellen Sie das neue <a href="https://amzn.eu/d/8fgTIWL">Angular-Buch</a> am besten gleich vor!</p>
+<div style="text-align: center">
+<img src="https://angular-buch.com/assets/img/book-cover-multiple-v4.png" alt="Buchcover 4. Auflage" style="max-width:500px">
+</div>
+
+
+<hr>
+
+
+<p>Wir wünschen Ihnen viel Spaß mit Angular 15!
+Haben Sie Fragen zur neuen Version zu Angular oder zu unserem Buch? Schreiben Sie uns!</p>
 <p><strong>Viel Spaß wünschen
 Ferdinand, Danny und Johannes</strong></p>
 <hr>
 
-<p><small><strong>Titelbild:</strong> Yosemite National Park, California, 2019. Foto von Ferdinand Malcher</small></p>
-</p><!----><!----><a routerlink="/blog" ripple-radius="" class="btn btn-sm btn-primary mt-4" href="/blog"><i class="fa fa-backward mr-2"></i> Zurück</a><hr> Suggestions? Feedback? Bugs? Please <a target="_blank" class="content" href="https://github.com/angular-buch/website-articles/blob/gh-pages/blog/2022-06-angular14/README.md"><i class="fa fa-github mr-1" style="font-size: 1.6rem; position: relative; bottom: -3px;"></i>fork/edit this page on Github</a>. </div></div></div></div></div><!----></div><!----></div></section><ngx-json-ld><script type="application/ld+json">{
-  "url": "https://angular.schule/blog/2022-06-angular14",
-  "headline": "Angular 14 ist da!",
-  "description": "Noch bevor die Sommer- und Urlaubszeit beginnt, wartet Angular mit tollen Neuigkeiten auf: Am 2. Juni 2022 erschien die neue Major-Version Angular 14!\nWährend die letzten Hauptreleases vor allem interne Verbesserungen für das Tooling mitbrachten, hat Angular 14 einige spannende neue Features mit an Bord.",
-  "datePublished": "2022-06-02",
-  "dateModified": "2022-06-02",
+<p><small><strong>Titelbild:</strong> Bornholm, Dänemark, 2022. Foto von Ferdinand Malcher</small></p>
+</p><!----><!----><a routerlink="/blog" ripple-radius="" class="btn btn-sm btn-primary mt-4" href="/blog"><i class="fa fa-backward mr-2"></i> Zurück</a><hr> Suggestions? Feedback? Bugs? Please <a target="_blank" class="content" href="https://github.com/angular-buch/website-articles/blob/gh-pages/blog/2022-11-angular15/README.md"><i class="fa fa-github mr-1" style="font-size: 1.6rem; position: relative; bottom: -3px;"></i>fork/edit this page on Github</a>. </div></div></div></div></div><!----></div><!----></div></section><ngx-json-ld><script type="application/ld+json">{
+  "url": "https://angular.schule/blog/2022-11-angular15",
+  "headline": "Angular 15 ist da!",
+  "description": "Am 16. November 2022 erschien die neue Major-Version von Angular: Angular 15.0.0!\nIm Fokus des neuen Releases standen vor allem diese drei Themen:",
+  "datePublished": "2022-11-25",
+  "dateModified": "2022-11-25",
   "publisher": {
     "name": "Angular-Buch",
     "url": "https://angular-buch.com",
@@ -247,8 +352,8 @@ Ferdinand, Danny und Johannes</strong></p>
       "url": "https://angular-buch.com/assets/img/brand_export.png"
     }
   },
-  "image": "https://website-articles.angular-buch.com/blog/2022-06-angular14/./angular14.jpg",
-  "thumbnailUrl": "https://website-articles.angular-buch.com/blog/2022-06-angular14/./angular14.jpg",
+  "image": "https://website-articles.angular-buch.com/blog/2022-11-angular15/./angular15.jpg",
+  "thumbnailUrl": "https://website-articles.angular-buch.com/blog/2022-11-angular15/./angular15.jpg",
   "author": {
     "@type": "Person",
     "name": "Angular Buch Team",
@@ -256,16 +361,17 @@ Ferdinand, Danny und Johannes</strong></p>
   },
   "keywords": [
     "Angular",
-    "Angular 14",
-    "Typed Forms",
-    "Standalone Components",
-    "TitleStrategy",
-    "Update"
+    "Angular 15",
+    "Update",
+    "Functional Guards",
+    "Functional Resolvers",
+    "Functional Interceptors",
+    "Standalone Components"
   ],
   "mainEntityOfPage": "http://schema.org/WebPage",
   "@type": "Article",
   "@context": "http://schema.org"
 }</script></ngx-json-ld></app-blog-details><!----><footer><div class="container"><div class="row align-items-center"><div class="col-sm-9"><div class="links"><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/"><!----> Home </a><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/impressum"><!----> Impressum </a><!----><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/datenschutz"><!----> Datenschutzerklärung </a><!----><!----><!----><!----></app-link>|<!----><app-link><!----><a class="links__item links__twitter" href="https://twitter.com/angular_buch" rel="nofollow"><!----> Twitter </a><!----><!----><!----><!----><!----></app-link><!----><!----></div></div><div class="col-sm-3 text-right"></div></div></div></footer></main><ngx-json-ld><script type="application/ld+json"></script></ngx-json-ld><ngx-json-ld><script type="application/ld+json"></script></ngx-json-ld></app-root>
-<script src="runtime.e1b206f6deaf7358.js" type="module"></script><script src="polyfills.6d539c7e65933a8f.js" type="module"></script><script src="main.5c350166e2c255c1.js" type="module"></script>
+<script src="runtime.a03691ecb57666d5.js" type="module"></script><script src="polyfills.6d539c7e65933a8f.js" type="module"></script><script src="main.9d9908ab211c1581.js" type="module"></script>
 
 </body></html>
