@@ -13,9 +13,6 @@ MIT
 @angular/router
 MIT
 
-@ngx-lite/json-ld
-MIT
-
 blueimp-md5
 MIT
 MIT License
