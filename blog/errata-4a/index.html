@@ -66,6 +66,18 @@ Grund dafür ist die Implementierung im <code>BookStoreService</code>: In Abschn
 Die Ergebnisbox ist dann trotzdem sichtbar, und der Cypress-Test schlägt fehl.</p>
 <p>Wir empfehlen Ihnen, das <code>catchError</code> in der Methode <code>getAllSearch()</code> wieder zu entfernen.
 Dann verhält sich die Komponente so, wie wir es im Test beschrieben haben.</p>
+<h3 id="3235-ngrx-feature-anlegen">32.3.5 NgRx: Feature anlegen</h3>
+<p>Der im Buch abgedruckte Befehl, um ein Feature mithilfe der Schematics von NgRx anzulegen, erzeugt den folgenden Fehler:</p>
+<pre><code>Specified module path <span class="hljs-regexp">/src/</span>app<span class="hljs-regexp">/books/</span>store<span class="hljs-regexp">/books/</span>books does not exist
+</code></pre>
+<p>Der Hintergrund: In den neueren Versionen der Feature-Schematics ist die Option <code>entity</code> per Default aktiviert.
+Das führt dazu, dass ein <code>EntityAdapter</code> für das Feature generiert wird, wie wir es weiter hinten im Buch in Abschnitt 32.5.3 beschrieben haben.
+In dieser Konstellation kann das Skript den verschachtelten Feature-Namen nicht korrekt auswerten.</p>
+<p>Um das Problem zu lösen, muss die Option <code>entity</code> expliziert deaktiviert werden.
+Das erzeugte Ergebnis entspricht dann dem Code, der im Buch abgedruckt ist.</p>
+<p><strong>Neuer Befehl:</strong></p>
+<pre><code class="language-sh"><span class="hljs-comment">ng</span> <span class="hljs-comment">g</span> <span class="hljs-comment">feature</span> <span class="hljs-comment">books/store/book</span> --<span class="hljs-comment">module</span> <span class="hljs-comment">books/books</span> --<span class="hljs-comment">api</span> --<span class="hljs-comment">entity=false</span> --<span class="hljs-comment">defaults</span>
+</code></pre>
 </p><!----><!----><a routerlink="/blog" ripple-radius="" class="btn btn-sm btn-primary mt-4" href="/blog"><i class="fa fa-backward mr-2"></i> Zurück</a><hr> Suggestions? Feedback? Bugs? Please <a target="_blank" class="content" href="https://github.com/angular-buch/website-articles/blob/gh-pages/blog/errata-4a/README.md"><i class="fa fa-github mr-1" style="font-size: 1.6rem; position: relative; bottom: -3px;"></i>fork/edit this page on Github</a>. </div></div></div></div></div><!----></div><!----></div></section><app-json-ld><script type="application/ld+json">{
   "url": "https://angular.schule/blog/errata-4a",
   "headline": "Errata zur 4. Auflage",
