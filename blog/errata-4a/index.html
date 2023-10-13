@@ -41,6 +41,14 @@ Bitte zögern Sie nicht, und schreiben Sie uns eine E-Mail: <a href="mailto:team
 <p><strong>Dies ist das Errata-Verzeichnis für die 4. Auflage (2023). Wenn Sie die ältere 3. Auflage besitzen, lesen Sie bitte die <a href="/blog/errata-3a">Errata zur 3. Auflage</a>.</strong></p>
 </blockquote>
 <hr>
+<h3 id="52-projekt-anlegen">5.2 Projekt anlegen</h3>
+<p>Zum Beginn des Buchs legen wir gemeinsam das Beispielprojekt mithilfe des Befehls <code>ng new</code> an.
+Seit Angular 17 werden neue Anwendungen standardmäßig mit Standalone Components generiert.
+Das Beispielprojekt setzt jedoch zunächst auf NgModules und wird erst später auf Standalone Components migriert.</p>
+<p>Damit die Beispiele im Buch weiterhin mit dem generierten Code übereinstimmen, müssen Sie die Option <code>standalone</code> beim Erzeugen des Projekts explizit deaktivieren:</p>
+<pre><code class="language-sh">ng new book-monkey --routing <span class="hljs-attribute">--style</span>=css <span class="hljs-attribute">--prefix</span>=bm <span class="hljs-attribute">--standalone</span>=<span class="hljs-literal">false</span>
+</code></pre>
+<p>Übrigens: Die Option <code>routing</code> ist seit Angular 17 per Default aktiviert, sie muss also nicht mehr manuell mit angegeben werden.</p>
 <h3 id="267-fehlerhafte-cypress-tests">26.7 Fehlerhafte Cypress-Tests</h3>
 <h4 id="test-1-should-not-show-the-administration-form-when-not-logged-in">Test 1: <code>should not show the administration form when not logged in</code></h4>
 <p>In diesem Test selektieren wir den Login-/Logout-Button in der Navigation.
