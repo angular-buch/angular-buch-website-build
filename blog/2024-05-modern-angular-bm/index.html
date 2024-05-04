@@ -1,0 +1,940 @@
+<!DOCTYPE html><html lang="de" data-critters-container=""><head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#"><meta name="generator" content="Scully 0.0.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <title>Angular-Buch → Modern Angular: den BookMonkey migrieren</title>
+  
+
+  
+
+  <meta property="book:author" content="https://www.facebook.com/ferdinand.malcher">
+  <meta property="book:author" content="https://www.facebook.com/johannes.hoppe">
+
+  <meta property="book:isbn" content="9783864909467">
+  <meta property="book:release_date" content="2023-02-28">
+  <meta property="book:tag" content="Angular">
+  <meta property="book:tag" content="Webentwicklung">
+  <meta property="book:tag" content="AngularJS">
+  <meta property="book:tag" content="TypeScript">
+  <meta property="book:tag" content="JavaScript">
+  <meta property="book:tag" content="HTML5">
+  <meta property="book:tag" content="CSS">
+  <meta property="book:tag" content="RxJS">
+  <meta property="book:tag" content="Redux">
+  <meta property="book:tag" content="NgRx">
+
+  <base href="/">
+<style>@charset "UTF-8";@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0)}to{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}@font-face{font-family:Roboto;src:url("./media/Roboto-Thin-GAS35NAQ.eot");src:local("Roboto Thin"),local("Roboto-Thin"),url("./media/Roboto-Thin-GAS35NAQ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Thin-UUU7IP4L.woff2") format("woff2"),url("./media/Roboto-Thin-BT5WDCMC.woff") format("woff"),url("./media/Roboto-Thin-STLHGJGZ.ttf") format("truetype"),url("./media/Roboto-Thin-OYOYLS5N.svg#Roboto") format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-ThinItalic-HQCJJ3KQ.eot");src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url("./media/Roboto-ThinItalic-HQCJJ3KQ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-ThinItalic-PVCCLVHZ.woff2") format("woff2"),url("./media/Roboto-ThinItalic-OJCFQICS.woff") format("woff"),url("./media/Roboto-ThinItalic-OKVQEY6M.ttf") format("truetype"),url("./media/Roboto-ThinItalic-PU7U6F54.svg#Roboto") format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Light-TT7V6J7W.eot");src:local("Roboto Light"),local("Roboto-Light"),url("./media/Roboto-Light-TT7V6J7W.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Light-OEL5QP53.woff2") format("woff2"),url("./media/Roboto-Light-EGEOUPZ7.woff") format("woff"),url("./media/Roboto-Light-KYCYMX5R.ttf") format("truetype"),url("./media/Roboto-Light-O5NB3DZS.svg#Roboto") format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-LightItalic-JJ225GLJ.eot");src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url("./media/Roboto-LightItalic-JJ225GLJ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-LightItalic-SZU3UOEY.woff2") format("woff2"),url("./media/Roboto-LightItalic-5LJGTDBY.woff") format("woff"),url("./media/Roboto-LightItalic-ZTOFFLND.ttf") format("truetype"),url("./media/Roboto-LightItalic-FE5GYQJO.svg#Roboto") format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Regular-WINA5356.eot");src:local("Roboto Regular"),local("Roboto-Regular"),url("./media/Roboto-Regular-WINA5356.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Regular-4ZFX4XNS.woff2") format("woff2"),url("./media/Roboto-Regular-EMJ7NDAQ.woff") format("woff"),url("./media/Roboto-Regular-W6LM4ZNI.ttf") format("truetype"),url("./media/Roboto-Regular-DDBAS5OS.svg#Roboto") format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-RegularItalic-43QNLNAN.eot");src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url("./media/Roboto-RegularItalic-43QNLNAN.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-RegularItalic-2REFJECD.woff2") format("woff2"),url("./media/Roboto-RegularItalic-NSJ4HBKT.woff") format("woff"),url("./media/Roboto-RegularItalic-YZDJVEXU.ttf") format("truetype"),url("./media/Roboto-RegularItalic-7A3VJZ2J.svg#Roboto") format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Medium-TKOJIIN4.eot");src:local("Roboto Medium"),local("Roboto-Medium"),url("./media/Roboto-Medium-TKOJIIN4.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Medium-GHCC3HN6.woff2") format("woff2"),url("./media/Roboto-Medium-O2PKKQNT.woff") format("woff"),url("./media/Roboto-Medium-ANIBKV6W.ttf") format("truetype"),url("./media/Roboto-Medium-RJM2M5RS.svg#Roboto") format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-MediumItalic-5WUL7G7J.eot");src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url("./media/Roboto-MediumItalic-5WUL7G7J.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-MediumItalic-FMJUHMWQ.woff2") format("woff2"),url("./media/Roboto-MediumItalic-EJXCUUAA.woff") format("woff"),url("./media/Roboto-MediumItalic-ZZ274MH6.ttf") format("truetype"),url("./media/Roboto-MediumItalic-WUJRBJ2B.svg#Roboto") format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Bold-BUUHB5PB.eot");src:local("Roboto Bold"),local("Roboto-Bold"),url("./media/Roboto-Bold-BUUHB5PB.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Bold-NGAPMV26.woff2") format("woff2"),url("./media/Roboto-Bold-GE6V3ZS2.woff") format("woff"),url("./media/Roboto-Bold-5VUU6QI6.ttf") format("truetype"),url("./media/Roboto-Bold-UXMYHWKZ.svg#Roboto") format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-BoldItalic-ETKPZE3Z.eot");src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url("./media/Roboto-BoldItalic-ETKPZE3Z.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-BoldItalic-TBVJ3OTX.woff2") format("woff2"),url("./media/Roboto-BoldItalic-2CYTLDZJ.woff") format("woff"),url("./media/Roboto-BoldItalic-4MMIXUDR.ttf") format("truetype"),url("./media/Roboto-BoldItalic-TDTZWBKI.svg#Roboto") format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Black-FJBQ2JLX.eot");src:local("Roboto Black"),local("Roboto-Black"),url("./media/Roboto-Black-FJBQ2JLX.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Black-OEG2WEQ3.woff2") format("woff2"),url("./media/Roboto-Black-AZ2AXCB4.woff") format("woff"),url("./media/Roboto-Black-IGTRSQU4.ttf") format("truetype"),url("./media/Roboto-Black-OEOHVSYK.svg#Roboto") format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-BlackItalic-MXNS7VU5.eot");src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url("./media/Roboto-BlackItalic-MXNS7VU5.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-BlackItalic-6QYHVQZM.woff2") format("woff2"),url("./media/Roboto-BlackItalic-7QMDFEK5.woff") format("woff"),url("./media/Roboto-BlackItalic-XIXMO2HU.ttf") format("truetype"),url("./media/Roboto-BlackItalic-EYMGZCJW.svg#Roboto") format("svg");font-weight:900;font-style:italic}:root{--blue: #007bff;--indigo: #6610f2;--purple: #6f42c1;--pink: #e83e8c;--red: #dc3545;--orange: #fd7e14;--yellow: #ffc107;--green: #28a745;--teal: #20c997;--cyan: #17a2b8;--white: #fff;--gray: #6c757d;--gray-dark: #343a40;--primary: #007bff;--secondary: #6c757d;--success: #28a745;--info: #17a2b8;--warning: #ffc107;--danger: #dc3545;--light: #f8f9fa;--dark: #343a40;--breakpoint-xs: 0;--breakpoint-sm: 576px;--breakpoint-md: 768px;--breakpoint-lg: 992px;--breakpoint-xl: 1200px;--font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}img{vertical-align:middle;border-style:none}svg{overflow:hidden;vertical-align:middle}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}img{page-break-inside:avoid}@page{size:a3}body{min-width:992px!important}}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#f8f8f8}html{overflow-y:scroll}
+</style><link rel="stylesheet" href="styles-24WBZHAI.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-24WBZHAI.css"></noscript><link rel="modulepreload" href="chunk-64SWLSAQ.js"><link rel="modulepreload" href="chunk-DJ6SI74W.js"><link rel="modulepreload" href="chunk-KW7S2QA7.js"><link rel="modulepreload" href="chunk-WXI33M2S.js"><link rel="modulepreload" href="chunk-KIYXSFX7.js"><link rel="modulepreload" href="chunk-S6K4UET3.js"><link rel="modulepreload" href="chunk-UC3NUZZY.js"><meta property="og:title" content="Angular-Buch → Modern Angular: den BookMonkey migrieren"><meta name="twitter:title" content="Angular-Buch → Modern Angular: den BookMonkey migrieren"><meta name="description" content="📙 Angular erlebt einen Aufschwung: Mit den letzten Major-Versionen des Frameworks wurden einige wichtige neue Konzepte und Features eingeführt.
+Wir berichten darüber regelmäßig in unseren Blogposts zu den Angular-Releases.
+In diesem Artikel wollen wir das Beispielprojekt &amp;quot;BookMonkey&amp;quot; aus dem Angular-Buch aktualisieren und die neuesten Konzepte von Angular praktisch einsetzen."><meta property="og:description" content="📙 Angular erlebt einen Aufschwung: Mit den letzten Major-Versionen des Frameworks wurden einige wichtige neue Konzepte und Features eingeführt.
+Wir berichten darüber regelmäßig in unseren Blogposts zu den Angular-Releases.
+In diesem Artikel wollen wir das Beispielprojekt &amp;quot;BookMonkey&amp;quot; aus dem Angular-Buch aktualisieren und die neuesten Konzepte von Angular praktisch einsetzen."><meta name="twitter:description" content="📙 Angular erlebt einen Aufschwung: Mit den letzten Major-Versionen des Frameworks wurden einige wichtige neue Konzepte und Features eingeführt.
+Wir berichten darüber regelmäßig in unseren Blogposts zu den Angular-Releases.
+In diesem Artikel wollen wir das Beispielprojekt &amp;quot;BookMonkey&amp;quot; aus dem Angular-Buch aktualisieren und die neuesten Konzepte von Angular praktisch einsetzen."><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/blog/2024-05-modern-angular-bm"><style>.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
+</style><style>.content img{max-width:100%}.details-page-autor{margin-top:-110px}.details-thumbnail{margin-bottom:-18px}.details-thumbnail .details-thumbnail-inner{border-bottom:23px solid #dfdede;max-height:300px;overflow:hidden;background-color:#fff;border-radius:4px;display:flex;justify-content:center}.details-thumbnail .details-thumbnail-inner .darken-overlay{display:block;position:absolute;height:300px;width:100%;padding-left:15px;padding-right:15px;padding-bottom:23px}.details-thumbnail .details-thumbnail-inner .darken-overlay div{display:block;position:relative;width:100%;height:100%;background-color:#0003;border-radius:4px 4px 0 0/4px 4px 0px 0px}.details-thumbnail img{width:100%;align-self:center}.video-container{position:relative;padding-bottom:56.25%;padding-top:0;height:0;overflow:hidden;margin-top:2rem;margin-bottom:2rem}.video-container iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;height:100%}
+</style><meta property="og:image" content="https://website-articles.angular-buch.com/blog/2024-05-modern-angular-bm/header-modernangular.jpg"><meta name="twitter:image" content="https://website-articles.angular-buch.com/blog/2024-05-modern-angular-bm/header-modernangular.jpg"><meta name="twitter:card" content="summary_large_image"><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+  <app-root ng-version="17.3.7"><header><div class="nav__overlay"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/" aria-label="Startseite" href="/"><img src="assets/img/brand-400.png" alt="Angular-Buch.com" height="40" width="126" class="img-fluid"></a></div><div class="col-6 col-md-10"><nav><ul><li><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/"><!----> Buch </a><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/blog" class="nav__current" aria-current="page"><!----> Blog </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/material"><!----> Begleitmaterial </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/kaufen"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-basket.svg" src="assets/img/symbol-basket.svg"><!----> Jetzt kaufen </a><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="//angular.schule/"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-group.svg" src="assets/img/symbol-group.svg"><!----> Schulungen </a><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" aria-label="Navigation" class="nav__toggle"><img src="assets/img/symbol-menu.svg" alt=""></a></div></div></div></header><main><router-outlet></router-outlet><app-blog-details><app-hero-header headline="Blog" headlinelink="/blog"><section class="hero hero--smaller"><div class="hero__lines"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;" href="/blog">Blog</a><!----><!----></h1></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list blog mt-n5"><div class="index__stripe index__stripe--list"><div class="container"><a name="post" id="post"></a><div class="row details-thumbnail"><div class="col-12"><div class="details-thumbnail-inner"><img alt="" class="img-fluid rounded ls-is-cached lazyloaded" data-src="https://website-articles.angular-buch.com/blog/2024-05-modern-angular-bm/header-modernangular.jpg" src="https://website-articles.angular-buch.com/blog/2024-05-modern-angular-bm/header-modernangular.jpg"><!----></div></div><!----></div><div class="row"><div class="col-12"><div class="index__item index__item--list"><div class="row align-items-top"><div class="col-12 col-sm-3 col-md-2 text-center details-page-autor"><img alt="" class="blog__portrait img-fluid rounded-circle ls-is-cached lazyloaded" data-src="//www.gravatar.com/avatar/9ca7a3cb75100f56b54a7c61d6a91594?size=200&amp;rating=pg&amp;d=mm" src="//www.gravatar.com/avatar/9ca7a3cb75100f56b54a7c61d6a91594?size=200&amp;rating=pg&amp;d=mm"><span class="blog__author">Danny Koppenhagen und Ferdinand Malcher <!----></span></div><div class="col-12 col-sm-9 col-md-10 col-lg-10"><h1 class="blog__headline">Modern Angular: den BookMonkey migrieren</h1><p class="blog__date">05.05.2024</p><p class="content markdown-body"><p>Angular erlebt einen Aufschwung: Mit den letzten Major-Versionen des Frameworks wurden einige wichtige neue Konzepte und Features eingeführt.
+Wir berichten darüber regelmäßig in unseren Blogposts zu den Angular-Releases.
+In diesem Artikel wollen wir das Beispielprojekt "BookMonkey" aus dem Angular-Buch aktualisieren und die neuesten Konzepte von Angular praktisch einsetzen.</p>
+<p>Besonders interessant sind die folgenden Neuerungen:</p>
+<ul>
+<li>Die <strong>Standalone Features</strong> sind inzwischen stark etabliert und Standard in jeder neuen Angular-Anwendung. <strong>Module</strong> sind dadurch optional geworden und werden früher oder später vermutlich ganz aus Angular verschwinden.
+implementiert, anstatt eine Klasse zu verwenden.</li>
+<li>Der <strong>Control Flow mit <code>@if</code> und <code>@for</code></strong> ist der empfohlene Weg, um Verzweigungen und Schleifen im Template abzubilden. Die Direktiven <code>ngIf</code> und <code>ngFor</code> werden vermutlich in einer späteren Version verschwinden.</li>
+<li><strong>Signals</strong> sind stable und werden immer mehr die Schnittstellen von Angular integriert. In der Community entstehen Patterns und Bibliotheken rund um Signals.</li>
+<li>Für die Dependency Injection geht der Trend dazu, die <strong>Funktion <code>inject()</code></strong> zu verwenden, anstatt Abhängigkeiten über den Konstruktor anzufordern.</li>
+<li><strong>Interceptoren, Guards und Resolver</strong> werden als einfache Funktionen definiert, anstatt Klassen zu verwenden.</li>
+<li>Mit dem neuen <strong>Application Builder</strong> wurde das Build-System auf ESBuild mit Vite umgestellt. Gleichzeitig wurde Server-Side Rendering (SSR) direkt in diesen neuen Builder integriert.</li>
+<li>Kleinere Features sind die <strong>View Transition API</strong> und die Direktive <code>NgOptimizedImage</code>.</li>
+</ul>
+<p>Die einzelnen Features haben wir bereits separat in den jeweiligen Artikeln zu den Major-Releases vorgestellt:</p>
+<ul>
+<li><a href="/blog/2022-11-angular15">Angular 15 ist da!</a></li>
+<li><a href="/blog/2023-05-angular16">Angular 16 ist da!</a></li>
+<li><a href="/blog/2023-11-angular17">Angular 17 ist da!</a></li>
+</ul>
+<p>Zum Thema Server-Side Rendering mit Angular 17 haben wir einen separaten Artikel veröffentlicht:</p>
+<ul>
+<li><a href="/blog/2023-11-ssr-bm">Book Monkey v5: Server-Side Rendering mit Angular 17</a></li>
+</ul>
+<p><strong>Inhaltsverzeichnis:</strong></p>
+<ul>
+<li><a href="/blog/2024-05-modern-angular-bm#die-ausgangsbasis">Die Ausgangsbasis</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#inject-statt-constructor-injection"><code>inject()</code> statt Constructor Injection</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#asyncvalidator-als-funktion-mit-inject">AsyncValidator als Funktion mit <code>inject()</code></a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#standalone-components">Standalone Components</a><ul>
+<li><a href="/blog/2024-05-modern-angular-bm#komponenten-direktiven-und-pipes-migrieren">Komponenten, Direktiven und Pipes migrieren</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#bootstrapping-mit-standalone-api">Bootstrapping mit Standalone API</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#applicationconfig-anlegen">ApplicationConfig anlegen</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#routen-migrieren">Routen migrieren</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#ngmodules-entfernen">NgModules entfernen</a></li>
+</ul>
+</li>
+<li><a href="/blog/2024-05-modern-angular-bm#functional-interceptors">Functional Interceptors</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#control-flow-mit-if-und-for">Control Flow mit <code>@if</code> und <code>@for</code></a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#application-builder-verwenden">Application Builder verwenden</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#signals">Signals</a><ul>
+<li><a href="/blog/2024-05-modern-angular-bm#signals-in-komponenten-einsetzen">Signals in Komponenten einsetzen</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#observables-in-signals-konvertieren">Observables in Signals konvertieren</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#signals-in-observables-konvertieren">Signals in Observables konvertieren</a></li>
+</ul>
+</li>
+<li><a href="/blog/2024-05-modern-angular-bm#signal-based-inputs">Signal-based Inputs</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#Router-input-bindings-signals-und-rxjs">Router Input Bindings, Signals und RxJS</a><ul>
+<li><a href="/blog/2024-05-modern-angular-bm#component-input-binding-aktivieren">Component Input Binding aktivieren</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#kombination-mit-signal-inputs">Kombination mit Signal Inputs</a></li>
+</ul>
+</li>
+<li><a href="/blog/2024-05-modern-angular-bm#functional-outputs">Functional Outputs</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#direktive-ngoptimizedimage-verwenden">Direktive <code>NgOptimizedImage</code> verwenden</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#komponenten-stylesheets-styleurls--styleurl">Komponenten-Stylesheets: <code>styleUrls</code> =&gt; <code>styleUrl</code></a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#migrations-schematics-von-ngxtension-verwenden">Migrations-Schematics von ngxtension verwenden</a></li>
+<li><a href="/blog/2024-05-modern-angular-bm#demo-und-code">Demo und Code</a></li>
+</ul>
+<h2 id="die-ausgangsbasis">Die Ausgangsbasis</h2>
+<p>Als Grundlage verwenden wir das Projekt <em>BookMonkey</em> aus unserem Angular-Buch der 4. Auflage.
+Im letzten Praxiskapitel haben wir das Projekt bereits teilweise auf Standalone Components migriert. Der Code ist hier auf GitHub zu finden:</p>
+<ul>
+<li><a href="https://github.com/book-monkey5/17-standalone">BookMonkey: 17-standalone</a></li>
+</ul>
+<p>Sollten Sie bisher nicht mit dem Buch gearbeitet haben, können sie gern trotzdem hier einsteigen: Sie können das Repository <a href="https://github.com/book-monkey5/17-standalone/archive/refs/heads/main.zip">als ZIP herunterladen</a> oder direkt Git verwenden:</p>
+<pre><code class="language-sh">git clone https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/book-monkey5/</span><span class="hljs-number">17</span>-standalone.git
+cd <span class="hljs-number">17</span>-standalone
+</code></pre>
+<p>Installieren Sie anschließend die Abhängigkeiten mithilfe von NPM und starten Sie das Projekt einmal, um sicherzustellen, dass alles korrekt funktioniert:</p>
+<pre><code class="language-sh">npm <span class="hljs-keyword">install</span>
+ng serve
+</code></pre>
+<p>Wir werden in den folgenden Abschnitten alle Schritte für die Migration beschreiben.
+Die Inhalte lassen sich also auch ideal auf andere Projekte abbilden.</p>
+<p>Für alle vorgestellten Features setzen wir auf <strong>Angular in Version 17.3</strong>.</p>
+<h2 id="inject-statt-constructor-injection"><code>inject()</code> statt Constructor Injection</h2>
+<p>Wir wollen damit starten, die Dependency Injection konsequent mit <code>inject()</code> umzusetzen.
+Die Funktion <code>inject()</code> wurde mit <a href="/blog/2022-06-angular14">Angular 14</a> vorgestellt und erfreut sich seitdem großer Beliebtheit.
+Viele Komponenten kommen inzwischen komplett ohne Konstruktor aus.
+In einigen Situationen, zum Beispiel bei Functional Guards, Resolvers oder Interceptors, kommen wir um die Verwendung ohnehin nicht herum.</p>
+<p>Die Funktion <code>inject()</code> bringt gegenüber der klassischen Constructor Injection unter anderem die folgenden Vorteile:</p>
+<ul>
+<li>Vermeidung von Konflikten zwischen den unterschiedlichen Klassen-Implementierungen von TypeScript und JavaScript. Stichwort: <code>useDefineForClassFields</code>, wir haben hierzu bereits einen <a href="/blog/2022-11-use-define-for-class-fields">separaten Artikel verfasst</a>.</li>
+<li>Konsistenz: Wir verwenden einen einheitlichen Stil</li>
+<li>Nutzung auch innerhalb von Funktionen möglich, solange diese in einem Injection Context aufgerufen werden.</li>
+</ul>
+<p>Um alle Stellen für die Migration zu finden, können wir im gesamten Projekt nach <code>constructor(</code> suchen.</p>
+<p>Wir schauen uns zunächst die Klasse <code>LoggedinOnlyDirective</code> an.
+Vor der Migration sieht der Code wie folgt aus:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// ...</span>
+<span class="hljs-meta">@Directive</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoggedinOnlyDirective</span> <span class="hljs-title">implements</span> <span class="hljs-title">OnDestroy</span> </span>{
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">
+    <span class="hljs-keyword">private</span> template: TemplateRef&lt;unknown&gt;,
+    <span class="hljs-keyword">private</span> viewContainer: ViewContainerRef,
+    <span class="hljs-keyword">private</span> authService: AuthService
+  </span>)</span> {
+    <span class="hljs-comment">// ...</span>
+  }
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>Die Argumente des Konstruktors werden nun entfernt.
+Stattdessen importieren wir die Funktion <code>inject()</code> und verwenden sie, um die Propertys direkt zu initialisieren.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// loggedin-only.directive.ts</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-comment">/* ... */</span>, <span class="hljs-keyword">inject</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-comment">// ...</span>
+@Directive({ <span class="hljs-comment">/* ... */</span> })
+export <span class="hljs-keyword">class</span> LoggedinOnlyDirective <span class="hljs-keyword">implements</span> OnDestroy {
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-keyword">private</span> template = <span class="hljs-keyword">inject</span>(TemplateRef);
+  <span class="hljs-keyword">private</span> viewContainer = <span class="hljs-keyword">inject</span>(ViewContainerRef);
+  <span class="hljs-keyword">private</span> authService = <span class="hljs-keyword">inject</span>(AuthService);
+
+  constructor() {
+    <span class="hljs-comment">// ...</span>
+  }
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>Sollte der Konstruktor nach der Migration keinen Inhalt mehr besitzen, können wir die Methode vollständig entfernen.</p>
+<blockquote>
+<p>Übrigens: Das Projekt <em>ngxtension</em> stellt zur Migration auf <code>inject()</code> ein Migrationsskript als <a href="https://ngxtension.netlify.app/utilities/migrations/inject-migration/">Schematic</a> bereit.</p>
+</blockquote>
+<h2 id="asyncvalidator-als-funktion-mit-inject">AsyncValidator als Funktion mit <code>inject()</code></h2>
+<p>Dank <code>inject()</code> können wir den <code>AsyncValidatorsService</code> zu einer einfachen Funktion umbauen.
+Dieser Service für die asynchrone Formularvalidierung war ursprünglich nur notwendig, weil wir den Konstruktor brauchten, um den <code>BookStoreService</code> per Dependency Injection anzufordern.
+Wir können den Validator <code>isbnExists</code> jetzt ebenso als einfache Funktion definieren, wie wir es bei den synchronen Validatoren in der Datei <code>validators.ts</code> bereits getan haben.
+Den <code>BookStoreService</code> fordern wir mithilfe von <code>inject()</code> an und nutzen dafür die Variable <code>service</code>.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// validators.ts</span>
+<span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-comment">/* ... */</span>, AsyncValidatorFn } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+<span class="hljs-keyword">import</span> { map } <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs'</span>;
+
+<span class="hljs-keyword">import</span> { BookStoreService } <span class="hljs-keyword">from</span> <span class="hljs-string">'../../shared/book-store.service'</span>;
+
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isbnExists</span>(<span class="hljs-params"></span>): <span class="hljs-title">AsyncValidatorFn</span> </span>{
+  <span class="hljs-keyword">const</span> service = inject(BookStoreService);
+  <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">control: AbstractControl</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> service
+      .check(control.value)
+      .pipe(map(<span class="hljs-function">(<span class="hljs-params">exists</span>) =&gt;</span> (exists ? { <span class="hljs-attr">isbnexists</span>: <span class="hljs-literal">true</span> } : <span class="hljs-literal">null</span>)));
+  };
+};
+</code></pre>
+<p>Wichtig ist, dass <code>isbnExists()</code> weiterhin eine Factory-Funktion ist, die den Validator erst beim Aufruf generiert.
+Nur so ist gewährleistet, dass <code>inject()</code> bei der Verwendung in einem Injection Context aufgerufen wird, nämlich bei Instanziierung der Komponentenklasse.</p>
+<p>In der <code>BookFormComponent</code> fordern wir nun nicht mehr den <code>AsyncValidatorsService</code> an, sondern nutzen direkt die neu erstellte Funktion <code>isbnExists()</code>.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// book-form.component.ts</span>
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">import</span> { atLeastOneValue, isbnFormat, isbnExists } from <span class="hljs-string">'../shared/validators'</span>;
+
+<span class="hljs-meta">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookFormComponent</span> </span>{
+  <span class="hljs-comment">// ...</span>
+
+  form = <span class="hljs-keyword">new</span> FormGroup({
+    <span class="hljs-comment">// ...</span>
+    isbn: <span class="hljs-keyword">new</span> FormControl(<span class="hljs-string">''</span>, {
+      nonNullable: <span class="hljs-keyword">true</span>,
+      validators: [Validators.<span class="hljs-keyword">required</span>, isbnFormat],
+      asyncValidators: isbnExists(),
+    }),
+    <span class="hljs-comment">// ...</span>
+  });
+
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>Die Datei <code>async-validators.service.ts</code> kann anschließend gelöscht werden.
+Der Code für den asychronen Validator hat sich damit stark vereinfacht, und der Overhead durch die Serviceklasse entfällt.</p>
+<h2 id="standalone-components">Standalone Components</h2>
+<p>Im nächsten Schritt wollen wir die Anwendung konsistent mit Standalone APIs implementieren.
+Das Feature <code>books</code> haben wir im Praxiskapitel zu Standalone Components bereits migriert.
+Um das Projekt vollständig ohne Module umzusetzen, müssen wir noch folgende Anpassungen durchführen:</p>
+<ol>
+<li>Die restlichen Komponenten zu Standalone Components migrieren: <code>SearchComponent</code>, <code>HomeComponent</code>, gesamtes <code>AdminModule</code> mit allen Komponenten</li>
+<li>alle nicht mehr benötigten Module entfernen</li>
+<li>Anwendung direkt mit <code>AppComponent</code> bootstrappen, ohne <code>AppModule</code></li>
+</ol>
+<p>Wenn wir diese Schritte manuell durchführen wollen, liegt eine ganze Menge Arbeit vor uns.
+Glücklicherweise bietet Angular ein Migrationsskript an, um einen Großteil der Aufgaben zu automatisieren.</p>
+<pre><code class="language-sh">ng <span class="hljs-keyword">generate</span> @angular/core:standalone
+</code></pre>
+<p>Führen wir diesen Befehl aus, können wir aus drei Migrationsschritten wählen:</p>
+<pre><code>? Choose <span class="hljs-keyword">the</span> type <span class="hljs-keyword">of</span> migration: (Use arrow <span class="hljs-built_in">keys</span>)
+❯ Convert all components, directives <span class="hljs-keyword">and</span> pipes <span class="hljs-built_in">to</span> standalone
+  Remove unnecessary NgModule classes
+  Bootstrap <span class="hljs-keyword">the</span> application <span class="hljs-keyword">using</span> standalone APIs
+</code></pre>
+<h3 id="komponenten-direktiven-und-pipes-migrieren">Komponenten, Direktiven und Pipes migrieren</h3>
+<p>Wir starten mit der ersten Option, um alle Komponenten, Direktiven und Pipes zu migrieren.
+Dabei wird automatisch für alle diese Klassen das Flag <code>standalone</code> mit dem Wert <code>true</code> gesetzt.
+Außerdem wird das Template analysiert, und alle verwendeten Komponenten, Pipes und Direktiven werden automatisch unter <code>imports</code> im Kopf der Komponente eingetragen.</p>
+<p>Im Anschluss sollten wir alle durchgeführten Änderungen noch einmal überprüfen.
+Die <code>HomeComponent</code> sieht nach der Migration zum Beispiel wie folgt aus:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { SearchComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'../search/search.component'</span>;
+<span class="hljs-keyword">import</span> { RouterLink } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+
+<span class="hljs-meta">@Component</span>({
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">standalone</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">imports</span>: [RouterLink, SearchComponent]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HomeComponent</span> </span>{}
+</code></pre>
+<p>Damit die Anwendung weiterhin funktioniert, wurden alle migrierten Komponenten, Direktiven und Pipes innerhalb der Module verschoben: Sie stehen nun nicht mehr unter <code>declarations</code>, sondern unter <code>imports</code>:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// admin.module.ts</span>
+<span class="hljs-variable">@NgModule</span>({
+  <span class="hljs-attribute">declarations</span>: []
+  <span class="hljs-attribute">imports</span>: [
+    <span class="hljs-comment">// ...</span>
+    BookFormComponent,
+    BookCreateComponent,
+    BookEditComponent,
+    FormErrorsComponent
+  ],
+})
+export class AdminModule { }
+</code></pre>
+<h3 id="bootstrapping-mit-standalone-api">Bootstrapping mit Standalone API</h3>
+<p>Wir führen den Migrationsbefehl erneut aus und wählen die dritte Option: die Anwendung bootstrappen mit Standalone APIs.
+Bei diesem Schritt wird das <code>AppModule</code> entfernt, und in der <code>main.ts</code> wird die Funktion <code>bootstrapApplication()</code> genutzt, um die Anwendung direkt mit der <code>AppComponent</code> zu bootstrappen.</p>
+<p>Alle Providers aus dem <code>AppModule</code> werden dabei in die Datei <code>main.ts</code> verschoben.
+Die Funktion <code>importProvidersFrom()</code> erlaubt es uns, die Providers aus den referenzierten Modulen zu extrahieren.
+Dabei können wir das <code>BrowserModule</code> aus der Liste entfernen: Es wird in einer reinen Standalone-Anwendung nicht mehr benötigt.</p>
+<p>Anstatt das <code>HttpClientModule</code> einzubinden, wird nach der Migration die Funktion <code>provideHttpClient()</code> verwendet.
+Damit der klassenbasierte Interceptor, der per Provider bereitgestellt wird, weiterhin funktioniert, wird die Funktion <code>withInterceptorsFromDi()</code> angegeben.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// main.ts</span>
+<span class="hljs-keyword">import</span> { importProvidersFrom } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { bootstrapApplication } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;
+<span class="hljs-keyword">import</span> { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common/http'</span>;
+<span class="hljs-comment">// ...</span>
+
+bootstrapApplication(AppComponent, {
+  <span class="hljs-attr">providers</span>: [
+    importProvidersFrom(AppRoutingModule),
+    <span class="hljs-function"><span class="hljs-title">provideHttpClient</span>(<span class="hljs-params">withInterceptorsFromDi()</span>)</span>
+    {
+      <span class="hljs-attr">provide</span>: HTTP_INTERCEPTORS,
+      <span class="hljs-attr">useClass</span>: AuthInterceptor,
+      <span class="hljs-attr">multi</span>: <span class="hljs-literal">true</span>
+    },
+  ]
+}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.error(err));
+</code></pre>
+<p>In unserem Test blieb in der <code>main.ts</code> der Import für die Funktion <code>platformBrowserDynamic</code> übrig, der allerdings nicht benötigt wird.
+Sie können diese Zeile entfernen.</p>
+<p>Übrigens empfehlen wir, auch in einer modulbasierten Anwendung die neue Funktion <code>provideHttpClient()</code> zu nutzen und nicht mehr das alte <code>HttpClientModule</code>.
+Dieses Modul wird mit Angular 18 <a href="https://github.com/angular/angular/commit/f914f6a3628847c06cbdde9c90cd417fb2f4c61f">als <em>deprecated</em> markiert</a>.
+Für den Umstieg bietet das Framework beim Update auf Angular 18 eine automatische Migration an.</p>
+<h3 id="applicationconfig-anlegen">ApplicationConfig anlegen</h3>
+<p>In neu angelegten Angular-Projekten werden die globalen Providers in einer separaten Datei <code>app.config.ts</code> abgelegt. Damit bleibt die Datei <code>main.ts</code> schlank und beinhaltet nur den reinen Aufruf für das Bootstrapping.</p>
+<p>Um die Struktur an neu angelegte Anwendungen anzugleichen, empfehlen wir Ihnen, selbst manuell die Datei <code>src/app/app.config.ts</code> anzulegen.
+Sie beinhaltet unsere <code>ApplicationConfig</code> mit den Providers:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// app.config.ts</span>
+<span class="hljs-keyword">import</span> { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common/http'</span>;
+<span class="hljs-keyword">import</span> { ApplicationConfig, importProvidersFrom } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { AuthInterceptor } <span class="hljs-keyword">from</span> <span class="hljs-string">'./shared/auth.interceptor'</span>;
+<span class="hljs-keyword">import</span> { AppRoutingModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'./app-routing.module'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> appConfig: ApplicationConfig = {
+  <span class="hljs-attr">providers</span>: [
+    importProvidersFrom(AppRoutingModule),
+    {
+      <span class="hljs-attr">provide</span>: HTTP_INTERCEPTORS,
+      <span class="hljs-attr">useClass</span>: AuthInterceptor,
+      <span class="hljs-attr">multi</span>: <span class="hljs-literal">true</span>
+    },
+    provideHttpClient(withInterceptorsFromDi())
+  ]
+};
+</code></pre>
+<p>Die Datei <code>main.ts</code> importiert dann diese Variable:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// main.ts</span>
+<span class="hljs-keyword">import</span> { AppComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./app/app.component'</span>;
+<span class="hljs-keyword">import</span> { bootstrapApplication } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;
+<span class="hljs-keyword">import</span> { appConfig } <span class="hljs-keyword">from</span> <span class="hljs-string">'./app/app.config'</span>;
+
+bootstrapApplication(AppComponent, appConfig)
+  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.error(err));
+</code></pre>
+<h3 id="routen-migrieren">Routen migrieren</h3>
+<p>Unser Feature-Modul <code>AdminModule</code> ist nun fast überflüssig, denn es importiert nur einige Komponenten und Module.
+Damit die Klasse aber entfernt werden kann, müssen wir zuvor das zugehörige <code>AdminRoutingModule</code> auflösen.</p>
+<p>Dazu entfernen wir aus der Datei <code>app-routing.module.ts</code> zunächst die Modulklasse und exportieren das Array mit Routen direkt unter dem Namen <code>ADMIN_ROUTES</code>.
+Die Datei nennen wir außerdem um zu <code>admin.routes.ts</code>:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// admin.routes.ts</span>
+<span class="hljs-comment">// ...</span>
+export const ADMIN_ROUTES: Routes = [
+  {
+    <span class="hljs-built_in">path</span>: <span class="hljs-string">''</span>,
+    redirectTo: <span class="hljs-string">'create'</span>,
+    pathMatch: <span class="hljs-string">'full'</span>
+  },
+  {
+    <span class="hljs-built_in">path</span>: <span class="hljs-string">'create'</span>,
+    component: BookCreateComponent,
+  },
+  {
+    <span class="hljs-built_in">path</span>: <span class="hljs-string">'edit/:isbn'</span>,
+    component: BookEditComponent,
+  }
+];
+</code></pre>
+<p>In der Datei <code>admin.module.ts</code> können wir nun den Import für das <code>AdminRoutingModule</code> entfernen.</p>
+<p>Anschließend migrieren wir auf die gleiche Weise das <code>AppRoutingModule</code>:</p>
+<ul>
+<li>Modulklasse entfernen</li>
+<li>Array von Routen direkt exportieren</li>
+<li>Datei umbenennen zu <code>app.routes.ts</code></li>
+</ul>
+<p>Außerdem müssen wir die Basisroute <code>admin</code> anpassen: Bisher wurde hier mittels Lazy Loading das <code>AdminRoutingModule</code> eingebunden.
+Diesen Pfad müssen wir ändern, sodass unsere direkt exportierten <code>ADMIN_ROUTES</code> geladen werden:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// app.routes.ts</span>
+<span class="hljs-comment">// ...</span>
+export const routes: Routes = [
+  {
+    <span class="hljs-attr">path</span>: <span class="hljs-string">''</span>,
+    <span class="hljs-attr">redirectTo</span>: <span class="hljs-string">'home'</span>,
+    <span class="hljs-attr">pathMatch</span>: <span class="hljs-string">'full'</span>
+  },
+  {
+    <span class="hljs-attr">path</span>: <span class="hljs-string">'home'</span>,
+    <span class="hljs-attr">component</span>: HomeComponent,
+  },
+  {
+    <span class="hljs-attr">path</span>: <span class="hljs-string">'books'</span>,
+    <span class="hljs-attr">loadChildren</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> import(<span class="hljs-string">'./books/books.routes'</span>).then(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m.BOOKS_ROUTES)
+  },
+  {
+    <span class="hljs-attr">path</span>: <span class="hljs-string">'admin'</span>,
+    <span class="hljs-attr">loadChildren</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> import(<span class="hljs-string">'./admin/admin.routes'</span>).then(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m.ADMIN_ROUTES),
+    <span class="hljs-attr">canActivate</span>: [authGuard]
+    <span class="hljs-comment">/* VORHER: loadChildren: () =&gt; import('./admin/admin.module').then(m =&gt; m.AdminModule), */</span>
+  }
+];
+</code></pre>
+<p>Damit die App-Routen genutzt werden, müssen wir das Array an den Router übergeben.
+Dazu verwenden wir in der ApplicationConfig in <code>app.config.ts</code> die Funktion <code>provideRouter()</code>.
+Der Aufruf von <code>importProvidersFrom()</code> mit dem <code>AppRoutingModule</code> ist jetzt nicht mehr notwendig.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// app.config.ts</span>
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">import</span> { provideRouter } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+<span class="hljs-keyword">import</span> { routes } <span class="hljs-keyword">from</span> <span class="hljs-string">'./app/app.routes'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> appConfig: ApplicationConfig = {
+  <span class="hljs-attr">providers</span>: [
+    provideRouter(routes),
+    <span class="hljs-comment">// ...</span>
+  ]
+})
+</code></pre>
+<p>Entfernen Sie bitte auf dem Weg alle nicht mehr genutzten Imports aus den Köpfen der Dateien.</p>
+<h3 id="ngmodules-entfernen">NgModules entfernen</h3>
+<p>Das <code>AdminModule</code> ist nun nur noch eine leere Hülle:
+Es wird nirgendwo mehr genutzt, sodass wir die Datei <code>admin.module.ts</code> gefahrlos entfernen können.
+Wir haben damit die Anwendung erfolgreich auf die Standalone APIs migriert.</p>
+<h2 id="functional-interceptors">Functional Interceptors</h2>
+<p>Als Nächstes wollen wir den Interceptor zur Authentifizierung in eine Funktion umwandeln.
+Die bisherige Implementierung als Klasse sieht so aus:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// ...</span>
+<span class="hljs-meta">@Injectable()</span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AuthInterceptor</span> <span class="hljs-title">implements</span> <span class="hljs-title">HttpInterceptor</span> </span>{
+  <span class="hljs-keyword">private</span> authService = inject(AuthService);
+
+  intercept(
+    request: HttpRequest&lt;unknown&gt;,
+    next: HttpHandler
+  ): Observable&lt;HttpEvent&lt;unknown&gt;&gt; {
+    <span class="hljs-keyword">const</span> token = <span class="hljs-string">'1234567890'</span>;
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.authService.isAuthenticated) {
+      <span class="hljs-comment">// ...</span>
+      <span class="hljs-keyword">return</span> next.handle(reqWithToken);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">return</span> next.handle(request);
+    }
+  }
+}
+</code></pre>
+<p>Ein Functional Interceptor ist grundsätzlich ähnlich aufgebaut, er besteht aber nur aus der Funktion, die bisher als Methode <code>intercept()</code> in der Klasse existierte.
+Diese Funktion vom Typ <code>HttpInterceptorFn</code> erhält als Argumente den eingehenden Request und eine <code>HttpHandlerFn</code>.</p>
+<pre><code class="language-ts">export const authInterceptor: HttpInterceptorFn = (
+<span class="hljs-symbol">  req:</span> HttpRequest<span class="hljs-params">&lt;unknown&gt;</span>,
+<span class="hljs-symbol">  next:</span> HttpHandlerFn
+): Observable<span class="hljs-params">&lt;HttpEvent&lt;unknown&gt;</span>&gt; =&gt; {
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>Durch den Typ <code>HttpInterceptorFn</code> ist die Signatur der Funktion schon vollständig beschrieben, sodass wir die Typen für die Argumente gar nicht explizit im Code notieren müssen.
+Der Auth-Interceptor kann also wie folgt eingekürzt werden.
+Anstelle von <code>next.handle()</code> rufen wir jetzt direkt die <code>HttpHandlerFn</code> mit <code>next()</code> auf.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// auth.interceptor.ts</span>
+<span class="hljs-keyword">import</span> { HttpEvent, HttpHandlerFn, HttpRequest } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common/http'</span>;
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> authInterceptor: HttpInterceptorFn = <span class="hljs-function">(<span class="hljs-params">req, next</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> authService = inject(AuthService)
+  <span class="hljs-keyword">const</span> token = <span class="hljs-string">'1234567890'</span>;
+
+  <span class="hljs-keyword">if</span> (authService.isAuthenticated) {
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-keyword">return</span> next(reqWithToken);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> next(req);
+  }
+}
+</code></pre>
+<p>Mit einem solchen Functional Interceptor ist auch die Registrierung in der Anwendung etwas einfacher:
+In der Datei <code>main.ts</code> entfernen wir den Provider für das DI-Token <code>HTTP_INTERCEPTORS</code>.
+Stattdessen nutzen wir im Aufruf von <code>provideHttpClient()</code> die Funktion <code>withInterceptors()</code> (statt <code>withInterceptorsFromDi()</code>) und übergeben den neuen Interceptor in einem Array.
+Der Interceptor wird damit direkt registriert.</p>
+<p>Übrigens können wir den HttpClient noch weiter konfigurieren:
+Mit der Funktion <code>withFetch()</code> verwendet Angular im Hintergrund die modernere <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch API</a>.
+Damit wäre auch ein Deployment in einer Edge-Computing-Infrastruktur wie zum Beispiel CloudFlare Workers möglich, bei der nur die Fetch API unterstützt wird.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// app.config.ts</span>
+<span class="hljs-keyword">import</span> {
+  provideHttpClient,
+  withInterceptors,
+  withFetch
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/common/http'</span>;
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">import</span> { authInterceptor } <span class="hljs-keyword">from</span> <span class="hljs-string">'./app/shared/auth.interceptor'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> appConfig: ApplicationConfig = {
+  <span class="hljs-attr">providers</span>: [
+    <span class="hljs-comment">// ...</span>
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([authInterceptor])
+    ),
+  ]
+};
+</code></pre>
+<h2 id="control-flow-mit-if-und-for">Control Flow mit <code>@if</code> und <code>@for</code></h2>
+<p>Mit Angular 17 wurde die neue Ablaufsteuerung im Template vorgestellt:
+Anstatt die Direktiven <code>ngIf</code> und <code>ngFor</code> einzusetzen, nutzen wir für Verzweigungen und Schleifen die neuen Ausdrücke <code>@if</code> und <code>@for</code>.
+Das hat den Vorteil, dass wir die Direktiven nicht einzeln importieren müssen. Der Control Flow wird direkt vom Compiler ausgewertet.</p>
+<p>Auch wenn der Control Flow mit Angular 17 noch im Status <em>Developer Preview</em> ist, empfehlen wir die Nutzung bereits jetzt.</p>
+<p>Um nicht alle Komponenten von Hand migrieren zu müssen, gibt uns Angular auch hier ein Migrationswerkzeug mit an die Hand.
+Es erfolgt eine Migration der Template-Syntax, und im Nachgang werden auch automatisch die unnötigen Imports der Direktiven <code>NgIf</code> und <code>NgFor</code> entfernt:</p>
+<pre><code class="language-sh">ng <span class="hljs-keyword">generate</span> @angular/core:control-flow
+</code></pre>
+<p>Bitte prüfen Sie anschließend noch einmal alle Änderungen gründlich. In komplexen Fällen kann die Migration unter Umständen nicht komplett automatisch durchgeführt werden.</p>
+<p>Nach der Ausführung können wir noch zwei Punkte an den Komponenten <code>BookListComponent</code> und <code>SearchComponent</code> optimieren.</p>
+<p>Mit <code>@for</code> ist es verpflichtend, eine Tracking-Information mithilfe von <code>track</code> anzugeben.
+Angular verwendet dieses Merkmal, um die Elemente der iterierten Liste zu identifizieren.
+Wenn wir eine Liste von Entitäten anzeigen, die eine ID besitzen, verwenden wir diese ID als Unterscheidungsmerkmal.
+Da wir in den beiden Komponenten über ein Array von Buch-Objekten iterieren, eignet sich hier die ISBN am besten, sodass wir <code>book.isbn</code> als Trackingmerkmal verwenden.
+Sollten die Elemente keine eindeutige ID besitzen, können Sie das Element selbst verwenden, oder – wenn die Liste sich zur Laufzeit nicht ändern wird – auch den Index (<code>$index</code>).</p>
+<p>Für die Anzeige leerer Resultate brauchen wir übrigens nicht zwingend ein gesondertes <code>@if</code>.
+Stattdessen bietet <code>@for</code> einen eigenen <code>@empty</code>-Block an:</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- book-list.component.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Books<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+@if (books$ | async; as books) {
+  <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"book-list"</span>&gt;</span>
+    @for (book of books; track book.isbn) {
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">bm-book-list-item</span> [<span class="hljs-attr">book</span>]=<span class="hljs-string">"book"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bm-book-list-item</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    } @empty {
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>No books available.<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    }
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+}
+</code></pre>
+<p>Die <code>SearchComponent</code> wird auf dieselbe Weise umgebaut.</p>
+<h2 id="application-builder-verwenden">Application Builder verwenden</h2>
+<p>Die aktuelle Version der Anwendung nutzt bereits den neuen Application Builder von Angular, der unter der Haube auf ESBuild und Vite zurückgreift.
+Sollte bei Ihnen noch ein älterer Builder genutzt werden (<code>@angular-devkit/build-angular:browser</code> oder <code>@angular-devkit/build-angular:browser-esbuild</code>), empfehlen wir Ihnen, auf den neuen Builder umzusteigen.
+Auch hierfür hat das Angular-Team ein Schematic bereitgestellt:</p>
+<pre><code class="language-sh">ng <span class="hljs-keyword">update</span> @angular/<span class="hljs-keyword">cli</span> --name=<span class="hljs-keyword">use</span>-application-builder
+</code></pre>
+<p>Server-Side Rendering und Pre-Rendering sind in einer neuen Anwendung mit Angular 17 automatisch aktiviert.
+Der Application Builder kümmert sich um den kompletten Build-Prozess.
+Wir haben die nötigen Einstellungen für statisches Pre-Rendering in unserem Beispielprojekt gesetzt, z. B. die Routenliste in der Datei <code>routes.txt</code>.</p>
+<p>Alle Änderungen am Code können Sie in der Differenzansicht nachvollziehen:
+<a href="https://book-monkey5.angular-buch.com/diffs/18-modern-angular.html">Differenzansicht (17-standalone -&gt; 18-modern-angular)</a></p>
+<h2 id="signals">Signals</h2>
+<p>Im nächsten Schritt wollen wir uns dem Thema Signals widmen.
+Wir haben darüber im Blogpost zu Angular 16 bereits ausführlich berichtet, siehe: <a href="/blog/2023-05-angular16#reaktivit%C3%A4t-mit-signals"><em>Angular 16 ist da! Abschnitt "Reaktivität mit Signals"</em></a>).</p>
+<p>Ein wichtiger Grund für die Einführung dieser neuen <em>Reactive Primitive</em> ist die Change Detection:
+Um festzustellen, ob sich Daten geändert haben, muss Angular derzeit vergleichsweise hohen Aufwand betreiben.
+Angular weiß niemals, <em>ob</em> und <em>welche</em> Daten sich tatsächlich ändern, sondern nur, dass es potenziell zu einer Datenänderung gekommen sein <em>könnte</em>.
+Dafür verwendet Angular verschiedene Trigger, die die Change Detection auslösen. Zur Überwachung der Browser-Schnittstellen wird seit jeher die Bibliothek zone.js verwendet.</p>
+<p>Mit Signals soll diese unspezifische Herangehensweise geändert werden: Ein Signal hält einen Wert und informiert die Anwendung, sobald sich dieser Wert ändert.
+Auf diese Weise kann Angular gezielt die Views aktualisieren, in denen sich tatsächlich Daten geändert haben.</p>
+<p>Einige Stellen, an denen wir bisher Observables und die AsyncPipe von Angular eingesetzt haben, können auch ohne RxJS mit Signals umgesetzt werden.</p>
+<h3 id="signals-in-komponenten-einsetzen">Signals in Komponenten einsetzen</h3>
+<p>Als Erstes werfen wir einen Blick in die <code>SearchComponent</code>:
+Das Property <code>isLoading</code> wird verwendet, um den Ladestatus der Suchanfrage zu erfassen.</p>
+<p>Angular konnte Änderungen an diesem Property nur ermitteln, weil das Event Binding im Template und die eintreffende HTTP-Response jeweils die Change Detection ausgelöst haben.
+Würden wir zone.js aus der Anwendung entfernen, würde der Ladeindikator nicht mehr korrekt angezeigt werden.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// ...</span>
+<span class="hljs-meta">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SearchComponent</span> </span>{
+  <span class="hljs-comment">// ...</span>
+  isLoading = <span class="hljs-literal">false</span>;
+
+  <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-built_in">this</span>.results$ = <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>Dieses Dilemma lässt sich mit einem Signal elegant lösen:
+Anstatt den Wert direkt im Property zu speichern, verpacken wir das Loading-Flag in einem Signal.
+Das Objekt wird mit <code>false</code> initialisiert, und der Wert kann später mit der Methode <code>.set()</code> überschrieben werden:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// search.component.ts</span>
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">import</span> { Component, inject, signal } from <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-meta">@Component({ /* ... */ })</span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SearchComponent</span> </span>{
+  <span class="hljs-comment">// ...</span>
+  isLoading = signal(<span class="hljs-literal">false</span>);
+
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-keyword">this</span>.results$ = <span class="hljs-keyword">this</span>.input$.pipe(
+      <span class="hljs-comment">// ...</span>
+      tap(() =&gt; <span class="hljs-keyword">this</span>.isLoading.<span class="hljs-keyword">set</span>(<span class="hljs-literal">true</span>)),
+      switchMap(term =&gt; <span class="hljs-keyword">this</span>.service.getAllSearch(term)),
+      tap(() =&gt; <span class="hljs-keyword">this</span>.isLoading.<span class="hljs-keyword">set</span>(<span class="hljs-literal">false</span>))
+    );
+  }
+}
+</code></pre>
+<p>Um Daten aus einem Signal zu lesen, rufen wir das Signal wie eine Funktion auf.
+Wir müssen also das Template der <code>SearchComponent</code> anpassen:</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- search.component.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"search"</span>
+  <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">"off"</span>
+  <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Search"</span>
+  [<span class="hljs-attr">class.loading</span>]=<span class="hljs-string">"isLoading()"</span>
+  #<span class="hljs-attr">searchInput</span>
+  (<span class="hljs-attr">input</span>)=<span class="hljs-string">"input$.next(searchInput.value)"</span>&gt;</span>
+</code></pre>
+<p>Sollten wir das einmal vergessen, informiert der Angular Language Service uns direkt im Editor mit einer Warnung.</p>
+<p>Nun kann der Ladezustand auch erfasst werden, ohne auf die Change Detection mittels zone.js angewiesen zu sein.
+Die Anwendung ist damit robuster für die Zukunft gewappnet.</p>
+<h3 id="observables-in-signals-konvertieren">Observables in Signals konvertieren</h3>
+<p>Im nächsten Schritt werfen wir einen Blick auf die <code>BookListComponent</code>.
+Hier nutzen wir bisher die AsyncPipe, um die Daten aus dem Observable mit Büchern anzuzeigen:</p>
+<pre><code class="language-ts"><span class="hljs-regexp">//</span> book-list.component.ts
+@Component({
+  <span class="hljs-regexp">//</span> ...
+  imports: [AsyncPipe, <span class="hljs-regexp">/* ... */</span>],
+})
+export class BookListComponent {
+  books$ = inject(BookStoreService).getAll();
+}
+</code></pre>
+<p>Mit der Funktion <code>toSignal()</code> können wir ein Observable in ein Signal umwandeln.
+Die Funktion kümmert sich automatisch darum, auf das Observable zu subscriben und die Daten im erzeugten Signal bereitzustellen.
+Auch das Beenden der Subscription wird automatisch erledigt.
+Damit müssen wir nicht die <code>AsyncPipe</code> importieren oder manuell auf das Observable subscriben.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// book-list.component.ts</span>
+<span class="hljs-keyword">import</span> { toSignal } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core/rxjs-interop'</span>;
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-meta">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookListComponent</span> </span>{
+  books = toSignal(inject(BookStoreService).getAll());
+}
+</code></pre>
+<p>Im Template rufen wir entsprechend das Signal auf, um die Buchliste zu lesen:</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- book-list.component.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Books<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+@if (books(); as books)&nbsp;{
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"book-list"</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- ... --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+}
+</code></pre>
+<p>Die Subscription auf dem Observable erfolgt einmalig und sofort, sobald wir die Funktion <code>toSignal()</code> benutzen.
+Wir können den Wert aus dem Signal beliebig oft lesen, ohne dass erneut ein HTTP-Request ausgeführt wird.
+Dieses Verhalten unterscheidet sich vom vorherigen Weg:
+Benutzen wir die <code>AsyncPipe</code> mehrfach, wird das Observable auch mehrfach subscribet.</p>
+<h3 id="signals-in-observables-konvertieren">Signals in Observables konvertieren</h3>
+<p>Jetzt wollen wir noch den <code>AuthService</code> umbauen.
+Anstatt das Zustandsflag <code>isAuthenticated</code> als einfaches Property zu erfassen, wollen wir dafür ein Signal verwenden.
+Der Wert soll weiterhin auch über ein Observable <code>isAuthenticated$</code> bereitgestellt werden, damit wir reaktiv mit der Information arbeiten können.</p>
+<p>Als Basis zur Erfassung des Zustands wollen wir ein Signal verwenden, sodass wir kein <code>BehaviorSubject</code> mehr benötigen.
+Die Ausgabe als Observable können wir elegant mit der Funktion <code>toObservable()</code> erledigen:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Injectable, signal } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { toObservable } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core/rxjs-interop'</span>;
+
+<span class="hljs-meta">@Injectable</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AuthService</span> </span>{
+  <span class="hljs-keyword">readonly</span> isAuthenticated = signal(<span class="hljs-literal">true</span>);
+  <span class="hljs-keyword">readonly</span> isAuthenticated$ = toObservable(<span class="hljs-built_in">this</span>.isAuthenticated);
+
+  <span class="hljs-function"><span class="hljs-title">login</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-built_in">this</span>.isAuthenticated.set(<span class="hljs-literal">true</span>);
+  }
+
+  <span class="hljs-function"><span class="hljs-title">logout</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-built_in">this</span>.isAuthenticated.set(<span class="hljs-literal">false</span>);
+  }
+}
+</code></pre>
+<p>Die Aufrufe von <code>isAuthenticated</code> in den Dateien <code>app.component.html</code>, <code>auth.guard.ts</code> und <code>auth.interceptor.ts</code> müssen nun auch um die Klammern erweitert werden, um den Wert zu lesen: <code>isAuthenticated()</code>.</p>
+<p>Die Direktive <code>LoggedinOnlyDirective</code> können wir in diesem Zuge auch noch weiter vereinfachen.
+Hier können wir auf das Konstrukt aus Observable und dem Operator <code>takeUntil</code> verzichten und stattdessen einen Effect verwenden:
+Ein Effect reagiert auf Änderungen an den Signals, die wir in der Effect-Funktion verwenden.
+Sobald sich einer der Eingabewerte ändert, wird die Berechnung erneut durchgeführt.
+Auf den Lifecycle-Hook <code>ngOnDestroy</code> können wir somit auch komplett verzichten, und der Code wird stark verkürzt:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-comment">/* ... */</span>, effect, inject } from <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-meta">@Directive({ /* ... */ })</span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoggedinOnlyDirective</span> </span>{
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-keyword">constructor</span>() {
+    effect(() =&gt; {
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.authService.isAuthenticated()) {
+        <span class="hljs-keyword">this</span>.viewContainer.createEmbeddedView(<span class="hljs-keyword">this</span>.template);
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">this</span>.viewContainer.clear();
+      }
+    });
+  }
+}
+</code></pre>
+<h2 id="signal-based-inputs">Signal-based Inputs</h2>
+<p>Mit dem Minor-Release von Angular 17.2.0 wurde eine Alternative zum bisherigen <code>@Input()</code>-Dekorator auf Basis von Signals eingeführt, siehe die <a href="https://blog.angular.io/signal-inputs-available-in-developer-preview-6a7ff1941823">offizielle Information im Angular-Blog</a>.
+Nutzen wir die neue Funktion <code>input()</code>, wird der übergebene Wert eines Komponenten-Inputs direkt als Signal erfasst:</p>
+<pre><code class="language-ts">isbn = <span class="hljs-built_in">input</span>() // InputSignal<span class="hljs-symbol">&lt;unknown&gt;</span>
+isbn = <span class="hljs-built_in">input</span><span class="hljs-symbol">&lt;string&gt;</span>() // InputSignal&lt;<span class="hljs-built_in">string</span> | undefined&gt;
+isbn = <span class="hljs-built_in">input</span>.required() // InputSignal<span class="hljs-symbol">&lt;unknown&gt;</span>
+isbn = <span class="hljs-built_in">input</span>.required<span class="hljs-symbol">&lt;string&gt;</span>() // InputSignal<span class="hljs-symbol">&lt;string&gt;</span>
+isbn = <span class="hljs-built_in">input</span>(<span class="hljs-string">'3864909465'</span>) // InputSignal<span class="hljs-symbol">&lt;string&gt;</span>
+</code></pre>
+<p>Wir können einige Stellen unserer Anwendung auf diese neuen <em>Signal-based Inputs</em> umbauen.
+Wir beginnen in der <code>FormErrorsComponent</code>: Statt <code>@Input()</code> setzen wir jeweils <code>input.required()</code> ein, da beide Informationen zwingend bei Verwendung der Komponente gesetzt werden müssen.
+Um das Signal zu lesen, dürfen wir im Getter <code>errors</code> die Funktionsklammern nicht vergessen.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// form-errors.component.ts</span>
+<span class="hljs-keyword">import</span> { Component, inject, input } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-meta">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FormErrorsComponent</span> </span>{
+  controlName = input.required&lt;<span class="hljs-built_in">string</span>&gt;();
+  messages = input.required&lt;{ [errorCode: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">string</span> }&gt;();
+  <span class="hljs-comment">// ...</span>
+
+  <span class="hljs-keyword">get</span> <span class="hljs-title">errors</span>(): <span class="hljs-title">string</span>[] {
+    <span class="hljs-keyword">const</span> control = <span class="hljs-built_in">this</span>.form.control.get(<span class="hljs-built_in">this</span>.controlName());
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.keys(control.errors).map(<span class="hljs-function"><span class="hljs-params">errorCode</span> =&gt;</span> {
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.messages()[errorCode];
+    });
+  }
+}
+</code></pre>
+<p>Nicht immer wollen wir, dass der Name des Propertys in der Komponente dem Namen entspricht, den wir beim Property Binding von außen verwenden.
+Diesen Fall haben wir bereits in der <code>ConfirmDirective</code> berücksichtigt.
+Auch mit Signal Inputs lässt sich ein <code>alias</code> konfigurieren.</p>
+<p>Wenn wir die Direktive verwenden, wollen wir den Text an das Property <code>bmConfirm</code> übergeben, das dem Attributnamen der Direktive entspricht.
+Innerhalb der Direktivenklasse soll dieses Property jedoch <code>confirmText</code> lauten.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// confirm.directive.ts</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-comment">/* ... */</span>, input } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-meta">@Directive</span>({
+  <span class="hljs-attr">selector</span>: <span class="hljs-string">'[bmConfirm]'</span>,
+  <span class="hljs-attr">standalone</span>: <span class="hljs-literal">true</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConfirmDirective</span> </span>{
+  confirmText = input.required&lt;<span class="hljs-built_in">string</span>&gt;({ <span class="hljs-attr">alias</span>: <span class="hljs-string">'bmConfirm'</span> });
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-meta">@HostListener</span>(<span class="hljs-string">'click'</span>) <span class="hljs-function"><span class="hljs-title">onClick</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.confirm(<span class="hljs-built_in">this</span>.confirmText())) {
+      <span class="hljs-built_in">this</span>.confirm.emit();
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Das Projekt <em>ngxtension</em> stellt zur Migration auf Signal Inputs auch ein <a href="https://ngxtension.netlify.app/utilities/migrations/signal-inputs-migration/">Schematic</a> bereit.</p>
+</blockquote>
+<h2 id="router-input-bindings-signals-und-rxjs">Router Input Bindings, Signals und RxJS</h2>
+<p>Zum Abschluss dieses Abschnitts wollen wir ein neueres Feature des Routers verwenden: Component Input Bindings.
+Damit ist es möglich, Routenparameter per Input in einer Komponente zu empfangen.
+Anstatt also wie gewohnt den Service <code>ActivatedRoute</code> zu verwenden, erstellen in der Komponente ein Input, das den gleichen Namen trägt wie der Routenparameter:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
+  <span class="hljs-keyword">@Input</span>() myParam?: <span class="hljs-built_in">string</span>;
+  myParam2 = input&lt;<span class="hljs-built_in">string</span>&gt;();
+}
+</code></pre>
+<p>Der Router befüllt diese Propertys automatisch mit Werten – sofern die Parameter in der Route existieren.
+Dabei werden Path-Parameter, Query-Parameter und Routen-Daten gleichermaßen verarbeitet.
+Tragen die verschiedenen Parameter-Typen den gleichen Namen, so ist nur einer der Werte verfügbar. Sie können die Implementierung im <a href="https://github.com/angular/angular/blob/17.3.6/packages/router/src/directives/router_outlet.ts#L459">Quellcode von Angular</a> nachvollziehen.</p>
+<h3 id="component-input-binding-aktivieren">Component Input Binding aktivieren</h3>
+<p>Damit diese Mechanik funktioniert, müssen wir das Feature zunächst im Router aktivieren.
+In der Datei <code>app.config.ts</code> fügen wir unter <code>provideRouter()</code> den Aufruf der Funktion <code>withComponentInputBinding()</code> hinzu:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// app.config.ts</span>
+<span class="hljs-keyword">import</span> { provideRouter, withComponentInputBinding } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> appConfig: ApplicationConfig = {
+  <span class="hljs-attr">providers</span>: [
+    provideRouter(routes, withComponentInputBinding()),
+    <span class="hljs-comment">// ...</span>
+  ]
+};
+</code></pre>
+<h3 id="kombination-mit-signal-inputs">Kombination mit Signal Inputs</h3>
+<p>Zusammen mit Signal Inputs und den Möglichkeiten von RxJS ergibt sich ein elegantes neues Pattern, das wir in unseren Komponenten einsetzen wollen.
+In der <code>BookDetailsComponent</code> und <code>BookEditComponent</code> wird jeweils ein Buch anhand der ISBN geladen, die in der Route übergeben wird.</p>
+<p>Wir erzeugen zunächst ein passendes Input-Property mithilfe der Funktion <code>input()</code>:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> BookDetailsComponent {
+  isbn = input.required&lt;<span class="hljs-built_in">string</span>&gt;();
+}
+</code></pre>
+<p>Da es sich um ein Signal handelt, kann Angular bei Wertänderungen direkt reagieren.
+Wir wollen den Parameter aber weiterhin mit RxJS verarbeiten: Der HTTP-Call wird über ein Observable abgebildet, und auch die Charakteristik des Operators <code>switchMap</code> wollen wir weiterhin nutzen.</p>
+<p>Wir wandeln das Signal <code>isbn</code> also mit der Funktion <code>toObservable()</code> zunächst in ein Observable um.
+In der Pipeline starten wir den HTTP-Request und rufen das Buch ab.</p>
+<pre><code class="language-ts">@<span class="hljs-constructor">Component({ <span class="hljs-operator">/</span><span class="hljs-operator">*</span> <span class="hljs-operator">...</span> <span class="hljs-operator">*</span><span class="hljs-operator">/</span> })</span>
+export <span class="hljs-keyword">class</span> BookDetailsComponent {
+  <span class="hljs-comment">// ...</span>
+  isbn = input.required&lt;<span class="hljs-built_in">string</span>&gt;<span class="hljs-literal">()</span>;
+
+  book$ = <span class="hljs-keyword">to</span><span class="hljs-constructor">Observable(<span class="hljs-params">this</span>.<span class="hljs-params">isbn</span>)</span>.pipe(
+    switch<span class="hljs-constructor">Map(<span class="hljs-params">isbn</span> =&gt; <span class="hljs-params">this</span>.<span class="hljs-params">service</span>.<span class="hljs-params">getSingle</span>(<span class="hljs-params">isbn</span>)</span>)
+  );
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>Auf dieselbe Weise gehen wir in der <code>BookEditComponent</code> vor.
+Der Code in der Komponentenklasse wird elegant verkürzt: Anstatt <code>ActivatedRoute</code> zu verwenden, stammt der Parameter aus dem Signal Input.
+Der Konstruktor entfällt vollständig, wenn wir das Property <code>book$</code> direkt zuweisen.
+Anschließend können wir die nicht benötigten Imports aufräumen.</p>
+<h2 id="functional-outputs">Functional Outputs</h2>
+<p>Analog zur Funktion <code>input()</code> steht seit der Minor-Version Angular 17.3.0 eine Alternative zum <code>@Output()</code>-Dekorator bereit: die Funktion <code>output()</code>.
+Dabei wurde auch die Typsicherheit verbessert: Wenn wir den Output typisieren, z. B. <code>output&lt;string&gt;()</code>, dann ist übergebene Payload bei <code>emit()</code> verpflichtend.
+Beim bisherigen Weg mit <code>EventEmitter</code> war der Payload hingegen immer optional.
+Wollen wir keinen Payload übergeben, müssen wir den Output nicht typisieren, und es wird automatisch der Typ <code>void</code> für den Payload angenommen.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">select</span> = output() <span class="hljs-comment">// OutputEmitterRef&lt;void&gt;</span>
+isbnChange = output&lt;<span class="hljs-built_in">string</span>&gt;() <span class="hljs-comment">// OutputEmitterRef&lt;string&gt;</span>
+
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">this</span>.<span class="hljs-keyword">select</span>.emit(); <span class="hljs-comment">// OK</span>
+<span class="hljs-keyword">this</span>.isbnChange.emit(); <span class="hljs-comment">// Error: Expected 1 arguments, but got 0.</span>
+<span class="hljs-keyword">this</span>.isbnChange.emit(<span class="hljs-string">'3864909465'</span>); <span class="hljs-comment">// OK</span>
+</code></pre>
+<p>Wir wollen die neuen Functional Outputs in der <code>ConfirmDirective</code> nutzen:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-comment">/* ... */</span>, output } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-meta">@Directive</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConfirmDirective</span> </span>{
+  <span class="hljs-comment">// ...</span>
+  confirm = output();
+
+  <span class="hljs-meta">@HostListener</span>(<span class="hljs-string">'click'</span>) <span class="hljs-function"><span class="hljs-title">onClick</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.confirm(<span class="hljs-built_in">this</span>.confirmText())) {
+      <span class="hljs-built_in">this</span>.confirm.emit();
+    }
+  }
+}
+</code></pre>
+<blockquote>
+<p>Das Projekt <em>ngxtension</em> stellt zur Migration auf Functional Outputs auch ein <a href="https://ngxtension.netlify.app/utilities/migrations/new-outputs-migration/">Schematic</a> bereit.</p>
+</blockquote>
+<h2 id="direktive-ngoptimizedimage-verwenden">Direktive <code>NgOptimizedImage</code> verwenden</h2>
+<p>Bereits seit Angular 14.2 stellt das Framework eine Direktive zur optimierten Einbindung von Bildern bereit: <code>NgOptimizedImage</code>.
+Wir haben hierzu im <a href="/blog/2022-11-angular15#image-directive-optimierte-verwendung-von-bildern">Blogpost zum Release von Angular 15</a> berichtet.</p>
+<p>Wir starten mit der <code>BookListItemComponent</code>:
+Damit wir die Direktive im Template nutzen können, muss sie zuvor in der Komponente importiert werden.</p>
+<pre><code class="language-ts"><span class="hljs-regexp">//</span> book-list-item.component.ts
+import { NgOptimizedImage } from <span class="hljs-string">'@angular/common'</span>;
+<span class="hljs-regexp">//</span> ...
+
+@Component({
+  <span class="hljs-regexp">//</span> ...
+  imports: [RouterLink, IsbnPipe, NgOptimizedImage]
+})
+<span class="hljs-regexp">//</span> ...
+</code></pre>
+<p>Im Anschluss ersetzen wir auf dem Element <code>&lt;img&gt;</code> das Attribut <code>src</code> durch <code>ngSrc</code>.
+Das Bild wird standardmäßig "lazy" geladen und blockiert somit nicht das Laden der gesamten Buchliste.
+Damit die Optimierung klappt und wir Layoutverschiebungen vermeiden, müssen wir noch die erwartete Größe des Bilds angeben, indem wir eine statische Breite und Höhe notieren.
+Somit kann bereits vorab der Platz zur Anzeige des Bilds reserviert werden.</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- book-list-item.component.html --&gt;</span>
+<span class="hljs-comment">&lt;!-- ... --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Cover"</span> [<span class="hljs-attr">ngSrc</span>]=<span class="hljs-string">"thumbnail"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"120"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"175"</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- ... --&gt;</span>
+</code></pre>
+<p>Bei der Detailansicht der Bücher in der <code>BookDetailsComponent</code> gehen wir ähnlich vor:
+Hier setzen wir jedoch zusätzlich das Attribut <code>priority</code>, da wir das Buchcover hier mit hoher Priorität laden wollen.</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- book-details.component.html --&gt;</span>
+<span class="hljs-comment">&lt;!-- ... --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Cover"</span> [<span class="hljs-attr">ngSrc</span>]=<span class="hljs-string">"book.thumbnailUrl"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"200"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"250"</span> <span class="hljs-attr">priority</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- ... --&gt;</span>
+</code></pre>
+<p>Damit das priorisierte Laden funktioniert, müssen wir in der Datei <code>index.html</code> ein Meta-Tag hinzufügen:</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- index.html --&gt;</span>
+<span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- ... --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"preconnect"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://cdn.ng-buch.de"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- ... --&gt;</span>
+</code></pre>
+<h2 id="komponenten-stylesheets-styleurls--styleurl">Komponenten-Stylesheets: <code>styleUrls</code> =&gt; <code>styleUrl</code></h2>
+<p>Zum Abschluss wollen wir noch eine eher kosmetische Änderung im Code durchführen:
+Bisher wurden die Komponenten-Stylesheets standardmäßig als Array im Property <code>styleUrls</code> übergeben.
+Da es in den meisten Fällen aber nur genau eine Style-Datei gibt, können wir nun auch eine einzelne <code>styleUrl</code> als String angeben.
+Neue Komponenten werden bereits mit einer einzelnen <code>styleUrl</code> generiert.</p>
+<pre><code class="language-ts">@Component({
+  <span class="hljs-regexp">//</span> VORHER:
+  styleUrls: [<span class="hljs-string">'./book-list.component.css'</span>],
+  <span class="hljs-regexp">//</span> NACHHER:
+  styleUrl: <span class="hljs-string">'./book-list.component.css'</span>,
+  <span class="hljs-regexp">//</span> ...
+})
+<span class="hljs-regexp">//</span> ...
+</code></pre>
+<p>Nutzen wir zum Beispiel Visual Studio Code als Editor, können wir die Migration über die globale Suche mithilfe eines regulären Ausdrucks vollziehen:</p>
+<ul>
+<li>Suche: <code>styleUrls: \[(.*)\]</code> (Die Option "Regulärer Ausdruck" muss aktiviert sein)</li>
+<li>Ersetzen: <code>styleUrl: $1</code></li>
+</ul>
+<h2 id="migrations-schematics-von-ngxtension-verwenden">Migrations-Schematics von ngxtension verwenden</h2>
+<p>Wir haben in den vorherigen Abschnitten erwähnt, dass das Paket <a href="https://ngxtension.netlify.app/">ngxtension</a> Schematics für die Migration auf einige neuere Angular-Features anbietet. Es handelt sich nicht um ein offizielles Projekt von Angular, sondern stammt aus der Community.</p>
+<p>Um die Migrationen zu verwenden, müssen wir das Paket zunächst im Projekt installieren:</p>
+<pre><code class="language-bash"><span class="hljs-built_in">npm</span> i -D ngxtension
+</code></pre>
+<p>Anschließend können wir die Migration mithilfe von <code>ng generate</code> anstoßen:</p>
+<pre><code class="language-bash"># von @Input zu Signal Inputs
+ng g ngxtension:convert-signal-inputs
+
+# von @Output zu Functional Outputs
+ng g ngxtension:convert-outputs
+
+# von <span class="hljs-function"><span class="hljs-keyword">Constructor</span> <span class="hljs-title">Injection</span> <span class="hljs-title">zu</span> <span class="hljs-title">inject</span><span class="hljs-params">()</span>
+<span class="hljs-title">ng</span> <span class="hljs-title">g</span> <span class="hljs-title">ngxtension</span>:</span>convert-di-<span class="hljs-keyword">to</span>-inject
+</code></pre>
+<h2 id="demo-und-code">Demo und Code</h2>
+<p>Damit haben wir den BookMonkey auf die neusten Konzepte und Features von Angular migriert.
+Wir freuen uns sehr über die vielen Neuigkeiten in Angular: Standalone Components sorgen für eine einfachere Struktur und weniger verzweigte Referenzen in der Anwendung.
+Zusammen mit der Funktion <code>inject()</code> werden asynchrone Validatoren und funktionale Interceptors/Guards stark verkürzt.
+Der entwickelte Code wird schlanker und ist einfacher zu überblicken.
+Nicht zuletzt ergeben sich durch Signals neue Patterns und Herangehensweisen.</p>
+<p><strong>Quellcode, Änderungen und Demo:</strong></p>
+<ul>
+<li><a href="https://18-modern-angular-bm5.angular-buch.com/">BookMonkey Demo</a></li>
+<li><a href="https://github.com/book-monkey5/17-standalone">Repo: 17-standalone (Ausgangsbasis)</a></li>
+<li><a href="https://github.com/book-monkey5/18-modern-angular">Repo: 18-modern-angular (Migration)</a></li>
+<li><a href="https://book-monkey5.angular-buch.com/diffs/18-modern-angular.html">Differenzansicht (17-standalone -&gt; 18-modern-angular)</a></li>
+</ul>
+<hr>
+
+<p><small><strong>Titelbild:</strong> Black Diamond, Kopenhagen, Dänemark. Foto von Ferdinand Malcher</small></p>
+</p><!----><!----><a routerlink="/blog" ripple-radius="" class="btn btn-sm btn-primary mt-4" href="/blog"><i class="fa fa-backward mr-2"></i> Zurück</a><hr> Suggestions? Feedback? Bugs? Please <a target="_blank" class="content" href="https://github.com/angular-buch/website-articles/blob/gh-pages/blog/2024-05-modern-angular-bm/README.md"><i class="fa fa-github mr-1" style="font-size: 1.6rem; position: relative; bottom: -3px;"></i>fork/edit this page on Github</a>. </div></div></div></div></div><!----></div><!----><!----></div></section><app-json-ld><script type="application/ld+json">{
+  "url": "https://angular.schule/blog/2024-05-modern-angular-bm",
+  "headline": "Modern Angular: den BookMonkey migrieren",
+  "description": "Angular erlebt einen Aufschwung: Mit den letzten Major-Versionen des Frameworks wurden einige wichtige neue Konzepte und Features eingeführt.\nWir berichten darüber regelmäßig in unseren Blogposts zu den Angular-Releases.\nIn diesem Artikel wollen wir das Beispielprojekt &quot;BookMonkey&quot; aus dem Angular-Buch aktualisieren und die neuesten Konzepte von Angular praktisch einsetzen.",
+  "datePublished": "2024-05-05",
+  "dateModified": "2024-05-05",
+  "publisher": {
+    "name": "Angular-Buch",
+    "url": "https://angular-buch.com",
+    "@type": "Organization",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://angular-buch.com/assets/img/brand_export.png"
+    }
+  },
+  "image": "https://website-articles.angular-buch.com/blog/2024-05-modern-angular-bm/header-modernangular.jpg",
+  "thumbnailUrl": "https://website-articles.angular-buch.com/blog/2024-05-modern-angular-bm/header-modernangular.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Danny Koppenhagen und Ferdinand Malcher",
+    "email": "dannyferdigravatar@fmalcher.de"
+  },
+  "keywords": [
+    "ESBuild",
+    "Application Builder",
+    "Standalone Components",
+    "inject",
+    "Functional Interceptor",
+    "Control Flow",
+    "Signals",
+    "Router Input Binding",
+    "Functional Outputs",
+    "NgOptimizedImage",
+    "BookMonkey"
+  ],
+  "mainEntityOfPage": "http://schema.org/WebPage",
+  "@type": "Article",
+  "@context": "http://schema.org"
+}</script></app-json-ld></app-blog-details><!----><footer><div class="container"><div class="row align-items-center"><div class="col-sm-9"><div class="links"><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/"><!----> Home </a><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/impressum"><!----> Impressum </a><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/datenschutz"><!----> Datenschutzerklärung </a><!----><!----><!----></app-link>|<!----><app-link><!----><a class="links__item links__twitter" href="https://twitter.com/angular_buch" rel="nofollow"><!----> Twitter </a><!----><!----><!----><!----></app-link><!----><!----></div></div><div class="col-sm-3 text-right"></div></div></div></footer></main><app-json-ld><script type="application/ld+json"></script></app-json-ld></app-root>
+<script src="polyfills-LZBJRJJE.js" type="module"></script><script src="main-GMMIZW54.js" type="module"></script>
+
+</body></html>
