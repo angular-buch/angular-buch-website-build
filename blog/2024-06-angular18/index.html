@@ -1,0 +1,612 @@
+<!DOCTYPE html><html lang="de" data-critters-container=""><head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#"><meta name="generator" content="Scully 0.0.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <title>Angular-Buch → Angular 18 ist da: Signals, Signals, Signals!</title>
+  
+
+  
+
+  <meta property="book:author" content="https://www.facebook.com/ferdinand.malcher">
+  <meta property="book:author" content="https://www.facebook.com/johannes.hoppe">
+
+  <meta property="book:isbn" content="9783864909467">
+  <meta property="book:release_date" content="2023-02-28">
+  <meta property="book:tag" content="Angular">
+  <meta property="book:tag" content="Webentwicklung">
+  <meta property="book:tag" content="AngularJS">
+  <meta property="book:tag" content="TypeScript">
+  <meta property="book:tag" content="JavaScript">
+  <meta property="book:tag" content="HTML5">
+  <meta property="book:tag" content="CSS">
+  <meta property="book:tag" content="RxJS">
+  <meta property="book:tag" content="Redux">
+  <meta property="book:tag" content="NgRx">
+
+  <base href="/">
+<style>@charset "UTF-8";@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0)}to{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}@font-face{font-family:Roboto;src:url("./media/Roboto-Thin-GAS35NAQ.eot");src:local("Roboto Thin"),local("Roboto-Thin"),url("./media/Roboto-Thin-GAS35NAQ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Thin-UUU7IP4L.woff2") format("woff2"),url("./media/Roboto-Thin-BT5WDCMC.woff") format("woff"),url("./media/Roboto-Thin-STLHGJGZ.ttf") format("truetype"),url("./media/Roboto-Thin-OYOYLS5N.svg#Roboto") format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-ThinItalic-HQCJJ3KQ.eot");src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url("./media/Roboto-ThinItalic-HQCJJ3KQ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-ThinItalic-PVCCLVHZ.woff2") format("woff2"),url("./media/Roboto-ThinItalic-OJCFQICS.woff") format("woff"),url("./media/Roboto-ThinItalic-OKVQEY6M.ttf") format("truetype"),url("./media/Roboto-ThinItalic-PU7U6F54.svg#Roboto") format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Light-TT7V6J7W.eot");src:local("Roboto Light"),local("Roboto-Light"),url("./media/Roboto-Light-TT7V6J7W.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Light-OEL5QP53.woff2") format("woff2"),url("./media/Roboto-Light-EGEOUPZ7.woff") format("woff"),url("./media/Roboto-Light-KYCYMX5R.ttf") format("truetype"),url("./media/Roboto-Light-O5NB3DZS.svg#Roboto") format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-LightItalic-JJ225GLJ.eot");src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url("./media/Roboto-LightItalic-JJ225GLJ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-LightItalic-SZU3UOEY.woff2") format("woff2"),url("./media/Roboto-LightItalic-5LJGTDBY.woff") format("woff"),url("./media/Roboto-LightItalic-ZTOFFLND.ttf") format("truetype"),url("./media/Roboto-LightItalic-FE5GYQJO.svg#Roboto") format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Regular-WINA5356.eot");src:local("Roboto Regular"),local("Roboto-Regular"),url("./media/Roboto-Regular-WINA5356.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Regular-4ZFX4XNS.woff2") format("woff2"),url("./media/Roboto-Regular-EMJ7NDAQ.woff") format("woff"),url("./media/Roboto-Regular-W6LM4ZNI.ttf") format("truetype"),url("./media/Roboto-Regular-DDBAS5OS.svg#Roboto") format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-RegularItalic-43QNLNAN.eot");src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url("./media/Roboto-RegularItalic-43QNLNAN.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-RegularItalic-2REFJECD.woff2") format("woff2"),url("./media/Roboto-RegularItalic-NSJ4HBKT.woff") format("woff"),url("./media/Roboto-RegularItalic-YZDJVEXU.ttf") format("truetype"),url("./media/Roboto-RegularItalic-7A3VJZ2J.svg#Roboto") format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Medium-TKOJIIN4.eot");src:local("Roboto Medium"),local("Roboto-Medium"),url("./media/Roboto-Medium-TKOJIIN4.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Medium-GHCC3HN6.woff2") format("woff2"),url("./media/Roboto-Medium-O2PKKQNT.woff") format("woff"),url("./media/Roboto-Medium-ANIBKV6W.ttf") format("truetype"),url("./media/Roboto-Medium-RJM2M5RS.svg#Roboto") format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-MediumItalic-5WUL7G7J.eot");src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url("./media/Roboto-MediumItalic-5WUL7G7J.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-MediumItalic-FMJUHMWQ.woff2") format("woff2"),url("./media/Roboto-MediumItalic-EJXCUUAA.woff") format("woff"),url("./media/Roboto-MediumItalic-ZZ274MH6.ttf") format("truetype"),url("./media/Roboto-MediumItalic-WUJRBJ2B.svg#Roboto") format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Bold-BUUHB5PB.eot");src:local("Roboto Bold"),local("Roboto-Bold"),url("./media/Roboto-Bold-BUUHB5PB.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Bold-NGAPMV26.woff2") format("woff2"),url("./media/Roboto-Bold-GE6V3ZS2.woff") format("woff"),url("./media/Roboto-Bold-5VUU6QI6.ttf") format("truetype"),url("./media/Roboto-Bold-UXMYHWKZ.svg#Roboto") format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-BoldItalic-ETKPZE3Z.eot");src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url("./media/Roboto-BoldItalic-ETKPZE3Z.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-BoldItalic-TBVJ3OTX.woff2") format("woff2"),url("./media/Roboto-BoldItalic-2CYTLDZJ.woff") format("woff"),url("./media/Roboto-BoldItalic-4MMIXUDR.ttf") format("truetype"),url("./media/Roboto-BoldItalic-TDTZWBKI.svg#Roboto") format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Black-FJBQ2JLX.eot");src:local("Roboto Black"),local("Roboto-Black"),url("./media/Roboto-Black-FJBQ2JLX.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Black-OEG2WEQ3.woff2") format("woff2"),url("./media/Roboto-Black-AZ2AXCB4.woff") format("woff"),url("./media/Roboto-Black-IGTRSQU4.ttf") format("truetype"),url("./media/Roboto-Black-OEOHVSYK.svg#Roboto") format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-BlackItalic-MXNS7VU5.eot");src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url("./media/Roboto-BlackItalic-MXNS7VU5.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-BlackItalic-6QYHVQZM.woff2") format("woff2"),url("./media/Roboto-BlackItalic-7QMDFEK5.woff") format("woff"),url("./media/Roboto-BlackItalic-XIXMO2HU.ttf") format("truetype"),url("./media/Roboto-BlackItalic-EYMGZCJW.svg#Roboto") format("svg");font-weight:900;font-style:italic}:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}img{vertical-align:middle;border-style:none}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}img{page-break-inside:avoid}@page{size:a3}body{min-width:992px!important}}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#f8f8f8}html{overflow-y:scroll}</style><link rel="stylesheet" href="styles-24WBZHAI.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-24WBZHAI.css"></noscript><meta property="og:title" content="Angular-Buch → Angular 18 ist da: Signals, Signals, Signals!"><meta name="twitter:title" content="Angular-Buch → Angular 18 ist da: Signals, Signals, Signals!"><meta name="description" content="📙 In den letzten Versionen wurden viele neue Funktionen und Verbesserungen eingeführt.
+Diesmal lag der Fokus darauf, die bereits ausgelieferten APIs zu stabilisieren, diverse Feature Requests zu bearbeiten und eines der am meisten nachgefragten Projekte auf der Roadmap experimentell zu veröffentlichen: die Zoneless Change Detection."><meta property="og:description" content="📙 In den letzten Versionen wurden viele neue Funktionen und Verbesserungen eingeführt.
+Diesmal lag der Fokus darauf, die bereits ausgelieferten APIs zu stabilisieren, diverse Feature Requests zu bearbeiten und eines der am meisten nachgefragten Projekte auf der Roadmap experimentell zu veröffentlichen: die Zoneless Change Detection."><meta name="twitter:description" content="📙 In den letzten Versionen wurden viele neue Funktionen und Verbesserungen eingeführt.
+Diesmal lag der Fokus darauf, die bereits ausgelieferten APIs zu stabilisieren, diverse Feature Requests zu bearbeiten und eines der am meisten nachgefragten Projekte auf der Roadmap experimentell zu veröffentlichen: die Zoneless Change Detection."><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/blog/2024-06-angular18"><style>.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
+</style><style>.content img{max-width:100%}.details-page-autor{margin-top:-110px}.details-thumbnail{margin-bottom:-18px}.details-thumbnail .details-thumbnail-inner{border-bottom:23px solid #dfdede;max-height:300px;overflow:hidden;background-color:#fff;border-radius:4px;display:flex;justify-content:center}.details-thumbnail .details-thumbnail-inner .darken-overlay{display:block;position:absolute;height:300px;width:100%;padding-left:15px;padding-right:15px;padding-bottom:23px}.details-thumbnail .details-thumbnail-inner .darken-overlay div{display:block;position:relative;width:100%;height:100%;background-color:#0003;border-radius:4px 4px 0 0/4px 4px 0px 0px}.details-thumbnail img{width:100%;align-self:center}.video-container{position:relative;padding-bottom:56.25%;padding-top:0;height:0;overflow:hidden;margin-top:2rem;margin-bottom:2rem}.video-container iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;height:100%}
+</style><meta property="og:image" content="https://website-articles.angular-buch.com/blog/2024-06-angular18/angular18.jpg"><meta name="twitter:image" content="https://website-articles.angular-buch.com/blog/2024-06-angular18/angular18.jpg"><meta name="twitter:card" content="summary_large_image"><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+  <app-root ng-version="18.0.3"><header><div class="nav__overlay"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/" aria-label="Startseite" href="/"><img src="assets/img/brand-400.png" alt="Angular-Buch.com" height="40" width="126" class="img-fluid"></a></div><div class="col-6 col-md-10"><nav><ul><li><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/"><!----> Buch </a><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/blog" class="nav__current" aria-current="page"><!----> Blog </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/material"><!----> Begleitmaterial </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/kaufen"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-basket.svg" src="assets/img/symbol-basket.svg"><!----> Jetzt kaufen </a><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="//angular.schule/"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-group.svg" src="assets/img/symbol-group.svg"><!----> Schulungen </a><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" aria-label="Navigation" class="nav__toggle"><img src="assets/img/symbol-menu.svg" alt=""></a></div></div></div></header><main><router-outlet></router-outlet><app-blog-details><app-hero-header headline="Blog" headlinelink="/blog"><section class="hero hero--smaller"><div class="hero__lines"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;" href="/blog">Blog</a><!----><!----></h1></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list blog mt-n5"><div class="index__stripe index__stripe--list"><div class="container"><a name="post" id="post"></a><div class="row details-thumbnail"><div class="col-12"><div class="details-thumbnail-inner"><img alt="" class="img-fluid rounded lazyloaded" data-src="https://website-articles.angular-buch.com/blog/2024-06-angular18/angular18.jpg" src="https://website-articles.angular-buch.com/blog/2024-06-angular18/angular18.jpg"><!----></div></div><!----></div><div class="row"><div class="col-12"><div class="index__item index__item--list"><div class="row align-items-top"><div class="col-12 col-sm-3 col-md-2 text-center details-page-autor"><img alt="" class="blog__portrait img-fluid rounded-circle lazyloaded" data-src="//www.gravatar.com/avatar/be546eb804b80c7e8c1ac0fc082b5463?size=200&amp;rating=pg&amp;d=mm" src="//www.gravatar.com/avatar/be546eb804b80c7e8c1ac0fc082b5463?size=200&amp;rating=pg&amp;d=mm"><span class="blog__author">Angular Buch Team <br><a target="_blank" class="twitter" href="https://twitter.com/angular_buch"> @angular_buch</a> &nbsp; <!----></span></div><div class="col-12 col-sm-9 col-md-10 col-lg-10"><h1 class="blog__headline">Angular 18 ist da: Signals, Signals, Signals!</h1><p class="blog__date">14.06.2024</p><p class="content markdown-body"><p>Und schon wieder ist ein halbes Jahr vergangen:
+Angular Version 18 ist jetzt verfügbar!</p>
+<p>In den letzten Versionen wurden viele neue Funktionen und Verbesserungen eingeführt.
+Diesmal lag der Fokus darauf, die bereits ausgelieferten APIs zu stabilisieren, diverse Feature Requests zu bearbeiten und eines der am meisten nachgefragten Projekte auf der Roadmap experimentell zu veröffentlichen: die <strong>Zoneless Change Detection</strong>.</p>
+<p>Im offiziellen <a href="https://blog.angular.dev/angular-v18-is-now-available-e79d5ac0affe">Angular-Blog</a> finden Sie alle offiziellen Informationen direkt vom Angular-Team.
+Außerdem empfehlen wir Ihnen einen Blick in die Changelogs von <a href="https://github.com/angular/angular/blob/main/CHANGELOG.md#1800-2024-05-22">Angular</a> und der <a href="https://github.com/angular/angular-cli/blob/main/CHANGELOG.md#1800-2024-05-22">Angular CLI</a>.</p>
+<p>Wenn Sie sich einen kurzweiligen Gesamtüberblick verschaffen wollen, so lohnt es sich, das hervorragende Video aus dem Release-Event anzuschauen:
+<a href="https://www.youtube.com/watch?v=DK8M-ZFjaMw">What’s new in Angular v18</a> </p>
+<p>Und für eine Zusammenfassung in deutscher Sprache lesen Sie jetzt einfach weiter. 🙂</p>
+<h2 id="neue-offizielle-website">Neue Offizielle Website</h2>
+<p>Das Angular Team hat mit Angular 17 die neue Website <a href="https://angular.dev/">angular.dev</a> veröffentlicht und damit die "Angular Renaissance" aufgerufen.
+Die Website ist die neue offizielle Dokumentationsseite für Angular und bietet einen intuitiven, praxisorientierten Einstieg sowie viele hervorragende Artikel. Die alte Website <a href="https://angular.io/">angular.io</a> wird nicht mehr weiterentwickelt und leitet jetzt auf die neue Domain um.</p>
+<p><img src="https://website-articles.angular-buch.com/blog/2024-06-angular18/angular_dev.gif" alt="Screenshot von angular.dev"></p>
+<h2 id="zoneless-change-detection-experimentell">Zoneless Change Detection (experimentell)</h2>
+<p>Seit dem Beginn von Angular ist die Bibliothek <a href="https://github.com/angular/angular/tree/main/packages/zone.js">zone.js</a> für das Auslösen der Änderungsüberprüfung (Change Detection) in Angular verantwortlich.
+zone.js hat den Umgang mit Angular massiv geprägt:
+Änderungen an den angezeigten Daten werden scheinbar wie durch Magie erkannt.
+Aber leider hat diese Magie auch eine Reihe von technischen Nachteilen mit sich gebracht.
+Vor allem die Performance und die Handhabung beim Debugging werden schon seit der Integration von zone.js kritisiert.</p>
+<p>Angular v18 führt eine neue Methode zur Auslösung der Änderungsüberprüfung ein. 
+Anstatt sich auf ausschließlich auf zone.js zu verlassen, 
+um zu erkennen, wann sich etwas möglicherweise geändert hat, 
+kann Angular jetzt selbst eine Änderungsüberprüfung planen.</p>
+<h3 id="die-standardeinstellung-beide-scheduler-sind-aktiv">Die Standardeinstellung: beide Scheduler sind aktiv</h3>
+<p>Dazu wurde dem Framework ein neuer Scheduler hinzugefügt (genannt <code>ChangeDetectionScheduler</code>), 
+und dieser Scheduler wird intern verwendet, um die Änderungsüberprüfung auszulösen. 
+Langfristiges Ziel ist es, sich schrittweise von zone.js zu entfernen und ausschließlich den neuen Scheduler einzusetzen.</p>
+<p>Dieser neue Scheduler ist in v18 standardmäßig aktiviert, auch wenn Sie zone.js verwenden.
+So sieht die Datei <code>app.config.ts</code> aus, wenn mit der Angular CLI v18 eine neue Anwendung generiert wird.
+Beide Scheduler sind hier aktiv:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> appConfig: ApplicationConfig = {
+  providers: [
+    <span class="hljs-comment">// beide Scheduler sind aktiv</span>
+    <span class="hljs-built_in">provideZoneChangeDetection</span>({ eventCoalescing: <span class="hljs-literal">true</span> }),
+};
+</code></pre>
+<p>Die Option <code>eventCoalescing</code> ist ebenso neu hinzugekommen.
+Diese verhindert, das in bestimmten Fällen mehrfach unnötig eine Change Detection durchgeführt wird.
+Das genaue Verhalten ist <a href="https://angular.dev/api/core/NgZoneOptions#eventCoalescing">in der Dokumentation</a> beschrieben. </p>
+<h3 id="abmeldung-vom-neuen-scheduler">Abmeldung vom neuen Scheduler</h3>
+<p>Der neue Scheduler ist somit in v18 standardmäßig aktiviert. 
+Das bedeutet, dass Angular potenzielle Änderungen sowohl von zone.js (wie bisher) als auch vom neuen Scheduler (wenn ein Signal gesetzt wird, eine AsyncPipe einen neuen Wert erhält usw.) benachrichtigt wird. 
+Diese Änderung sollte Ihre Anwendung nicht negativ beeinflussen: 
+Angular führt die Change Detection nur einmal durch, 
+auch wenn es von mehreren Quellen eine Benachrichtigung gibt.</p>
+<p>Wenn Sie sich dennoch vom neuen Scheduler abmelden möchten, 
+können Sie hierzu bei der Funktion <code>provideZoneChangeDetection()</code> den Wert von <code>ignoreChangesOutsideZone</code> auf <code>true</code> setzen:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> appConfig: ApplicationConfig = {
+  providers: [
+    <span class="hljs-comment">// dies stellt das Verhalten von Angular vor v18 wieder her</span>
+    <span class="hljs-comment">// und ignoriert die Benachrichtigungen des neuen Schedulers</span>
+    <span class="hljs-built_in">provideZoneChangeDetection</span>({ ignoreChangesOutsideZone: <span class="hljs-literal">true</span> }),
+};
+</code></pre>
+<p>Die Option <code>eventCoalescing</code> haben wir hier nicht erneut aufgeführt, da diese Einstellung unabhängig von <code>ignoreChangesOutsideZone</code> ist.</p>
+<h3 id="experimentelle-zonenlose-änderungsüberprüfung">Experimentelle zonenlose Änderungsüberprüfung</h3>
+<p>Sie können auch versuchen, sich nur auf den neuen Scheduler zu verlassen und nicht mehr auf zone.js, um die Änderungsüberprüfung auszulösen.
+Dies ist eine experimentelle Funktion, die Sie aktivieren können, indem Sie die Provider-Funktion <code>provideExperimentalZonelessChangeDetection()</code> in Ihrer Anwendung verwenden:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> appConfig: ApplicationConfig = {
+  providers: [
+    <span class="hljs-comment">// ausschließlich der neue Scheduler ist aktiv</span>
+    <span class="hljs-built_in">provideExperimentalZonelessChangeDetection</span>()
+};
+</code></pre>
+<p>Wenn Sie dies tun, wird sich Angular nicht mehr auf zone.js verlassen, 
+um die Änderungsüberprüfung auszulösen. 
+Sie können nun zone.js aus Ihrer Anwendung entfernen, um die Größe des Bundles zu verringern – sofern keine Abhängigkeiten davon abhängen.
+Hierzu muss der Polyfills-Eintrag in der Datei <code>angular.json</code> entfernt werden:</p>
+<pre><code class="language-json"><span class="hljs-regexp">//</span> vorher
+<span class="hljs-string">"polyfills"</span>: [
+  <span class="hljs-string">"zone.js"</span>
+],
+
+<span class="hljs-regexp">//</span> nachher
+<span class="hljs-string">"polyfills"</span>: [],
+</code></pre>
+<p>Die Anwendung sollte weiterhin funktionieren,
+wenn alle Ihre Komponenten bereits mit der <code>OnPush</code>-Strategie kompatibel sind und/oder überall Signals eingesetzt werden!</p>
+<h3 id="vorteile-durch-die-zonenlose-änderungsüberprüfung">Vorteile durch die zonenlose Änderungsüberprüfung</h3>
+<p>Das Angular-Team verspricht folgende Vorteile durch die Zoneless Change Detection:</p>
+<ul>
+<li>verbesserte Kombinierbarkeit für Micro Frontends und Interoperabilität mit anderen Frameworks</li>
+<li>schnellere Initialisierung und Laufzeit der Angular-App</li>
+<li>kleinere Bundle-Größe und schnellere Seitenladezeiten</li>
+<li>lesbarere Stack-Traces</li>
+<li>einfacheres Debugging</li>
+</ul>
+<p>Allerdings bekommen wir all diese Vorteile nicht einfach umsonst.
+Der "alte Angular-Stil" mit der Default Change Detection, bei dem prinzipiell alle Objekte direkt verändert (mutiert) werden können, ist mit dem zonenlosen Ansatz nicht direkt kompatibel.
+Im Kern geht es darum, nach Möglichkeit auf die neuen Signals umzusteigen, die seit <a href="https://angular-buch.com/blog/2023-05-angular16#reaktivit%C3%A4t-mit-signals">Angular 16</a> verfügbar sind. 
+Wir haben über diesen modernen Ansatz in unserem letzten Blogpost berichtet:
+<a href="/blog/2024-05-modern-angular-bm">Modern Angular: den BookMonkey migrieren</a></p>
+<p>Diese simple Komponente …</p>
+<pre><code class="language-ts"><span class="hljs-comment">// Alter Stil</span>
+<span class="hljs-meta">@Component</span>({
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;h1&gt;Hallo von {{ name }}!&lt;/h1&gt;
+    &lt;button (click)="handleClick()"&gt;Mit zone.js&lt;/button&gt;
+  `</span>,
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> </span>{
+  name = <span class="hljs-string">'Angular'</span>;
+
+  <span class="hljs-function"><span class="hljs-title">handleClick</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-built_in">this</span>.name = <span class="hljs-string">'Klassisches Angular'</span>;
+  }
+}
+</code></pre>
+<p>… würden wir jetzt mit Signals folgendermaßen umsetzen:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// Neuer Stil mit Signals</span>
+<span class="hljs-meta">@Component({
+  // ...
+  template: `
+    &lt;h1&gt;Hallo von {{ name() }}!&lt;/h1&gt;
+    &lt;button (click)="handleClick()"&gt;Ohne zone.js&lt;/button&gt;
+  `,
+})</span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> </span>{
+  name = signal(<span class="hljs-string">'Angular'</span>);
+
+  handleClick() {
+    <span class="hljs-keyword">this</span>.name.set(<span class="hljs-string">'Zoneless Angular'</span>);
+  }
+}
+</code></pre>
+<p>Im obigen Beispiel wird beim Klicken auf den Button das <em>Signal</em> mit der Bezeichnung <code>name</code> aktualisiert und anschließend die Oberfläche aktualisiert.
+Dies funktioniert genauso zuverlässig wie bei einer Anwendung mit zone.js, jedoch begrenzt Angular die internen Überprüfungen auf ganz wenige Auslöser – wie den Aktualisierungen der Signals.
+Die Performance ist hierbei deutlich höher, wenn viele Komponenten gleichzeitig angezeigt werden.</p>
+<h3 id="auf-zoneless-updaten">Auf "zoneless" updaten</h3>
+<p>Angular entwickelt sich stetig weiter, und "zoneless" ist ein zentraler Bestandteil davon.
+Während das Framework weiterentwickelt wird, stellt das Angular Team selbstverständlich sicher, dass der klassische Stil weiterhin wie erwartet funktioniert.
+Der zukünftige Fokus des Angular-Teams ist allerdings eindeutig.
+Wir empfehlen, neue Angular-Anwendungen definitiv mit den Signals umzusetzen.
+Der klassische Stil wird weiterhin unterstützt werden, aber hier wird es keine neuen Innovationen mehr geben.</p>
+<h3 id="natives-asyncawait-für-zonenlose-apps">Natives <code>async</code>/<code>await</code> für zonenlose Apps</h3>
+<p>zone.js fängt viele APIs im Browser ab, um die bisherige Change Detection von Angular zu realisieren.
+Leider gehört <code>async</code>/<code>await</code> zu den Schnittstellen, die zone.js nicht patchen kann. 
+Als Workaround wird bisher von der Angular CLI jede Verwendung der beiden Schlüsselwörter auf Promises heruntergestuft – denn Promises können von zone.js gepatcht werden. 
+Das ist suboptimal, da alle modernen Browser <code>async</code>/<code>await</code> unterstützen und optimieren können.</p>
+<p>Wenn zone.js nicht in den Polyfills der Anwendung enthalten ist, dann findet die Entfernung von <code>async</code>/<code>await</code> nicht mehr statt.
+Dies verbessert das Debugging und verkleinert die Bundles.</p>
+<h3 id="zonenlose-unterstützung-in-angular-material--cdk">Zonenlose Unterstützung in Angular Material &amp; CDK</h3>
+<p><a href="https://material.angular.io/">Angular Material</a> 3 ist jetzt stabil.
+Das Angular Team hat mit der neuen Version auch gleich die zonenlose Unterstützung aktiviert. Ebenso kann man nun auch das <a href="https://material.angular.io/cdk/">Angular CDK</a> vollständig ohne zone.js verwenden.</p>
+<p>Wenn Sie also auf die Komponentenbibliothek Angular Material setzen, können Sie prinzipiell direkt auf eine zonenlose App umsteigen.
+Sollten Sie eine Bibliothek von einem anderen Hersteller bzw. von einem anderen Open-Source-Projekt verwenden, so prüfen Sie am besten, ob die Bibliothek bereits "Zoneless Angular" unterstützt.
+Ist das nicht der Fall, werden sich nach einer Umstellung diverse Stellen in der Anwendung nicht mehr korrekt aktualisieren.</p>
+<h2 id="neue-signal-apis">Neue Signal-APIs</h2>
+<p>In den letzten Monaten wurden mit Angular 17.1, 17.2 und 17.3 bereits eine Reihe von spannenden APIs rund um die Signals als <strong>Developer Preview</strong> veröffentlicht. Wir haben diese in unserem Blogpost <a href="/blog/2024-05-modern-angular-bm">"Modern Angular: den BookMonkey migrieren"</a> bereits vorgestellt. Da Angular 18 die erste größere Version ist, die die APIs enthält, stellen wir diese hier gerne noch einmal im Detail vor.
+Auch in Angular 18 sind diese APIs allesamt im Status  <strong>Developer Preview</strong> – sie könnten sich also noch bei der Verwendung oder im Verhalten ändern. </p>
+<h3 id="inputs-als-signal">Inputs als Signal</h3>
+<p>Mit dem Minor-Release von Angular 17.1 wurden <a href="https://angular.dev/guide/signals/inputs">Signal Inputs</a> eingeführt.
+Sie sind eine Alternative zum bisherigen <code>@Input()</code>-Dekorator.
+Das Angular-Team misst diesen neuen Signals eine große Bedeutung bei, und hat das Thema in einem dedizierten <a href="https://blog.angular.io/signal-inputs-available-in-developer-preview-6a7ff1941823">Blogpost</a> vorgestellt.
+Nutzen wir die neue Funktion <code>input()</code>, wird der übergebene Wert eines Komponenten-Inputs direkt als Signal erfasst:</p>
+<pre><code class="language-ts"><span class="hljs-attr">anzahl</span> = input()<span class="hljs-comment">;                  // InputSignal&lt;unknown&gt;</span>
+<span class="hljs-attr">anzahl</span> = input&lt;number&gt;()<span class="hljs-comment">;          // InputSignal&lt;number | undefined&gt;</span>
+<span class="hljs-attr">anzahl</span> = input.required()<span class="hljs-comment">;         // InputSignal&lt;unknown&gt;</span>
+<span class="hljs-attr">anzahl</span> = input.required&lt;number&gt;()<span class="hljs-comment">; // InputSignal&lt;number&gt;</span>
+<span class="hljs-attr">anzahl</span> = input(<span class="hljs-number">5</span>)<span class="hljs-comment">;                 // InputSignal&lt;number&gt;</span>
+</code></pre>
+<p>Nachfolgend finden Sie ein Beispiel, bei dem eine Kind-Komponente über ein Input aktualisiert wird.
+Zunächst der klassische Stil, bei dem wir den <code>@Input()</code>-Dekorator einsetzen:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Input } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-comment">// Alter Stil mit Dekorator</span>
+<span class="hljs-meta">@Component</span>({
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">selector</span>: <span class="hljs-string">'app-katzen'</span>,
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    @if (anzahl) {
+      &lt;img src="{{ imageUrl() }}"&gt;
+    }
+  `</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">KatzenComponent</span> </span>{
+  <span class="hljs-meta">@Input</span>() anzahl?: <span class="hljs-built_in">number</span>;
+
+  <span class="hljs-function"><span class="hljs-title">imageUrl</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`https://api.angular.schule/avatar/<span class="hljs-subst">${<span class="hljs-built_in">this</span>.anzahl}</span>`</span>;
+  }
+}
+</code></pre>
+<p>Um vollständig in der Welt von Signals zu bleiben, können wir stattdessen jetzt folgende Syntax verwenden.
+Eine massive Erleichterung ist die Funktion <code>input.reqired()</code>:
+Beim alten Stil musste man immer auch <code>undefined</code> als möglichen Wert berücksichtigen.
+Dies ist nun nicht mehr notwendig, da <code>input.reqired()</code> entweder einen gesetzten Wert hat oder eine Exception wirft, wenn es keinen Wert gibt.
+Die bisherige leidige Prüfung auf <code>undefined</code> entfällt damit endlich.
+Allein hierfür lohnt sich bereits der Umstieg auf Signals:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { input } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-comment">// Neuer Stil mit Signals</span>
+<span class="hljs-meta">@Component</span>({
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">selector</span>: <span class="hljs-string">'app-katzen'</span>,
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;img src="{{ imageUrl() }}"&gt;
+  `</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">KatzenComponent</span> </span>{
+  anzahl = input.reqired&lt;<span class="hljs-built_in">number</span>&gt;();
+  imageUrl = computed(<span class="hljs-function">() =&gt;</span> <span class="hljs-string">`https://api.angular.schule/avatar/<span class="hljs-subst">${<span class="hljs-built_in">this</span>.anzahl()}</span>`</span>);
+}
+</code></pre>
+<p>Um das Beispiel vollständiger zu gestalten, sieht man hier auch gleich die Kombination mit einem Computed-Signal. 
+Dank des Inputs können wir nun mit folgender Syntax einen Wert an die Kind-Komponente übergeben.
+Am Einsatz von Property Bindings ändert sich nichts, daher funktioniert die Verwendung in beiden Beispielen gleich:</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">app-katzen</span> [<span class="hljs-attr">anzahl</span>]=<span class="hljs-string">"5"</span> /&gt;</span>
+</code></pre>
+<p>Je nach übergebener Zahl sieht man nun ein anderes Bild – mit der entsprechenden Anzahl an Katzen.</p>
+<p><strong>Hinweis:</strong> Wenn wir einen Test für die <code>KatzenComponent</code> schreiben wollen, dann können wir nicht mehr wie früher das Input-Property direkt überschreiben:</p>
+<pre><code class="language-ts">beforeEach(<span class="hljs-name">async</span> () =&gt; {
+  await TestBed.configureTestingModule({
+    imports: [KatzenComponent]
+  })
+  .compileComponents()<span class="hljs-comment">;</span>
+
+  fixture = TestBed.createComponent(<span class="hljs-name">KatzenComponent</span>)<span class="hljs-comment">;</span>
+  component = fixture.componentInstance<span class="hljs-comment">;</span>
+
+  // Fehler: Type 'number' is not assignable to type 'InputSignal&lt;number&gt;'
+  component.anzahl = <span class="hljs-number">5</span><span class="hljs-comment">;</span>
+  fixture.detectChanges()<span class="hljs-comment">;</span>
+})<span class="hljs-comment">;</span>
+</code></pre>
+<p>Stattdessen steht uns die Methode <code>setInput()</code> zur Verfügung, um den Wert des Input Signals zu setzen:</p>
+<pre><code class="language-ts">beforeEach(<span class="hljs-name">async</span> () =&gt; {
+  await TestBed.configureTestingModule({
+    imports: [KatzenComponent]
+  })
+  .compileComponents()<span class="hljs-comment">;</span>
+
+  fixture = TestBed.createComponent(<span class="hljs-name">KatzenComponent</span>)<span class="hljs-comment">;</span>
+  component = fixture.componentInstance<span class="hljs-comment">;</span>
+
+  // kein Fehler
+  fixture.componentRef.setInput('anzahl', <span class="hljs-number">5</span>)<span class="hljs-comment">;</span>
+  fixture.detectChanges()<span class="hljs-comment">;</span>
+})<span class="hljs-comment">;</span>
+</code></pre>
+<h3 id="querys-als-signal">Querys als Signal</h3>
+<p>Es kann Situationen geben, in denen wir aus einer übergeordneten Komponente auf eine Kind-Komponente/Kind-Direktive oder ein DOM-Element zugreifen möchten, bzw. auf den Inhalt von <code>&lt;ng-content&gt;&lt;/ng-content&gt;</code>.
+Seit jeher stehen uns hierfür die Dekoratoren <a href="https://v17.angular.io/api/core/ViewChild"><code>@ViewChild()</code></a>, <a href="https://v17.angular.io/api/core/ViewChildren"><code>@ViewChildren()</code></a>, <a href="https://v17.angular.io/api/core/ContentChild"><code>@ContentChild()</code></a> sowie <a href="https://v17.angular.io/api/core/ContentChildren"><code>@ContentChildren()</code></a> zu Verfügung, um die entsprechenden Referenzen zu erhalten:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { ViewChild, ViewChildren, ElementRef } from <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-comment">// Alter Stil mit Dekoratoren</span>
+<span class="hljs-meta">@Component({
+  // ...
+  template: `
+    &lt;div #el&gt;&lt;/div&gt;
+    &lt;div #el&gt;&lt;/div&gt;
+
+    &lt;app-child /&gt;
+    &lt;app-child /&gt;
+  `
+})</span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppComponent</span> </span>{
+
+  <span class="hljs-comment">// liefert ein Kind</span>
+  <span class="hljs-meta">@ViewChild(<span class="hljs-meta-string">'el'</span>)</span> element!: ElementRef;
+  <span class="hljs-meta">@ViewChild(ChildComponent)</span> child!: ChildComponent;
+
+  <span class="hljs-comment">// liefert alle Kinder</span>
+  <span class="hljs-meta">@ViewChildren(<span class="hljs-meta-string">'el'</span>)</span> elements!: QueryList&lt;ElementRef&gt;;
+  <span class="hljs-meta">@ViewChildren(ChildComponent)</span> children!: QueryList&lt;ChildComponent&gt;;
+}
+</code></pre>
+<p>Die äquivalenten <a href="https://angular.dev/guide/signals/queries">Signal Queries</a> <code>viewChild()</code>, <code>viewChildren()</code>, <code>contentChild()</code> und <code>contentChildren()</code> wurden mit Angular 17.2 hinzugefügt und geben uns moderne Signals zurück.</p>
+<pre><code class="language-ts">import { viewChild, viewChildren, ElementRef } from <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-regexp">//</span> Neuer Stil mit Signals
+@Component({
+  <span class="hljs-regexp">//</span> ...
+  template: `
+    &lt;div <span class="hljs-comment">#el&gt;&lt;/div&gt;</span>
+    &lt;div <span class="hljs-comment">#el&gt;&lt;/div&gt;</span>
+
+    &lt;app-child /&gt;
+    &lt;app-child /&gt;
+  `
+})
+export class AppComponent {
+
+   <span class="hljs-regexp">//</span> liefert ein Kind (oder `undefined`, falls keines gefunden wurde)
+  element = viewChild&lt;ElementRef&gt;(<span class="hljs-string">'el'</span>); <span class="hljs-regexp">//</span> Signal&lt;ElementRef | undefined&gt;
+  child   = viewChild(ChildComponent);   <span class="hljs-regexp">//</span> Signal&lt;ChildComponent|undefined&gt;
+
+   <span class="hljs-regexp">//</span> liefert ein Kind (oder einen Runtime error, falls keines gefunden wurde)
+  elementRequired = viewChild.required&lt;ElementRef&gt;(<span class="hljs-string">'el'</span>); <span class="hljs-regexp">//</span> Signal&lt;ElementRef&gt;
+  childRequired   = viewChild.required(ChildComponent);   <span class="hljs-regexp">//</span> Signal&lt;MyComponent&gt;
+
+  <span class="hljs-regexp">//</span> liefert alle Kinder (oder eine leere Liste)
+  elements = viewChild&lt;ElementRef&gt;(<span class="hljs-string">'el'</span>); <span class="hljs-regexp">//</span> Signal&lt;ReadonlyArray&lt;ElementRef&gt;&gt;
+  childs   = viewChild(ChildComponent);   <span class="hljs-regexp">//</span> Signal&lt;ReadonlyArray&lt;ChildComponent&gt;&gt;
+}
+</code></pre>
+<p>Neu hinzugekommen ist die Möglichkeit, das Vorhandensein eines einzelnen Kinds per <a href="https://angular.dev/guide/signals/queries#required-child-queries"><code>viewChild.required</code></a> typsicher zu erzwingen.
+Sollte das Element doch nicht im Template vorhanden sein – weil es z. B. per <code>@if</code> versteckt wurde – so wirft Angular einen Laufzeitfehler: <code>Runtime error: result marked as required by not available!</code>.</p>
+<h3 id="model-inputs">Model Inputs</h3>
+<p>Die weiter oben vorgestellten Signal Inputs sind schreibgeschützt.
+Dies stellt sicher, das wir nicht versehentlich das Signal im Code setzen – was kein schöner Stil wäre.</p>
+<p>Um einen gemeinsamen Zustand zwischen einer Eltern- und einer Kindkomponente elegant zu teilen,
+sind aber beschreibbare Signals sehr praktisch.
+Genau diese Lücke füllen die <a href="https://angular.dev/guide/signals/model">Model Inputs</a>.
+Mit diesen können wir dann Two-Way Bindings realisieren:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// Alter Stil mit Dekoratoren</span>
+<span class="hljs-meta">@Component({
+  selector: <span class="hljs-meta-string">'app-pager'</span>,
+  template: `
+    Aktuelle Seite: {{ page }}
+    &lt;button (click)</span>=<span class="hljs-string">"goToNextPage()"</span>&gt;Nächste Seite&lt;/button&gt;
+  `
+})
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PagerComponent</span> </span>{
+
+  <span class="hljs-meta">@Input({ required: true })</span> page!: number;
+  <span class="hljs-meta">@Output()</span> pageChange = new EventEmitter&lt;number&gt;();
+
+  goToNextPage() {
+    <span class="hljs-keyword">this</span>.page = <span class="hljs-keyword">this</span>.page + <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">this</span>.pageChange.emit(<span class="hljs-keyword">this</span>.page);
+  }
+}
+</code></pre>
+<p>Und hier der neue Stil, bei dem wir ein beschreibbares Signal verwenden.
+Der Code wird deutlich kürzer und übersichtlicher:</p>
+<pre><code class="language-ts"><span class="hljs-comment">// Neuer Stil mit Signal</span>
+<span class="hljs-meta">@Component({
+  selector: <span class="hljs-meta-string">'app-pager'</span>,
+  template: `
+    Aktuelle Seite: {{ page()</span> }}
+    &lt;button (click)=<span class="hljs-string">"goToNextPage()"</span>&gt;Nächste Seite&lt;/button&gt;
+  `
+})
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PagerComponent</span> </span>{
+  page = model.required&lt;number&gt;();
+
+  goToNextPage() {
+    <span class="hljs-keyword">this</span>.page.<span class="hljs-keyword">set</span>(<span class="hljs-keyword">this</span>.page() + <span class="hljs-number">1</span>);
+  }
+}
+</code></pre>
+<p>In beiden Fällen kann unsere Komponente nun mit einem Two-Way-Binding verwendet werden.
+Der Wert für das Two-Way-Binding kann wie gehabt <a href="https://angular.dev/guide/signals/model#two-way-binding-with-plain-properties">ein Property mit einem Wert</a> sein:</p>
+<pre><code class="language-ts"><span class="hljs-meta">@Component</span>({
+  <span class="hljs-comment">// ...</span>
+  template: <span class="hljs-string">'&lt;app-pager [(page)]="currentPage" /&gt;'</span>,
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ParentComponent</span> </span>{
+  currentPage = <span class="hljs-number">1</span>;
+}
+</code></pre>
+<p>Allerdings wollen wir ja idealerweise in der gesamten Applikation auf Signals setzen.
+Daher ist es ebenso möglich, <a href="https://angular.dev/guide/signals/model#two-way-binding-with-signals">schreibbare Signals mit einem Two-Way Binding</a> zu kombinieren:</p>
+<pre><code class="language-ts"><span class="hljs-meta">@Component</span>({
+  <span class="hljs-comment">// ...</span>
+  template: <span class="hljs-string">'&lt;app-pager [(page)]="currentPage" /&gt;'</span>,
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ParentComponent</span> </span>{
+  currentPage = signal(<span class="hljs-number">1</span>);
+}
+</code></pre>
+<h3 id="outputs-als-funktion">Outputs als Funktion</h3>
+<p>Analog zur Funktion <code>input()</code> steht seit Angular 17.3 eine Alternative zum <code>@Output()</code>-Dekorator bereit: die Funktion <code>output()</code>.
+Dabei wurde auch die Typsicherheit verbessert: 
+Wenn wir den Output typisieren, z. B. <code>output&lt;string&gt;()</code>, dann ist übergebene Payload bei <code>emit()</code> verpflichtend.
+Beim bisherigen Weg mit <code>EventEmitter.emit</code> war der Payload hingegen immer optional.
+Wollen wir keinen Payload übergeben, müssen wir den Output nicht typisieren, und es wird automatisch der Typ <code>void</code> für den Payload angenommen.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">select</span> = output(); <span class="hljs-comment">// OutputEmitterRef&lt;void&gt;</span>
+textChange = output&lt;<span class="hljs-built_in">string</span>&gt;(); <span class="hljs-comment">// OutputEmitterRef&lt;string&gt;</span>
+
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">this</span>.<span class="hljs-keyword">select</span>.emit(); <span class="hljs-comment">// OK</span>
+<span class="hljs-keyword">this</span>.textChange.emit(); <span class="hljs-comment">// Error: Expected 1 arguments, but got 0.</span>
+<span class="hljs-keyword">this</span>.textChange.emit(<span class="hljs-string">'Text'</span>); <span class="hljs-comment">// OK</span>
+</code></pre>
+<p>Gerne zeigen wir auch hier ein vollständiges Beispiel.<br>Zunächst erneut der klassische Stil:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Output, EventEmitter } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-comment">// Alter Stil mit Dekorator</span>
+<span class="hljs-meta">@Component</span>({
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">selector</span>: <span class="hljs-string">'app-katzen'</span>,
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;button (click)="wasMachenDieKatzen()"&gt;Klick mich&lt;/button&gt;
+  `</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">KatzenComponent</span> </span>{
+  <span class="hljs-meta">@Output</span>() katzenGeraeusch = <span class="hljs-keyword">new</span> EventEmitter&lt;<span class="hljs-built_in">string</span>&gt;();
+
+  <span class="hljs-function"><span class="hljs-title">wasMachenDieKatzen</span>(<span class="hljs-params"></span>)</span> {
+    katzenGeraeusch.emit(<span class="hljs-string">'Miau! 😸'</span>);
+
+    <span class="hljs-comment">// aber auch folgende Zeile kompiliert</span>
+    katzenGeraeusch.emit(<span class="hljs-literal">undefined</span>);
+  }
+}
+</code></pre>
+<p>Der Umstieg auf Signals geht hier schnell voran – wir müssen nur eine Zeile austauschen und den Import aktualisieren:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { output } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-comment">// Neuer Stil mit Signal</span>
+<span class="hljs-meta">@Component</span>({
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">selector</span>: <span class="hljs-string">'app-katzen'</span>,
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;button (click)="wasMachenDieKatzen()"&gt;Klick mich&lt;/button&gt;
+  `</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">KatzenComponent</span> </span>{
+  katzenGeraeusch = output&lt;<span class="hljs-built_in">string</span>&gt;();
+
+  <span class="hljs-function"><span class="hljs-title">wasMachenDieKatzen</span>(<span class="hljs-params"></span>)</span> {
+    katzenGeraeusch.emit(<span class="hljs-string">'Miau! 😸'</span>);
+
+    <span class="hljs-comment">// funktioniert nicht</span>
+    katzenGeraeusch.emit(<span class="hljs-literal">undefined</span>);
+  }
+}
+</code></pre>
+<p>Auf das Ereignis können wir wie bisher per Event Binding reagieren:</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">app-katzen</span> (<span class="hljs-attr">katzenGeraeusch</span>)=<span class="hljs-string">"handleEvent($event)"</span> /&gt;</span>
+</code></pre>
+<p>Bitte beachten Sie noch einmal, dass alle drei neuen Signal-APIs aktuell noch im Status <strong>Developer Preview</strong> sind.
+Wir erwarten aber bei dieser bereits sehr ausgereiften API keine fundamentalen Änderungen mehr. </p>
+<h3 id="outputs-von-observables">Outputs von Observables</h3>
+<p>Zusätzlich zur neuen Funktion <code>output()</code> bietet Angular die Funktion <a href="https://angular.dev/guide/signals/rxjs-interop#outputfromobservable"><code>outputFromObservable()</code></a>, welche einen nahtlosen Übergang vom Framework RxJS bereitstellt.
+Die neue Funktion wurde vom Angular-Team in einem <a href="https://blog.angular.dev/meet-angulars-new-output-api-253a41ffa13c">separaten Blogpost vorgestellt</a>. </p>
+<p>Wenn die Datenquelle ein Observable ist, kann man den Übergang zur neuen Output-API wie folgt durchführen:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { outputFromObservable } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core/rxjs-interop'</span>;
+
+<span class="hljs-meta">@Component</span>({…})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComp</span> </span>{
+  nameChange$ = <span class="hljs-keyword">new</span> Observable&lt;<span class="hljs-built_in">string</span>&gt;( … );
+  nameChange = outputFromObservable(<span class="hljs-built_in">this</span>.nameChange$);
+}
+</code></pre>
+<p>Der umgekehrte Weg ist ebenso mit <a href="https://angular.dev/guide/signals/rxjs-interop#outputtoobservable"><code>outputToObservable()</code></a> möglich.
+Benötigt man etwa die Ereignisse einer Kind-Komponente als Observable, so kann man auf ein Output wie folgt wieder zu einem RxJS-Datenstrom umwandeln.</p>
+<pre><code class="language-ts">import { outputToObservable } from '@angular/core/rxjs-interop';
+
+output<span class="hljs-constructor">ToObservable(<span class="hljs-params">this</span>.<span class="hljs-params">myComp</span>.<span class="hljs-params">instance</span>.<span class="hljs-params">onNameChange</span>)</span>
+  .pipe(…)
+  .subscribe(…);
+</code></pre>
+<p>Die Funktion <code>outputToObservable()</code> funktioniert übrigens nicht nur mit der neuen Output-API, sondern auch mit dem alten Output-Dekorator.</p>
+<h2 id="stabile-apis">Stabile APIs</h2>
+<p>Mit dem aktuellen Realease sind einige Developer Previews als stabil markiert worden:</p>
+<ul>
+<li>Das Framework <a href="https://material.angular.io/">Angular Material</a> 3 ist jetzt stabil.</li>
+<li>Die <a href="https://angular-buch.com/blog/2023-11-angular17#deferrable-views-mit-defer">Deferrable Views</a> (<code>@defer</code>) sind jetzt stabil</li>
+<li>Der <a href="https://angular-buch.com/blog/2023-11-angular17#neuer-control-flow-if-for-switch">Built-in Control Flow</a> (<code>@if</code>, <code>@for</code> und <code>@switch</code>) ist ebenso als stabil markiert worden.</li>
+</ul>
+<h2 id="automatische-migration-auf-den-neuen-application-builder">Automatische Migration auf den neuen Application Builder</h2>
+<p>Im Blogpost zu Angular 17 haben wir bereits den neuen <a href="https://angular-buch.com/blog/2023-11-angular17">Application Builder auf Basis von ESBuild</a> vorgestellt.
+Zu dem Zeitpunkt musste mussten man die Umstellung noch manuell durchführen.
+Dies ist nun nicht mehr notwendig, da folgender Befehl die Anwendung automatisch umstellt:</p>
+<pre><code class="language-sh">ng <span class="hljs-keyword">update</span> @angular/<span class="hljs-keyword">cli</span> --name <span class="hljs-keyword">use</span>-application-builder
+</code></pre>
+<h2 id="neuer-ordner-public-statt-assets">Neuer Ordner <code>public</code> statt <code>assets</code></h2>
+<p>Wenn Sie eine neue Anwendung mit <code>ng new</code> generieren, werden Sie bemerken, dass der Ordner <code>assets</code> nicht mehr vorhanden ist.
+Dieser wurde durch des neuen <code>public</code>-Ordner abgelöst.</p>
+<p>Vor Angular 18 wurde standardmäßig ein leerer Assets-Ordner bereitgestellt.
+Die Datei <code>favicon.ico</code> befand sich an einem anderen Ort:</p>
+<ul>
+<li><code>name-der-app/src/assets</code></li>
+<li><code>name-der-app/src/favicon.ico</code></li>
+</ul>
+<p>Dabei wird der gesamte Ordner <code>assets</code> berücksichtigt sowie die einzelne Datei <code>favicon.ico</code>.
+Die bisherige Konfiguration in der <code>angular.json</code> sieht so aus:</p>
+<pre><code class="language-json">{
+  <span class="hljs-attr">"projects"</span>: {
+    <span class="hljs-attr">"name-der-app"</span>: {
+      <span class="hljs-attr">"architect"</span>: {
+        <span class="hljs-attr">"build"</span>: {
+          <span class="hljs-attr">"assets"</span>: [
+            <span class="hljs-string">"src/favicon.ico"</span>,
+            <span class="hljs-string">"src/assets"</span>
+          ]
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<p>Speichern wir bei dieser Konfiguration ein Bild in den Ordner <code>assets</code>, so lässt sich das Bild so einbinden:</p>
+<pre><code class="language-html">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">"/assets/bild.png"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-string">""</span>&gt;
+</code></pre>
+<p>Mit Angular 18 finden wir nur noch folgende Datei:</p>
+<ul>
+<li><code>name-der-app/public/favicon.ico</code></li>
+</ul>
+<p>Die neue Konfiguration in der <code>angular.json</code> sieht hierbei so aus:</p>
+<pre><code class="language-json">{
+  <span class="hljs-attr">"projects"</span>: {
+    <span class="hljs-attr">"name-der-app"</span>: {
+      <span class="hljs-attr">"architect"</span>: {
+        <span class="hljs-attr">"build"</span>: {
+          <span class="hljs-attr">"assets"</span>: [
+            {
+              <span class="hljs-attr">"glob"</span>: <span class="hljs-string">"**/*"</span>,
+              <span class="hljs-attr">"input"</span>: <span class="hljs-string">"public"</span>
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<p>Legen wir bei dieser Konfiguration ein Bild in den <code>public</code>-Ordner ab, so lässt sich das Bild wie folgt einbinden:</p>
+<pre><code class="language-html">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">"/bild.png"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-string">""</span>&gt;
+</code></pre>
+<p>Wollen wir weiterhin das Bild per <code>&lt;img src="/assets/bild.png"&gt;</code> einbinden, so muss die vollständige Ordnerstruktur so aussehen. Der Ordner <code>assets</code> muss also in <code>public</code> platziert werden:</p>
+<ul>
+<li><code>name-der-app/public/assets/bild.png</code></li>
+</ul>
+<p>Für bestehende Anwendungen ändert sich nichts, die geänderte Ordnerstruktur wird nur bei neuen Apps erzeugt.</p>
+<h2 id="fazit">Fazit</h2>
+<p>Mit Angular 18 steht uns eine solide neue Version zur Verfügung, 
+die sich auf die Stabilisierung zuvor eingeführter APIs, 
+zahlreiche Detailverbesserungen und Bugfixes sowie eine Reihe äußerst hilfreicher APIs für den Umgang mit Signals konzentriert.</p>
+<p>Das Angular Team hat wieder einmal gezeigt, 
+wie kontinuierliche Innovation und die Berücksichtigung des Feedbacks aus der Community zu einem leistungsstarken und nutzungsfreundlichen Framework führen.</p>
+<p>Wir freuen uns darauf, diese neuen Features in unseren Projekten zu nutzen. 
+Ob Sie auf die verbesserte Zoneless Change Detection, 
+die stabilen APIs für Material 3, 
+die Deferrable Views oder den neuen Built-in Control Flow zugreifen – Angular 18 bietet zahlreiche Werkzeuge, 
+um moderne und elegante Anwendungen zu erstellen.</p>
+<hr>
+
+
+<p>Wir wünschen Ihnen viel Spaß mit Angular 18!
+Haben Sie Fragen zur neuen Version zu Angular oder zu unserem Buch? Schreiben Sie uns!</p>
+<p><strong>Viel Spaß wünschen
+Johannes, Danny und Ferdinand</strong></p>
+<hr>
+
+<p><small><strong>Titelbild:</strong> Blumenwiese bei Västerås, Schweden. Foto von Ferdinand Malcher</small></p>
+</p><!----><!----><a routerlink="/blog" ripple-radius="" class="btn btn-sm btn-primary mt-4" href="/blog"><i class="fa fa-backward mr-2"></i> Zurück</a><hr> Suggestions? Feedback? Bugs? Please <a target="_blank" class="content" href="https://github.com/angular-buch/website-articles/blob/gh-pages/blog/2024-06-angular18/README.md"><i class="fa fa-github mr-1" style="font-size: 1.6rem; position: relative; bottom: -3px;"></i>fork/edit this page on Github</a>. </div></div></div></div></div><!----></div><!----><!----></div></section><app-json-ld><script type="application/ld+json">{
+  "url": "https://angular.schule/blog/2024-06-angular18",
+  "headline": "Angular 18 ist da: Signals, Signals, Signals!",
+  "description": "In den letzten Versionen wurden viele neue Funktionen und Verbesserungen eingeführt.\nDiesmal lag der Fokus darauf, die bereits ausgelieferten APIs zu stabilisieren, diverse Feature Requests zu bearbeiten und eines der am meisten nachgefragten Projekte auf der Roadmap experimentell zu veröffentlichen: die Zoneless Change Detection.",
+  "datePublished": "2024-06-14",
+  "dateModified": "2024-06-14",
+  "publisher": {
+    "name": "Angular-Buch",
+    "url": "https://angular-buch.com",
+    "@type": "Organization",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://angular-buch.com/assets/img/brand_export.png"
+    }
+  },
+  "image": "https://website-articles.angular-buch.com/blog/2024-06-angular18/angular18.jpg",
+  "thumbnailUrl": "https://website-articles.angular-buch.com/blog/2024-06-angular18/angular18.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Angular Buch Team",
+    "email": "team@angular-buch.com"
+  },
+  "keywords": [
+    "Angular",
+    "Angular 18",
+    "Zoneless",
+    "Zoneless Change Detection",
+    "Signals",
+    "Material 3"
+  ],
+  "mainEntityOfPage": "http://schema.org/WebPage",
+  "@type": "Article",
+  "@context": "http://schema.org"
+}</script></app-json-ld></app-blog-details><!----><footer><div class="container"><div class="row align-items-center"><div class="col-sm-9"><div class="links"><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/"><!----> Home </a><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/impressum"><!----> Impressum </a><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/datenschutz"><!----> Datenschutzerklärung </a><!----><!----><!----></app-link>|<!----><app-link><!----><a class="links__item links__twitter" href="https://twitter.com/angular_buch" rel="nofollow"><!----> Twitter </a><!----><!----><!----><!----></app-link><!----><!----></div></div><div class="col-sm-3 text-right"></div></div></div></footer></main><app-json-ld><script type="application/ld+json"></script></app-json-ld></app-root>
+<link rel="modulepreload" href="chunk-QPWUODKJ.js"><link rel="modulepreload" href="chunk-YLMTQYNL.js"><link rel="modulepreload" href="chunk-KYS4TICJ.js"><script src="polyfills-LZBJRJJE.js" type="module"></script><script src="main-DAJPATZW.js" type="module"></script>
+
+</body></html>
