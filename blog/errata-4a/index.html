@@ -49,6 +49,22 @@ Das Beispielprojekt setzt jedoch zunächst auf NgModules und wird erst später a
 <pre><code class="language-sh">ng new book-monkey --routing <span class="hljs-attribute">--style</span>=css <span class="hljs-attribute">--prefix</span>=bm <span class="hljs-attribute">--standalone</span>=<span class="hljs-literal">false</span>
 </code></pre>
 <p>Übrigens: Die Option <code>routing</code> ist seit Angular 17 per Default aktiviert, sie muss also nicht mehr manuell mit angegeben werden.</p>
+<h3 id="53-statische-assets-einbinden">5.3 Statische Assets einbinden</h3>
+<p>Im Abschnitt 5.3 auf Seite 64 erläutern wir, dass statische Assets aus dem Ordner <code>src/assets</code> automatisch eingebunden werden.
+In neu angelegten Projekten existiert dieser Ordner nicht mehr. Stattdessen werden statische Dateien, die beim Build mit ausgeliefert werden sollen, im neuen Ordner <code>public</code> abgelegt.
+Wenn wir diese Dateien einbinden, muss der Ordnerpfad <strong>nicht</strong> mehr angegeben werden. Legen wir die Datei <code>icon.png</code> in den Ordner <code>public</code>, wird sie aus der Anwendung heraus wie folgt eingebunden:</p>
+<pre><code class="language-html">&lt;img <span class="hljs-attribute">src</span>=<span class="hljs-string">"icon.png"</span> <span class="hljs-attribute">alt</span>=<span class="hljs-string">"Icon"</span>&gt;
+</code></pre>
+<h3 id="55-import-in-scss-ist-deprecated">5.5 <code>@import</code> in SCSS ist deprecated</h3>
+<p>In Abschnitt 5.5 binden wir das Paket <code>book-monkey5-styles</code> ein, um die globalen Stylesheets zu nutzen.
+Dafür verwenden wir das Statement <code>@import</code> in der Datei <code>styles.css</code>.</p>
+<p>Wir haben im BookMonkey zwar reines CSS eingesetzt, für die Praxis empfehlen wir aber eher, auf den Präprozessor SCSS zu setzen.
+Dort funktioniert <code>@import</code> grundlegend auch – das Statement wurde allerdings als <em>deprecated</em> markiert. <code>@import</code> verweist in SCSS nur noch auf reine CSS-Imports.
+Arbeiten wir mit SCSS, wird <code>@use</code> empfohlen, um andere Dateien einzubinden.</p>
+<pre><code class="language-scss"><span class="hljs-comment">// styles.scss (!)</span>
+<span class="hljs-variable">@use</span> <span class="hljs-string">'book-monkey5-styles/index.css'</span>;
+</code></pre>
+<p>Nutzen wir nur reines CSS für das Styling der Anwendung, ist <code>@import</code> weiterhin möglich – Sie müssen für die Arbeit mit dem Buch hier also zunächst nichts ändern.</p>
 <h3 id="204-asynchroner-validator-und-methode-checkavailable">20.4 Asynchroner Validator und Methode <code>checkAvailable()</code></h3>
 <p>Im Abschnitt 20.4 entwickeln wir auf den Seiten 395 und 396 einen asynchronen Validator.
 Die Validatormethode haben wir im Listing 20-12 <code>usernameAvailable()</code> genannt.
