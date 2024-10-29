@@ -1,0 +1,376 @@
+<!DOCTYPE html><html lang="de" data-critters-container=""><head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#"><meta name="generator" content="Scully 0.0.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <title>Angular-Buch → Die neue Resource API von Angular</title>
+  
+
+  
+
+  <meta property="book:author" content="https://www.facebook.com/ferdinand.malcher">
+  <meta property="book:author" content="https://www.facebook.com/johannes.hoppe">
+
+  <meta property="book:isbn" content="9783864909467">
+  <meta property="book:release_date" content="2023-02-28">
+  <meta property="book:tag" content="Angular">
+  <meta property="book:tag" content="Webentwicklung">
+  <meta property="book:tag" content="AngularJS">
+  <meta property="book:tag" content="TypeScript">
+  <meta property="book:tag" content="JavaScript">
+  <meta property="book:tag" content="HTML5">
+  <meta property="book:tag" content="CSS">
+  <meta property="book:tag" content="RxJS">
+  <meta property="book:tag" content="Redux">
+  <meta property="book:tag" content="NgRx">
+
+  <base href="/">
+<style>@charset "UTF-8";@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0)}to{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}@font-face{font-family:Roboto;src:url("./media/Roboto-Thin-GAS35NAQ.eot");src:local("Roboto Thin"),local("Roboto-Thin"),url("./media/Roboto-Thin-GAS35NAQ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Thin-UUU7IP4L.woff2") format("woff2"),url("./media/Roboto-Thin-BT5WDCMC.woff") format("woff"),url("./media/Roboto-Thin-STLHGJGZ.ttf") format("truetype"),url("./media/Roboto-Thin-OYOYLS5N.svg#Roboto") format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-ThinItalic-HQCJJ3KQ.eot");src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url("./media/Roboto-ThinItalic-HQCJJ3KQ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-ThinItalic-PVCCLVHZ.woff2") format("woff2"),url("./media/Roboto-ThinItalic-OJCFQICS.woff") format("woff"),url("./media/Roboto-ThinItalic-OKVQEY6M.ttf") format("truetype"),url("./media/Roboto-ThinItalic-PU7U6F54.svg#Roboto") format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Light-TT7V6J7W.eot");src:local("Roboto Light"),local("Roboto-Light"),url("./media/Roboto-Light-TT7V6J7W.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Light-OEL5QP53.woff2") format("woff2"),url("./media/Roboto-Light-EGEOUPZ7.woff") format("woff"),url("./media/Roboto-Light-KYCYMX5R.ttf") format("truetype"),url("./media/Roboto-Light-O5NB3DZS.svg#Roboto") format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-LightItalic-JJ225GLJ.eot");src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url("./media/Roboto-LightItalic-JJ225GLJ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-LightItalic-SZU3UOEY.woff2") format("woff2"),url("./media/Roboto-LightItalic-5LJGTDBY.woff") format("woff"),url("./media/Roboto-LightItalic-ZTOFFLND.ttf") format("truetype"),url("./media/Roboto-LightItalic-FE5GYQJO.svg#Roboto") format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Regular-WINA5356.eot");src:local("Roboto Regular"),local("Roboto-Regular"),url("./media/Roboto-Regular-WINA5356.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Regular-4ZFX4XNS.woff2") format("woff2"),url("./media/Roboto-Regular-EMJ7NDAQ.woff") format("woff"),url("./media/Roboto-Regular-W6LM4ZNI.ttf") format("truetype"),url("./media/Roboto-Regular-DDBAS5OS.svg#Roboto") format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-RegularItalic-43QNLNAN.eot");src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url("./media/Roboto-RegularItalic-43QNLNAN.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-RegularItalic-2REFJECD.woff2") format("woff2"),url("./media/Roboto-RegularItalic-NSJ4HBKT.woff") format("woff"),url("./media/Roboto-RegularItalic-YZDJVEXU.ttf") format("truetype"),url("./media/Roboto-RegularItalic-7A3VJZ2J.svg#Roboto") format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Medium-TKOJIIN4.eot");src:local("Roboto Medium"),local("Roboto-Medium"),url("./media/Roboto-Medium-TKOJIIN4.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Medium-GHCC3HN6.woff2") format("woff2"),url("./media/Roboto-Medium-O2PKKQNT.woff") format("woff"),url("./media/Roboto-Medium-ANIBKV6W.ttf") format("truetype"),url("./media/Roboto-Medium-RJM2M5RS.svg#Roboto") format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-MediumItalic-5WUL7G7J.eot");src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url("./media/Roboto-MediumItalic-5WUL7G7J.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-MediumItalic-FMJUHMWQ.woff2") format("woff2"),url("./media/Roboto-MediumItalic-EJXCUUAA.woff") format("woff"),url("./media/Roboto-MediumItalic-ZZ274MH6.ttf") format("truetype"),url("./media/Roboto-MediumItalic-WUJRBJ2B.svg#Roboto") format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Bold-BUUHB5PB.eot");src:local("Roboto Bold"),local("Roboto-Bold"),url("./media/Roboto-Bold-BUUHB5PB.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Bold-NGAPMV26.woff2") format("woff2"),url("./media/Roboto-Bold-GE6V3ZS2.woff") format("woff"),url("./media/Roboto-Bold-5VUU6QI6.ttf") format("truetype"),url("./media/Roboto-Bold-UXMYHWKZ.svg#Roboto") format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-BoldItalic-ETKPZE3Z.eot");src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url("./media/Roboto-BoldItalic-ETKPZE3Z.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-BoldItalic-TBVJ3OTX.woff2") format("woff2"),url("./media/Roboto-BoldItalic-2CYTLDZJ.woff") format("woff"),url("./media/Roboto-BoldItalic-4MMIXUDR.ttf") format("truetype"),url("./media/Roboto-BoldItalic-TDTZWBKI.svg#Roboto") format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Black-FJBQ2JLX.eot");src:local("Roboto Black"),local("Roboto-Black"),url("./media/Roboto-Black-FJBQ2JLX.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Black-OEG2WEQ3.woff2") format("woff2"),url("./media/Roboto-Black-AZ2AXCB4.woff") format("woff"),url("./media/Roboto-Black-IGTRSQU4.ttf") format("truetype"),url("./media/Roboto-Black-OEOHVSYK.svg#Roboto") format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-BlackItalic-MXNS7VU5.eot");src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url("./media/Roboto-BlackItalic-MXNS7VU5.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-BlackItalic-6QYHVQZM.woff2") format("woff2"),url("./media/Roboto-BlackItalic-7QMDFEK5.woff") format("woff"),url("./media/Roboto-BlackItalic-XIXMO2HU.ttf") format("truetype"),url("./media/Roboto-BlackItalic-EYMGZCJW.svg#Roboto") format("svg");font-weight:900;font-style:italic}:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}img{vertical-align:middle;border-style:none}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}img{page-break-inside:avoid}@page{size:a3}body{min-width:992px!important}}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#f8f8f8}html{overflow-y:scroll}</style><link rel="stylesheet" href="styles-24WBZHAI.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-24WBZHAI.css"></noscript><meta property="og:title" content="Angular-Buch → Die neue Resource API von Angular"><meta name="twitter:title" content="Angular-Buch → Die neue Resource API von Angular"><meta name="description" content="📙 Eine interessante Neuerung mit Angular 19 ist die Resource API. Damit können wir intuitiv Daten laden und in Komponenten verarbeiten.
+In diesem Blogartikel stellen wir die Ideen der neuen Schnittstelle vor."><meta property="og:description" content="📙 Eine interessante Neuerung mit Angular 19 ist die Resource API. Damit können wir intuitiv Daten laden und in Komponenten verarbeiten.
+In diesem Blogartikel stellen wir die Ideen der neuen Schnittstelle vor."><meta name="twitter:description" content="📙 Eine interessante Neuerung mit Angular 19 ist die Resource API. Damit können wir intuitiv Daten laden und in Komponenten verarbeiten.
+In diesem Blogartikel stellen wir die Ideen der neuen Schnittstelle vor."><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/blog/2024-10-resource-api"><style>.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
+</style><style>.content img{max-width:100%}.details-page-autor{margin-top:-110px}.details-thumbnail{margin-bottom:-18px}.details-thumbnail .details-thumbnail-inner{border-bottom:23px solid #dfdede;max-height:300px;overflow:hidden;background-color:#fff;border-radius:4px;display:flex;justify-content:center}.details-thumbnail .details-thumbnail-inner .darken-overlay{display:block;position:absolute;height:300px;width:100%;padding-left:15px;padding-right:15px;padding-bottom:23px}.details-thumbnail .details-thumbnail-inner .darken-overlay div{display:block;position:relative;width:100%;height:100%;background-color:#0003;border-radius:4px 4px 0 0/4px 4px 0px 0px}.details-thumbnail img{width:100%;align-self:center}.video-container{position:relative;padding-bottom:56.25%;padding-top:0;height:0;overflow:hidden;margin-top:2rem;margin-bottom:2rem}.video-container iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;height:100%}
+</style><meta property="og:image" content="https://website-articles.angular-buch.com/blog/2024-10-resource-api/header-resource-api.jpg"><meta name="twitter:image" content="https://website-articles.angular-buch.com/blog/2024-10-resource-api/header-resource-api.jpg"><meta name="twitter:card" content="summary_large_image"><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+  <app-root ng-version="18.2.9"><header><div class="nav__overlay"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/" aria-label="Startseite" href="/"><img src="assets/img/brand-400.png" alt="Angular-Buch.com" height="40" width="126" class="img-fluid"></a></div><div class="col-6 col-md-10"><nav><ul><li><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/"><!----> Buch </a><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/blog" class="nav__current" aria-current="page"><!----> Blog </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/material"><!----> Begleitmaterial </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/kaufen"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-basket.svg" src="assets/img/symbol-basket.svg"><!----> Jetzt kaufen </a><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="//angular.schule/"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-group.svg" src="assets/img/symbol-group.svg"><!----> Schulungen </a><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" aria-label="Navigation" class="nav__toggle"><img src="assets/img/symbol-menu.svg" alt=""></a></div></div></div></header><main><router-outlet></router-outlet><app-blog-details><app-hero-header headline="Blog" headlinelink="/blog"><section class="hero hero--smaller"><div class="hero__lines"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;" href="/blog">Blog</a><!----><!----></h1></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list blog mt-n5"><div class="index__stripe index__stripe--list"><div class="container"><a name="post" id="post"></a><div class="row details-thumbnail"><div class="col-12"><div class="details-thumbnail-inner"><img alt="" class="img-fluid rounded ls-is-cached lazyloaded" data-src="https://website-articles.angular-buch.com/blog/2024-10-resource-api/header-resource-api.jpg" src="https://website-articles.angular-buch.com/blog/2024-10-resource-api/header-resource-api.jpg"><!----></div></div><!----></div><div class="row"><div class="col-12"><div class="index__item index__item--list"><div class="row align-items-top"><div class="col-12 col-sm-3 col-md-2 text-center details-page-autor"><img alt="" class="blog__portrait img-fluid rounded-circle lazyloaded" data-src="//www.gravatar.com/avatar/f8288b8ea201b010dff3b24198019cc3?size=200&amp;rating=pg&amp;d=mm" src="//www.gravatar.com/avatar/f8288b8ea201b010dff3b24198019cc3?size=200&amp;rating=pg&amp;d=mm"><span class="blog__author">Ferdinand Malcher <br><a target="_blank" class="twitter" href="https://twitter.com/fmalcher01"> @fmalcher01</a> &nbsp; <!----></span></div><div class="col-12 col-sm-9 col-md-10 col-lg-10"><h1 class="blog__headline">Die neue Resource API von Angular</h1><p class="blog__date">29.10.2024</p><p class="content markdown-body"><p>Eine interessante Neuerung mit Angular 19 ist die <em>Resource API</em>. Damit können wir intuitiv Daten laden und in Komponenten verarbeiten.
+In diesem Blogartikel stellen wir die Ideen der neuen Schnittstelle vor.</p>
+<blockquote>
+<p>⚠️ Bitte beachten Sie, dass die Resource API mit Angular 19 als <em>experimental</em> veröffentlicht wird. Die Syntax und Semantik der API können sich noch ändern.</p>
+</blockquote>
+<p>Eine Resource repräsentiert einen Datensatz, der asynchron geladen wird. Dabei geht es in der Regel um HTTP-Requests, die Daten von einem Server abrufen. Die Resource geht allerdings einen Schritt weiter als nur einen einfachen HTTP-Request auszuführen: Die Daten können jederzeit neu geladen oder sogar manuell überschrieben werden. Außerdem bietet die Resource eigenständig Informationen zum Ladestatus an. Alle Informationen und Daten werden als Signals ausgegeben, sodass bei Änderungen stets der aktuelle Wert zur Verfügung steht.</p>
+<h2 id="was-bisher-geschah-beispiel-ohne-resource">Was bisher geschah: Beispiel ohne Resource</h2>
+<p>Zur Einführung betrachten wir ein Szenario, das ganz klassisch und ohne die neue Resource API implementiert wird.</p>
+<p>Wir wollen in einer Komponente eine Liste von Büchern anzeigen, die per HTTP von einem Server geladen wird.
+Der dazu passende <code>BookStoreService</code> existiert bereits und wird per Dependency Injection angefordert. Die Methode <code>getAll()</code> im Service nutzt den <code>HttpClient</code> von Angular und gibt ein Observable zurück.</p>
+<p>In der Komponente benötigen wir ein Property <code>books</code>, das die Daten zwischenspeichert, um sie im Template anzuzeigen.
+Das Property wird ganz zeitgemäß mit einem Signal initialisiert.
+Im Konstruktor subscriben wir auf das von <code>getAll()</code> erzeugte Observable. Sobald die Buchliste vom Server eingetroffen ist, schreiben wir die Daten in das Signal <code>books</code>.</p>
+<pre><code class="language-ts"><span class="hljs-meta">@Component({ /* ... */ })</span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookListComponent</span> </span>{
+  <span class="hljs-keyword">private</span> bs = inject(BookStoreService);
+  books = signal&lt;Book[]&gt;([]);
+
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-keyword">this</span>.bs.getAll().subscribe(receivedBooks =&gt; {
+      <span class="hljs-keyword">this</span>.books.<span class="hljs-keyword">set</span>(receivedBooks);
+    });
+  }
+}
+</code></pre>
+<p>In der Regel wird es aber nicht bei diesem einfachen Szenario bleiben, sondern weitere Anforderungen kommen hinzu:</p>
+<ul>
+<li><strong>Auf Knopfdruck soll die Buchliste neu geladen werden.</strong> Dazu müssen wir in einer neuen Methode (z. B. <code>reloadList()</code>) den HTTP-Request erneut starten, subscriben, usw. – und somit den Code aus dem Konstruktor duplizieren.</li>
+<li><strong>Es sollen keine parallelen Requests ausgeführt werden.</strong> Wenn die Daten neu geladen werden sollen, während noch ein vorheriger Request läuft, soll dieser entweder abgebrochen werden oder der neue Request soll ignoriert werden.</li>
+<li><strong>Es soll ein Ladeindikator angezeigt werden.</strong> Dafür könnten wir ein Property <code>loading</code> einführen, das wir an den richtigen Stellen im Code auf <code>true</code> oder <code>false</code> setzen, um den Zustand zu erfassen.</li>
+<li><strong>Die Daten sollen lokal verändert/überschrieben werden.</strong> Dazu können wir zwar das Signal mit einem neuen Wert setzen – wir wissen aber anschließend nicht mehr, ob der aktuelle Wert lokal gesetzt oder vom Server geladen wurde.</li>
+<li><strong>Die Subscription soll beendet werden, wenn die Komponente zerstört wird.</strong> Dafür können wir z. B. den Operator <a href="https://angular.dev/api/core/rxjs-interop/takeUntilDestroyed"><code>takeUntilDestroyed()</code></a> verwenden oder auf eine andere Lösung mithilfe von RxJS zurückgreifen.</li>
+</ul>
+<p>All diese Aspekte lassen sich selbstverständlich mit moderatem Aufwand implementieren – aber wir müssen immer wieder ähnliche Schritte unternehmen, um zum Ziel zu kommen.
+Anstatt auf imperativen Stil zu setzen, wie in unserem Beispiel, können wir auch die Möglichkeiten der Bibliothek RxJS nutzen. Der Kern des Problems bleibt aber erhalten: Es ist vergleichsweise viel Aufwand nötig, um wiederkehrende alltägliche Aufgaben umzusetzen.</p>
+<p>Die neue Resource API soll diese Lücke schließen!</p>
+<h2 id="die-neue-resource-api">Die neue Resource API</h2>
+<p>Eine Resource repräsentiert einen Datensatz, der mithilfe eines Loaders geladen wird.
+Zur Initialisierung verwenden wir die Funktion <code>resource()</code>.
+Der hier übergebene Loader ist eine Funktion, die das asynchrone Laden der Daten durchführt.
+Dieser Loader wird übrigens sofort ausgeführt, sobald die Resource initialisiert wird.</p>
+<p>In der Dokumentation wird die Resource wie folgt beschrieben:</p>
+<blockquote>
+<p>A Resource is an asynchronous dependency (for example, the results of an API call) that is managed and delivered through signals.
+[It] projects a reactive request to an asynchronous operation defined by a loader function, which exposes the result of the loading operation via signals.</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { resource } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-comment">// ...</span>
+
+myResource = resource({
+  <span class="hljs-attr">loader</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-comment">/* Daten laden */</span>
+});
+</code></pre>
+<p>Interessanterweise erwartet der Loader zwingend eine Promise als Rückgabewert. Grundsätzlich spricht zwar nichts dagegen, dieses native Modell des Browsers zu verwenden. Bisher wurden jedoch in Angular bei asynchronen Operationen üblicherweise Observables und die Bibliothek RxJS eingesetzt.
+Angular bricht hier also bewährte Prinzipien und setzt stattdessen auf das native Konstrukt des Browsers.</p>
+<p>Um mit der Resource also einen HTTP-Request durchzuführen, gibt es drei Möglichkeiten:</p>
+<ul>
+<li>1.) Wir verwenden einen HTTP-Client, der Promises zurückgibt, z. B. das native <code>fetch()</code> oder die Bibliothek <code>axios</code>.</li>
+<li>2.) Wir verwenden die Funktion <code>firstValueFrom()</code> aus der Bibliothek RxJS. Sie wandelt ein Observable in eine Promise um, die das erste Element des Datenstroms ausgibt.</li>
+<li>3.) Wir verwenden eine <code>rxResource</code>, die ein Observable als Loader verwendet. Dazu später mehr!</li>
+</ul>
+<h3 id="variante-1-promises-und-die-native-fetch-api">Variante 1: Promises und die native Fetch API</h3>
+<p>Im <code>BookStoreService</code> verwenden wir die native Fetch API, sodass die Methode <code>getAll()</code> eine Promise zurückgibt. Im Loader können wir diese Promise direkt verwenden.</p>
+<pre><code class="language-ts"><span class="hljs-meta">@Injectable</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookStoreService</span> </span>{
+  <span class="hljs-comment">// ...</span>
+  getAll(): <span class="hljs-built_in">Promise</span>&lt;Book[]&gt; {
+    <span class="hljs-keyword">return</span> fetch(<span class="hljs-built_in">this</span>.apiUrl + <span class="hljs-string">'/books'</span>).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json());
+  }
+}
+</code></pre>
+<pre><code class="language-ts"><span class="hljs-regexp">//</span> Komponente
+booksResource = resource({
+  loader: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">this</span>.bs.getAll()
+});
+</code></pre>
+<h3 id="variante-2-observables-und-der-httpclient-von-angular">Variante 2: Observables und der <code>HttpClient</code> von Angular</h3>
+<p>Wir verwenden wie üblich den <code>HttpClient</code> von Angular, sodass die Methode <code>getAll()</code> ein Observable zurückgibt.
+Um den Loader zu definieren, müssen wir das Observable mithilfe von <code>firstValueFrom()</code> in eine Promise umwandeln.</p>
+<pre><code class="language-ts"><span class="hljs-meta">@Injectable({ /* ... */ })</span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookStoreService</span> </span>{
+  <span class="hljs-comment">// ...</span>
+  getAll(): Observable&lt;Book[]&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.http.<span class="hljs-keyword">get</span>&lt;Book[]&gt;(<span class="hljs-keyword">this</span>.apiUrl + <span class="hljs-string">'/books'</span>);
+  }
+}
+</code></pre>
+<pre><code class="language-ts"><span class="hljs-comment">// Komponente</span>
+booksResource = resource({
+  loader:<span class="hljs-function"> <span class="hljs-params">()</span> =&gt;</span> first<span class="hljs-constructor">ValueFrom(<span class="hljs-params">this</span>.<span class="hljs-params">bs</span>.<span class="hljs-params">getAll</span>()</span>)
+});
+</code></pre>
+<h2 id="auf-die-daten-zugreifen">Auf die Daten zugreifen</h2>
+<p>Der Loader wird sofort ausgeführt, sobald das Resource-Objekt initialisiert wird. Die Resource verarbeitet die Antwort und bietet folgende Signals an, um mit den Daten zu arbeiten:</p>
+<ul>
+<li><code>value</code>: geladene Daten, hier <code>Book[]</code></li>
+<li><code>status</code>: Zustand der Resource vom Typ <code>ResourceStatus</code>, z. B. <em>Resolved</em> oder <em>Loading</em>, siehe nächster Abschnitt</li>
+<li><code>error</code>: Fehler</li>
+</ul>
+<p>Die geladenen Bücher können wir also wir folgt im Template anzeigen:</p>
+<pre><code class="language-html"><span class="hljs-template-variable">{{ <span class="hljs-name">booksResource.value</span>() | json }}</span><span class="xml">
+
+@for(book of booksResource.value(); track book.isbn) {
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">book.title</span> }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+}</span>
+</code></pre>
+<h2 id="status-der-resource">Status der Resource</h2>
+<p>Mithilfe des Signals <code>status</code> können wir den Zustand der Resource auswerten, z. B. um einen Ladeindikator anzuzeigen. Alle Werte von <code>status</code> sind Felder aus dem <a href="https://next.angular.dev/api/core/ResourceStatus">Enum <code>ResourceStatus</code></a>:</p>
+<table>
+<thead>
+<tr>
+<th>Status aus <code>ResourceStatus</code></th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Idle</code></td>
+<td>Es ist kein Request definiert und es wird nichts geladen. <code>value()</code> ist <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>Error</code></td>
+<td>Das Laden ist fehlgeschlagen. <code>value()</code> ist <code>undefined</code>.</td>
+</tr>
+<tr>
+<td><code>Loading</code></td>
+<td>Die Resource lädt gerade.</td>
+</tr>
+<tr>
+<td><code>Reloading</code></td>
+<td>Die Resource lädt gerade neu, nachdem das Neuladen mit <code>reload()</code> angefordert wurde.</td>
+</tr>
+<tr>
+<td><code>Resolved</code></td>
+<td>Das Laden ist abgeschlossen.</td>
+</tr>
+<tr>
+<td><code>Local</code></td>
+<td>Der Wert wurde lokal überschrieben.</td>
+</tr>
+</tbody></table>
+<p>Für einen Ladeindikator könnten wir den Zustand z. B. in einem Computed Signal verarbeiten und ein Boolean zurückgeben, wenn die Resource gerade lädt:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { resource, computed, ResourceStatus } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-regexp">//</span> ...
+
+isLoading = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">this</span>.booksResource.status() === ResourceStatus.Loading);
+</code></pre>
+<pre><code class="language-html"><span class="hljs-keyword">@if</span> (isLoading()) {
+  &lt;<span class="hljs-selector-tag">div</span>&gt;LOADING&lt;/<span class="hljs-selector-tag">div</span>&gt;
+}
+</code></pre>
+<p>Damit alle Fälle erfasst werden, müssen wir hier aber auch den Zustand <code>Reloading</code> berücksichtigen.
+Mit dem mitgelieferten Property <code>isLoading</code> ist das schnell gelöst: Dieses Signal gibt <code>true</code> aus, wenn sich die Resource im Zustand <code>Loading</code> oder <code>Reloading</code> befindet:</p>
+<pre><code class="language-html"><span class="hljs-keyword">@if</span> (booksResource.isLoading()) {
+  &lt;<span class="hljs-selector-tag">div</span>&gt;LOADING&lt;/<span class="hljs-selector-tag">div</span>&gt;
+}
+</code></pre>
+<h2 id="resource-neu-laden">Resource neu laden</h2>
+<p>Eine Resource besitzt die Methode <code>reload()</code>.
+Beim Aufruf wird intern die Loader-Funktion erneut ausgeführt, und die Daten werden neu geladen.
+Das Ergebnis steht anschließend wieder im Signal <code>value</code> zur Verfügung.</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">"reloadList()"</span>&gt;</span>Reload book list<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre>
+<pre><code class="language-ts"><span class="hljs-meta">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookListComponent</span> </span>{
+  booksResource = resource({ <span class="hljs-comment">/* ... */</span> });
+
+  <span class="hljs-function"><span class="hljs-title">reloadList</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-built_in">this</span>.booksResource.reload();
+  }
+}
+</code></pre>
+<p>Die Resource stellt sicher, dass stets nur ein einziger Request gleichzeitig ausgeführt wird.
+Das Neuladen ist erst möglich, wenn der vorherige Ladevorgang abgeschlossen ist.
+Dieses Verhalten kann man im <a href="https://github.com/angular/angular/blob/19.0.0-next.11/packages/core/src/resource/resource.ts#L170-L176">Quellcode von Angular</a> gut nachvollziehen.</p>
+<h2 id="wert-lokal-überschreiben">Wert lokal überschreiben</h2>
+<p>Die Resource bietet die Möglichkeit, den Wert lokal zu überschreiben.
+Das Signal <code>value</code> ist ein <code>WritableSignal</code> und bietet die bekannten Methoden <code>set()</code> und <code>update()</code> an.</p>
+<p>Wir wollen die Buchliste lokal sortieren, z. B. auf Knopfdruck mit Sortierung nach dem Rating der Bücher.
+In der Methode können wir nach erfolgter Sortierung den Wert des Signals <code>value</code> direkt überschreiben.</p>
+<pre><code class="language-ts"><span class="hljs-meta">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookListComponent</span> </span>{
+  booksResource = resource({ <span class="hljs-comment">/* ... */</span> });
+
+  <span class="hljs-function"><span class="hljs-title">sortBookListLocally</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">const</span> currentBookList = <span class="hljs-built_in">this</span>.booksResource.value();
+
+    <span class="hljs-keyword">if</span> (currentBookList) {
+      <span class="hljs-keyword">const</span> sortedList = currentBookList.toSorted(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> b.rating - a.rating);
+      <span class="hljs-built_in">this</span>.booksResource.value.set(sortedList);
+    }
+  }
+}
+</code></pre>
+<p>Wir möchten auf zwei Besonderheiten in diesem Code hinweisen:</p>
+<ul>
+<li>Das Signal <code>value</code> liefert den Typ <code>T | undefined</code>, in unserem Fall also <code>Book[] | undefined</code>. Solange die Daten noch nicht geladen wurden, ist der Wert also <code>undefined</code>. Deshalb ist hier eine Prüfung nötig, ob <code>currentBookList</code> überhaupt existiert. Es wäre wünschenswert, wenn man der Resource einen Startwert übergeben kann, sodass <code>undefined</code> entfällt.</li>
+<li>Anstelle von <code>Array.sort()</code> verwenden wir die neue Methode <code>Array.toSorted()</code>, die das Array unverändert lässt und eine sortierte Kopie zurückgibt. So bleibt die Immutability gewahrt. <code>toSorted()</code> kann nur verwendet werden, wenn die Option <code>lib</code> in der <code>tsconfig.json</code> mindestens den Eintrag <code>ES2023</code> enthält – aktuell ist das in neuen Angular-Projekten noch nicht der Fall.</li>
+</ul>
+<h2 id="request-loader-mit-parameter"><code>request</code>: Loader mit Parameter</h2>
+<p>Unsere Anwendung soll eine Detailseite besitzen, auf der immer genau ein Buch angezeigt wird.
+Für den HTTP-Request muss also die Information übergeben werden, welches Buch jeweils geladen werden soll.
+Beim Wechsel auf eine andere Detailseite soll das Laden erneut angestoßen werden – aber für ein anderes Buch.</p>
+<p>Der Loader muss also mit Parametern arbeiten können.
+Dazu gehen wir davon aus, dass die Komponente ein Input-Property <code>isbn</code> besitzt, über das die aktuelle ISBN stets verfügbar ist.</p>
+<p>Im Loader könnten wir nun das Signal <code>this.isbn</code> verwenden, um die ISBN an den Service zu übergeben:</p>
+<pre><code class="language-ts"><span class="hljs-meta">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookDetailsComponent</span> </span>{
+  isbn = input.<span class="hljs-keyword">required</span>&lt;string&gt;();
+
+  bookResource = resource({
+    <span class="hljs-comment">// ACHTUNG: Wird nur einmalig ausgeführt!</span>
+    loader: () =&gt; <span class="hljs-keyword">this</span>.bs.getSingle(<span class="hljs-keyword">this</span>.isbn())
+  });
+}
+</code></pre>
+<p>Dieser Code funktioniert grundlegend – aber nur ein einziges Mal! Die Loader-Funktion ist <em>untracked</em>. Das bedeutet, dass der Loader bei einer Änderung der darin verwendeten Signals nicht erneut ausgeführt wird (wie es bei <code>effect()</code> oder <code>computed()</code> der Fall wäre).</p>
+<p>Um dieses Problem zu lösen, können wir das Property <code>request</code> verwenden: Hier übergeben wir ein Signal. Immer wenn dieses Signal seinen Wert ändert, wird der Loader automatisch neu ausgeführt.</p>
+<p>Der Request stellt also die Parameter bereit, mit denen der Loader ausgeführt wird.</p>
+<pre><code class="language-ts"><span class="hljs-meta">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookDetailsComponent</span> </span>{
+  isbn = input.<span class="hljs-keyword">required</span>&lt;string&gt;();
+
+  bookResource = resource({
+    request: <span class="hljs-keyword">this</span>.isbn,
+    loader: () =&gt; <span class="hljs-keyword">this</span>.bs.getSingle(<span class="hljs-keyword">this</span>.isbn())
+  });
+}
+</code></pre>
+<p>Um den Loader nun etwas generischer und wiederverwendbarer zu gestalten, können wir auf die direkte Verwendung von <code>this.isbn()</code> verzichten.
+Der Rückgabewert von <code>request</code> wird praktischerweise als Argument an die Loader-Funktion übergeben.
+Auf diese Weise könnte man den Loader auch in eine separate Funktion auslagern und in anderen Resources erneut einsetzen.</p>
+<p>Der Loader erhält automatisch ein Argument vom Typ <code>ResourceLoaderParams</code>, das ein Property <code>request</code> besitzt. Darin befindet sich in unserem Beispiel die ISBN, die vom Request zurückgegeben wird.</p>
+<pre><code class="language-ts"><span class="hljs-meta">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookDetailsComponent</span> </span>{
+  isbn = input.required&lt;<span class="hljs-built_in">string</span>&gt;();
+
+  bookResource = resource({
+    <span class="hljs-attr">request</span>: <span class="hljs-built_in">this</span>.isbn,
+    <span class="hljs-attr">loader</span>: <span class="hljs-function">(<span class="hljs-params">{ request }</span>) =&gt;</span> <span class="hljs-built_in">this</span>.bs.getSingle(request)
+  });
+}
+</code></pre>
+<blockquote>
+<p><strong>Routenparameter mit Component Input Binding:</strong> Damit das Input-Property <code>isbn</code> automatisch mit der aktuellen ISBN aus dem Routenparameter befüllt wird, können wir die Funktionalität <a href="https://netbasal.com/binding-router-information-to-routed-component-inputs-in-angular-78ee92f63e64"><em>Component Input Binding</em></a> des Routers nutzen.</p>
+</blockquote>
+<h2 id="rxresource-resource-mit-observables"><code>rxResource</code>: Resource mit Observables</h2>
+<p>In allen bisherigen Beispielen haben wir die Loader-Funktion mithilfe von Promises implementiert. Die Fetch API des Browsers gibt eine Promise zurück, und die Funktion <code>firstValueFrom()</code> aus der Bibliothek RxJS hat uns geholfen, eine Promise aus dem Observable zu erstellen, das der <code>HttpClient</code> von Angular erzeugt.</p>
+<p>Auch wenn Angular durch die Einführung von Signals an vielen Stellen nicht mehr direkt auf Observables setzt, haben die Möglichkeiten der reaktiven Programmierung mit RxJS für viele Szenarien weiterhin ihre Berechtigung.
+Angular bietet deshalb die Funktion <code>rxResource</code> an. Sie funktioniert genauso wie <code>resource</code>, die Loader-Funktion gibt allerdings ein Observable zurück.
+Wir können die Observables aus dem <code>HttpClient</code> auf diese Weise also direkt verwenden.</p>
+<pre><code class="language-ts"><span class="hljs-meta">@Injectable({ /* ... */ })</span>
+export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookStoreService</span> </span>{
+  <span class="hljs-comment">// ...</span>
+  getAll(): Observable&lt;Book[]&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.http.<span class="hljs-keyword">get</span>&lt;Book[]&gt;(<span class="hljs-keyword">this</span>.apiUrl + <span class="hljs-string">'/books'</span>);
+  }
+}
+</code></pre>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { rxResource } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core/rxjs-interop'</span>;
+<span class="hljs-regexp">//</span> ...
+
+booksResource = rxResource({
+  loader: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">this</span>.bs.getAll()
+});
+</code></pre>
+<h2 id="laufende-requests-abbrechen">Laufende Requests abbrechen</h2>
+<p>Die Resource bietet die Möglichkeit, einen laufenden Request abzubrechen, sobald ein neuer gestartet wird.
+Besonders bei Loadern mit Parameter (in unserem Beispiel die ISBN auf der Detailseite) ist es wichtig, dass nur der zuletzt angefragte Datensatz verarbeitet wird.</p>
+<p>Die <code>rxResource</code> verwaltet diese Mechanik ganz eigenständig, denn ein Observable stellt eine direkte Schnittstelle zum Abbrechen des Requests bereit.</p>
+<p>Für einen Loader auf Basis von Promises ist das Beenden etwas komplizierter.
+Der Loader erhält in seinem Parameter-Objekt auch ein sogenanntes <code>AbortSignal</code>.
+Das ist ein natives Objekt des Browsers, das Auskunft gibt, wann der Request beendet werden soll.</p>
+<p>Zusammen mit der nativen Fetch API lässt sich dieses Objekt direkt verwenden.
+Liegt in <code>this.isbn</code> eine neue ISBN vor, während der Loader noch lädt, wird der laufende Fetch Request abgebrochen.</p>
+<pre><code class="language-ts"><span class="hljs-meta">@Component</span>({ <span class="hljs-comment">/* ... */</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookDetailsComponent</span> </span>{
+  isbn = input.required&lt;<span class="hljs-built_in">string</span>&gt;();
+
+  bookResource = resource({
+    <span class="hljs-attr">request</span>: <span class="hljs-built_in">this</span>.isbn,
+    <span class="hljs-attr">loader</span>: <span class="hljs-function">(<span class="hljs-params">{ abortSignal }</span>) =&gt;</span> fetch(
+      detailsUrl + <span class="hljs-string">'/'</span> + <span class="hljs-built_in">this</span>.isbn(),
+      <span class="hljs-attr">signal</span>: abortSignal
+    )
+  });
+}
+</code></pre>
+<p>Nutzen wir den <code>HttpClient</code> von Angular und die Funktion <code>firstValueFrom</code>, ist das Beenden sehr umständlich – wir müssten das <code>AbortSignal</code> in ein Observable umwandeln, um den Operator <code>takeUntil</code> zum Beenden des Datenstroms einzusetzen. In diesem Fall empfehlen wir unbedingt, die <code>rxResource</code> zu verwenden.</p>
+<p>Übrigens sorgt die Resource auch dafür, dass beim Beenden der Komponente der laufende Request gestoppt wird.</p>
+<h2 id="fazit">Fazit</h2>
+<p>Mit der neuen Resource API bietet Angular eine intuitive und gut integrierte Schnittstelle an, um Daten vom Server zu laden.
+Anwendungsfälle, die über einen einfachen HTTP-Request hinausgehen, insbesondere wiederholtes Laden und Anzeige eines Ladeindikators, können mit der Resource schnell umgesetzt werden.
+Bisher war dafür viel manueller Aufwand nötig.</p>
+<p>Wir begrüßen, dass Angular hier ein häufiges Alltagsproblem adressiert. Die Lösung deckt die meisten Anwendungsfälle zuverlässig ab und sorgt für eine standardisierte Herangehensweise – nur bei Anforderungen, die über die gegebenen Funktionen hinausgehen, wird künftig eine eigene Implementierung notwendig sein.</p>
+<p>Damit macht Angular einen weiteren Schritt, um Signals im Framework zu etablieren. Die Notwendigkeit, RxJS und Observables für einfache Aufgaben zu verwenden, wird weiter reduziert.</p>
+<p>Die Resource API ist in Angular 19 ein experimenteller Baustein! Die Schnittstelle und das Verhalten können sich noch ändern, und es können Bugs auftreten.
+Bitte probieren Sie das neue Tool trotzdem schon einmal aus! Das Feedback aus der Community ist wichtig, um die Schnittstelle vor dem finalen Release noch weiter zu verbessern.</p>
+<p>Fraglich ist, welche Rolle der <code>HttpClient</code> von Angular in Zukunft spielen wird. Mit dem Einsatz von Promises ermutigt Angular, für HTTP-Kommunikation auf die native Fetch API zu setzen. Wünschenswert wäre, dass der <code>HttpClient</code> und die neue Resource nahtlos miteinander arbeiten. Denkbar wäre beispielsweise, dass der <code>HttpClient</code> direkt eine Resource zurückgibt, ohne den sichtbaren Umweg über ein Observable oder eine Promise zu gehen.
+Die neue Schnittstelle ist aber aus unserer Sicht eine gute Basis – und wir sind gespannt, was in Zukunft folgt!</p>
+<hr>
+<small>Vielen Dank an Johannes Hoppe und Danny Koppenhagen für Review und Feedback.</small>
+
+<p><small><strong>Titelbild:</strong> Foto von <a href="https://unsplash.com/de/@thepaintedsquarejessica">Jessica Lewis 🦋 thepaintedsquare</a> auf <a href="https://unsplash.com/de/fotos/geschnittene-erdbeeren-auf-blaugrunem-keramikteller-15nvaBz_doc">Unsplash</a> (bearbeitet)
+  </small></p>
+</p><!----><!----><a routerlink="/blog" ripple-radius="" class="btn btn-sm btn-primary mt-4" href="/blog"><i class="fa fa-backward mr-2"></i> Zurück</a><hr> Suggestions? Feedback? Bugs? Please <a target="_blank" class="content" href="https://github.com/angular-buch/website-articles/blob/gh-pages/blog/2024-10-resource-api/README.md"><i class="fa fa-github mr-1" style="font-size: 1.6rem; position: relative; bottom: -3px;"></i>fork/edit this page on Github</a>. </div></div></div></div></div><!----></div><!----><!----></div></section><app-json-ld><script type="application/ld+json">{
+  "url": "https://angular.schule/blog/2024-10-resource-api",
+  "headline": "Die neue Resource API von Angular",
+  "description": "Eine interessante Neuerung mit Angular 19 ist die Resource API. Damit können wir intuitiv Daten laden und in Komponenten verarbeiten.\nIn diesem Blogartikel stellen wir die Ideen der neuen Schnittstelle vor.",
+  "datePublished": "2024-10-29",
+  "dateModified": "2024-10-29",
+  "publisher": {
+    "name": "Angular-Buch",
+    "url": "https://angular-buch.com",
+    "@type": "Organization",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://angular-buch.com/assets/img/brand_export.png"
+    }
+  },
+  "image": "https://website-articles.angular-buch.com/blog/2024-10-resource-api/header-resource-api.jpg",
+  "thumbnailUrl": "https://website-articles.angular-buch.com/blog/2024-10-resource-api/header-resource-api.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Ferdinand Malcher",
+    "email": "ferdinand@malcher.media"
+  },
+  "keywords": [
+    "Resource API",
+    "Promise",
+    "Observable",
+    "resource",
+    "rxResource",
+    "Fetch API"
+  ],
+  "mainEntityOfPage": "http://schema.org/WebPage",
+  "@type": "Article",
+  "@context": "http://schema.org"
+}</script></app-json-ld></app-blog-details><!----><footer><div class="container"><div class="row align-items-center"><div class="col-sm-9"><div class="links"><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/"><!----> Home </a><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/impressum"><!----> Impressum </a><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/datenschutz"><!----> Datenschutzerklärung </a><!----><!----><!----></app-link>|<!----><app-link><!----><a class="links__item links__twitter" href="https://twitter.com/angular_buch" rel="nofollow"><!----> Twitter </a><!----><!----><!----><!----></app-link><!----><!----></div></div><div class="col-sm-3 text-right"></div></div></div></footer></main><app-json-ld><script type="application/ld+json"></script></app-json-ld></app-root>
+<link rel="modulepreload" href="chunk-FIKIVGWR.js"><link rel="modulepreload" href="chunk-WNU5PAVJ.js"><link rel="modulepreload" href="chunk-3LXSCLZC.js"><link rel="modulepreload" href="chunk-WXI33M2S.js"><link rel="modulepreload" href="chunk-U5SBU3PM.js"><link rel="modulepreload" href="chunk-JB3SQ3DO.js"><link rel="modulepreload" href="chunk-5ET3TVH7.js"><script src="polyfills-SCHOHYNV.js" type="module"></script><script src="main-ZWEBWJZH.js" type="module"></script>
+
+</body></html>
