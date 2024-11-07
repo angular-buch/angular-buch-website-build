@@ -1,0 +1,345 @@
+<!DOCTYPE html><html lang="de" data-critters-container=""><head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#"><meta name="generator" content="Scully 0.0.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <title>Angular-Buch → Angular 19: LinkedSignal für eine lokale reaktive Zustandsverwaltung</title>
+  
+
+  
+
+  <meta property="book:author" content="https://www.facebook.com/ferdinand.malcher">
+  <meta property="book:author" content="https://www.facebook.com/johannes.hoppe">
+
+  <meta property="book:isbn" content="9783864909467">
+  <meta property="book:release_date" content="2023-02-28">
+  <meta property="book:tag" content="Angular">
+  <meta property="book:tag" content="Webentwicklung">
+  <meta property="book:tag" content="AngularJS">
+  <meta property="book:tag" content="TypeScript">
+  <meta property="book:tag" content="JavaScript">
+  <meta property="book:tag" content="HTML5">
+  <meta property="book:tag" content="CSS">
+  <meta property="book:tag" content="RxJS">
+  <meta property="book:tag" content="Redux">
+  <meta property="book:tag" content="NgRx">
+
+  <base href="/">
+<style>@charset "UTF-8";@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0)}to{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}@font-face{font-family:Roboto;src:url("./media/Roboto-Thin-GAS35NAQ.eot");src:local("Roboto Thin"),local("Roboto-Thin"),url("./media/Roboto-Thin-GAS35NAQ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Thin-UUU7IP4L.woff2") format("woff2"),url("./media/Roboto-Thin-BT5WDCMC.woff") format("woff"),url("./media/Roboto-Thin-STLHGJGZ.ttf") format("truetype"),url("./media/Roboto-Thin-OYOYLS5N.svg#Roboto") format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-ThinItalic-HQCJJ3KQ.eot");src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url("./media/Roboto-ThinItalic-HQCJJ3KQ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-ThinItalic-PVCCLVHZ.woff2") format("woff2"),url("./media/Roboto-ThinItalic-OJCFQICS.woff") format("woff"),url("./media/Roboto-ThinItalic-OKVQEY6M.ttf") format("truetype"),url("./media/Roboto-ThinItalic-PU7U6F54.svg#Roboto") format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Light-TT7V6J7W.eot");src:local("Roboto Light"),local("Roboto-Light"),url("./media/Roboto-Light-TT7V6J7W.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Light-OEL5QP53.woff2") format("woff2"),url("./media/Roboto-Light-EGEOUPZ7.woff") format("woff"),url("./media/Roboto-Light-KYCYMX5R.ttf") format("truetype"),url("./media/Roboto-Light-O5NB3DZS.svg#Roboto") format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-LightItalic-JJ225GLJ.eot");src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url("./media/Roboto-LightItalic-JJ225GLJ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-LightItalic-SZU3UOEY.woff2") format("woff2"),url("./media/Roboto-LightItalic-5LJGTDBY.woff") format("woff"),url("./media/Roboto-LightItalic-ZTOFFLND.ttf") format("truetype"),url("./media/Roboto-LightItalic-FE5GYQJO.svg#Roboto") format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Regular-WINA5356.eot");src:local("Roboto Regular"),local("Roboto-Regular"),url("./media/Roboto-Regular-WINA5356.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Regular-4ZFX4XNS.woff2") format("woff2"),url("./media/Roboto-Regular-EMJ7NDAQ.woff") format("woff"),url("./media/Roboto-Regular-W6LM4ZNI.ttf") format("truetype"),url("./media/Roboto-Regular-DDBAS5OS.svg#Roboto") format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-RegularItalic-43QNLNAN.eot");src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url("./media/Roboto-RegularItalic-43QNLNAN.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-RegularItalic-2REFJECD.woff2") format("woff2"),url("./media/Roboto-RegularItalic-NSJ4HBKT.woff") format("woff"),url("./media/Roboto-RegularItalic-YZDJVEXU.ttf") format("truetype"),url("./media/Roboto-RegularItalic-7A3VJZ2J.svg#Roboto") format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Medium-TKOJIIN4.eot");src:local("Roboto Medium"),local("Roboto-Medium"),url("./media/Roboto-Medium-TKOJIIN4.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Medium-GHCC3HN6.woff2") format("woff2"),url("./media/Roboto-Medium-O2PKKQNT.woff") format("woff"),url("./media/Roboto-Medium-ANIBKV6W.ttf") format("truetype"),url("./media/Roboto-Medium-RJM2M5RS.svg#Roboto") format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-MediumItalic-5WUL7G7J.eot");src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url("./media/Roboto-MediumItalic-5WUL7G7J.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-MediumItalic-FMJUHMWQ.woff2") format("woff2"),url("./media/Roboto-MediumItalic-EJXCUUAA.woff") format("woff"),url("./media/Roboto-MediumItalic-ZZ274MH6.ttf") format("truetype"),url("./media/Roboto-MediumItalic-WUJRBJ2B.svg#Roboto") format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Bold-BUUHB5PB.eot");src:local("Roboto Bold"),local("Roboto-Bold"),url("./media/Roboto-Bold-BUUHB5PB.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Bold-NGAPMV26.woff2") format("woff2"),url("./media/Roboto-Bold-GE6V3ZS2.woff") format("woff"),url("./media/Roboto-Bold-5VUU6QI6.ttf") format("truetype"),url("./media/Roboto-Bold-UXMYHWKZ.svg#Roboto") format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-BoldItalic-ETKPZE3Z.eot");src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url("./media/Roboto-BoldItalic-ETKPZE3Z.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-BoldItalic-TBVJ3OTX.woff2") format("woff2"),url("./media/Roboto-BoldItalic-2CYTLDZJ.woff") format("woff"),url("./media/Roboto-BoldItalic-4MMIXUDR.ttf") format("truetype"),url("./media/Roboto-BoldItalic-TDTZWBKI.svg#Roboto") format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Black-FJBQ2JLX.eot");src:local("Roboto Black"),local("Roboto-Black"),url("./media/Roboto-Black-FJBQ2JLX.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Black-OEG2WEQ3.woff2") format("woff2"),url("./media/Roboto-Black-AZ2AXCB4.woff") format("woff"),url("./media/Roboto-Black-IGTRSQU4.ttf") format("truetype"),url("./media/Roboto-Black-OEOHVSYK.svg#Roboto") format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-BlackItalic-MXNS7VU5.eot");src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url("./media/Roboto-BlackItalic-MXNS7VU5.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-BlackItalic-6QYHVQZM.woff2") format("woff2"),url("./media/Roboto-BlackItalic-7QMDFEK5.woff") format("woff"),url("./media/Roboto-BlackItalic-XIXMO2HU.ttf") format("truetype"),url("./media/Roboto-BlackItalic-EYMGZCJW.svg#Roboto") format("svg");font-weight:900;font-style:italic}:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}img{vertical-align:middle;border-style:none}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}img{page-break-inside:avoid}@page{size:a3}body{min-width:992px!important}}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#f8f8f8}html{overflow-y:scroll}</style><link rel="stylesheet" href="styles-3YLH2KJ7.css" media="all" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-3YLH2KJ7.css"></noscript><meta property="og:title" content="Angular-Buch → Angular 19: LinkedSignal für eine lokale reaktive Zustandsverwaltung"><meta name="twitter:title" content="Angular-Buch → Angular 19: LinkedSignal für eine lokale reaktive Zustandsverwaltung"><meta name="description" content="📙 Mit Angular 19 wurde ein neues experimentelles Feature vorgestellt: das Linked Signal. Es erleichtert die Verwaltung von lokalem Zustand in Verbindung mit anderen Signals. Bei dem Linked Signal handelt sich um ein beschreibbares Signal, das automatisch zurückgesetzt wird, wenn sich andere Signals ändern. Dies ist besonders nützlich, wenn wir lokale Zustände mit dynamischen Daten synchronisieren wollen.
+In diesem Blogpost stellen wir vor, was ein Linked Signal ist, wie es funktioniert und in welchen Anwendungsfällen es sinnvoll eingesetzt werden kann."><meta property="og:description" content="📙 Mit Angular 19 wurde ein neues experimentelles Feature vorgestellt: das Linked Signal. Es erleichtert die Verwaltung von lokalem Zustand in Verbindung mit anderen Signals. Bei dem Linked Signal handelt sich um ein beschreibbares Signal, das automatisch zurückgesetzt wird, wenn sich andere Signals ändern. Dies ist besonders nützlich, wenn wir lokale Zustände mit dynamischen Daten synchronisieren wollen.
+In diesem Blogpost stellen wir vor, was ein Linked Signal ist, wie es funktioniert und in welchen Anwendungsfällen es sinnvoll eingesetzt werden kann."><meta name="twitter:description" content="📙 Mit Angular 19 wurde ein neues experimentelles Feature vorgestellt: das Linked Signal. Es erleichtert die Verwaltung von lokalem Zustand in Verbindung mit anderen Signals. Bei dem Linked Signal handelt sich um ein beschreibbares Signal, das automatisch zurückgesetzt wird, wenn sich andere Signals ändern. Dies ist besonders nützlich, wenn wir lokale Zustände mit dynamischen Daten synchronisieren wollen.
+In diesem Blogpost stellen wir vor, was ein Linked Signal ist, wie es funktioniert und in welchen Anwendungsfällen es sinnvoll eingesetzt werden kann."><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/blog/2024-11-linked-signal"><style>.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
+</style><style>.content img{max-width:100%}.details-page-autor{margin-top:-110px}.details-thumbnail{margin-bottom:-18px}.details-thumbnail .details-thumbnail-inner{border-bottom:23px solid #dfdede;max-height:300px;overflow:hidden;background-color:#fff;border-radius:4px;display:flex;justify-content:center}.details-thumbnail .details-thumbnail-inner .darken-overlay{display:block;position:absolute;height:300px;width:100%;padding-left:15px;padding-right:15px;padding-bottom:23px}.details-thumbnail .details-thumbnail-inner .darken-overlay div{display:block;position:relative;width:100%;height:100%;background-color:#0003;border-radius:4px 4px 0 0/4px 4px 0px 0px}.details-thumbnail img{width:100%;align-self:center}.video-container{position:relative;padding-bottom:56.25%;padding-top:0;height:0;overflow:hidden;margin-top:2rem;margin-bottom:2rem}.video-container iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;height:100%}
+</style><meta property="og:image" content="https://website-articles.angular-buch.com/blog/2024-11-linked-signal/linkedsignal.jpg"><meta name="twitter:image" content="https://website-articles.angular-buch.com/blog/2024-11-linked-signal/linkedsignal.jpg"><meta name="twitter:card" content="summary_large_image"><script>window['ScullyIO']='generated';</script></head>
+<body scully-version="0.0.0">
+  <app-root ng-version="18.2.11"><header><div class="nav__overlay"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/" aria-label="Startseite" href="/"><img src="assets/img/brand-400.png" alt="Angular-Buch.com" height="40" width="126" class="img-fluid"></a></div><div class="col-6 col-md-10"><nav><ul><li><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/"><!----> Buch </a><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/blog" class="nav__current" aria-current="page"><!----> Blog </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/material"><!----> Begleitmaterial </a><!----><!----><!----></app-link></li><li><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/kaufen"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-basket.svg" src="assets/img/symbol-basket.svg"><!----> Jetzt kaufen </a><!----><!----><!----></app-link></li><li><app-link><!----><a class="order" href="//angular.schule/"><img alt="" class="linkImage ls-is-cached lazyloaded" data-src="assets/img/symbol-group.svg" src="assets/img/symbol-group.svg"><!----> Schulungen </a><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" aria-label="Navigation" class="nav__toggle"><img src="assets/img/symbol-menu.svg" alt=""></a></div></div></div></header><main><router-outlet></router-outlet><app-blog-details><app-hero-header headline="Blog" headlinelink="/blog"><section class="hero hero--smaller"><div class="hero__lines"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;" href="/blog">Blog</a><!----><!----></h1></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list blog mt-n5"><div class="index__stripe index__stripe--list"><div class="container"><a name="post" id="post"></a><div class="row details-thumbnail"><div class="col-12"><div class="details-thumbnail-inner"><img alt="" class="img-fluid rounded ls-is-cached lazyloaded" data-src="https://website-articles.angular-buch.com/blog/2024-11-linked-signal/linkedsignal.jpg" src="https://website-articles.angular-buch.com/blog/2024-11-linked-signal/linkedsignal.jpg"><!----></div></div><!----></div><div class="row"><div class="col-12"><div class="index__item index__item--list"><div class="row align-items-top"><div class="col-12 col-sm-3 col-md-2 text-center details-page-autor"><img alt="" class="blog__portrait img-fluid rounded-circle lazyloaded" data-src="//www.gravatar.com/avatar/6a5959f52e095fd1295739672c0781a2?size=200&amp;rating=pg&amp;d=mm" src="//www.gravatar.com/avatar/6a5959f52e095fd1295739672c0781a2?size=200&amp;rating=pg&amp;d=mm"><span class="blog__author">Johannes Hoppe and Ferdinand Malcher <!----></span></div><div class="col-12 col-sm-9 col-md-10 col-lg-10"><h1 class="blog__headline">Angular 19: LinkedSignal für eine lokale reaktive Zustandsverwaltung</h1><p class="blog__date">07.11.2024</p><p class="content markdown-body"><p>Mit Angular 19 wurde ein <a href="https://github.com/angular/angular/commit/8311f00faaf282d1a5b1ddca29247a2fba94a692">neues experimentelles Feature</a> vorgestellt: das <strong>Linked Signal</strong>. Es erleichtert die Verwaltung von lokalem Zustand in Verbindung mit anderen Signals. Bei dem Linked Signal handelt sich um ein beschreibbares Signal, das automatisch zurückgesetzt wird, wenn sich andere Signals ändern. Dies ist besonders nützlich, wenn wir lokale Zustände mit dynamischen Daten synchronisieren wollen.
+In diesem Blogpost stellen wir vor, was ein Linked Signal ist, wie es funktioniert und in welchen Anwendungsfällen es sinnvoll eingesetzt werden kann.</p>
+<h2 id="inhalt">Inhalt</h2>
+<ul>
+<li><a href="/blog/2024-11-linked-signal#was-ist-ein-linked-signal">Was ist ein Linked Signal?</a></li>
+<li><a href="/blog/2024-11-linked-signal#grundlegende-nutzung-von-linked-signal">Grundlegende Nutzung von Linked Signal</a></li>
+<li><a href="/blog/2024-11-linked-signal#fortgeschrittene-szenarien-fuer-linked-signals">Fortgeschrittene Szenarien für Linked Signals</a></li>
+<li><a href="/blog/2024-11-linked-signal#linked-signal-vs-andere-signals">Linked Signal und andere Signals</a></li>
+<li><a href="/blog/2024-11-linked-signal#best-practices-f%C3%BCr-die-nutzung-von-linked-signals">Best Practices für die Nutzung von Linked Signals</a></li>
+<li><a href="/blog/2024-11-linked-signal#demo-anwendung">Demo-Anwendung</a></li>
+<li><a href="/blog/2024-11-linked-signal#fazit">Fazit</a></li>
+</ul>
+<blockquote>
+<p><strong>🇬🇧 This article is available in English language here: <a href="https://angular.schule/blog/2024-11-linked-signal">Angular 19: Introducing LinkedSignal for Responsive Local State Management</a></strong></p>
+</blockquote>
+<h2 id="was-ist-ein-linked-signal">Was ist ein Linked Signal?</h2>
+<p>Das Linked Signal wurde als neues experimentelles Feature von Angular 19 vorgestellt.
+Es soll die Arbeit mit Zuständen erleichtern, die mit anderen Signals synchronisiert werden müssen.
+Kurz gesagt: Wir erhalten ein beschreibbares Signal, dessen Wert automatisch neu berechnet wird, sobald sich der Wert seines Quellsignals ändert.
+Ein Linked Signal kann mit der Factory-Funktion <a href="https://next.angular.dev/api/core/linkedSignal"><code>linkedSignal()</code></a> erzeugt werden.</p>
+<p>Ein Linked Signal hat die folgenden Eigenschaften:</p>
+<ul>
+<li><strong>Schreibbar und reaktiv</strong>: Der Wert kann manuell aktualisiert werden (wie mit der Funktion <a href="https://angular.dev/guide/signals#writable-signals"><code>signal</code></a>). Das Linked Signal reagiert aber auch auf Änderungen von der Quelle.</li>
+<li><strong>Eine Kombination aus Signal und Computed</strong>: Es funktioniert wie ein Signal, das mit <a href="https://angular.dev/guide/signals#computed-signals"><code>computed</code></a> erstellt wurde, denn der Wert wird von anderen Signals abgeleitet. Dabei bleibt es aber beschreibbar, sodass wir den Wert bei Bedarf manuell neu setzen können.</li>
+</ul>
+<p>Dadurch bieten Linked Signals eine flexible Möglichkeit zur Verwaltung von Zuständen, die sich an Änderungen in zugehörigen Signalen anpassen – aber bei Bedarf auch direkt gesteuert werden können.
+Um das Linked Signal besser kennenzulernen, betrachten wir das folgende Beispiel, in dem <code>linkedSignal</code> und <code>computed</code> miteinander verglichen werden:</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { computed, linkedSignal } from <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-keyword">const</span> timestampMs = signal(Date.now());
+
+<span class="hljs-comment">// computed(): Signal (nicht überschreibbar)</span>
+<span class="hljs-keyword">const</span> timestampSeconds = computed(() =&gt; timestampMs() / <span class="hljs-number">1000</span>);
+timestampSeconds.<span class="hljs-keyword">set</span>(<span class="hljs-number">0</span>); <span class="hljs-comment">// ❌ Fehler</span>
+
+<span class="hljs-comment">// linkedSignal(): WritableSignal</span>
+<span class="hljs-keyword">const</span> timestampSecondsLinked = linkedSignal(() =&gt; timestampMs() / <span class="hljs-number">1000</span>);
+timestampSecondsLinked.<span class="hljs-keyword">set</span>(<span class="hljs-number">0</span>); <span class="hljs-comment">// ✅ funktioniert</span>
+</code></pre>
+<p>Die beiden Funktionen <code>computed()</code> und <code>linkedSignal()</code> sehen auf den ersten Blick sehr ähnlich aus: 
+Beide erhalten eine <em>Computation Function</em>, die das Ergebnis des Signals neu berechnet, wenn sich eines der gebundenen Signals (hier: <code>timestampMs</code>) ändert.
+Der wesentliche Unterschied ist der Rückgabewert:
+Während <code>computed()</code> ein reines <code>Signal</code> zurückgibt, das nur lesbar ist, erzeugt die neue Funktion <code>linkedSignal()</code> ein <code>WritableSignal</code>.</p>
+<p>Das bedeutet, dass wir den Wert bei Bedarf mit <code>set()</code> und <code>update()</code> überschreiben können.
+Ein Signal, das mit <code>computed()</code> erstellt wurde, bietet diese Schnittstelle nicht an.</p>
+<p>Im ersten Beispiel haben wir die <strong>Kurzschreibweise</strong> für das Linked Signal verwendet. Es ist aber auch möglich, die Berechnung in eine separate Funktion auszulagern. 
+Der Wert des Signals aus <code>source</code> wird dann automatisch an die Berechnungsfunktion <code>computation</code> übergeben.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> timestampMs = <span class="hljs-keyword">signal</span><span class="hljs-string"></span>(<span class="hljs-built_in">Date</span>.now());
+
+<span class="hljs-keyword">const</span> timestampSecondsLinked = linkedSignal({
+  <span class="hljs-attribute">source</span>: timestampMs,
+  <span class="hljs-attribute">computation</span>: ms =&gt; ms / <span class="hljs-number">1000</span>
+});
+</code></pre>
+<p>Ob das ausführlichere Options-Objekt mit <code>source</code> und <code>computation</code> oder die Kurzschreibweise verwendet werden sollte, hängt vom Anwendungsfall und persönlichen Geschmack ab. 
+Beide gezeigten Beispiele für <code>timestampSecondsLinked</code> haben genau das gleiche Verhalten. 
+In komplexeren Fällen kann eine separate Berechnungsfunktion den Code jedoch leichter verständlich und lesbarer machen.</p>
+<h2 id="grundlegende-nutzung-von-linked-signal">Grundlegende Nutzung von Linked Signal</h2>
+<p>Wir schauen uns ein umfangreicheres Beispiel an:
+Unsere Komponente <code>BookListComponent</code> hält eine Liste von Büchern im Signal <code>books</code>.
+Anschließend verwenden wir ein Linked Signal, um das <em>erste Buch</em> in der Liste zu ermitteln.
+Wir haben uns entschieden, die ausführliche Notation mit einem Optionsobjekt zu verwenden. 
+Die separate <em>Computation Function</em> macht den Code lesbarer im Vergleich zu einer einzeiligen Funktion, die Quelle und Berechnung vereint.</p>
+<p>Immer wenn sich die Liste der Bücher ändert (dies geschieht in unserem Beispiel durch die Methode <code>changeBookList()</code>), berechnet das Signal <code>firstBook</code> seinen Wert automatisch neu, und das neu ermittelte erste Buch wird angezeigt.
+Bis hierhin hätten wir dafür auch ein Computed Signal verwenden können.
+Das Linked Signal macht es aber nun möglich, den Wert in der Methode <code>overrideFirstBook()</code> manuell zu überschreiben.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Component, linkedSignal, signal } from <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-meta">@Component({
+  selector: <span class="hljs-string">'app-book-list'</span>,
+  template: `
+    &lt;p&gt;First book in list: {{ firstBook() }}&lt;/p&gt;
+    &lt;button (click)=<span class="hljs-string">"changeBookList()"</span>&gt;Change Book List&lt;/button&gt;`
+})</span>
+export <span class="hljs-keyword">class</span> <span class="hljs-title class_">BookListComponent</span> {
+  books = signal([<span class="hljs-string">'Angular'</span>, <span class="hljs-string">'React'</span>, <span class="hljs-string">'Vue'</span>]);
+
+  firstBook = linkedSignal({
+    source: <span class="hljs-keyword">this</span>.books,
+    computation: books =&gt; books[<span class="hljs-number">0</span>]
+  });
+
+  <span class="hljs-comment">// Alternativ: Kurzschreibweise</span>
+  <span class="hljs-comment">// firstBook = linkedSignal(() =&gt; this.books()[0]);</span>
+
+  overrideFirstBook() {
+    <span class="hljs-comment">// Manuelles Update von `firstBook`, gibt jetzt 'jQuery' zurück</span>
+    <span class="hljs-keyword">this</span>.firstBook.<span class="hljs-keyword">set</span>(<span class="hljs-string">'jQuery'</span>);
+  }
+
+  changeBookList() {
+    <span class="hljs-comment">// Änderungen an `books` bewirken, dass `firstBook` zurückgesetzt wird.</span>
+    <span class="hljs-comment">// Der Rückgabewert ist dann wieder 'Next.js'</span>
+    <span class="hljs-keyword">this</span>.books.<span class="hljs-keyword">set</span>([<span class="hljs-string">'Next.js'</span>, <span class="hljs-string">'Svelte'</span>, <span class="hljs-string">'Nuxt'</span>]);
+  }
+}
+</code></pre>
+<p>In diesem Beispiel geschieht Folgendes:</p>
+<ul>
+<li>Das Linked Signal <code>firstBook</code> zeigt zunächst auf das erste Buch in der Liste der <code>books</code>.</li>
+<li>Wir können den Wert jederzeit manuell überschreiben, wie bei dem Buch „jQuery“ zu erkennen ist.</li>
+<li>Wenn sich <code>books</code> ändert, wird <code>firstBook</code> neu berechnet, um den ersten Eintrag in der aktualisierten Liste wiederzugeben.</li>
+</ul>
+<p>Das Signal enthält immer den neuesten Wert: Entweder wird er manuell durch <code>set()</code>/<code>update()</code> gesetzt oder er wird von der Berechnungsfunktion ermittelt, wenn sich das gebundene Signal ändert.</p>
+<h3 id="anwendungsfall-mit-input-signals">Anwendungsfall mit Input-Signals</h3>
+<p>Ein häufiger Anwendungsfall für ein Linked Signal ist eine Komponente, die sich basierend auf einem Input-Signal zurücksetzt.<br>Ein gutes Beispiel dafür ist eine Warenkorb-Komponente (hier: <code>ShoppingCartComponent</code>).
+Sie besitzt ein Eingabefeld für die Menge, das zurückgesetzt werden soll, wenn sich das ausgewählte Produkt ändert.
+Wir könnten ein solches Ergebnis zwar auch mit <code>computed()</code> erzielen, allerdings wollen wir die Menge zusätzlich durch das Formular verändern können.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Component, input, linkedSignal } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'app-shopping-cart'</span>,
+  template: `<span class="language-javascript">
+    &lt;p&gt;<span class="hljs-title class_">Book</span>: {{ <span class="hljs-title function_">selectedBook</span>().<span class="hljs-property">title</span> }}&lt;/p&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">"amount"</span>&gt;</span></span></span>`,
+  imports: [FormsModule]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ShoppingCartComponent</span> {
+  selectedBook = input.required&lt;Book&gt;();
+  amount = linkedSignal({
+    source: this.selectedBook,
+     <span class="hljs-regexp">//</span> Auf <span class="hljs-number">1</span> zurücksetzen, wenn sich selectedBook ändert
+    computation: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-number">1</span>
+  });
+}
+</code></pre>
+<p>In diesem Fall wird der Wert von <code>amount</code> stets auf <code>1</code> zurückgesetzt, wenn sich <code>selectedBook</code> ändert.<br>Das <code>&lt;input&gt;</code>-Feld im Template spiegelt diese Änderung wider und setzt sich ebenfalls auf 1 zurück.<br>Dieses Muster ist nützlich für Formulare, die in ihren Ausgangszustand zurückgesetzt werden sollen, sobald bestimmte Signals geändert werden.</p>
+<p>Für diesen Anwendungsfall ist die <strong>Langschreibweise</strong> mit <code>source</code> und <code>computation</code> der eleganteste Weg:
+Wir sind nicht am tatsächlichen Wert von <code>selectedBook</code> interessiert.
+Stattdessen möchten wir den Wert jedes Mal auf <code>1</code> zurücksetzen, wenn sich <code>selectedBook</code> ändert.
+Aus diesem Grund haben wir <code>source</code> und <code>computation</code> getrennt und nicht die Kurzschreibweise verwendet.</p>
+<h2 id="fortgeschrittene-szenarien-für-linked-signals">Fortgeschrittene Szenarien für Linked Signals</h2>
+<h3 id="nested-state-management">Nested State Management</h3>
+<p>Wir wollen ein weiteres Beispiel betrachten, in dem wieder die Buch-Entität verwendet wird. In dieser Komponente arbeiten wir mit zwei Eigenschaften des Buchs: <code>title</code> und <code>rating</code>.
+Diese Felder sollen zurückgesetzt und neu berechnet werden, wenn ein anderes Buch über ein Input-Signal ausgewählt wird.
+So könnte man dies mit einem Linked Signal umsetzen:</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Component, computed, input, linkedSignal } from <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-meta">@Component({
+  selector: <span class="hljs-string">'app-book'</span>,
+  template: `
+    &lt;p&gt;Title: {{ title() }}&lt;/p&gt;
+    &lt;p&gt;Rating: {{ rating() }}&lt;/p&gt;
+
+    &lt;button (click)=<span class="hljs-string">"doRateUp()"</span>&gt;Rate up&lt;/button&gt;
+  `,
+})</span>
+export <span class="hljs-keyword">class</span> <span class="hljs-title class_">BookComponent</span>  {
+  book = input.required&lt;Book&gt;();
+  ratingChange = output&lt;{ isbn: string, newRating: number }&gt;();
+
+  title = computed(() =&gt; <span class="hljs-keyword">this</span>.book().title);
+  rating = linkedSignal(() =&gt; <span class="hljs-keyword">this</span>.book().rating);
+
+  <span class="hljs-comment">// Alternativ: Langschreibweise</span>
+  <span class="hljs-comment">/*rating = linkedSignal({
+    source: this.book,
+    computation: book =&gt; book.rating,
+  });*/</span>
+
+  doRateUp() {
+    <span class="hljs-keyword">const</span> newRating = <span class="hljs-keyword">this</span>.rating() + <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">this</span>.rating.<span class="hljs-keyword">set</span>(newRating);
+
+    <span class="hljs-keyword">this</span>.ratingChange.emit({ 
+      isbn: <span class="hljs-keyword">this</span>.book().isbn,
+      newRating
+    });
+  }
+}
+</code></pre>
+<p>Die Eigenschaften <code>title</code> und <code>rating</code> werden aus dem Quellsignal <code>book</code> abgeleitet. Ihre Werte werden automatisch neu berechnet, wenn sich <code>book</code> ändert.
+Während das Linked Signal sicherstellt, dass die Daten bei Bedarf zurückgesetzt werden, können wir den lokalen Zustand weiterhin direkt aktualisieren.
+In diesem Beispiel verändern wir die Bewertung lokal. Anschließend übermitteln wir die Änderung an die übergeordnete Komponente, indem das Event <code>ratingChange</code> ausgelöst wird.
+Da wir <code>title</code> in dieser Komponente nicht manuell ändern müssen, reicht hier ein Computed Signal aus.</p>
+<p>Wir haben uns für die Kurzschreibweise für das Linked Signal entschieden, weil die Berechnung sehr einfach ist.
+Außerdem sehen die Zeilen mit <code>computed()</code> und <code>linkedSignal()</code> sehr ähnlich aus, was die Lesbarkeit erhöht.
+Je nach Geschmack ist aber auch die Langschreibweise möglich.</p>
+<h3 id="daten-vom-server-auf-der-client-seite-bearbeiten">Daten vom Server auf der Client-Seite bearbeiten</h3>
+<p>Ein Linked Signal ist auch bei der Arbeit mit Daten vom Server hilfreich, die lokal bearbeitet werden sollen.
+In dem folgenden Beispiel wollen wir Daten von einer HTTP-API laden.
+Der <code>BookStoreService</code> nutzt dafür den <code>HttpClient</code> von Angular.
+Die Quelle der Daten ist somit ein Observable, das nicht direkt editierbar ist. Als zusätzliche Anforderung haben wir aber genau diesen Wunsch: Wir wollen die Daten ohne Umwege direkt lokal editieren. Hierfür bietet sich das Linked Signal an:</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Component, inject, linkedSignal } from <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { BookStoreService } from <span class="hljs-string">'./book-store.service'</span>;
+
+<span class="hljs-meta">@Component({
+  selector: <span class="hljs-string">'app-dashboard'</span>,
+  template: `
+    @for (b of books(); track b.isbn) {
+      &lt;app-book
+        (ratingChange)=<span class="hljs-string">"handleRatingChange(<span class="hljs-variable">$event</span>.isbn, <span class="hljs-variable">$event</span>.newRating)"</span>
+        [book]=<span class="hljs-string">"b"</span>
+      /&gt;
+    } 
+
+    &lt;button (click)=<span class="hljs-string">"changeOrder()"</span>&gt;Change order (locally)&lt;/button&gt;
+  `,
+})</span>
+export <span class="hljs-keyword">class</span> <span class="hljs-title class_">DashboardComponent</span> {
+  <span class="hljs-keyword">private</span> bookStore = inject(BookStoreService);
+
+  books = linkedSignal(
+    toSignal(<span class="hljs-keyword">this</span>.bookStore.getAllBooks(), { initialValue: [] })
+  );
+
+  changeOrder() {
+    <span class="hljs-keyword">this</span>.books.update(books =&gt; books.toReversed());
+  }
+
+  handleRatingChange(isbn: string, newRating: number) {
+    <span class="hljs-keyword">this</span>.books.update(books =&gt;
+      books.map(b =&gt; {
+        <span class="hljs-comment">// falls es sich um das zu aktualisierende Buch handelt, </span>
+        <span class="hljs-comment">// setzen wir das neue Rating</span>
+        <span class="hljs-keyword">if</span> (b.isbn === isbn) {
+          <span class="hljs-keyword">return</span> { ...b, rating: newRating };
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-comment">// alle anderen Bücher in der Liste bleiben unverändert</span>
+          <span class="hljs-keyword">return</span> b;
+        }
+      })
+    );
+  }
+}
+</code></pre>
+<p>In diesem Beispiel enthält <code>books</code> die Daten, die vom Server geladen wurden.<br>Normalerweise würden wir <code>toSignal()</code> verwenden, um das Observable in ein Signal umzuwandeln.
+Mit <code>toSignal()</code> allein könnten wir die abgerufenen Daten jedoch nicht nachträglich bearbeiten – dazu müssten wir das Observable dazu bringen, ein neues Element auszugeben.</p>
+<p>Da wir aber ein Linked Signals verwendet haben, können wir die Daten trotzdem lokal überschreiben.
+Wird die Quelle zurückgesetzt (z. B. bei einem Neuladen der Daten vom Server) werden die neu geladenen Daten verwendet.</p>
+<p>Wir haben hier die Kurzschreibweise für <code>linkedSignal()</code> verwendet und das Signal von <code>toSignal()</code> direkt übergeben, denn wir möchten lediglich die Quelle in ein Linked Signal umwandeln. 
+Die lange Schreibweise mit einer separaten Funktion zur Berechnung ist nicht erforderlich.</p>
+<p>Zusätzlich haben wir in diesem Beispiel zwei weitere Anforderungen aufgenommen, die die Komplexität ein wenig erhöhen sollen:
+Wenn die Methode <code>changeOrder()</code> aufgerufen wird, ändern wir die Reihenfolge der Bücherliste.
+Zusätzlich behandeln wir das Event <code>ratingChange</code> aus dem vorherigen Beispiel.<br>Die zugehörige Methode <code>handleRatingChange()</code> nimmt den Identifikator <code>isbn</code> und das neue Rating entgegen und ersetzt das alte Buchobjekt durch eine aktualisierte Kopie.  </p>
+<p>Um das Ganze abzurunden, könnte man auch die Buchdaten ändern und den aktualisierten Zustand an den Server zurücksenden – aber diese Aufgabe überlassen wir unseren Leserinnen und Lesern. 😉</p>
+<blockquote>
+<p>ℹ️ <strong>Wussten Sie schon?</strong> In Version 19 von Angular wurde zusätzlich die neue experimentelle <strong>Resource API</strong> eingeführt. Sie ermöglicht das asynchrone Laden von Daten und das Auslesen des Ladestatus, wobei das Signal für die Daten lokal beschreibbar bleibt.<br>Wir haben die Resource API in einem separaten Blogbeitrag vorgestellt: <strong><a href="https://angular-buch.com/blog/2024-10-resource-api">Die neue Resource API von Angular</a></strong></p>
+</blockquote>
+<h2 id="linked-signal-und-andere-signals">Linked Signal und andere Signals</h2>
+<p>Abschließend noch ein kurzer Vergleich mit anderen Arten von Signals:</p>
+<ul>
+<li><strong><code>signal()</code></strong>: Erzeugt ein Signal, das beschreibbar ist und seinen Wert unabhängig von anderen Signals beibehält. Es hat einen Startwert, welcher mit <code>set()</code> und <code>update()</code> überschrieben werden kann.</li>
+<li><strong><code>computed()</code></strong>: Erzeugt ein schreibgeschütztes Signal, das seinen Wert von anderen Signals ableitet und automatisch neu berechnet. Es lässt aber keine manuellen Änderungen zu.</li>
+<li><strong><code>linkedSignal()</code></strong>: Kombiniert die Reaktivität von <code>computed()</code> mit der Veränderbarkeit von <code>signal()</code>. Der Wert kann manuell aktualisiert werden, während er weiterhin mit einem Quellsignal gekoppelt bleibt.</li>
+</ul>
+<p>Wir empfehlen, <code>linkedSignal()</code> nur für Zustände zu verwenden, die aufgrund von konkreter Abhängigkeiten zurückgesetzt werden sollen.
+Nutzen Sie weiterhin <code>computed()</code> für abgeleitete Daten, die nicht überschrieben werden müssen.</p>
+<h2 id="best-practices-für-die-nutzung-von-linked-signals">Best Practices für die Nutzung von Linked Signals</h2>
+<p>Hier sind einige Tipps für die optimale Nutzung von Linked Signals:</p>
+<ul>
+<li><strong>Berechnungsfunktionen einfach halten</strong>: Vermeiden Sie komplexe Berechnungen in der Computation Function, um zyklische Abhängigkeiten zu vermeiden und den Code besser verständlich zu halten.<br>Führt eine Berechnung zu einem zyklischen Zugriff auf sich selbst, stoppt Angular die Ausführung mit dieser Fehlermeldung: <a href="https://github.com/angular/angular/blob/7d0ba0cac85220cbbe4044667a51e5b95512f5d6/packages/core/primitives/signals/src/computed.ts#L114">"Detected cycle in computations."</a></li>
+<li><strong>Nutzung zum Zurücksetzen</strong>: <code>linkedSignal()</code> ist ideal für Fälle, in denen ein Zustand basierend auf einem bestimmten Signal zurückgesetzt werden soll, z. B. das Leeren eines Formularfelds, wenn ein neues Element ausgewählt wird.<br>Wenn der Wert nicht durch ein Formular verändert werden soll, ist <code>computed()</code> die bessere Wahl.</li>
+<li><strong>Effects für komplexe Szenarien in Betracht ziehen</strong>: Wenn mehrere Signals auf eine einzige Änderung reagieren sollen, kann die Nutzung von <code>effect()</code> übersichtlicher und effizienter sein, als mehrere Signals mit <code>linkedSignal()</code> zu erstellen.</li>
+</ul>
+<h2 id="demo-anwendung">Demo-Anwendung</h2>
+<p>Um Linked Signals direkt in Aktion zu sehen, haben wir eine Demo-Anwendung auf  erstellt, die alle in diesem Artikel besprochenen Beispiele zeigt.
+Der erste Link führt zum Quellcode auf GitHub.
+Der zweite Link öffnet eine Online-Demo der Anwendung, die Sie direkt ausprobieren können.
+Schließlich bietet der dritte Link eine interaktive Demo auf StackBlitz, in der Sie den Quellcode bearbeiten und die Ergebnisse in Echtzeit sehen können.</p>
+<blockquote>
+<p><strong><a href="https://github.com/angular-schule/demo-linked-signal">1️⃣ Quelltext auf GitHub: demo-linked-signal</a></strong><br><strong><a href="https://angular-schule.github.io/demo-linked-signal/">2️⃣ Demo der Anwendung</a></strong><br><strong><a href="https://stackblitz.com/github/angular-schule/demo-linked-signal?file=src%2Fapp%2Fbooks%2Fdashboard%2Fdashboard.component.ts">3️⃣ StackBlitz Demo</a></strong>  </p>
+</blockquote>
+<h2 id="fazit">Fazit</h2>
+<p>Das Linked Signal von Angular 19 bietet eine praktische Lösung zur Verwaltung von lokalem State, der mit anderen Signals synchronisiert werden soll. 
+Dieses neue Feature schließt die Lücke zwischen <code>signal()</code> und <code>computed()</code> und bietet eine neue Möglichkeit, komplexe reaktive Frontends zu gestalten.
+Probieren Sie doch <code>linkedSignal()</code> einmal in Ihrem Angular-Projekt aus!
+<strong>⚠️ Bitte bedenken Sie, dass diese API noch experimentell ist und sich Details durch Feedback aus der Community drastisch verändern können.</strong></p>
+<hr>
+
+<p><small>Vielen Dank an Danny Koppenhagen für das Review und das wertvolle Feedback!</small></p>
+<p><small><strong>Titelbild:</strong> generiert mit Adobe Firefly</small></p>
+</p><!----><!----><a routerlink="/blog" ripple-radius="" class="btn btn-sm btn-primary mt-4" href="/blog"><i class="fa fa-backward mr-2"></i> Zurück</a><hr> Suggestions? Feedback? Bugs? Please <a target="_blank" class="content" href="https://github.com/angular-buch/website-articles/blob/gh-pages/blog/2024-11-linked-signal/README.md"><i class="fa fa-github mr-1" style="font-size: 1.6rem; position: relative; bottom: -3px;"></i>fork/edit this page on Github</a>. </div></div></div></div></div><!----></div><!----><!----></div></section><app-json-ld><script type="application/ld+json">{
+  "url": "https://angular.schule/blog/2024-11-linked-signal",
+  "headline": "Angular 19: LinkedSignal für eine lokale reaktive Zustandsverwaltung",
+  "description": "Mit Angular 19 wurde ein neues experimentelles Feature vorgestellt: das Linked Signal. Es erleichtert die Verwaltung von lokalem Zustand in Verbindung mit anderen Signals. Bei dem Linked Signal handelt sich um ein beschreibbares Signal, das automatisch zurückgesetzt wird, wenn sich andere Signals ändern. Dies ist besonders nützlich, wenn wir lokale Zustände mit dynamischen Daten synchronisieren wollen.\nIn diesem Blogpost stellen wir vor, was ein Linked Signal ist, wie es funktioniert und in welchen Anwendungsfällen es sinnvoll eingesetzt werden kann.",
+  "datePublished": "2024-11-07",
+  "dateModified": "2024-11-07",
+  "publisher": {
+    "name": "Angular-Buch",
+    "url": "https://angular-buch.com",
+    "@type": "Organization",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://angular-buch.com/assets/img/brand_export.png"
+    }
+  },
+  "image": "https://website-articles.angular-buch.com/blog/2024-11-linked-signal/linkedsignal.jpg",
+  "thumbnailUrl": "https://website-articles.angular-buch.com/blog/2024-11-linked-signal/linkedsignal.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Johannes Hoppe and Ferdinand Malcher",
+    "email": "team@angular.schule"
+  },
+  "keywords": [
+    "Angular",
+    "JavaScript",
+    "Signals",
+    "Reactive Programming",
+    "Linked Signal",
+    "Angular 19",
+    "Computed Signals"
+  ],
+  "mainEntityOfPage": "http://schema.org/WebPage",
+  "@type": "Article",
+  "@context": "http://schema.org"
+}</script></app-json-ld></app-blog-details><!----><footer><div class="container"><div class="row align-items-center"><div class="col-sm-9"><div class="links"><app-link><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/"><!----> Home </a><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/impressum"><!----> Impressum </a><!----><!----><!----></app-link>|<!----><app-link><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/datenschutz"><!----> Datenschutzerklärung </a><!----><!----><!----></app-link>|<!----><app-link><!----><a class="links__item links__twitter" href="https://twitter.com/angular_buch" rel="nofollow"><!----> Twitter </a><!----><!----><!----><!----></app-link><!----><!----></div></div><div class="col-sm-3 text-right"></div></div></div></footer></main><app-json-ld><script type="application/ld+json"></script></app-json-ld></app-root>
+<link rel="modulepreload" href="chunk-Q266PUMJ.js"><link rel="modulepreload" href="chunk-TNLDJMYM.js"><link rel="modulepreload" href="chunk-HIWDVU47.js"><link rel="modulepreload" href="chunk-WXI33M2S.js"><link rel="modulepreload" href="chunk-T7ZJZACD.js"><link rel="modulepreload" href="chunk-EKSCSKV3.js"><link rel="modulepreload" href="chunk-PF6WW6XW.js"><script src="polyfills-SCHOHYNV.js" type="module"></script><script src="main-WSZASSWR.js" type="module"></script>
+
+</body></html>
