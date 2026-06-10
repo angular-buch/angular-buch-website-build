@@ -1,0 +1,1007 @@
+<!DOCTYPE html><html lang="de" dir="ltr" data-beasties-container><head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://website-articles.angular-buch.com">
+
+  <title>Angular-Buch → Guards: Routen absichern</title>
+  
+
+  
+
+  <meta property="book:isbn" content="9783988890641">
+  <meta property="book:release_date" content="2026-05-29">
+  <meta property="book:tag" content="Angular">
+  <meta property="book:tag" content="Signals">
+  <meta property="book:tag" content="Webentwicklung">
+  <meta property="book:tag" content="AngularJS">
+  <meta property="book:tag" content="TypeScript">
+  <meta property="book:tag" content="JavaScript">
+  <meta property="book:tag" content="HTML5">
+  <meta property="book:tag" content="CSS">
+  <meta property="book:tag" content="RxJS">
+  <meta property="book:tag" content="Signal Forms">
+  <meta property="book:tag" content="Resource API">
+
+  <base href="/">
+<style>.fa-solid,.fa-brands{--_fa-family: var(--fa-family, var(--fa-style-family, "Font Awesome 7 Free"));-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;display:var(--fa-display, inline-block);font-family:var(--_fa-family);font-feature-settings:normal;font-style:normal;font-synthesis:none;font-variant:normal;font-weight:var(--fa-style, 900);line-height:1;text-align:center;text-rendering:auto;width:var(--fa-width, 1.25em)}.fa-backward{--fa: "\f04a"}:root{--fa-family-classic: "Font Awesome 7 Free";--fa-font-solid: normal 900 1em/1 var(--fa-family-classic);--fa-style-family-classic: var(--fa-family-classic)}.fa-solid{--fa-style: 900}:root{--fa-family-brands: "Font Awesome 7 Brands";--fa-font-brands: normal 400 1em/1 var(--fa-family-brands)}@font-face{font-family:"Font Awesome 7 Brands";font-style:normal;font-weight:400;font-display:block;src:url("./media/fa-brands-400-AHOAZHCU.woff2")}.fa-brands{--fa-family: var(--fa-family-brands);--fa-style: 400}.fa-github{--fa: "\f09b"}@font-face{font-family:Roboto;src:url("./media/Roboto-Thin-GAS35NAQ.eot");src:local("Roboto Thin"),local("Roboto-Thin"),url("./media/Roboto-Thin-GAS35NAQ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Thin-UUU7IP4L.woff2") format("woff2"),url("./media/Roboto-Thin-BT5WDCMC.woff") format("woff"),url("./media/Roboto-Thin-STLHGJGZ.ttf") format("truetype"),url("./media/Roboto-Thin-OYOYLS5N.svg#Roboto") format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-ThinItalic-HQCJJ3KQ.eot");src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url("./media/Roboto-ThinItalic-HQCJJ3KQ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-ThinItalic-PVCCLVHZ.woff2") format("woff2"),url("./media/Roboto-ThinItalic-OJCFQICS.woff") format("woff"),url("./media/Roboto-ThinItalic-OKVQEY6M.ttf") format("truetype"),url("./media/Roboto-ThinItalic-PU7U6F54.svg#Roboto") format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Light-TT7V6J7W.eot");src:local("Roboto Light"),local("Roboto-Light"),url("./media/Roboto-Light-TT7V6J7W.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Light-OEL5QP53.woff2") format("woff2"),url("./media/Roboto-Light-EGEOUPZ7.woff") format("woff"),url("./media/Roboto-Light-KYCYMX5R.ttf") format("truetype"),url("./media/Roboto-Light-O5NB3DZS.svg#Roboto") format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-LightItalic-JJ225GLJ.eot");src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url("./media/Roboto-LightItalic-JJ225GLJ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-LightItalic-SZU3UOEY.woff2") format("woff2"),url("./media/Roboto-LightItalic-5LJGTDBY.woff") format("woff"),url("./media/Roboto-LightItalic-ZTOFFLND.ttf") format("truetype"),url("./media/Roboto-LightItalic-FE5GYQJO.svg#Roboto") format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Regular-WINA5356.eot");src:local("Roboto Regular"),local("Roboto-Regular"),url("./media/Roboto-Regular-WINA5356.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Regular-4ZFX4XNS.woff2") format("woff2"),url("./media/Roboto-Regular-EMJ7NDAQ.woff") format("woff"),url("./media/Roboto-Regular-W6LM4ZNI.ttf") format("truetype"),url("./media/Roboto-Regular-DDBAS5OS.svg#Roboto") format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-RegularItalic-43QNLNAN.eot");src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url("./media/Roboto-RegularItalic-43QNLNAN.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-RegularItalic-2REFJECD.woff2") format("woff2"),url("./media/Roboto-RegularItalic-NSJ4HBKT.woff") format("woff"),url("./media/Roboto-RegularItalic-YZDJVEXU.ttf") format("truetype"),url("./media/Roboto-RegularItalic-7A3VJZ2J.svg#Roboto") format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Medium-TKOJIIN4.eot");src:local("Roboto Medium"),local("Roboto-Medium"),url("./media/Roboto-Medium-TKOJIIN4.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Medium-GHCC3HN6.woff2") format("woff2"),url("./media/Roboto-Medium-O2PKKQNT.woff") format("woff"),url("./media/Roboto-Medium-ANIBKV6W.ttf") format("truetype"),url("./media/Roboto-Medium-RJM2M5RS.svg#Roboto") format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-MediumItalic-5WUL7G7J.eot");src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url("./media/Roboto-MediumItalic-5WUL7G7J.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-MediumItalic-FMJUHMWQ.woff2") format("woff2"),url("./media/Roboto-MediumItalic-EJXCUUAA.woff") format("woff"),url("./media/Roboto-MediumItalic-ZZ274MH6.ttf") format("truetype"),url("./media/Roboto-MediumItalic-WUJRBJ2B.svg#Roboto") format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Bold-BUUHB5PB.eot");src:local("Roboto Bold"),local("Roboto-Bold"),url("./media/Roboto-Bold-BUUHB5PB.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Bold-NGAPMV26.woff2") format("woff2"),url("./media/Roboto-Bold-GE6V3ZS2.woff") format("woff"),url("./media/Roboto-Bold-5VUU6QI6.ttf") format("truetype"),url("./media/Roboto-Bold-UXMYHWKZ.svg#Roboto") format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-BoldItalic-ETKPZE3Z.eot");src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url("./media/Roboto-BoldItalic-ETKPZE3Z.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-BoldItalic-TBVJ3OTX.woff2") format("woff2"),url("./media/Roboto-BoldItalic-2CYTLDZJ.woff") format("woff"),url("./media/Roboto-BoldItalic-4MMIXUDR.ttf") format("truetype"),url("./media/Roboto-BoldItalic-TDTZWBKI.svg#Roboto") format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Black-FJBQ2JLX.eot");src:local("Roboto Black"),local("Roboto-Black"),url("./media/Roboto-Black-FJBQ2JLX.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Black-OEG2WEQ3.woff2") format("woff2"),url("./media/Roboto-Black-AZ2AXCB4.woff") format("woff"),url("./media/Roboto-Black-IGTRSQU4.ttf") format("truetype"),url("./media/Roboto-Black-OEOHVSYK.svg#Roboto") format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-BlackItalic-MXNS7VU5.eot");src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url("./media/Roboto-BlackItalic-MXNS7VU5.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-BlackItalic-6QYHVQZM.woff2") format("woff2"),url("./media/Roboto-BlackItalic-7QMDFEK5.woff") format("woff"),url("./media/Roboto-BlackItalic-XIXMO2HU.ttf") format("truetype"),url("./media/Roboto-BlackItalic-EYMGZCJW.svg#Roboto") format("svg");font-weight:900;font-style:italic}:root{--blue: #007bff;--indigo: #6610f2;--purple: #6f42c1;--pink: #e83e8c;--red: #dc3545;--orange: #fd7e14;--yellow: #ffc107;--green: #28a745;--teal: #20c997;--cyan: #17a2b8;--white: #fff;--gray: #6c757d;--gray-dark: #343a40;--primary: #007bff;--secondary: #6c757d;--success: #28a745;--info: #17a2b8;--warning: #ffc107;--danger: #dc3545;--light: #f8f9fa;--dark: #343a40;--breakpoint-xs: 0;--breakpoint-sm: 576px;--breakpoint-md: 768px;--breakpoint-lg: 992px;--breakpoint-xl: 1200px;--font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}article,footer,header,main,nav,section{display:block}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}hr{box-sizing:content-box;height:0;overflow:visible}h1,h2,h3{margin-top:0;margin-bottom:.5rem}p{margin-top:0;margin-bottom:1rem}ul{margin-top:0;margin-bottom:1rem}ul ul{margin-bottom:0}blockquote{margin:0 0 1rem}strong{font-weight:bolder}a{color:#007bff;text-decoration:none;background-color:transparent}a:hover{color:#0056b3;text-decoration:underline}a:not([href]):not([class]){color:inherit;text-decoration:none}a:not([href]):not([class]):hover{color:inherit;text-decoration:none}pre,code{font-family:SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-size:1em}pre{margin-top:0;margin-bottom:1rem;overflow:auto;-ms-overflow-style:scrollbar}img{vertical-align:middle;border-style:none}table{border-collapse:collapse}th{text-align:inherit;text-align:-webkit-match-parent}h1,h2,h3{margin-bottom:.5rem;font-weight:500;line-height:1.2}h2{font-size:2rem}h3{font-size:1.75rem}hr{margin-top:1rem;margin-bottom:1rem;border:0;border-top:1px solid rgba(0,0,0,.1)}.small{font-size:.875em;font-weight:400}.img-fluid{max-width:100%;height:auto}code{font-size:87.5%;color:#d81d73;word-wrap:break-word}a>code{color:inherit}pre{display:block;font-size:87.5%;color:#212529}pre code{font-size:inherit;color:inherit;word-break:normal}.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media(min-width:576px){.container{max-width:540px}}@media(min-width:768px){.container{max-width:720px}}@media(min-width:992px){.container{max-width:960px}}@media(min-width:1200px){.container{max-width:1140px}}.row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}.no-gutters{margin-right:0;margin-left:0}.no-gutters>[class*=col-]{padding-right:0;padding-left:0}.col-md-10,.col-md-6,.col-md-2,.col-sm-9,.col-12,.col-6{position:relative;width:100%;padding-right:15px;padding-left:15px}.col-6{flex:0 0 50%;max-width:50%}.col-12{flex:0 0 100%;max-width:100%}@media(min-width:576px){.col-sm-9{flex:0 0 75%;max-width:75%}}@media(min-width:768px){.col-md-2{flex:0 0 16.66666667%;max-width:16.66666667%}.col-md-6{flex:0 0 50%;max-width:50%}.col-md-10{flex:0 0 83.33333333%;max-width:83.33333333%}}.btn{display:inline-block;font-weight:400;color:#212529;text-align:center;vertical-align:middle;-webkit-user-select:none;user-select:none;background-color:transparent;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media(prefers-reduced-motion:reduce){.btn{transition:none}}.btn:hover{color:#212529;text-decoration:none}.btn:focus{outline:0;box-shadow:0 0 0 .2rem #007bff40}.btn:disabled{opacity:.65}.btn:not(:disabled):not(.disabled){cursor:pointer}.btn-primary{color:#fff;background-color:#007bff;border-color:#007bff}.btn-primary:hover{color:#fff;background-color:#0069d9;border-color:#0062cc}.btn-primary:focus{color:#fff;background-color:#0069d9;border-color:#0062cc;box-shadow:0 0 0 .2rem #268fff80}.btn-primary:disabled{color:#fff;background-color:#007bff;border-color:#007bff}.btn-primary:not(:disabled):not(.disabled):active{color:#fff;background-color:#0062cc;border-color:#005cbf}.btn-primary:not(:disabled):not(.disabled):active:focus{box-shadow:0 0 0 .2rem #268fff80}.btn-sm{padding:.25rem .5rem;font-size:.875rem;line-height:1.5;border-radius:.2rem}.bg-light{background-color:#f8f9fa!important}.border{border:1px solid #dee2e6!important}.rounded{border-radius:.25rem!important}.justify-content-between{justify-content:space-between!important}.align-items-center{align-items:center!important}.mb-0{margin-bottom:0!important}.mr-1{margin-right:.25rem!important}.ml-1{margin-left:.25rem!important}.mr-2{margin-right:.5rem!important}.mt-4{margin-top:1.5rem!important}.mb-4{margin-bottom:1.5rem!important}.mb-5{margin-bottom:3rem!important}.p-3{padding:1rem!important}.mt-n5{margin-top:-3rem!important}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}a:not(.btn){text-decoration:underline}pre{white-space:pre-wrap!important}pre,blockquote{border:1px solid #adb5bd;page-break-inside:avoid}tr,img{page-break-inside:avoid}p,h2,h3{orphans:3;widows:3}h2,h3{page-break-after:avoid}@page{size:a3}body,.container{min-width:992px!important}}h1{font-size:2.5rem}h2{font-size:1.75rem}h3{font-size:1.25rem}.btn{box-shadow:0 2px 5px #00000029,0 2px 10px #0000001f;padding:.84rem 2.14rem;font-size:.81rem;transition:all .2s ease-in-out;margin:.375rem;border:0;border-radius:.125rem;cursor:pointer;text-transform:uppercase;white-space:normal;word-wrap:break-word;color:#fff}.btn:hover,.btn:active,.btn:focus{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026;outline:0}.btn:not([disabled]):not(.disabled):active{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026}.btn.btn-sm{padding:.5rem 1.6rem;font-size:.64rem}.btn:disabled:active,.btn:disabled:focus,.btn:disabled:hover{box-shadow:0 2px 5px #00000029,0 2px 10px #0000001f}.btn-primary{background-color:#79499c!important;color:#fff!important}.btn-primary:hover{background-color:#8651ad}.btn-primary:focus{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026}.btn-primary:focus,.btn-primary:active{background-color:#432857}.btn-primary:not([disabled]):not(.disabled):active{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026;background-color:#432857!important}.btn-primary:not([disabled]):not(.disabled):active:focus{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026}.blog__headline{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}a:active,a:link,a:visited{color:#1e1e1e;text-decoration:none}a:hover{color:#79499c}strong{font-weight:700}.headline__page{color:#fff;margin:3em 0 .8em;font-size:36px;line-height:1.2em;font-weight:500;padding-right:1em}@media screen and (max-width:768px){.headline__page{font-size:32px;line-height:42px;margin:2em 0 .8em}}.headline__page:after{content:"";display:block;height:3px;width:.6em;margin-top:.5em;border-bottom:3px solid #FFF}.headline__page--blank:after{display:none}.headline__page--space-bottom{margin-top:1em}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#f8f8f8}header{padding:20px 0}a.content{text-decoration:underline}a.content:hover{text-decoration:none}html{overflow-y:scroll}.btn:focus-visible{outline:solid 2px rgb(0,95,204);outline-offset:1px}footer{padding:2em 0 5em;color:#9e9e9e;font-size:13px;font-weight:500;background:url("data:image/svg+xml,%3Csvg width='1248' height='327' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%237F7F7F' fill='none' fill-rule='evenodd' opacity='.15'%3E%3Cpath d='M470-24l185 693M220-24l185 693M-30-24l185 693M721-24l185 693M971-24l185 693M1221-24l185 693M540-24l685 689M882-24l685 689M199-24l685 689M-143-24l685 689M-484-24l685 689M1310.447 117L-141.131 506.13M1310.447-135L-141.131 254.13M387-25L199 673M135-25L-53 673M637-25L449 673M888-25L700 673M1138-25L950 673M650-25L-62 686M304-25l-712 711M991-25L279 686M1335-25L623 686M1303 330L-56-36M1303 581L-56 215'/%3E%3C/g%3E%3C/svg%3E")}@media screen and (max-width:576px){footer{text-align:center!important}}footer .links__item{color:#9e9e9e}footer .links__item:hover{color:#79499c}footer .links__bluesky,footer .links__linkedin{white-space:nowrap}footer .links__bluesky:before{font-family:"Font Awesome 7 Brands";content:"\e671"}footer .links__linkedin:before{font-family:"Font Awesome 7 Brands";content:"\f0e1"}.hero{background:linear-gradient(-2deg,#fff 250px,#c30023 251px,#535ea7);background-position:bottom}@media screen and (max-width:768px){.hero{background:linear-gradient(178deg,#535ea7,#c30023 90%,#fff 90.1%)}}.hero--smaller{background:linear-gradient(358deg,#f8f8f8 45.9%,#c30023 46%,#535ea7);padding-bottom:3em;min-height:12em}.hero__lines{background:url("data:image/svg+xml,%3Csvg width='1267' height='628' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23FFF' fill='none' fill-rule='evenodd' stroke-opacity='.1'%3E%3Cpath d='M461-51l185 693M211-51l185 693M-39-51l185 693M712-51l185 693M962-51l185 693M1212-51l185 693M531-51l685 689M873-51l685 689M190-51l685 689M-152-51l685 689M-493-51l685 689M1302 593l-178 47M1301.447 342L-150.131 731.13M1301.447 90L-150.131 479.13M1301.447-162L-150.131 227.13M378-52L190 646M126-52L-62 646M628-52L440 646M879-52L691 646M1129-52L941 646M641-52L-71 659M295-52l-712 711M982-52L270 659M1326-52L614 659M1294 303L-65-63M1294 554L-65 188M1294 804L-65 438'/%3E%3C/g%3E%3C/svg%3E") center;background-size:cover}main{overflow:hidden}.index{background:url("./media/symbol-index-4GN5EYIA.svg") 10% 5% no-repeat}.index .container{padding-right:0;padding-left:0}.index--list{background:url("data:image/svg+xml,%3Csvg width='310' height='244' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M66.429 182.679v11.071c0 1.5-.548 2.797-1.644 3.892-1.095 1.096-2.393 1.644-3.892 1.644H49.82c-1.499 0-2.796-.548-3.892-1.644-1.095-1.095-1.643-2.393-1.643-3.892v-11.071c0-1.5.548-2.797 1.643-3.893 1.096-1.095 2.393-1.643 3.892-1.643h11.072c1.5 0 2.797.548 3.892 1.643 1.096 1.096 1.644 2.393 1.644 3.893zm0-44.286v11.071c0 1.5-.548 2.797-1.644 3.893-1.095 1.095-2.393 1.643-3.892 1.643H49.82c-1.499 0-2.796-.548-3.892-1.643-1.095-1.096-1.643-2.393-1.643-3.893v-11.071c0-1.5.548-2.797 1.643-3.892 1.096-1.096 2.393-1.644 3.892-1.644h11.072c1.5 0 2.797.548 3.892 1.644 1.096 1.095 1.644 2.393 1.644 3.892zm0-44.286v11.072c0 1.499-.548 2.796-1.644 3.892-1.095 1.095-2.393 1.643-3.892 1.643H49.82c-1.499 0-2.796-.548-3.892-1.643-1.095-1.096-1.643-2.393-1.643-3.892V94.107c0-1.5.548-2.797 1.643-3.892 1.096-1.096 2.393-1.644 3.892-1.644h11.072c1.5 0 2.797.548 3.892 1.644 1.096 1.095 1.644 2.393 1.644 3.892zm199.285 88.572v11.071c0 1.5-.548 2.797-1.643 3.892-1.096 1.096-2.393 1.644-3.892 1.644H94.107c-1.5 0-2.797-.548-3.892-1.644-1.096-1.095-1.644-2.393-1.644-3.892v-11.071c0-1.5.548-2.797 1.644-3.893 1.095-1.095 2.393-1.643 3.892-1.643H260.18c1.499 0 2.796.548 3.892 1.643 1.095 1.096 1.643 2.393 1.643 3.893zm0-44.286v11.071c0 1.5-.548 2.797-1.643 3.893-1.096 1.095-2.393 1.643-3.892 1.643H94.107c-1.5 0-2.797-.548-3.892-1.643-1.096-1.096-1.644-2.393-1.644-3.893v-11.071c0-1.5.548-2.797 1.644-3.892 1.095-1.096 2.393-1.644 3.892-1.644H260.18c1.499 0 2.796.548 3.892 1.644 1.095 1.095 1.643 2.393 1.643 3.892zm0-44.286v11.072c0 1.499-.548 2.796-1.643 3.892-1.096 1.095-2.393 1.643-3.892 1.643H94.107c-1.5 0-2.797-.548-3.892-1.643-1.096-1.096-1.644-2.393-1.644-3.892V94.107c0-1.5.548-2.797 1.644-3.892 1.095-1.096 2.393-1.644 3.892-1.644H260.18c1.499 0 2.796.548 3.892 1.644 1.095 1.095 1.643 2.393 1.643 3.892zm22.143 121.786V71.964c0-1.499-.548-2.796-1.643-3.892-1.096-1.096-2.393-1.643-3.893-1.643H27.68c-1.5 0-2.797.547-3.893 1.643-1.095 1.096-1.643 2.393-1.643 3.892v143.929c0 1.5.548 2.797 1.643 3.892 1.096 1.096 2.393 1.644 3.893 1.644H282.32c1.5 0 2.797-.548 3.893-1.644 1.095-1.095 1.643-2.393 1.643-3.892zM310 27.679v188.214c0 7.611-2.71 14.127-8.13 19.548-5.421 5.42-11.937 8.13-19.549 8.13H27.68c-7.612 0-14.128-2.71-19.548-8.13C2.71 230.02 0 223.504 0 215.893V27.679C0 20.067 2.71 13.55 8.13 8.13 13.552 2.71 20.068 0 27.68 0H282.32c7.612 0 14.128 2.71 19.548 8.13C307.29 13.552 310 20.068 310 27.68z' fill='%23EFEFEF' fill-rule='evenodd'/%3E%3C/svg%3E") 10% 5% no-repeat}.index__stripe{background:linear-gradient(-2deg,rgb(235.25,235.25,235.25) 0%,rgb(235.25,235.25,235.25) 69.9%,#F8F8F8 70%,transparent 70.1%,transparent 100%);padding-bottom:3em}.index__stripe--list{background:linear-gradient(178deg,transparent 0px,transparent 199px,#F8F8F8 200px,rgb(235.25,235.25,235.25) 201px,rgb(235.25,235.25,235.25) 100%)}.index__item{background:url("data:image/svg+xml,%3Csvg width='23' height='25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient x1='52.535%25' y1='-39.489%25' x2='52.535%25' y2='92.656%25' id='a'%3E%3Cstop stop-color='%2379499c' offset='0%25'/%3E%3Cstop stop-color='%23C30023' offset='100%25'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M15.941 1.603L11.5 0 0 4.15l1.754 15.388L11.5 25l9.746-5.462L23 4.15l-3.458-1.248L11.185 22 3 6.23h4.405l3.8 7.157L15.94 1.603z' fill-rule='nonzero' fill='url(%23a)'/%3E%3C/svg%3E") no-repeat 1.4em 1.8em #fff;border-radius:4px;padding:2em 2em 2em 4.5em;margin-bottom:2em;position:relative}.index__item--list{background:#fff;padding:2em}@media screen and (max-width:768px){nav{display:flex;position:fixed;z-index:999;width:73vw;height:100%;background:#fff;top:0;left:-100vw;float:none;text-align:left;align-items:center;transition:all .25s ease-in-out}}nav a.nav__current{border-bottom:3px solid #848484}nav ul{margin:0;padding:0;list-style:none;float:right}@media screen and (max-width:768px){nav ul{float:none;width:100%}}nav li{display:inline-block;padding-left:20px;border-bottom:3px solid transparent;-webkit-hyphens:auto;hyphens:auto;word-break:break-word}@media screen and (max-width:992px){nav li{padding-left:5px}}@media screen and (max-width:768px){nav li{display:block;text-align:center}}nav a{display:block;padding:10px 5px 2px;font-size:14px;font-weight:400;text-transform:uppercase}@media screen and (max-width:992px){nav a{padding:15px 10px}}@media screen and (max-width:768px){nav a{font-size:18px;border-bottom:1px solid rgb(221.25,221.25,221.25);margin:0 50px}}nav a.order{font-weight:500;color:#6c418b}.nav__toggle{display:none}@media screen and (max-width:768px){.nav__toggle{display:block;float:right}}@media screen and (max-width:768px){.nav__overlay{visibility:hidden;opacity:0;position:absolute;top:0;left:0;width:100%;height:100%;z-index:998;background:#0006;transition:all .25s ease-in-out}}.markdown-body{color-scheme:light;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;margin:0;line-height:1.6;word-wrap:break-word;scroll-behavior:auto!important}.markdown-body a{background-color:transparent;color:#79499c;text-decoration:none}.markdown-body strong{font-weight:600}.markdown-body code,.markdown-body pre{font-family:monospace;font-size:1em}.markdown-body ::-webkit-input-placeholder{color:inherit;opacity:.54}.markdown-body ::-webkit-file-upload-button{-webkit-appearance:button;appearance:button;font:inherit}.markdown-body a:hover{text-decoration:underline}.markdown-body ::placeholder{color:#59636e;opacity:1}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:max-content;max-width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body td code{background:none}.markdown-body a:focus{outline:2px solid #0969da;outline-offset:-2px;box-shadow:none}.markdown-body a:focus:not(:focus-visible){outline:solid 1px transparent}.markdown-body a:focus-visible{outline:2px solid #0969da;outline-offset:-2px;box-shadow:none}.markdown-body a:not([class]):focus,.markdown-body a:not([class]):focus-visible{outline-offset:0}.markdown-body h2,.markdown-body h3{margin-top:1.5rem;margin-bottom:1rem;font-weight:600;line-height:1.25}.markdown-body h2{font-weight:600;padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid rgba(209,217,224,.7019607843)}.markdown-body h3{font-weight:600;font-size:1.25em}.markdown-body p{margin-top:0;margin-bottom:10px}.markdown-body blockquote{margin:0;padding:0 1em;color:#59636e;border-left:.25em solid #d1d9e0}.markdown-body ul{margin-top:0;margin-bottom:0;padding-left:2em}.markdown-body code{font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px}.markdown-body pre{margin-top:0;margin-bottom:0;font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px;word-wrap:normal}.markdown-body:before{display:table;content:""}.markdown-body:after{display:table;clear:both;content:""}.markdown-body>*:first-child{margin-top:0!important}.markdown-body>*:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body table,.markdown-body pre{margin-top:0;margin-bottom:1rem}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h3 code{padding:0 .2em;font-size:inherit}.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li+li{margin-top:.25em}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{padding:6px 13px;border:1px solid #d1d9e0}.markdown-body table td>:last-child{margin-bottom:0}.markdown-body table tr{background-color:#fff;border-top:1px solid rgba(209,217,224,.7019607843)}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body code{padding:.2em .4em;margin:0;font-size:85%;white-space:break-spaces;background-color:#818b9808;border-radius:6px}.markdown-body a code{background:none}.markdown-body pre code{font-size:100%}.markdown-body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body pre{padding:1rem;overflow:auto;font-size:85%;line-height:1.45;color:#1f2328;background-color:#f6f8fa;border-radius:6px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body a:focus:not(:focus-visible){outline:none;box-shadow:none}.hljs-comment{color:#696969}.hljs-number,.hljs-built_in,.hljs-literal,.hljs-params{color:#aa5d00}.hljs-string{color:green}.hljs-title{color:#007aa3}.hljs-keyword,.hljs-selector-tag{color:#7928a1}@media screen and (-ms-high-contrast:active){.hljs-built_in,.hljs-comment,.hljs-literal,.hljs-number,.hljs-params,.hljs-string{color:highlight}.hljs-keyword,.hljs-selector-tag{font-weight:700}}
+</style><link rel="stylesheet" href="styles-MVHAH7WP.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-MVHAH7WP.css"></noscript><style ng-app-id="ng">.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
+</style><meta property="og:title" content="Angular-Buch → Guards: Routen absichern"><meta name="twitter:title" content="Angular-Buch → Guards: Routen absichern"><meta name="description" content="Normalerweise kann jede Route einer Angular-Anwendung uneingeschränkt betreten und wieder verlassen werden.
+In komplexeren Anwendungen gibt es allerdings Bereiche, die nur unter bestimmten Umständen aufgerufen werden sollen, z. B. abhängig von Authentifizierung, Berechtigungen oder dem Zustand der Anwendung.
+Der Angular-Router bietet dafür ein Feature an, mit dem wir Routen absichern können: Route Guards."><meta property="og:description" content="Normalerweise kann jede Route einer Angular-Anwendung uneingeschränkt betreten und wieder verlassen werden.
+In komplexeren Anwendungen gibt es allerdings Bereiche, die nur unter bestimmten Umständen aufgerufen werden sollen, z. B. abhängig von Authentifizierung, Berechtigungen oder dem Zustand der Anwendung.
+Der Angular-Router bietet dafür ein Feature an, mit dem wir Routen absichern können: Route Guards."><meta name="twitter:description" content="Normalerweise kann jede Route einer Angular-Anwendung uneingeschränkt betreten und wieder verlassen werden.
+In komplexeren Anwendungen gibt es allerdings Bereiche, die nur unter bestimmten Umständen aufgerufen werden sollen, z. B. abhängig von Authentifizierung, Berechtigungen oder dem Zustand der Anwendung.
+Der Angular-Router bietet dafür ein Feature an, mit dem wir Routen absichern können: Route Guards."><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de_DE"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/material/guards"><style ng-app-id="ng">img[_ngcontent-ng-c1420206749]{max-width:100%}</style></head>
+<body><!--nghm--><script type="text/javascript" id="ng-event-dispatch-contract">(()=>{function p(t,n,r,o,e,i,f,m){return{eventType:t,event:n,targetElement:r,eic:o,timeStamp:e,eia:i,eirp:f,eiack:m}}function u(t){let n=[],r=e=>{n.push(e)};return{c:t,q:n,et:[],etc:[],d:r,h:e=>{r(p(e.type,e,e.target,t,Date.now()))}}}function s(t,n,r){for(let o=0;o<n.length;o++){let e=n[o];(r?t.etc:t.et).push(e),t.c.addEventListener(e,t.h,r)}}function c(t,n,r,o,e=window){let i=u(t);e._ejsas||(e._ejsas={}),e._ejsas[n]=i,s(i,r),s(i,o,!0)}window.__jsaction_bootstrap=c;})();
+</script><script>window.__jsaction_bootstrap(document.body,"ng",["click"],[]);</script>
+  <app-root ng-version="22.0.0" ngh="10" ng-server-context="ssg"><header ngh="4"><div class="nav__overlay" jsaction="click:;"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/" aria-label="Startseite" href="/" jsaction="click:;"><img src="assets/img/brand-400.png" alt="Angular-Buch.com" height="40" width="126" class="img-fluid"></a></div><div class="col-6 col-md-10"><nav class><ul><li><app-link ngh="0"><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/" class jsaction="click:;"><!----> Buch </a><!----><!----></app-link></li><li><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/blog" class jsaction="click:;"><!----> Blog </a><!----><!----><!----></app-link></li><li><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/material" class="nav__current" aria-current="page" jsaction="click:;"><!----> Begleitmaterial </a><!----><!----><!----></app-link></li><li><app-link ngh="2"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/kaufen" class jsaction="click:;"><img alt class="linkImage" src="assets/img/symbol-basket.svg"><!----> Jetzt kaufen </a><!----><!----><!----></app-link></li><li><app-link ngh="3"><!----><a class="order" href="//angular.schule/"><img alt class="linkImage" src="assets/img/symbol-group.svg"><!----> Schulungen </a><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" aria-label="Navigation" class="nav__toggle" jsaction="click:;"><img src="assets/img/symbol-menu.svg" alt></a></div></div></div></header><main><router-outlet></router-outlet><app-material-post-details ngh="7"><app-hero-header headline="Begleitmaterial" headlinelink="/material" ngh="5"><section class="hero hero--smaller"><div class="hero__lines"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;" href="/material" jsaction="click:;">Begleitmaterial</a><!----><!----></h1></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list mt-n5"><div class="index__stripe index__stripe--list"><div class="container"><!----><div class="row"><div class="col-12"><article lang="de" class="index__item index__item--list"><h1 class="mb-4 blog__headline">Guards: Routen absichern</h1><div class="bg-light border rounded p-3 mb-5"><p class="small mb-0"> von Ferdinand Malcher, Danny Koppenhagen, Johannes Hoppe </p><p class="small mb-0"> Letzte Aktualisierung: <time datetime="2026-06-10T00:00:00.000Z">10.06.2026</time><!----><!----></p></div><app-markdown-content class="content markdown-body" _nghost-ng-c1420206749 ngh="6"><p>Normalerweise kann jede Route einer Angular-Anwendung uneingeschränkt betreten und wieder verlassen werden.
+In komplexeren Anwendungen gibt es allerdings Bereiche, die nur unter bestimmten Umständen aufgerufen werden sollen, z. B. abhängig von Authentifizierung, Berechtigungen oder dem Zustand der Anwendung.
+Der Angular-Router bietet dafür ein Feature an, mit dem wir Routen absichern können: <em>Route Guards</em>.</p>
+<h2 id="inhalt">Inhalt</h2>
+<ul>
+<li><a href="/material/guards#grundlagen-zu-guards">Grundlagen zu Guards</a></li>
+<li><a href="/material/guards#varianten-von-guards">Varianten von Guards</a></li>
+<li><a href="/material/guards#guards-verwenden">Guards verwenden</a></li>
+<li><a href="/material/guards#guards-implementieren">Guards implementieren</a><ul>
+<li><a href="/material/guards#canactivate-darf-die-route-aktiviert-werden">CanActivate: Darf die Route aktiviert werden?</a></li>
+<li><a href="/material/guards#umleitung-mit-urltree">Umleitung mit <code>UrlTree</code></a></li>
+<li><a href="/material/guards#umleitung-mit-redirectcommand">Umleitung mit <code>RedirectCommand</code></a></li>
+<li><a href="/material/guards#warum-urltree-statt-routernavigate">Warum <code>UrlTree</code> statt <code>Router.navigate()</code>?</a></li>
+<li><a href="/material/guards#candeactivate-darf-die-aktive-route-verlassen-werden">CanDeactivate: Darf die aktive Route verlassen werden?</a></li>
+<li><a href="/material/guards#canactivatechild-d%C3%BCrfen-kind-routen-betreten-werden">CanActivateChild: Dürfen Kind-Routen betreten werden?</a></li>
+<li><a href="/material/guards#canmatch-wird-die-route-ber%C3%BCcksichtigt">CanMatch: Wird die Route berücksichtigt?</a></li>
+</ul>
+</li>
+<li><a href="/material/guards#guards-inline-definieren">Guards inline definieren</a></li>
+<li><a href="/material/guards#praxisbeispiel-admin-bereich-absichern">Praxisbeispiel: Admin-Bereich absichern</a><ul>
+<li><a href="/material/guards#guard-implementieren">Guard implementieren</a></li>
+<li><a href="/material/guards#guard-in-der-route-verwenden">Guard in der Route verwenden</a></li>
+<li><a href="/material/guards#alternative-asynchroner-guard-mit-observable">Alternative: Asynchroner Guard mit Observable</a></li>
+</ul>
+</li>
+<li><a href="/material/guards#diskussion-den-richtigen-guard-typ-w%C3%A4hlen">Diskussion: den richtigen Guard-Typ wählen</a></li>
+<li><a href="/material/guards#mehrere-guards-kombinieren">Mehrere Guards kombinieren</a></li>
+<li><a href="/material/guards#zusammenfassung">Zusammenfassung</a></li>
+</ul>
+<h2 id="grundlagen-zu-guards">Grundlagen zu Guards</h2>
+<p>Ein Guard ist eine Funktion, die entscheidet, ob ein Navigationsschritt ausgeführt werden darf oder nicht.
+Routen können von Guards "beschützt" werden, sodass stets der Guard durchlaufen werden muss, bevor die Navigation tatsächlich ausgeführt wird.
+Auf diese Weise können Guards die Nutzerführung in der Anwendung steuern.</p>
+<blockquote>
+<p>⚠️ <strong>Wichtig:</strong> Guards steuern die Nutzerführung, aber sie sind kein Sicherheitsfeature!
+Der gesamte kompilierte Code der Anwendung kann vom Browser jederzeit heruntergeladen werden.
+Die Sicherheit der Daten muss immer vom Backend ausgehen: Nur wenn der Client authentifiziert ist, darf der Server die Daten herausgeben oder geschützte Aktionen durchführen.
+Guards helfen uns, abhängig von diesen Zuständen die Nutzerführung zu steuern.</p>
+</blockquote>
+<p>Die Entscheidung, ob die Navigation durchgeführt wird, wird durch den Rückgabewert der Guard-Funktion ausgedrückt.
+Dafür sind diese Varianten möglich:</p>
+<ul>
+<li><code>true</code>: Die Navigation wird <strong>ausgeführt</strong>.</li>
+<li><code>false</code>: Die Navigation wird <strong>abgebrochen</strong>.</li>
+<li>Typ <code>UrlTree</code> oder <code>RedirectCommand</code>: Die Navigation wird <strong>abgebrochen</strong>, und es wird zu einer anderen Route navigiert.</li>
+</ul>
+<p>Dieser Rückgabewert kann synchron aus der Funktion zurückgegeben werden, oder er kann in ein Observable oder in eine Promise verpackt werden.
+Damit ist es möglich, asynchrone Operationen im Guard zu verarbeiten: Zum Beispiel kann ein HTTP-Request durchgeführt werden, dessen Antwort entscheidet, ob navigiert werden darf.</p>
+<h2 id="varianten-von-guards">Varianten von Guards</h2>
+<p>Wir unterscheiden verschiedene Arten von Guards, mit denen wir unsere Routen absichern können:</p>
+<table>
+<thead>
+<tr>
+<th>Variante</th>
+<th>entscheidet, ob …</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>CanActivate</code></td>
+<td>eine Route betreten werden darf</td>
+</tr>
+<tr>
+<td><code>CanActivateChild</code></td>
+<td>Kind-Routen einer Route betreten werden dürfen</td>
+</tr>
+<tr>
+<td><code>CanDeactivate</code></td>
+<td>eine Route verlassen werden darf (wegnavigieren)</td>
+</tr>
+<tr>
+<td><code>CanMatch</code></td>
+<td>eine Route bei der Auswertung berücksichtigt wird</td>
+</tr>
+</tbody></table>
+<p>Ein Guard wird immer als Funktion entwickelt, die einer bestimmten Signatur folgt, dazu gleich mehr.</p>
+<h2 id="guards-verwenden">Guards verwenden</h2>
+<p>Haben wir eine Guard-Funktion entwickelt, können wir sie auf unsere Routen anwenden:
+Guards werden als Eigenschaft einer Routendefinition angegeben und wirken als eine Art Middleware.
+Die verwendete Eigenschaft deutet immer auf die Art des Guards hin, z. B. <code>canActivate</code>.
+Die Guards werden als Array aufgelistet, denn es können auch mehrere Guards für eine Route festgelegt werden.
+In diesem Fall werden sie der Reihe nach durchlaufen.</p>
+<pre><code class="language-typescript">export const routes: Routes = [
+  {
+    <span class="hljs-selector-tag">path</span>: <span class="hljs-string">'foo'</span>,
+    component: FooPage,
+    canActivate: [myActivateGuard]
+  },
+  {
+    <span class="hljs-selector-tag">path</span>: <span class="hljs-string">'bar'</span>,
+    component: BarPage,
+    canDeactivate: [leaveGuard]
+  }
+];
+</code></pre><p>Rufen wir z. B. die Route mit dem Pfad <code>foo</code> auf, wird zunächst die Guard-Funktion <code>myActivateGuard</code> ausgeführt.
+Liefert sie den Wert <code>true</code> zurück, wird die Route geladen, andernfalls wird die Navigation abgebrochen.
+Gibt der Guard einen <code>UrlTree</code> oder ein <code>RedirectCommand</code> zurück, so wird eine neue Navigation zu der neuen Route gestartet.</p>
+<h2 id="guards-implementieren">Guards implementieren</h2>
+<p>Ein Guard wird als Funktion implementiert, die einer bestimmten Typisierung folgt.
+Durch den Typ wird die Signatur der Funktion festgelegt, sodass der Router sicher mit dem Guard arbeiten kann.
+Je nach Guard-Variante nimmt die Funktion verschiedene Argumente entgegen.</p>
+<p>Zum Anlegen eines Guards können wir die Angular CLI verwenden:</p>
+<pre><code class="language-bash">ng <span class="hljs-keyword">generate</span> guard foo --guardType CanActivate
+ng <span class="hljs-keyword">generate</span> guard bar --guardType CanMatch
+</code></pre><h3 id="canactivate-darf-die-route-aktiviert-werden">CanActivate: Darf die Route aktiviert werden?</h3>
+<p>Mit einem <code>CanActivate</code>-Guard können wir prüfen, ob eine bestimmte Route betreten werden darf.
+Wir verwenden den Typ <code>CanActivateFn</code>, um die Guard-Funktion zu typisieren.
+Sie kann zwei Argumente entgegennehmen:</p>
+<ul>
+<li><code>ActivatedRouteSnapshot</code>: Informationen zur angefragten Route, z. B. Routenparameter</li>
+<li><code>RouterStateSnapshot</code>: der gesamte Zustand des Routers</li>
+</ul>
+<p>Wollen wir im Guard auf Services zugreifen, z. B. um die Entscheidung abhängig von einem zentralen Zustand zu machen, verwenden wir die Funktion <code>inject()</code>.
+Im folgenden Beispiel haben wir das mit einem Signal <code>isAuthenticated</code> angedeutet.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">CanActivateFn</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+
+<span class="hljs-comment">// Variante 1: nur true/false</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">myActivateGuard</span>: <span class="hljs-title class_">CanActivateFn</span> =
+  <span class="hljs-function">(<span class="hljs-params">route, state</span>) =&gt;</span> {
+    <span class="hljs-comment">// Routenparameter lesen</span>
+    <span class="hljs-keyword">const</span> foo = route.<span class="hljs-property">paramMap</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'foo'</span>);
+
+    <span class="hljs-comment">// Service injizieren</span>
+    <span class="hljs-keyword">const</span> authService = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">AuthService</span>);
+
+    <span class="hljs-comment">// Entscheidung treffen (true / false)</span>
+    <span class="hljs-keyword">return</span> authService.<span class="hljs-title function_">isAuthenticated</span>();
+  };
+</code></pre><h3 id="umleitung-mit-urltree">Umleitung mit <code>UrlTree</code></h3>
+<p>Wenn eine Navigation nicht erlaubt ist, kann es sinnvoll sein, stattdessen zu einer anderen Route umzuleiten.
+Dafür können wir aus dem Guard ein Objekt vom Typ <code>UrlTree</code> zurückgeben.
+Ein <code>UrlTree</code> ist die interne Repräsentation einer Route und gibt dem Router die Anweisung, zu dieser Route zu navigieren.
+Er lässt sich mithilfe des Routers erzeugen: Die Methoden <code>Router.parseUrl()</code> und <code>Router.createUrlTree()</code> wandeln eine URL in einen <code>UrlTree</code> um.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">CanActivateFn</span>, <span class="hljs-title class_">Router</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+
+<span class="hljs-comment">// Variante 2.1: Umleitung über UrlTree</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">myActivateGuard</span>: <span class="hljs-title class_">CanActivateFn</span> = <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> authService = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">AuthService</span>);
+
+  <span class="hljs-keyword">if</span> (authService.<span class="hljs-title function_">isAuthenticated</span>()) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+
+  <span class="hljs-keyword">const</span> router = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">Router</span>);
+  <span class="hljs-keyword">return</span> router.<span class="hljs-title function_">parseUrl</span>(<span class="hljs-string">'/login'</span>);
+};
+</code></pre><p>Alternativ können wir einen <code>UrlTree</code> auch mit der Methode <code>Router.createUrlTree()</code> erzeugen.
+Hier übergeben wir ein Array von Routensegmenten.
+Außerdem können wir im zweiten Argument ein Objekt mit weiteren Optionen notieren, z. B. den Bezugspunkt für eine relative URL.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">CanActivateFn</span>, <span class="hljs-title class_">Router</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+
+<span class="hljs-comment">// Variante 2.2: Umleitung über UrlTree</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">myActivateGuard</span>: <span class="hljs-title class_">CanActivateFn</span> = <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-keyword">const</span> router = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">Router</span>);
+  <span class="hljs-keyword">return</span> router.<span class="hljs-title function_">createUrlTree</span>([<span class="hljs-string">'/login'</span>]);
+};
+</code></pre><h3 id="umleitung-mit-redirectcommand">Umleitung mit <code>RedirectCommand</code></h3>
+<p>Seit Angular 18 gibt es eine weitere Möglichkeit, eine Umleitung aus einem Guard heraus auszulösen: das <code>RedirectCommand</code>.
+Im Gegensatz zum <code>UrlTree</code> können wir damit zusätzliche Navigationsoptionen angeben, z. B. <code>replaceUrl</code> oder <code>skipLocationChange</code>:</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">CanActivateFn</span>, <span class="hljs-title class_">Router</span>, <span class="hljs-title class_">RedirectCommand</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+
+<span class="hljs-comment">// Variante 3: Umleitung über RedirectCommand mit Navigationsoptionen</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">myActivateGuard</span>: <span class="hljs-title class_">CanActivateFn</span> = <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> authService = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">AuthService</span>);
+
+  <span class="hljs-keyword">if</span> (authService.<span class="hljs-title function_">isAuthenticated</span>()) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+
+  <span class="hljs-keyword">const</span> router = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">Router</span>);
+  <span class="hljs-keyword">const</span> urlTree = router.<span class="hljs-title function_">parseUrl</span>(<span class="hljs-string">'/login'</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RedirectCommand</span>(urlTree, { <span class="hljs-attr">replaceUrl</span>: <span class="hljs-literal">true</span> });
+};
+</code></pre><h3 id="warum-urltree-statt-routernavigate">Warum <code>UrlTree</code> statt <code>Router.navigate()</code>?</h3>
+<p>Theoretisch könnten wir aus dem Guard heraus auch direkt die Methode <code>Router.navigate()</code> aufrufen, um zu einer anderen Route zu wechseln.
+Praktisch hat der <code>UrlTree</code> (bzw. das <code>RedirectCommand</code>) allerdings einen entscheidenden Vorteil, wenn mehrere Guards aktiv sind, die asynchron arbeiten.
+In einer solchen Konstellation ist nie klar, welcher der Guards wann eine Antwort liefert und damit über das Ziel der Navigation entscheidet.</p>
+<p>Verwenden wir einen <code>UrlTree</code> als Rückgabewert, verhält sich der Router deterministisch:
+Die Guards, die näher an der Wurzel der Routenhierarchie aktiv sind, haben eine höhere Priorität als die Guards, die tiefer im Baum platziert sind.
+Der Router kümmert sich um die Priorisierung und Weiterleitung.</p>
+<p>Verwende deshalb bitte immer einen <code>UrlTree</code> oder ein <code>RedirectCommand</code>, um aus einem Guard heraus zu einer anderen Route zu navigieren.</p>
+<h3 id="candeactivate-darf-die-aktive-route-verlassen-werden">CanDeactivate: Darf die aktive Route verlassen werden?</h3>
+<p>Mit einem <code>CanDeactivate</code>-Guard können wir prüfen, ob die gerade aktive Route verlassen werden darf.
+Die Guard-Funktion erhält als erstes Argument eine Referenz auf die Komponente, die durch die Navigation verlassen wird.
+Der Typ dieser Komponente wird mit dem generischen Typparameter <code>T</code> im Typ <code>CanDeactivateFn&lt;T&gt;</code> angegeben.</p>
+<p>Die Funktion erhält die gesamte Instanz der Komponente als Argument:
+Wir können also Daten aus der Komponente abfragen und die Entscheidung abhängig von ihrem Zustand machen.
+Das ist z. B. sinnvoll, um zu prüfen, ob Änderungen in einem Formular vorgenommen wurden, die nicht verworfen werden sollen.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { CanDeactivateFn } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+<span class="hljs-keyword">import</span> { MyComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">'./my.component'</span>;
+
+<span class="hljs-keyword">export</span> const leaveGuard: CanDeactivateFn&lt;MyComponent&gt; =
+  <span class="hljs-function"><span class="hljs-params">(component)</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> !component.hasUnsavedChanges();
+  };
+</code></pre><p>Wenn wir den Guard in der Route verwenden, wird das Verlassen der Komponente <code>MyComponent</code> nur erlaubt, wenn das Signal <code>hasUnsavedChanges</code> in der Komponente den Wert <code>false</code> hat.
+Diese Eigenschaft ist selbst definiert und muss natürlich innerhalb der Komponente gesteuert werden.</p>
+<blockquote>
+<p><strong>Tipp: Guard wiederverwenden</strong></p>
+<p>Durch den generischen Typparameter ist der gezeigte <code>CanDeactivate</code>-Guard spezifisch für eine bestimmte Komponente.
+Um das zu vermeiden, empfehlen wir, ein Interface anzulegen, das die benötigte Schnittstelle der Komponente vorgibt, z. B. das Property <code>hasUnsavedChanges</code> mit einem Signal.
+Alle Komponenten, die diese Schnittstelle für den Guard anbieten, müssen das Interface implementieren.
+Der Guard verwendet in seinem Typparameter dann ebenfalls das Interface. So kann der Guard mit verschiedenen Komponenten arbeiten und ist nicht nur für eine einzelne Komponente verwendbar.</p>
+</blockquote>
+<pre><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">HasUnsavedChanges</span> {
+  <span class="hljs-attr">hasUnsavedChanges</span>: <span class="hljs-title class_">Signal</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">leaveGuard</span>: <span class="hljs-title class_">CanDeactivateFn</span>&lt;<span class="hljs-title class_">HasUnsavedChanges</span>&gt; =
+  <span class="hljs-function">(<span class="hljs-params">component</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (component.<span class="hljs-title function_">hasUnsavedChanges</span>()) {
+      <span class="hljs-keyword">return</span> <span class="hljs-title function_">confirm</span>(<span class="hljs-string">'Du hast ungespeicherte Änderungen. Möchtest du die Seite wirklich verlassen?'</span>);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  };
+</code></pre><h3 id="canactivatechild-dürfen-kind-routen-betreten-werden">CanActivateChild: Dürfen Kind-Routen betreten werden?</h3>
+<p>Ein Guard mit dem Typ <code>CanActivateChildFn</code> entscheidet, ob zu den Kind-Routen der betreffenden Route navigiert werden darf.
+Dieser Guard wird für <em>alle</em> Kind-Routen ausgeführt, die mit <code>children</code> definiert sind.
+Das ist besonders nützlich, um eine ganze Gruppe von Routen mit einer einzigen Prüfung abzusichern.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">CanActivateChildFn</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">adminChildGuard</span>: <span class="hljs-title class_">CanActivateChildFn</span> =
+  <span class="hljs-function">(<span class="hljs-params">childRoute, state</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> authService = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">AuthService</span>);
+    <span class="hljs-keyword">return</span> authService.<span class="hljs-title function_">hasRole</span>(<span class="hljs-string">'admin'</span>);
+  };
+</code></pre><p>In der Routenkonfiguration wird der Guard auf der Elternroute notiert:</p>
+<pre><code class="language-typescript">const routes: Routes = [
+  {
+    <span class="hljs-selector-tag">path</span>: <span class="hljs-string">'users'</span>,
+    canActivateChild: [adminChildGuard],
+    children: [
+      { <span class="hljs-selector-tag">path</span>: <span class="hljs-string">'list'</span>, component: UserListPage },
+      { <span class="hljs-selector-tag">path</span>: <span class="hljs-string">'detail/:id'</span>, component: UserDetailPage },
+    ],
+  },
+];
+</code></pre><h3 id="canmatch-wird-die-route-berücksichtigt">CanMatch: Wird die Route berücksichtigt?</h3>
+<p>Ein Guard mit dem Typ <code>CanMatchFn</code> entscheidet, ob eine Route bei der Auswertung berücksichtigt wird.
+Navigieren wir zu einer URL, werden alle Routen von oben nach unten abgearbeitet.
+Für jede Route wird geprüft, ob sie zur angeforderten URL passt – und die erste passende Route wird geladen.
+Mit <code>CanMatch</code>-Guards können wir entscheiden, ob eine Route dabei überhaupt ausgewertet oder übersprungen wird.</p>
+<p>Die Guard-Funktion erhält zwei Argumente: das gesamte Routen-Objekt und die angeforderte URL in Form eines Arrays von URL-Segmenten.
+Gibt die Funktion <code>false</code> zurück, wird die betreffende Route bei der Auswertung übersprungen – der Router versucht dann, eine andere passende Route zu finden.
+Auch dieser Guard kann einen <code>UrlTree</code> zurückgeben, um eine neue Navigation anzustoßen.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { CanMatchFn } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+
+<span class="hljs-keyword">export</span> const myMatchGuard: CanMatchFn =
+  <span class="hljs-function"><span class="hljs-params">(route, segments)</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> inject(AuthService).isAuthenticated();
+  };
+</code></pre><p>Da wir auf diese Weise bestimmte Routen von der Auswertung ausschließen können, eignet sich <code>CanMatch</code> für ein besonderes Szenario:
+Wir können mehrere Varianten einer Route anbieten, die auf verschiedene Komponenten zeigen.
+Entscheidet der Guard, dass die erste Route nicht berücksichtigt wird, wird die zweite verwendet.</p>
+<pre><code class="language-typescript">const routes: Routes = [
+  {
+    <span class="hljs-selector-tag">path</span>: <span class="hljs-string">'myfeature'</span>,
+    component: FeaturePage,
+    canMatch: [myMatchGuard]
+  },
+  {
+    <span class="hljs-selector-tag">path</span>: <span class="hljs-string">'myfeature'</span>,
+    component: AnonymousFeaturePage
+  }
+];
+</code></pre><p>Liefert das Signal <code>isAuthenticated</code> vom <code>AuthService</code> den Wert <code>true</code> zurück, wird die erste Route mit der <code>FeaturePage</code> geladen.
+Steht der Zustand auf <code>false</code>, wird die <code>AnonymousFeaturePage</code> angezeigt.</p>
+<p>Dieses Muster eignet sich hervorragend für Feature Flags, A/B-Testing oder bedingte Routenauswahl.</p>
+<h2 id="guards-inline-definieren">Guards inline definieren</h2>
+<p>In allen bisherigen Beispielen haben wir die Funktionen separat abgelegt, sodass wir sie in den Routen referenzieren können.
+Wollen wir einen Guard nur einmalig nutzen, können wir die Funktion auch direkt in der Route definieren:</p>
+<pre><code class="language-typescript">const routes: Routes = [
+  {
+    <span class="hljs-selector-tag">path</span>: <span class="hljs-string">'bar'</span>,
+    component: BarPage,
+    canDeactivate: [
+      (comp: MyComponent) =&gt; !comp.<span class="hljs-built_in">hasUnsavedChanges</span>(),
+    ]
+  },
+  {
+    <span class="hljs-selector-tag">path</span>: <span class="hljs-string">'secret'</span>,
+    component: SecretPage,
+    canActivate: [() =&gt; <span class="hljs-built_in">inject</span>(AuthService).<span class="hljs-built_in">isAuthenticated</span>()]
+  }
+];
+</code></pre><h2 id="praxisbeispiel-admin-bereich-absichern">Praxisbeispiel: Admin-Bereich absichern</h2>
+<p>Wir schauen uns ein vollständiges Beispiel an.
+Der Administrationsbereich einer Anwendung soll abgesichert werden, sodass er nur für angemeldete Personen zugänglich ist.
+Die Information zum Authentifizierungsstatus erhalten wir aus einem <code>AuthService</code>.</p>
+<h3 id="guard-implementieren">Guard implementieren</h3>
+<p>Wir erstellen einen <code>CanActivate</code>-Guard, der den Authentifizierungsstatus prüft.
+Ist die Person angemeldet, erlauben wir die Navigation.
+Falls nicht, leiten wir zur Startseite um und zeigen eine Meldung an:</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">CanActivateFn</span>, <span class="hljs-title class_">Router</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">authGuard</span>: <span class="hljs-title class_">CanActivateFn</span> = <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> authService = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">AuthService</span>);
+  <span class="hljs-keyword">const</span> router = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">Router</span>);
+
+  <span class="hljs-keyword">if</span> (authService.<span class="hljs-title function_">isAuthenticated</span>()) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+
+  <span class="hljs-title function_">alert</span>(<span class="hljs-string">'Bitte melde dich an, um den Admin-Bereich zu betreten.'</span>);
+  <span class="hljs-keyword">return</span> router.<span class="hljs-title function_">parseUrl</span>(<span class="hljs-string">'/home'</span>);
+};
+</code></pre><p>In einer realen Anwendung würden wir hier eine eigene UI-Komponente einsetzen, etwa eine Toast-Benachrichtigung oder einen Bestätigungsdialog. Für dieses Beispiel reicht uns hier aber der einfache <code>alert()</code>-Aufruf.</p>
+<h3 id="guard-in-der-route-verwenden">Guard in der Route verwenden</h3>
+<p>In der Routenkonfiguration fügen wir die Eigenschaft <code>canActivate</code> hinzu und geben die Guard-Funktion an.
+Damit wird der Guard ausgeführt, bevor die Route geladen wird:</p>
+<pre><code class="language-typescript">const routes: Routes = [
+  {
+    <span class="hljs-attr">path</span>: <span class="hljs-string">'admin'</span>,
+    <span class="hljs-attr">loadChildren</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'./admin/admin.routes'</span>),
+    <span class="hljs-attr">canActivate</span>: [authGuard]
+  },
+  <span class="hljs-comment">// ...</span>
+];
+</code></pre><p>Wenn wir die Basisroute für das Lazy Loading mit dem Guard sichern, sind auch alle darunter folgenden Routen abgedeckt.</p>
+<h3 id="alternative-asynchroner-guard-mit-observable">Alternative: Asynchroner Guard mit Observable</h3>
+<p>In einer produktiven Anwendung erhalten wir den Status der Authentifizierung möglicherweise nicht synchron.
+Unser <code>AuthService</code> bietet die Information zusätzlich über ein Observable an.
+In diesem Fall können wir den Guard asynchron implementieren.
+Er gibt dann ein Observable oder eine Promise zurück.
+Der Router wartet auf die asynchrone Operation und entscheidet dann mit dem Ergebnis, ob und wie die Navigation ausgeführt wird.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { CanActivateFn, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-keyword">map</span>, take } <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> authGuard: CanActivateFn = () =&gt; {
+  <span class="hljs-keyword">const</span> authService = inject(AuthService);
+  <span class="hljs-keyword">const</span> router = inject(Router);
+
+  <span class="hljs-keyword">return</span> authService.isAuthenticated$.pipe(
+    take(<span class="hljs-number">1</span>),
+    <span class="hljs-keyword">map</span>(isAuthenticated =&gt; {
+      <span class="hljs-keyword">if</span> (isAuthenticated) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+      }
+      <span class="hljs-keyword">return</span> router.parseUrl(<span class="hljs-string">'/login'</span>);
+    })
+  );
+};
+</code></pre><p>Es ist wichtig, dass wir die Länge des Datenstroms mithilfe von <code>take(1)</code> begrenzen: Wir sind nur an einem einzigen Wert interessiert, nicht an allen danach folgenden.</p>
+<p>Wichtig ist auch, dass der Router auf die asynchrone Operation wartet und die Navigation verzögert.
+Hier sollten also keine zeitintensiven Operationen durchgeführt werden.</p>
+<h2 id="diskussion-den-richtigen-guard-typ-wählen">Diskussion: den richtigen Guard-Typ wählen</h2>
+<p>Die Wahl des Guard-Typs hängt davon ab, <em>wann</em> die Prüfung stattfinden soll:</p>
+<ul>
+<li><strong><code>CanActivate</code></strong>: Die Route wird zunächst aufgelöst (und bei Lazy Loading heruntergeladen). Bevor die Komponente aktiviert wird, entscheidet der Guard.</li>
+<li><strong><code>CanMatch</code></strong>: Die Prüfung findet statt, <em>bevor</em> die Route überhaupt aufgelöst wird. Bei Lazy Loading wird das Bundle nur heruntergeladen, wenn der Guard es erlaubt.</li>
+<li><strong><code>CanActivateChild</code></strong>: Sichert alle Kind-Routen einer Elternroute mit einer einzigen Prüfung ab.</li>
+<li><strong><code>CanDeactivate</code></strong>: Prüft, ob die aktuelle Route verlassen werden darf.</li>
+</ul>
+<p>Für die Absicherung von Lazy-Loading-Routen empfehlen wir <code>CanMatch</code>, da so das Bundle nur bei Bedarf geladen wird.
+Für einfache Authentifizierungsprüfungen auf einzelnen Routen ist <code>CanActivate</code> die gängigste Wahl.</p>
+<h2 id="mehrere-guards-kombinieren">Mehrere Guards kombinieren</h2>
+<p>Guards werden als Array angegeben und in der definierten Reihenfolge ausgeführt.
+Alle Guards müssen <code>true</code> zurückgeben, damit die Navigation stattfindet.
+Gibt einer der Guards <code>false</code> oder einen <code>UrlTree</code> zurück, wird die Navigation abgebrochen bzw. umgeleitet.</p>
+<pre><code class="language-typescript">const routes: Routes = [
+  {
+    <span class="hljs-selector-tag">path</span>: <span class="hljs-string">'admin'</span>,
+    component: AdminPage,
+    canActivate: [authGuard, adminRoleGuard]
+  },
+];
+</code></pre><p>In diesem Beispiel muss die Person authentifiziert sein <em>und</em> auch die Admin-Rolle besitzen, um die Route zu betreten.</p>
+<h2 id="zusammenfassung">Zusammenfassung</h2>
+<ul>
+<li>Mit Guards können Routen abgesichert werden, sodass die Navigation unter bestimmten Umständen abgebrochen wird.</li>
+<li>Ein Guard ist eine Funktion, die entscheidet, ob die Navigation ausgeführt werden darf.</li>
+<li>Es gibt vier Arten von Guards:<ul>
+<li><code>CanActivate</code> – beim Aufruf einer Route</li>
+<li><code>CanDeactivate</code> – beim Verlassen einer Route</li>
+<li><code>CanActivateChild</code> – beim Aufruf einer Kind-Route</li>
+<li><code>CanMatch</code> – beim Auswerten der Route</li>
+</ul>
+</li>
+<li>Der Rückgabewert eines Guards ist ein <code>boolean</code>, ein <code>UrlTree</code> oder ein <code>RedirectCommand</code>. Der Rückgabewert kann auch asynchron von einem Observable oder einer Promise geliefert werden.</li>
+<li>Gibt der Guard <code>true</code> zurück, wird die Navigation ausgeführt, bei <code>false</code> wird sie abgebrochen.</li>
+<li>Gibt der Guard einen <code>UrlTree</code> oder ein <code>RedirectCommand</code> zurück, wird eine neue Navigation zur enthaltenen Route gestartet.</li>
+<li>Guards werden als Eigenschaft einer Routendefinition notiert und wirken dann auf diese Route.</li>
+<li>Guards steuern die Nutzerführung, aber sie sind kein Sicherheitsfeature. Die Absicherung muss immer serverseitig erfolgen.</li>
+</ul>
+</app-markdown-content><a routerlink="/material" class="btn btn-sm btn-primary mt-4" href="/material" jsaction="click:;"><i class="fa-solid fa-backward mr-2"></i> Zurück </a><hr> Anregungen? Feedback? Fehler? <a target="_blank" rel="noopener noreferer" class="content" href="https://github.com/angular-buch/website-articles/blob/main/material/guards/README.md"><i class="fa-brands fa-github mr-1"></i> Forke/bearbeite diese Seite auf GitHub</a>. </article></div></div><!----><!----></div></div></section><app-json-ld-outlet ngh="6"><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "headline": "Guards: Routen absichern",
+  "description": "Normalerweise kann jede Route einer Angular-Anwendung uneingeschränkt betreten und wieder verlassen werden.\nIn komplexeren Anwendungen gibt es allerdings Bereiche, die nur unter bestimmten Umständen aufgerufen werden sollen, z. B. abhängig von Authentifizierung, Berechtigungen oder dem Zustand der Anwendung.\nDer Angular-Router bietet dafür ein Feature an, mit dem wir Routen absichern können: Route Guards.",
+  "url": "https://angular-buch.com/material/guards",
+  "datePublished": "2026-06-10T00:00:00.000Z",
+  "dateModified": "2026-06-10T00:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Ferdinand Malcher"
+    },
+    {
+      "@type": "Person",
+      "name": "Danny Koppenhagen"
+    },
+    {
+      "@type": "Person",
+      "name": "Johannes Hoppe"
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Angular-Buch",
+    "url": "https://angular-buch.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://angular-buch.com/assets/img/brand-400.png"
+    }
+  },
+  "mainEntityOfPage": "http://schema.org/WebPage"
+}</script></app-json-ld-outlet></app-material-post-details><!----><footer ngh="9"><div class="container"><div class="row align-items-center"><div class="col-sm-9"><div class="links"><app-link ngh="0"><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/" jsaction="click:;"><!----> Home </a><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/impressum" jsaction="click:;"><!----> Impressum </a><!----><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/datenschutz" jsaction="click:;"><!----> Datenschutzerklärung </a><!----><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="8"><!----><a class="links__item links__linkedin ml-1" href="https://www.linkedin.com/company/angular-buch/" rel="nofollow"><!----> LinkedIn </a><!----><!----><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="8"><!----><a class="links__bluesky links__item ml-1" href="https://bsky.app/profile/angular-buch.com" rel="nofollow"><!----> Bluesky </a><!----><!----><!----><!----></app-link><!----><!----></div></div></div></div></footer></main><app-json-ld-outlet ngh="6"><script type="application/ld+json">{
+  "sku": "9783988890641",
+  "productID": "9783988890641",
+  "mpn": "9783988890641",
+  "name": "Angular: Das Praxisbuch",
+  "description": "Von den Grundlagen bis zur professionellen Entwicklung mit Signals. Das moderne Praxisbuch zu Angular – ab Version 22",
+  "aggregateRating": {
+    "reviewCount": 31,
+    "ratingValue": 4.870967741935484,
+    "@type": "AggregateRating"
+  },
+  "review": [
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Kann dieses Buch zu 100% empfehlen wenn man neu in Angular einsteigen will.",
+      "datePublished": "2018-07-08",
+      "author": {
+        "name": "DrDrakken, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Wer Angular von Grund auf lernen möchte, ist mit dem Buch bestens bedient.",
+      "datePublished": "2017-11-30",
+      "author": {
+        "name": "constructor, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Tolle Themen. Guter Praxisbezug. Habe den Kauf nicht bereut und würde es jederzeit weiterempfehlen.",
+      "datePublished": "2017-06-21",
+      "author": {
+        "name": "Jörg Manske, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Eine klare Empfehlung für alle, die sich einen Überblick über moderne SPA-Entwicklung mit Angular verschaffen möchten.",
+      "datePublished": "2017-12-11",
+      "author": {
+        "name": "schoettner, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ein Buch, das für Einsteiger und Wissenhungrige, empfehlenswert ist.",
+      "datePublished": "2018-02-22",
+      "author": {
+        "name": "Dominik Sprung, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Im Buch wird das Grundkonzept ausführlich aber nicht langweilig erklärt. [...] Ich gebe wirklich selten 5 Punkte in einer Rezession, hier geht es nicht anders.",
+      "datePublished": "2018-05-01",
+      "author": {
+        "name": "Torsten Lehmann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Es macht einfach Spass dieses Buch zu lesen. Ich empfehle es! Die Beispiele sind sehr klar und alles wird sehr gut erklärt.",
+      "datePublished": "2018-01-24",
+      "author": {
+        "name": "F. Salvi, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "In meinen Augen hat das Buch gute Chancen, Standardwerk bei der Angular-Ausbildung bei uns zu werden.",
+      "datePublished": "2018-12-01",
+      "author": {
+        "name": "Tobias Meier, Lead Softwarearchitekt, BridgingIT GmbH",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Der Leser wird von vornherein abgeholt und an die Hand genommen. Alles ist so ausreichend erklärt, dass man die Zusammenhänge verstehen kann und gleichzeitig auch nicht mit zu vielen Infos überfordert wird.",
+      "datePublished": "2017-12-03",
+      "author": {
+        "name": "Jan Buchholz, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Die Beispiele sind einfach gehalten und gut erklärt, so dass man direkt ein gutes Basiswissen aufbaut.",
+      "datePublished": "2017-05-30",
+      "author": {
+        "name": "Andre Fritzsche, IT Consultant, BridgingIT GmbH",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "It's 500+ pages that get you from beginner to top Angular expert level!",
+      "datePublished": "2017-06-15",
+      "author": {
+        "name": "Juri Strumpflohner, Blogger und Trainer für Angular",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Die Beispiele sind sehr gut beschrieben, sodass man jeden Schritt nachvollziehen kann. Der Kauf hat sich auf alle Fälle gelohnt.",
+      "datePublished": "2018-08-20",
+      "author": {
+        "name": "Mireille Puschmann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ich persönlich finde den didaktischen Aufbau des Buchs wirklich gelungen. Für eine Einführung ist die Tiefe genau richtig.",
+      "datePublished": "2023-08-14",
+      "author": {
+        "name": "Dr. Jochen Manns, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch eignet sich hervorragend als Nachschlagewerk, das auf dem Schreibtisch des Angular-Entwicklers nicht fehlen sollte.",
+      "datePublished": "2017-06-27",
+      "author": {
+        "name": "Guido K., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das lesen macht wirklich Spaß und es gibt eine gute Lernkurve.",
+      "datePublished": "2017-12-19",
+      "author": {
+        "name": "A.B., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Warten hat sich gelohnt! Danke für dieses geniale Buch!",
+      "datePublished": "2017-08-10",
+      "author": {
+        "name": "Stefan Kert, auf Twitter",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Der Schreibstil ist gut, kein Schaulaufen von Experten, sondern das Vermitteln von Wissen. Ich empfehle das Buch allen, die ingenieursmäßig denken und eine spannende Technologie besser kennenlernen wollen.",
+      "datePublished": "2017-06-22",
+      "author": {
+        "name": "Watzmann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch ist gut strukturiert, das Vorgehen Schritt-für-Schritt hilft dabei gut weiter. Die Autoren sind Profis, das erkennt man sofort, und verstehen von ihrem Handwerk.",
+      "datePublished": "2019-05-16",
+      "author": {
+        "name": "Anton, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch bietet einen guten ersten Anfang in die Welt von Angular. [...] Ich warte gespannt auf die 2 Version des Buches, um meine aktuellen Projekte umsetzen zu können.",
+      "datePublished": "2019-04-01",
+      "author": {
+        "name": "Leela, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ich habe den Eindruck, dass ich hier mit meinem Projekt gut aufgehoben bin. Sehr empfehlenswert!",
+      "datePublished": "2019-03-30",
+      "author": {
+        "name": "Metal King, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch ist sehr gut strukturiert, sehr gut zu lesen und durch das praktische Beispiel sehr gut zu verinnerlichen.",
+      "datePublished": "2019-01-28",
+      "author": {
+        "name": "ea, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Die einzelnen Kapitel sind sehr übersichtlich strukturiert und man kann den Erläuterungen zu jeder Zeit gut folgen. Ich kann dieses Buch guten Gewissens jedem empfehlen, der mit Angular zu tun hat. Es ist ein prima Nachschlagewerk.",
+      "datePublished": "2019-06-25",
+      "author": {
+        "name": "M.S., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch erklärt in einem wunderbaren Schreibstil, wie man als Neuling in der Angular-Welt den besten Einstieg bekommt. Man merkt, dass die Autoren sehr tief in der Materie sind und ihr Wissen gerne weitergeben. Somit ist das Buch stets professionell, aber immer nachvollziehbar und verständlich.",
+      "datePublished": "2020-07-05",
+      "author": {
+        "name": "C4bb4g3, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ich bin auf die beiden Autoren durch ein YouTube Video aufmerksam geworden und war gleich begeistert, weil sie so gut und verständlich erklären. Auch das Beispiel, das sich durchzieht, ist sehr gut und hilfreich.",
+      "datePublished": "2020-04-18",
+      "author": {
+        "name": "Klia Maus, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch ist von vorne bis hinten gut strukturiert und alle darin enthaltenen Themen detailliert erklärt. Absolute Kaufempfehlung für jeden, der sich mit dem Framework Angular bestens vertraut machen möchte! Ein Lob an die Autoren.",
+      "datePublished": "2020-03-06",
+      "author": {
+        "name": "Johannes Meinhard, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch hat mir sehr gut weiter geholfen und ich würde es weiterempfehlen. Der Aufbau sowie Schreibweise des Buchs haben mir gut gefallen, ich hatte beim Lesen nie das Gefühl, nicht folgen zu können.",
+      "datePublished": "2019-11-15",
+      "author": {
+        "name": "Katharinarrr, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Den kurzweiligen Mix aus Theorie und Praxis empfinde ich als sehr motivierend. Die Autoren können auch komplexe Themen sehr verständlich erklären. Ich empfehle das Buch jedem, der eine solide Einführung ins Thema Angular sucht.",
+      "datePublished": "2019-10-26",
+      "author": {
+        "name": "Matthias Hess, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Es ist sehr sorgfältig recherchiert, auf dem neuesten Stand und gibt Einblick in alles, was man von Angular wissen muss. Ich hatte davor schon Bücher von anderen Autoren zu diesem Thema, in diesen wurde jedoch nicht so sauber und anschaulich erklärt wie in diesem Buch.",
+      "datePublished": "2023-04-16",
+      "author": {
+        "name": "Daniel Ellermann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Didaktisch eine glatte 1 mit Sternchen! Hervorragend für mich als Wirtschaftsinformatiker zum Selbststudium, mit schneller Lernkurve geeignet.",
+      "datePublished": "2023-06-27",
+      "author": {
+        "name": "OD, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Insgesamt ein sehr solides und aktuelles Praxisbuch, das sich hervorragend als Nachschlagewerk und als kontinuierliche Lernbegleitung eignet. Für alle, die Angular professionell einsetzen oder einsetzen wollen, eine klare Empfehlung.",
+      "datePublished": "2026-01-11",
+      "author": {
+        "name": "Christian P., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das erste Angular-Buch von dieser Truppe war meiner Meinung nach das beste auf dem Markt. Allerdings hat sich in #Angular in den letzten 3-5 Jahren so unfassbar viel verändert, dass die drei statt einer 5. Auflage nun ein komplett neues geschrieben haben. Wer Angular (besser) verstehen möchte, ist hier richtig.",
+      "datePublished": "2026-05-23",
+      "author": {
+        "name": "Marcus Maack auf LinkedIn",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    }
+  ],
+  "@type": "Product",
+  "@context": "http://schema.org",
+  "brand": "Angular-Buch",
+  "image": "https://angular-buch.com/assets/img/book-cover-v1m.png",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "EUR",
+    "price": "39.90",
+    "priceValidUntil": "2030-12-31T23:59:59",
+    "itemCondition": "http://schema.org/NewCondition",
+    "availability": "http://schema.org/InStock",
+    "url": "https://angular-buch.com/kaufen",
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0",
+        "currency": "EUR"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": [
+          "DE",
+          "AT",
+          "CH"
+        ]
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 1,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 3,
+          "unitCode": "DAY"
+        }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 14,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    }
+  }
+}</script></app-json-ld-outlet></app-root>
+<link rel="modulepreload" href="chunk-MYHGN4SJ.js"><link rel="modulepreload" href="chunk-Q6ZEDSSE.js"><link rel="modulepreload" href="chunk-VA7OPD6Q.js"><link rel="modulepreload" href="chunk-2D7NLIPT.js"><link rel="modulepreload" href="chunk-4WH6RONJ.js"><script src="polyfills-KE2WY2BY.js" type="module"></script><script src="main-MSL2OELV.js" type="module"></script>
+<link rel="modulepreload" href="chunk-TMYU6GKD.js">
+<link rel="modulepreload" href="chunk-K2KK55RL.js">
+<link rel="modulepreload" href="chunk-ZY6V76C7.js">
+<link rel="modulepreload" href="chunk-FUDFOX2X.js">
+<link rel="modulepreload" href="chunk-ZQCHKCXL.js">
+<link rel="modulepreload" href="chunk-U3AHNVN6.js">
+
+
+<script id="ng-state" type="application/json">{"924849588":{"b":{"slug":"guards","html":"\u003Cp>Normalerweise kann jede Route einer Angular-Anwendung uneingeschränkt betreten und wieder verlassen werden.\nIn komplexeren Anwendungen gibt es allerdings Bereiche, die nur unter bestimmten Umständen aufgerufen werden sollen, z. B. abhängig von Authentifizierung, Berechtigungen oder dem Zustand der Anwendung.\nDer Angular-Router bietet dafür ein Feature an, mit dem wir Routen absichern können: \u003Cem>Route Guards\u003C\u002Fem>.\u003C\u002Fp>\n\u003Ch2 id=\"inhalt\">Inhalt\u003C\u002Fh2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#grundlagen-zu-guards\">Grundlagen zu Guards\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#varianten-von-guards\">Varianten von Guards\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#guards-verwenden\">Guards verwenden\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#guards-implementieren\">Guards implementieren\u003C\u002Fa>\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#canactivate-darf-die-route-aktiviert-werden\">CanActivate: Darf die Route aktiviert werden?\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#umleitung-mit-urltree\">Umleitung mit \u003Ccode>UrlTree\u003C\u002Fcode>\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#umleitung-mit-redirectcommand\">Umleitung mit \u003Ccode>RedirectCommand\u003C\u002Fcode>\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#warum-urltree-statt-routernavigate\">Warum \u003Ccode>UrlTree\u003C\u002Fcode> statt \u003Ccode>Router.navigate()\u003C\u002Fcode>?\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#candeactivate-darf-die-aktive-route-verlassen-werden\">CanDeactivate: Darf die aktive Route verlassen werden?\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#canactivatechild-d%C3%BCrfen-kind-routen-betreten-werden\">CanActivateChild: Dürfen Kind-Routen betreten werden?\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#canmatch-wird-die-route-ber%C3%BCcksichtigt\">CanMatch: Wird die Route berücksichtigt?\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#guards-inline-definieren\">Guards inline definieren\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#praxisbeispiel-admin-bereich-absichern\">Praxisbeispiel: Admin-Bereich absichern\u003C\u002Fa>\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#guard-implementieren\">Guard implementieren\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#guard-in-der-route-verwenden\">Guard in der Route verwenden\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#alternative-asynchroner-guard-mit-observable\">Alternative: Asynchroner Guard mit Observable\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#diskussion-den-richtigen-guard-typ-w%C3%A4hlen\">Diskussion: den richtigen Guard-Typ wählen\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#mehrere-guards-kombinieren\">Mehrere Guards kombinieren\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fguards#zusammenfassung\">Zusammenfassung\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003Ch2 id=\"grundlagen-zu-guards\">Grundlagen zu Guards\u003C\u002Fh2>\n\u003Cp>Ein Guard ist eine Funktion, die entscheidet, ob ein Navigationsschritt ausgeführt werden darf oder nicht.\nRouten können von Guards &quot;beschützt&quot; werden, sodass stets der Guard durchlaufen werden muss, bevor die Navigation tatsächlich ausgeführt wird.\nAuf diese Weise können Guards die Nutzerführung in der Anwendung steuern.\u003C\u002Fp>\n\u003Cblockquote>\n\u003Cp>⚠️ \u003Cstrong>Wichtig:\u003C\u002Fstrong> Guards steuern die Nutzerführung, aber sie sind kein Sicherheitsfeature!\nDer gesamte kompilierte Code der Anwendung kann vom Browser jederzeit heruntergeladen werden.\nDie Sicherheit der Daten muss immer vom Backend ausgehen: Nur wenn der Client authentifiziert ist, darf der Server die Daten herausgeben oder geschützte Aktionen durchführen.\nGuards helfen uns, abhängig von diesen Zuständen die Nutzerführung zu steuern.\u003C\u002Fp>\n\u003C\u002Fblockquote>\n\u003Cp>Die Entscheidung, ob die Navigation durchgeführt wird, wird durch den Rückgabewert der Guard-Funktion ausgedrückt.\nDafür sind diese Varianten möglich:\u003C\u002Fp>\n\u003Cul>\n\u003Cli>\u003Ccode>true\u003C\u002Fcode>: Die Navigation wird \u003Cstrong>ausgeführt\u003C\u002Fstrong>.\u003C\u002Fli>\n\u003Cli>\u003Ccode>false\u003C\u002Fcode>: Die Navigation wird \u003Cstrong>abgebrochen\u003C\u002Fstrong>.\u003C\u002Fli>\n\u003Cli>Typ \u003Ccode>UrlTree\u003C\u002Fcode> oder \u003Ccode>RedirectCommand\u003C\u002Fcode>: Die Navigation wird \u003Cstrong>abgebrochen\u003C\u002Fstrong>, und es wird zu einer anderen Route navigiert.\u003C\u002Fli>\n\u003C\u002Ful>\n\u003Cp>Dieser Rückgabewert kann synchron aus der Funktion zurückgegeben werden, oder er kann in ein Observable oder in eine Promise verpackt werden.\nDamit ist es möglich, asynchrone Operationen im Guard zu verarbeiten: Zum Beispiel kann ein HTTP-Request durchgeführt werden, dessen Antwort entscheidet, ob navigiert werden darf.\u003C\u002Fp>\n\u003Ch2 id=\"varianten-von-guards\">Varianten von Guards\u003C\u002Fh2>\n\u003Cp>Wir unterscheiden verschiedene Arten von Guards, mit denen wir unsere Routen absichern können:\u003C\u002Fp>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>Variante\u003C\u002Fth>\n\u003Cth>entscheidet, ob …\u003C\u002Fth>\n\u003C\u002Ftr>\n\u003C\u002Fthead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ccode>CanActivate\u003C\u002Fcode>\u003C\u002Ftd>\n\u003Ctd>eine Route betreten werden darf\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>\u003Ccode>CanActivateChild\u003C\u002Fcode>\u003C\u002Ftd>\n\u003Ctd>Kind-Routen einer Route betreten werden dürfen\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>\u003Ccode>CanDeactivate\u003C\u002Fcode>\u003C\u002Ftd>\n\u003Ctd>eine Route verlassen werden darf (wegnavigieren)\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>\u003Ccode>CanMatch\u003C\u002Fcode>\u003C\u002Ftd>\n\u003Ctd>eine Route bei der Auswertung berücksichtigt wird\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003C\u002Ftbody>\u003C\u002Ftable>\n\u003Cp>Ein Guard wird immer als Funktion entwickelt, die einer bestimmten Signatur folgt, dazu gleich mehr.\u003C\u002Fp>\n\u003Ch2 id=\"guards-verwenden\">Guards verwenden\u003C\u002Fh2>\n\u003Cp>Haben wir eine Guard-Funktion entwickelt, können wir sie auf unsere Routen anwenden:\nGuards werden als Eigenschaft einer Routendefinition angegeben und wirken als eine Art Middleware.\nDie verwendete Eigenschaft deutet immer auf die Art des Guards hin, z. B. \u003Ccode>canActivate\u003C\u002Fcode>.\nDie Guards werden als Array aufgelistet, denn es können auch mehrere Guards für eine Route festgelegt werden.\nIn diesem Fall werden sie der Reihe nach durchlaufen.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">export const routes: Routes = [\n  {\n    \u003Cspan class=\"hljs-selector-tag\">path\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;foo&#x27;\u003C\u002Fspan>,\n    component: FooPage,\n    canActivate: [myActivateGuard]\n  },\n  {\n    \u003Cspan class=\"hljs-selector-tag\">path\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;bar&#x27;\u003C\u002Fspan>,\n    component: BarPage,\n    canDeactivate: [leaveGuard]\n  }\n];\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Rufen wir z. B. die Route mit dem Pfad \u003Ccode>foo\u003C\u002Fcode> auf, wird zunächst die Guard-Funktion \u003Ccode>myActivateGuard\u003C\u002Fcode> ausgeführt.\nLiefert sie den Wert \u003Ccode>true\u003C\u002Fcode> zurück, wird die Route geladen, andernfalls wird die Navigation abgebrochen.\nGibt der Guard einen \u003Ccode>UrlTree\u003C\u002Fcode> oder ein \u003Ccode>RedirectCommand\u003C\u002Fcode> zurück, so wird eine neue Navigation zu der neuen Route gestartet.\u003C\u002Fp>\n\u003Ch2 id=\"guards-implementieren\">Guards implementieren\u003C\u002Fh2>\n\u003Cp>Ein Guard wird als Funktion implementiert, die einer bestimmten Typisierung folgt.\nDurch den Typ wird die Signatur der Funktion festgelegt, sodass der Router sicher mit dem Guard arbeiten kann.\nJe nach Guard-Variante nimmt die Funktion verschiedene Argumente entgegen.\u003C\u002Fp>\n\u003Cp>Zum Anlegen eines Guards können wir die Angular CLI verwenden:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">ng \u003Cspan class=\"hljs-keyword\">generate\u003C\u002Fspan> guard foo --guardType CanActivate\nng \u003Cspan class=\"hljs-keyword\">generate\u003C\u002Fspan> guard bar --guardType CanMatch\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"canactivate-darf-die-route-aktiviert-werden\">CanActivate: Darf die Route aktiviert werden?\u003C\u002Fh3>\n\u003Cp>Mit einem \u003Ccode>CanActivate\u003C\u002Fcode>-Guard können wir prüfen, ob eine bestimmte Route betreten werden darf.\nWir verwenden den Typ \u003Ccode>CanActivateFn\u003C\u002Fcode>, um die Guard-Funktion zu typisieren.\nSie kann zwei Argumente entgegennehmen:\u003C\u002Fp>\n\u003Cul>\n\u003Cli>\u003Ccode>ActivatedRouteSnapshot\u003C\u002Fcode>: Informationen zur angefragten Route, z. B. Routenparameter\u003C\u002Fli>\n\u003Cli>\u003Ccode>RouterStateSnapshot\u003C\u002Fcode>: der gesamte Zustand des Routers\u003C\u002Fli>\n\u003C\u002Ful>\n\u003Cp>Wollen wir im Guard auf Services zugreifen, z. B. um die Entscheidung abhängig von einem zentralen Zustand zu machen, verwenden wir die Funktion \u003Ccode>inject()\u003C\u002Fcode>.\nIm folgenden Beispiel haben wir das mit einem Signal \u003Ccode>isAuthenticated\u003C\u002Fcode> angedeutet.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { inject } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Fcore&#x27;\u003C\u002Fspan>;\n\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { \u003Cspan class=\"hljs-title class_\">CanActivateFn\u003C\u002Fspan> } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Frouter&#x27;\u003C\u002Fspan>;\n\n\u003Cspan class=\"hljs-comment\">\u002F\u002F Variante 1: nur true\u002Ffalse\u003C\u002Fspan>\n\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> \u003Cspan class=\"hljs-attr\">myActivateGuard\u003C\u002Fspan>: \u003Cspan class=\"hljs-title class_\">CanActivateFn\u003C\u002Fspan> =\n  \u003Cspan class=\"hljs-function\">(\u003Cspan class=\"hljs-params\">route, state\u003C\u002Fspan>) =&gt;\u003C\u002Fspan> {\n    \u003Cspan class=\"hljs-comment\">\u002F\u002F Routenparameter lesen\u003C\u002Fspan>\n    \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> foo = route.\u003Cspan class=\"hljs-property\">paramMap\u003C\u002Fspan>.\u003Cspan class=\"hljs-title function_\">get\u003C\u002Fspan>(\u003Cspan class=\"hljs-string\">&#x27;foo&#x27;\u003C\u002Fspan>);\n\n    \u003Cspan class=\"hljs-comment\">\u002F\u002F Service injizieren\u003C\u002Fspan>\n    \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> authService = \u003Cspan class=\"hljs-title function_\">inject\u003C\u002Fspan>(\u003Cspan class=\"hljs-title class_\">AuthService\u003C\u002Fspan>);\n\n    \u003Cspan class=\"hljs-comment\">\u002F\u002F Entscheidung treffen (true \u002F false)\u003C\u002Fspan>\n    \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> authService.\u003Cspan class=\"hljs-title function_\">isAuthenticated\u003C\u002Fspan>();\n  };\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"umleitung-mit-urltree\">Umleitung mit \u003Ccode>UrlTree\u003C\u002Fcode>\u003C\u002Fh3>\n\u003Cp>Wenn eine Navigation nicht erlaubt ist, kann es sinnvoll sein, stattdessen zu einer anderen Route umzuleiten.\nDafür können wir aus dem Guard ein Objekt vom Typ \u003Ccode>UrlTree\u003C\u002Fcode> zurückgeben.\nEin \u003Ccode>UrlTree\u003C\u002Fcode> ist die interne Repräsentation einer Route und gibt dem Router die Anweisung, zu dieser Route zu navigieren.\nEr lässt sich mithilfe des Routers erzeugen: Die Methoden \u003Ccode>Router.parseUrl()\u003C\u002Fcode> und \u003Ccode>Router.createUrlTree()\u003C\u002Fcode> wandeln eine URL in einen \u003Ccode>UrlTree\u003C\u002Fcode> um.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { inject } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Fcore&#x27;\u003C\u002Fspan>;\n\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { \u003Cspan class=\"hljs-title class_\">CanActivateFn\u003C\u002Fspan>, \u003Cspan class=\"hljs-title class_\">Router\u003C\u002Fspan> } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Frouter&#x27;\u003C\u002Fspan>;\n\n\u003Cspan class=\"hljs-comment\">\u002F\u002F Variante 2.1: Umleitung über UrlTree\u003C\u002Fspan>\n\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> \u003Cspan class=\"hljs-attr\">myActivateGuard\u003C\u002Fspan>: \u003Cspan class=\"hljs-title class_\">CanActivateFn\u003C\u002Fspan> = \u003Cspan class=\"hljs-function\">() =&gt;\u003C\u002Fspan> {\n  \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> authService = \u003Cspan class=\"hljs-title function_\">inject\u003C\u002Fspan>(\u003Cspan class=\"hljs-title class_\">AuthService\u003C\u002Fspan>);\n\n  \u003Cspan class=\"hljs-keyword\">if\u003C\u002Fspan> (authService.\u003Cspan class=\"hljs-title function_\">isAuthenticated\u003C\u002Fspan>()) {\n    \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> \u003Cspan class=\"hljs-literal\">true\u003C\u002Fspan>;\n  }\n\n  \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> router = \u003Cspan class=\"hljs-title function_\">inject\u003C\u002Fspan>(\u003Cspan class=\"hljs-title class_\">Router\u003C\u002Fspan>);\n  \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> router.\u003Cspan class=\"hljs-title function_\">parseUrl\u003C\u002Fspan>(\u003Cspan class=\"hljs-string\">&#x27;\u002Flogin&#x27;\u003C\u002Fspan>);\n};\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Alternativ können wir einen \u003Ccode>UrlTree\u003C\u002Fcode> auch mit der Methode \u003Ccode>Router.createUrlTree()\u003C\u002Fcode> erzeugen.\nHier übergeben wir ein Array von Routensegmenten.\nAußerdem können wir im zweiten Argument ein Objekt mit weiteren Optionen notieren, z. B. den Bezugspunkt für eine relative URL.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { inject } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Fcore&#x27;\u003C\u002Fspan>;\n\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { \u003Cspan class=\"hljs-title class_\">CanActivateFn\u003C\u002Fspan>, \u003Cspan class=\"hljs-title class_\">Router\u003C\u002Fspan> } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Frouter&#x27;\u003C\u002Fspan>;\n\n\u003Cspan class=\"hljs-comment\">\u002F\u002F Variante 2.2: Umleitung über UrlTree\u003C\u002Fspan>\n\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> \u003Cspan class=\"hljs-attr\">myActivateGuard\u003C\u002Fspan>: \u003Cspan class=\"hljs-title class_\">CanActivateFn\u003C\u002Fspan> = \u003Cspan class=\"hljs-function\">() =&gt;\u003C\u002Fspan> {\n  \u003Cspan class=\"hljs-comment\">\u002F\u002F ...\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> router = \u003Cspan class=\"hljs-title function_\">inject\u003C\u002Fspan>(\u003Cspan class=\"hljs-title class_\">Router\u003C\u002Fspan>);\n  \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> router.\u003Cspan class=\"hljs-title function_\">createUrlTree\u003C\u002Fspan>([\u003Cspan class=\"hljs-string\">&#x27;\u002Flogin&#x27;\u003C\u002Fspan>]);\n};\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"umleitung-mit-redirectcommand\">Umleitung mit \u003Ccode>RedirectCommand\u003C\u002Fcode>\u003C\u002Fh3>\n\u003Cp>Seit Angular 18 gibt es eine weitere Möglichkeit, eine Umleitung aus einem Guard heraus auszulösen: das \u003Ccode>RedirectCommand\u003C\u002Fcode>.\nIm Gegensatz zum \u003Ccode>UrlTree\u003C\u002Fcode> können wir damit zusätzliche Navigationsoptionen angeben, z. B. \u003Ccode>replaceUrl\u003C\u002Fcode> oder \u003Ccode>skipLocationChange\u003C\u002Fcode>:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { inject } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Fcore&#x27;\u003C\u002Fspan>;\n\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { \u003Cspan class=\"hljs-title class_\">CanActivateFn\u003C\u002Fspan>, \u003Cspan class=\"hljs-title class_\">Router\u003C\u002Fspan>, \u003Cspan class=\"hljs-title class_\">RedirectCommand\u003C\u002Fspan> } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Frouter&#x27;\u003C\u002Fspan>;\n\n\u003Cspan class=\"hljs-comment\">\u002F\u002F Variante 3: Umleitung über RedirectCommand mit Navigationsoptionen\u003C\u002Fspan>\n\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> \u003Cspan class=\"hljs-attr\">myActivateGuard\u003C\u002Fspan>: \u003Cspan class=\"hljs-title class_\">CanActivateFn\u003C\u002Fspan> = \u003Cspan class=\"hljs-function\">() =&gt;\u003C\u002Fspan> {\n  \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> authService = \u003Cspan class=\"hljs-title function_\">inject\u003C\u002Fspan>(\u003Cspan class=\"hljs-title class_\">AuthService\u003C\u002Fspan>);\n\n  \u003Cspan class=\"hljs-keyword\">if\u003C\u002Fspan> (authService.\u003Cspan class=\"hljs-title function_\">isAuthenticated\u003C\u002Fspan>()) {\n    \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> \u003Cspan class=\"hljs-literal\">true\u003C\u002Fspan>;\n  }\n\n  \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> router = \u003Cspan class=\"hljs-title function_\">inject\u003C\u002Fspan>(\u003Cspan class=\"hljs-title class_\">Router\u003C\u002Fspan>);\n  \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> urlTree = router.\u003Cspan class=\"hljs-title function_\">parseUrl\u003C\u002Fspan>(\u003Cspan class=\"hljs-string\">&#x27;\u002Flogin&#x27;\u003C\u002Fspan>);\n  \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">new\u003C\u002Fspan> \u003Cspan class=\"hljs-title class_\">RedirectCommand\u003C\u002Fspan>(urlTree, { \u003Cspan class=\"hljs-attr\">replaceUrl\u003C\u002Fspan>: \u003Cspan class=\"hljs-literal\">true\u003C\u002Fspan> });\n};\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"warum-urltree-statt-routernavigate\">Warum \u003Ccode>UrlTree\u003C\u002Fcode> statt \u003Ccode>Router.navigate()\u003C\u002Fcode>?\u003C\u002Fh3>\n\u003Cp>Theoretisch könnten wir aus dem Guard heraus auch direkt die Methode \u003Ccode>Router.navigate()\u003C\u002Fcode> aufrufen, um zu einer anderen Route zu wechseln.\nPraktisch hat der \u003Ccode>UrlTree\u003C\u002Fcode> (bzw. das \u003Ccode>RedirectCommand\u003C\u002Fcode>) allerdings einen entscheidenden Vorteil, wenn mehrere Guards aktiv sind, die asynchron arbeiten.\nIn einer solchen Konstellation ist nie klar, welcher der Guards wann eine Antwort liefert und damit über das Ziel der Navigation entscheidet.\u003C\u002Fp>\n\u003Cp>Verwenden wir einen \u003Ccode>UrlTree\u003C\u002Fcode> als Rückgabewert, verhält sich der Router deterministisch:\nDie Guards, die näher an der Wurzel der Routenhierarchie aktiv sind, haben eine höhere Priorität als die Guards, die tiefer im Baum platziert sind.\nDer Router kümmert sich um die Priorisierung und Weiterleitung.\u003C\u002Fp>\n\u003Cp>Verwende deshalb bitte immer einen \u003Ccode>UrlTree\u003C\u002Fcode> oder ein \u003Ccode>RedirectCommand\u003C\u002Fcode>, um aus einem Guard heraus zu einer anderen Route zu navigieren.\u003C\u002Fp>\n\u003Ch3 id=\"candeactivate-darf-die-aktive-route-verlassen-werden\">CanDeactivate: Darf die aktive Route verlassen werden?\u003C\u002Fh3>\n\u003Cp>Mit einem \u003Ccode>CanDeactivate\u003C\u002Fcode>-Guard können wir prüfen, ob die gerade aktive Route verlassen werden darf.\nDie Guard-Funktion erhält als erstes Argument eine Referenz auf die Komponente, die durch die Navigation verlassen wird.\nDer Typ dieser Komponente wird mit dem generischen Typparameter \u003Ccode>T\u003C\u002Fcode> im Typ \u003Ccode>CanDeactivateFn&lt;T&gt;\u003C\u002Fcode> angegeben.\u003C\u002Fp>\n\u003Cp>Die Funktion erhält die gesamte Instanz der Komponente als Argument:\nWir können also Daten aus der Komponente abfragen und die Entscheidung abhängig von ihrem Zustand machen.\nDas ist z. B. sinnvoll, um zu prüfen, ob Änderungen in einem Formular vorgenommen wurden, die nicht verworfen werden sollen.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { CanDeactivateFn } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Frouter&#x27;\u003C\u002Fspan>;\n\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { MyComponent } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;.\u002Fmy.component&#x27;\u003C\u002Fspan>;\n\n\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> const leaveGuard: CanDeactivateFn&lt;MyComponent&gt; =\n  \u003Cspan class=\"hljs-function\">\u003Cspan class=\"hljs-params\">(component)\u003C\u002Fspan> =&gt;\u003C\u002Fspan> {\n    \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> !component.hasUnsavedChanges();\n  };\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Wenn wir den Guard in der Route verwenden, wird das Verlassen der Komponente \u003Ccode>MyComponent\u003C\u002Fcode> nur erlaubt, wenn das Signal \u003Ccode>hasUnsavedChanges\u003C\u002Fcode> in der Komponente den Wert \u003Ccode>false\u003C\u002Fcode> hat.\nDiese Eigenschaft ist selbst definiert und muss natürlich innerhalb der Komponente gesteuert werden.\u003C\u002Fp>\n\u003Cblockquote>\n\u003Cp>\u003Cstrong>Tipp: Guard wiederverwenden\u003C\u002Fstrong>\u003C\u002Fp>\n\u003Cp>Durch den generischen Typparameter ist der gezeigte \u003Ccode>CanDeactivate\u003C\u002Fcode>-Guard spezifisch für eine bestimmte Komponente.\nUm das zu vermeiden, empfehlen wir, ein Interface anzulegen, das die benötigte Schnittstelle der Komponente vorgibt, z. B. das Property \u003Ccode>hasUnsavedChanges\u003C\u002Fcode> mit einem Signal.\nAlle Komponenten, die diese Schnittstelle für den Guard anbieten, müssen das Interface implementieren.\nDer Guard verwendet in seinem Typparameter dann ebenfalls das Interface. So kann der Guard mit verschiedenen Komponenten arbeiten und ist nicht nur für eine einzelne Komponente verwendbar.\u003C\u002Fp>\n\u003C\u002Fblockquote>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">interface\u003C\u002Fspan> \u003Cspan class=\"hljs-title class_\">HasUnsavedChanges\u003C\u002Fspan> {\n  \u003Cspan class=\"hljs-attr\">hasUnsavedChanges\u003C\u002Fspan>: \u003Cspan class=\"hljs-title class_\">Signal\u003C\u002Fspan>&lt;\u003Cspan class=\"hljs-built_in\">boolean\u003C\u002Fspan>&gt;;\n}\n\n\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> \u003Cspan class=\"hljs-attr\">leaveGuard\u003C\u002Fspan>: \u003Cspan class=\"hljs-title class_\">CanDeactivateFn\u003C\u002Fspan>&lt;\u003Cspan class=\"hljs-title class_\">HasUnsavedChanges\u003C\u002Fspan>&gt; =\n  \u003Cspan class=\"hljs-function\">(\u003Cspan class=\"hljs-params\">component\u003C\u002Fspan>) =&gt;\u003C\u002Fspan> {\n    \u003Cspan class=\"hljs-keyword\">if\u003C\u002Fspan> (component.\u003Cspan class=\"hljs-title function_\">hasUnsavedChanges\u003C\u002Fspan>()) {\n      \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> \u003Cspan class=\"hljs-title function_\">confirm\u003C\u002Fspan>(\u003Cspan class=\"hljs-string\">&#x27;Du hast ungespeicherte Änderungen. Möchtest du die Seite wirklich verlassen?&#x27;\u003C\u002Fspan>);\n    }\n    \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> \u003Cspan class=\"hljs-literal\">true\u003C\u002Fspan>;\n  };\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"canactivatechild-dürfen-kind-routen-betreten-werden\">CanActivateChild: Dürfen Kind-Routen betreten werden?\u003C\u002Fh3>\n\u003Cp>Ein Guard mit dem Typ \u003Ccode>CanActivateChildFn\u003C\u002Fcode> entscheidet, ob zu den Kind-Routen der betreffenden Route navigiert werden darf.\nDieser Guard wird für \u003Cem>alle\u003C\u002Fem> Kind-Routen ausgeführt, die mit \u003Ccode>children\u003C\u002Fcode> definiert sind.\nDas ist besonders nützlich, um eine ganze Gruppe von Routen mit einer einzigen Prüfung abzusichern.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { inject } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Fcore&#x27;\u003C\u002Fspan>;\n\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { \u003Cspan class=\"hljs-title class_\">CanActivateChildFn\u003C\u002Fspan> } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Frouter&#x27;\u003C\u002Fspan>;\n\n\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> \u003Cspan class=\"hljs-attr\">adminChildGuard\u003C\u002Fspan>: \u003Cspan class=\"hljs-title class_\">CanActivateChildFn\u003C\u002Fspan> =\n  \u003Cspan class=\"hljs-function\">(\u003Cspan class=\"hljs-params\">childRoute, state\u003C\u002Fspan>) =&gt;\u003C\u002Fspan> {\n    \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> authService = \u003Cspan class=\"hljs-title function_\">inject\u003C\u002Fspan>(\u003Cspan class=\"hljs-title class_\">AuthService\u003C\u002Fspan>);\n    \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> authService.\u003Cspan class=\"hljs-title function_\">hasRole\u003C\u002Fspan>(\u003Cspan class=\"hljs-string\">&#x27;admin&#x27;\u003C\u002Fspan>);\n  };\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>In der Routenkonfiguration wird der Guard auf der Elternroute notiert:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">const routes: Routes = [\n  {\n    \u003Cspan class=\"hljs-selector-tag\">path\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;users&#x27;\u003C\u002Fspan>,\n    canActivateChild: [adminChildGuard],\n    children: [\n      { \u003Cspan class=\"hljs-selector-tag\">path\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;list&#x27;\u003C\u002Fspan>, component: UserListPage },\n      { \u003Cspan class=\"hljs-selector-tag\">path\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;detail\u002F:id&#x27;\u003C\u002Fspan>, component: UserDetailPage },\n    ],\n  },\n];\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"canmatch-wird-die-route-berücksichtigt\">CanMatch: Wird die Route berücksichtigt?\u003C\u002Fh3>\n\u003Cp>Ein Guard mit dem Typ \u003Ccode>CanMatchFn\u003C\u002Fcode> entscheidet, ob eine Route bei der Auswertung berücksichtigt wird.\nNavigieren wir zu einer URL, werden alle Routen von oben nach unten abgearbeitet.\nFür jede Route wird geprüft, ob sie zur angeforderten URL passt – und die erste passende Route wird geladen.\nMit \u003Ccode>CanMatch\u003C\u002Fcode>-Guards können wir entscheiden, ob eine Route dabei überhaupt ausgewertet oder übersprungen wird.\u003C\u002Fp>\n\u003Cp>Die Guard-Funktion erhält zwei Argumente: das gesamte Routen-Objekt und die angeforderte URL in Form eines Arrays von URL-Segmenten.\nGibt die Funktion \u003Ccode>false\u003C\u002Fcode> zurück, wird die betreffende Route bei der Auswertung übersprungen – der Router versucht dann, eine andere passende Route zu finden.\nAuch dieser Guard kann einen \u003Ccode>UrlTree\u003C\u002Fcode> zurückgeben, um eine neue Navigation anzustoßen.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { inject } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Fcore&#x27;\u003C\u002Fspan>;\n\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { CanMatchFn } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Frouter&#x27;\u003C\u002Fspan>;\n\n\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> const myMatchGuard: CanMatchFn =\n  \u003Cspan class=\"hljs-function\">\u003Cspan class=\"hljs-params\">(route, segments)\u003C\u002Fspan> =&gt;\u003C\u002Fspan> {\n    \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> inject(AuthService).isAuthenticated();\n  };\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Da wir auf diese Weise bestimmte Routen von der Auswertung ausschließen können, eignet sich \u003Ccode>CanMatch\u003C\u002Fcode> für ein besonderes Szenario:\nWir können mehrere Varianten einer Route anbieten, die auf verschiedene Komponenten zeigen.\nEntscheidet der Guard, dass die erste Route nicht berücksichtigt wird, wird die zweite verwendet.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">const routes: Routes = [\n  {\n    \u003Cspan class=\"hljs-selector-tag\">path\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;myfeature&#x27;\u003C\u002Fspan>,\n    component: FeaturePage,\n    canMatch: [myMatchGuard]\n  },\n  {\n    \u003Cspan class=\"hljs-selector-tag\">path\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;myfeature&#x27;\u003C\u002Fspan>,\n    component: AnonymousFeaturePage\n  }\n];\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Liefert das Signal \u003Ccode>isAuthenticated\u003C\u002Fcode> vom \u003Ccode>AuthService\u003C\u002Fcode> den Wert \u003Ccode>true\u003C\u002Fcode> zurück, wird die erste Route mit der \u003Ccode>FeaturePage\u003C\u002Fcode> geladen.\nSteht der Zustand auf \u003Ccode>false\u003C\u002Fcode>, wird die \u003Ccode>AnonymousFeaturePage\u003C\u002Fcode> angezeigt.\u003C\u002Fp>\n\u003Cp>Dieses Muster eignet sich hervorragend für Feature Flags, A\u002FB-Testing oder bedingte Routenauswahl.\u003C\u002Fp>\n\u003Ch2 id=\"guards-inline-definieren\">Guards inline definieren\u003C\u002Fh2>\n\u003Cp>In allen bisherigen Beispielen haben wir die Funktionen separat abgelegt, sodass wir sie in den Routen referenzieren können.\nWollen wir einen Guard nur einmalig nutzen, können wir die Funktion auch direkt in der Route definieren:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">const routes: Routes = [\n  {\n    \u003Cspan class=\"hljs-selector-tag\">path\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;bar&#x27;\u003C\u002Fspan>,\n    component: BarPage,\n    canDeactivate: [\n      (comp: MyComponent) =&gt; !comp.\u003Cspan class=\"hljs-built_in\">hasUnsavedChanges\u003C\u002Fspan>(),\n    ]\n  },\n  {\n    \u003Cspan class=\"hljs-selector-tag\">path\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;secret&#x27;\u003C\u002Fspan>,\n    component: SecretPage,\n    canActivate: [() =&gt; \u003Cspan class=\"hljs-built_in\">inject\u003C\u002Fspan>(AuthService).\u003Cspan class=\"hljs-built_in\">isAuthenticated\u003C\u002Fspan>()]\n  }\n];\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch2 id=\"praxisbeispiel-admin-bereich-absichern\">Praxisbeispiel: Admin-Bereich absichern\u003C\u002Fh2>\n\u003Cp>Wir schauen uns ein vollständiges Beispiel an.\nDer Administrationsbereich einer Anwendung soll abgesichert werden, sodass er nur für angemeldete Personen zugänglich ist.\nDie Information zum Authentifizierungsstatus erhalten wir aus einem \u003Ccode>AuthService\u003C\u002Fcode>.\u003C\u002Fp>\n\u003Ch3 id=\"guard-implementieren\">Guard implementieren\u003C\u002Fh3>\n\u003Cp>Wir erstellen einen \u003Ccode>CanActivate\u003C\u002Fcode>-Guard, der den Authentifizierungsstatus prüft.\nIst die Person angemeldet, erlauben wir die Navigation.\nFalls nicht, leiten wir zur Startseite um und zeigen eine Meldung an:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { inject } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Fcore&#x27;\u003C\u002Fspan>;\n\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { \u003Cspan class=\"hljs-title class_\">CanActivateFn\u003C\u002Fspan>, \u003Cspan class=\"hljs-title class_\">Router\u003C\u002Fspan> } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Frouter&#x27;\u003C\u002Fspan>;\n\n\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> \u003Cspan class=\"hljs-attr\">authGuard\u003C\u002Fspan>: \u003Cspan class=\"hljs-title class_\">CanActivateFn\u003C\u002Fspan> = \u003Cspan class=\"hljs-function\">() =&gt;\u003C\u002Fspan> {\n  \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> authService = \u003Cspan class=\"hljs-title function_\">inject\u003C\u002Fspan>(\u003Cspan class=\"hljs-title class_\">AuthService\u003C\u002Fspan>);\n  \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> router = \u003Cspan class=\"hljs-title function_\">inject\u003C\u002Fspan>(\u003Cspan class=\"hljs-title class_\">Router\u003C\u002Fspan>);\n\n  \u003Cspan class=\"hljs-keyword\">if\u003C\u002Fspan> (authService.\u003Cspan class=\"hljs-title function_\">isAuthenticated\u003C\u002Fspan>()) {\n    \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> \u003Cspan class=\"hljs-literal\">true\u003C\u002Fspan>;\n  }\n\n  \u003Cspan class=\"hljs-title function_\">alert\u003C\u002Fspan>(\u003Cspan class=\"hljs-string\">&#x27;Bitte melde dich an, um den Admin-Bereich zu betreten.&#x27;\u003C\u002Fspan>);\n  \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> router.\u003Cspan class=\"hljs-title function_\">parseUrl\u003C\u002Fspan>(\u003Cspan class=\"hljs-string\">&#x27;\u002Fhome&#x27;\u003C\u002Fspan>);\n};\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>In einer realen Anwendung würden wir hier eine eigene UI-Komponente einsetzen, etwa eine Toast-Benachrichtigung oder einen Bestätigungsdialog. Für dieses Beispiel reicht uns hier aber der einfache \u003Ccode>alert()\u003C\u002Fcode>-Aufruf.\u003C\u002Fp>\n\u003Ch3 id=\"guard-in-der-route-verwenden\">Guard in der Route verwenden\u003C\u002Fh3>\n\u003Cp>In der Routenkonfiguration fügen wir die Eigenschaft \u003Ccode>canActivate\u003C\u002Fcode> hinzu und geben die Guard-Funktion an.\nDamit wird der Guard ausgeführt, bevor die Route geladen wird:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">const routes: Routes = [\n  {\n    \u003Cspan class=\"hljs-attr\">path\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;admin&#x27;\u003C\u002Fspan>,\n    \u003Cspan class=\"hljs-attr\">loadChildren\u003C\u002Fspan>: \u003Cspan class=\"hljs-function\">\u003Cspan class=\"hljs-params\">()\u003C\u002Fspan> =&gt;\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan>(\u003Cspan class=\"hljs-string\">&#x27;.\u002Fadmin\u002Fadmin.routes&#x27;\u003C\u002Fspan>),\n    \u003Cspan class=\"hljs-attr\">canActivate\u003C\u002Fspan>: [authGuard]\n  },\n  \u003Cspan class=\"hljs-comment\">\u002F\u002F ...\u003C\u002Fspan>\n];\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Wenn wir die Basisroute für das Lazy Loading mit dem Guard sichern, sind auch alle darunter folgenden Routen abgedeckt.\u003C\u002Fp>\n\u003Ch3 id=\"alternative-asynchroner-guard-mit-observable\">Alternative: Asynchroner Guard mit Observable\u003C\u002Fh3>\n\u003Cp>In einer produktiven Anwendung erhalten wir den Status der Authentifizierung möglicherweise nicht synchron.\nUnser \u003Ccode>AuthService\u003C\u002Fcode> bietet die Information zusätzlich über ein Observable an.\nIn diesem Fall können wir den Guard asynchron implementieren.\nEr gibt dann ein Observable oder eine Promise zurück.\nDer Router wartet auf die asynchrone Operation und entscheidet dann mit dem Ergebnis, ob und wie die Navigation ausgeführt wird.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { inject } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Fcore&#x27;\u003C\u002Fspan>;\n\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { CanActivateFn, Router } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Frouter&#x27;\u003C\u002Fspan>;\n\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { \u003Cspan class=\"hljs-keyword\">map\u003C\u002Fspan>, take } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;rxjs&#x27;\u003C\u002Fspan>;\n\n\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> authGuard: CanActivateFn = () =&gt; {\n  \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> authService = inject(AuthService);\n  \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> router = inject(Router);\n\n  \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> authService.isAuthenticated$.pipe(\n    take(\u003Cspan class=\"hljs-number\">1\u003C\u002Fspan>),\n    \u003Cspan class=\"hljs-keyword\">map\u003C\u002Fspan>(isAuthenticated =&gt; {\n      \u003Cspan class=\"hljs-keyword\">if\u003C\u002Fspan> (isAuthenticated) {\n        \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> \u003Cspan class=\"hljs-literal\">true\u003C\u002Fspan>;\n      }\n      \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> router.parseUrl(\u003Cspan class=\"hljs-string\">&#x27;\u002Flogin&#x27;\u003C\u002Fspan>);\n    })\n  );\n};\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Es ist wichtig, dass wir die Länge des Datenstroms mithilfe von \u003Ccode>take(1)\u003C\u002Fcode> begrenzen: Wir sind nur an einem einzigen Wert interessiert, nicht an allen danach folgenden.\u003C\u002Fp>\n\u003Cp>Wichtig ist auch, dass der Router auf die asynchrone Operation wartet und die Navigation verzögert.\nHier sollten also keine zeitintensiven Operationen durchgeführt werden.\u003C\u002Fp>\n\u003Ch2 id=\"diskussion-den-richtigen-guard-typ-wählen\">Diskussion: den richtigen Guard-Typ wählen\u003C\u002Fh2>\n\u003Cp>Die Wahl des Guard-Typs hängt davon ab, \u003Cem>wann\u003C\u002Fem> die Prüfung stattfinden soll:\u003C\u002Fp>\n\u003Cul>\n\u003Cli>\u003Cstrong>\u003Ccode>CanActivate\u003C\u002Fcode>\u003C\u002Fstrong>: Die Route wird zunächst aufgelöst (und bei Lazy Loading heruntergeladen). Bevor die Komponente aktiviert wird, entscheidet der Guard.\u003C\u002Fli>\n\u003Cli>\u003Cstrong>\u003Ccode>CanMatch\u003C\u002Fcode>\u003C\u002Fstrong>: Die Prüfung findet statt, \u003Cem>bevor\u003C\u002Fem> die Route überhaupt aufgelöst wird. Bei Lazy Loading wird das Bundle nur heruntergeladen, wenn der Guard es erlaubt.\u003C\u002Fli>\n\u003Cli>\u003Cstrong>\u003Ccode>CanActivateChild\u003C\u002Fcode>\u003C\u002Fstrong>: Sichert alle Kind-Routen einer Elternroute mit einer einzigen Prüfung ab.\u003C\u002Fli>\n\u003Cli>\u003Cstrong>\u003Ccode>CanDeactivate\u003C\u002Fcode>\u003C\u002Fstrong>: Prüft, ob die aktuelle Route verlassen werden darf.\u003C\u002Fli>\n\u003C\u002Ful>\n\u003Cp>Für die Absicherung von Lazy-Loading-Routen empfehlen wir \u003Ccode>CanMatch\u003C\u002Fcode>, da so das Bundle nur bei Bedarf geladen wird.\nFür einfache Authentifizierungsprüfungen auf einzelnen Routen ist \u003Ccode>CanActivate\u003C\u002Fcode> die gängigste Wahl.\u003C\u002Fp>\n\u003Ch2 id=\"mehrere-guards-kombinieren\">Mehrere Guards kombinieren\u003C\u002Fh2>\n\u003Cp>Guards werden als Array angegeben und in der definierten Reihenfolge ausgeführt.\nAlle Guards müssen \u003Ccode>true\u003C\u002Fcode> zurückgeben, damit die Navigation stattfindet.\nGibt einer der Guards \u003Ccode>false\u003C\u002Fcode> oder einen \u003Ccode>UrlTree\u003C\u002Fcode> zurück, wird die Navigation abgebrochen bzw. umgeleitet.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">const routes: Routes = [\n  {\n    \u003Cspan class=\"hljs-selector-tag\">path\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;admin&#x27;\u003C\u002Fspan>,\n    component: AdminPage,\n    canActivate: [authGuard, adminRoleGuard]\n  },\n];\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>In diesem Beispiel muss die Person authentifiziert sein \u003Cem>und\u003C\u002Fem> auch die Admin-Rolle besitzen, um die Route zu betreten.\u003C\u002Fp>\n\u003Ch2 id=\"zusammenfassung\">Zusammenfassung\u003C\u002Fh2>\n\u003Cul>\n\u003Cli>Mit Guards können Routen abgesichert werden, sodass die Navigation unter bestimmten Umständen abgebrochen wird.\u003C\u002Fli>\n\u003Cli>Ein Guard ist eine Funktion, die entscheidet, ob die Navigation ausgeführt werden darf.\u003C\u002Fli>\n\u003Cli>Es gibt vier Arten von Guards:\u003Cul>\n\u003Cli>\u003Ccode>CanActivate\u003C\u002Fcode> – beim Aufruf einer Route\u003C\u002Fli>\n\u003Cli>\u003Ccode>CanDeactivate\u003C\u002Fcode> – beim Verlassen einer Route\u003C\u002Fli>\n\u003Cli>\u003Ccode>CanActivateChild\u003C\u002Fcode> – beim Aufruf einer Kind-Route\u003C\u002Fli>\n\u003Cli>\u003Ccode>CanMatch\u003C\u002Fcode> – beim Auswerten der Route\u003C\u002Fli>\n\u003C\u002Ful>\n\u003C\u002Fli>\n\u003Cli>Der Rückgabewert eines Guards ist ein \u003Ccode>boolean\u003C\u002Fcode>, ein \u003Ccode>UrlTree\u003C\u002Fcode> oder ein \u003Ccode>RedirectCommand\u003C\u002Fcode>. Der Rückgabewert kann auch asynchron von einem Observable oder einer Promise geliefert werden.\u003C\u002Fli>\n\u003Cli>Gibt der Guard \u003Ccode>true\u003C\u002Fcode> zurück, wird die Navigation ausgeführt, bei \u003Ccode>false\u003C\u002Fcode> wird sie abgebrochen.\u003C\u002Fli>\n\u003Cli>Gibt der Guard einen \u003Ccode>UrlTree\u003C\u002Fcode> oder ein \u003Ccode>RedirectCommand\u003C\u002Fcode> zurück, wird eine neue Navigation zur enthaltenen Route gestartet.\u003C\u002Fli>\n\u003Cli>Guards werden als Eigenschaft einer Routendefinition notiert und wirken dann auf diese Route.\u003C\u002Fli>\n\u003Cli>Guards steuern die Nutzerführung, aber sie sind kein Sicherheitsfeature. Die Absicherung muss immer serverseitig erfolgen.\u003C\u002Fli>\n\u003C\u002Ful>\n","meta":{"title":"Guards: Routen absichern","published":"2026-06-10T00:00:00.000Z","lastModified":"2026-06-10T00:00:00.000Z"}},"h":{},"s":200,"st":"OK","u":"https:\u002F\u002Fwebsite-articles.angular-buch.com\u002Fmaterial\u002Fguards\u002Fentry.json","rt":"json"},"2886927623":{"b":[{"slug":"typescript","html":"\u003Cp>Für die Entwicklung mit Angular verwenden wir die Programmiersprache \u003Cstrong>TypeScript\u003C\u002Fstrong>.\nDieser Artikel richtet sich an alle, die mit modernem JavaScript und TypeScript noch nicht vertraut sind.\nWir gehen die wichtigsten Sprachfeatures Schritt für Schritt durch und legen damit das Fundament für die Arbeit mit Angular.\u003C\u002Fp>","meta":{"title":"Einführung in TypeScript","published":"2026-05-14T00:00:00.000Z","lastModified":"2026-05-14T00:00:00.000Z","sortKey":1}},{"slug":"directives","html":"\u003Cp>In diesem Artikel geht es um \u003Cem>Direktiven\u003C\u002Fem> in Angular.\nMit Direktiven können wir das Verhalten von DOM-Elementen steuern und erweitern.\nWir betrachten die Unterschiede zwischen Attribut- und Strukturdirektiven, lernen, wie wir eigene Direktiven entwickeln können, und schauen uns die Komposition mit Host-Direktiven an.\u003C\u002Fp>","meta":{"title":"Direktiven: Logik für DOM-Elemente","published":"2026-04-25T00:00:00.000Z","lastModified":"2026-04-25T00:00:00.000Z","sortKey":5}},{"slug":"content-projection","html":"\u003Cp>Wenn wir eine Komponente in unser Template einbinden, notieren wir sie üblicherweise ohne weiteren Inhalt zwischen dem öffnenden und schließenden Tag.\nManchmal ist es aber sinnvoll, einer Komponente eigenes Markup oder auch andere Komponenten als Kindelemente mitzugeben – zum Beispiel bei Cards, Dialogen oder Layouts.\nAngular ermöglicht das mit \u003Cstrong>Content Projection\u003C\u002Fstrong> und dem Element \u003Ccode>&lt;ng-content&gt;\u003C\u002Fcode>.\nIn diesem Artikel erklären wir das Konzept im Detail und zeigen, wie du es in deinen Komponenten einsetzen kannst.\u003C\u002Fp>","meta":{"title":"Content Projection: Inhalte an Komponenten übergeben","published":"2026-05-15T00:00:00.000Z","lastModified":"2026-05-15T00:00:00.000Z","sortKey":6}},{"slug":"interceptors","html":"\u003Cp>In diesem Artikel geht es um \u003Cem>Interceptors\u003C\u002Fem> in Angular. Damit lassen sich HTTP-Requests und -Responses zentral erfassen und transformieren.\nSo können wir zum Beispiel Authentifizierungs-Header automatisch setzen, Fehler global behandeln oder die HTTP-Kommunikation loggen, ohne jeden einzelnen Request manuell anpassen zu müssen.\nDabei betrachten wir zunächst die Funktionsweise und Implementierung von Interceptors, bevor wir am Beispiel einer Authentifizierung mit OAuth 2 und OpenID Connect ein praxisnahes Einsatzszenario umsetzen.\u003C\u002Fp>","meta":{"title":"Interceptors: HTTP-Requests erfassen und transformieren","published":"2026-03-06T00:00:00.000Z","lastModified":"2026-05-21T00:00:00.000Z","sortKey":10}},{"slug":"resolvers","html":"\u003Cp>Der Angular-Router bietet mit \u003Cem>Resolvers\u003C\u002Fem> die Möglichkeit, Daten asynchron vorzuladen, bevor eine Komponente aktiviert wird.\nHier betrachten wir die Funktionsweise, Implementierung und den Zugriff auf die aufgelösten Daten in der Komponente.\nAußerdem diskutieren wir, wann Resolvers sinnvoll sind – und wann nicht.\u003C\u002Fp>","meta":{"title":"Resolvers: Daten beim Routing vorladen","published":"2026-05-17T00:00:00.000Z","lastModified":"2026-05-21T00:00:00.000Z","sortKey":11}},{"slug":"reactive-forms","html":"\u003Cp>Formulare gehören zu den zentralen Bausteinen jeder Webanwendung.\nAngular bietet mit \u003Cstrong>Reactive Forms\u003C\u002Fstrong> einen bewährten Ansatz, um sie strukturiert und typsicher zu verarbeiten. \nDie Lösung ist seit jeher fester Bestandteil von Angular und wird in vielen produktiven Anwendungen eingesetzt.\nIn diesem Artikel stellen wir den Ansatz im Detail vor.\u003C\u002Fp>","meta":{"title":"Formulare mit Reactive Forms","published":"2026-03-26T00:00:00.000Z","lastModified":"2026-03-26T00:00:00.000Z","sortKey":20}},{"slug":"template-forms","html":"\u003Cp>Formulare gehören zu den zentralen Bausteinen jeder Webanwendung.\nMit den älteren \u003Cstrong>Template-Driven Forms\u003C\u002Fstrong> bietet Angular einen Ansatz, bei dem die Formularlogik direkt im Template definiert wird.\nDieser Artikel stellt den Ansatz im Detail vor.\u003C\u002Fp>","meta":{"title":"Formulare mit Template-Driven Forms","published":"2026-04-08T00:00:00.000Z","lastModified":"2026-04-08T00:00:00.000Z","sortKey":21}},{"slug":"ssr","html":"\u003Cp>Single-Page-Anwendungen mit Angular bieten grundsätzlich eine gute Performance:\nIm Gegensatz zu einer herkömmlichen Webanwendung ist der Anwendungscode bereits nach dem Start im Browser verfügbar, und weitere Inhalte werden zur Laufzeit nachgeladen.\nWir profitieren davon mit schnellen Seitenwechseln und Reaktionszeiten.\nIst die Anwendung einmal heruntergeladen, müssen nur noch die darzustellenden Daten und ggf. kleinere Anwendungsteile vom Server geladen werden.\u003C\u002Fp>","meta":{"title":"Server-Side Rendering (SSR) mit Angular","published":"2026-02-23T00:00:00.000Z","lastModified":"2026-03-02T00:00:00.000Z","sortKey":30}},{"slug":"i18n","html":"\u003Cp>In diesem Artikel geht es darum, wie wir unsere Angular-Anwendung für verschiedene Sprachräume lokalisieren und in mehreren Sprachen ausliefern können.\nDabei betrachten wir zunächst die Lokalisierung (l10n) für ein einzelnes Locale und anschließend die vollständige Internationalisierung (i18n) mit dem Übersetzungstooling der Angular CLI.\u003C\u002Fp>","meta":{"title":"Lokalisierung (l10n) und Internationalisierung (i18n) mit Angular","published":"2026-03-02T00:00:00.000Z","lastModified":"2026-03-03T00:00:00.000Z","sortKey":40}},{"slug":"guards","html":"\u003Cp>Normalerweise kann jede Route einer Angular-Anwendung uneingeschränkt betreten und wieder verlassen werden.\nIn komplexeren Anwendungen gibt es allerdings Bereiche, die nur unter bestimmten Umständen aufgerufen werden sollen, z. B. abhängig von Authentifizierung, Berechtigungen oder dem Zustand der Anwendung.\nDer Angular-Router bietet dafür ein Feature an, mit dem wir Routen absichern können: \u003Cem>Route Guards\u003C\u002Fem>.\u003C\u002Fp>","meta":{"title":"Guards: Routen absichern","published":"2026-06-10T00:00:00.000Z","lastModified":"2026-06-10T00:00:00.000Z"}}],"h":{},"s":200,"st":"OK","u":"https:\u002F\u002Fwebsite-articles.angular-buch.com\u002Fmaterial\u002Flist.json","rt":"json"},"__nghData__":[{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[],"1":[],"2":[{"i":"t5","r":1,"t":{"1":"t6"},"c":{"1":[]}}]}}]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[],"1":[{"i":"t4","r":1,"t":{"1":"t7"},"c":{"1":[]}}],"2":[]}}]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[],"1":[{"i":"t4","r":1,"t":{"1":"t7"},"c":{"1":[{"i":"t7","r":1}]}}],"2":[]}}]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[{"i":"t3","r":1,"t":{"1":"t8"},"c":{"1":[{"i":"t8","r":1}]}}],"1":[],"2":[]}}]}},{"t":{"10":"t0"},"c":{"10":[{"i":"t0","r":1,"x":5}]}},{"t":{"6":"t18","7":"t19"},"c":{"6":[{"i":"t18","r":1}],"7":[]}},{},{"t":{"4":"t51","5":"t52","6":"t55"},"c":{"4":[],"5":[{"i":"t52","r":1,"n":{"1":"hfnf3n"},"t":{"10":"t53","11":"t54"},"c":{"10":[{"i":"t53","r":2}],"11":[]}}],"6":[]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[{"i":"t3","r":1,"t":{"1":"t8"},"c":{"1":[]}}],"1":[],"2":[]}}]}},{"t":{"5":"t16"},"c":{"5":[{"i":"t16","r":3,"t":{"1":"t17"},"c":{"1":[{"i":"t17","r":1}]},"x":4},{"i":"t16","r":2,"t":{"1":"t17"},"c":{"1":[]}}]}},{"c":{"3":[{"i":"c1070753640","r":1}]}}]}</script></body></html>
