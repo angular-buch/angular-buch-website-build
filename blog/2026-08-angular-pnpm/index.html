@@ -1,0 +1,983 @@
+<!DOCTYPE html><html lang="de" dir="ltr" data-beasties-container><head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://website-articles.angular-buch.com">
+  <link rel="site.standard.publication" href="at://did:plc:emeppmrqgb5rixbjcjihzd35/site.standard.publication/self">
+
+  <title>Angular-Buch → Angular mit pnpm: sichere Dependencys und Best Practices</title>
+  
+
+  
+
+  <meta property="book:isbn" content="9783988890641">
+  <meta property="book:release_date" content="2026-05-29">
+  <meta property="book:tag" content="Angular">
+  <meta property="book:tag" content="Signals">
+  <meta property="book:tag" content="Webentwicklung">
+  <meta property="book:tag" content="AngularJS">
+  <meta property="book:tag" content="TypeScript">
+  <meta property="book:tag" content="JavaScript">
+  <meta property="book:tag" content="HTML5">
+  <meta property="book:tag" content="CSS">
+  <meta property="book:tag" content="RxJS">
+  <meta property="book:tag" content="Signal Forms">
+  <meta property="book:tag" content="Resource API">
+
+  <base href="/">
+<style>.fa-solid,.fa-brands{--_fa-family: var(--fa-family, var(--fa-style-family, "Font Awesome 7 Free"));-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;display:var(--fa-display, inline-block);font-family:var(--_fa-family);font-feature-settings:normal;font-style:normal;font-synthesis:none;font-variant:normal;font-weight:var(--fa-style, 900);line-height:1;text-align:center;text-rendering:auto;width:var(--fa-width, 1.25em)}.fa-backward{--fa: "\f04a"}:root{--fa-family-classic: "Font Awesome 7 Free";--fa-font-solid: normal 900 1em/1 var(--fa-family-classic);--fa-style-family-classic: var(--fa-family-classic)}.fa-solid{--fa-style: 900}:root{--fa-family-brands: "Font Awesome 7 Brands";--fa-font-brands: normal 400 1em/1 var(--fa-family-brands)}@font-face{font-family:"Font Awesome 7 Brands";font-style:normal;font-weight:400;font-display:block;src:url("./media/fa-brands-400-LA6RBN2H.woff2")}.fa-brands{--fa-family: var(--fa-family-brands);--fa-style: 400}.fa-github{--fa: "\f09b"}@font-face{font-family:Roboto;src:url("./media/Roboto-Thin-GAS35NAQ.eot");src:local("Roboto Thin"),local("Roboto-Thin"),url("./media/Roboto-Thin-GAS35NAQ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Thin-UUU7IP4L.woff2") format("woff2"),url("./media/Roboto-Thin-BT5WDCMC.woff") format("woff"),url("./media/Roboto-Thin-STLHGJGZ.ttf") format("truetype"),url("./media/Roboto-Thin-OYOYLS5N.svg#Roboto") format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-ThinItalic-HQCJJ3KQ.eot");src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url("./media/Roboto-ThinItalic-HQCJJ3KQ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-ThinItalic-PVCCLVHZ.woff2") format("woff2"),url("./media/Roboto-ThinItalic-OJCFQICS.woff") format("woff"),url("./media/Roboto-ThinItalic-OKVQEY6M.ttf") format("truetype"),url("./media/Roboto-ThinItalic-PU7U6F54.svg#Roboto") format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Light-TT7V6J7W.eot");src:local("Roboto Light"),local("Roboto-Light"),url("./media/Roboto-Light-TT7V6J7W.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Light-OEL5QP53.woff2") format("woff2"),url("./media/Roboto-Light-EGEOUPZ7.woff") format("woff"),url("./media/Roboto-Light-KYCYMX5R.ttf") format("truetype"),url("./media/Roboto-Light-O5NB3DZS.svg#Roboto") format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-LightItalic-JJ225GLJ.eot");src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url("./media/Roboto-LightItalic-JJ225GLJ.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-LightItalic-SZU3UOEY.woff2") format("woff2"),url("./media/Roboto-LightItalic-5LJGTDBY.woff") format("woff"),url("./media/Roboto-LightItalic-ZTOFFLND.ttf") format("truetype"),url("./media/Roboto-LightItalic-FE5GYQJO.svg#Roboto") format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Regular-WINA5356.eot");src:local("Roboto Regular"),local("Roboto-Regular"),url("./media/Roboto-Regular-WINA5356.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Regular-4ZFX4XNS.woff2") format("woff2"),url("./media/Roboto-Regular-EMJ7NDAQ.woff") format("woff"),url("./media/Roboto-Regular-W6LM4ZNI.ttf") format("truetype"),url("./media/Roboto-Regular-DDBAS5OS.svg#Roboto") format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-RegularItalic-43QNLNAN.eot");src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url("./media/Roboto-RegularItalic-43QNLNAN.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-RegularItalic-2REFJECD.woff2") format("woff2"),url("./media/Roboto-RegularItalic-NSJ4HBKT.woff") format("woff"),url("./media/Roboto-RegularItalic-YZDJVEXU.ttf") format("truetype"),url("./media/Roboto-RegularItalic-7A3VJZ2J.svg#Roboto") format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Medium-TKOJIIN4.eot");src:local("Roboto Medium"),local("Roboto-Medium"),url("./media/Roboto-Medium-TKOJIIN4.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Medium-GHCC3HN6.woff2") format("woff2"),url("./media/Roboto-Medium-O2PKKQNT.woff") format("woff"),url("./media/Roboto-Medium-ANIBKV6W.ttf") format("truetype"),url("./media/Roboto-Medium-RJM2M5RS.svg#Roboto") format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-MediumItalic-5WUL7G7J.eot");src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url("./media/Roboto-MediumItalic-5WUL7G7J.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-MediumItalic-FMJUHMWQ.woff2") format("woff2"),url("./media/Roboto-MediumItalic-EJXCUUAA.woff") format("woff"),url("./media/Roboto-MediumItalic-ZZ274MH6.ttf") format("truetype"),url("./media/Roboto-MediumItalic-WUJRBJ2B.svg#Roboto") format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Bold-BUUHB5PB.eot");src:local("Roboto Bold"),local("Roboto-Bold"),url("./media/Roboto-Bold-BUUHB5PB.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Bold-NGAPMV26.woff2") format("woff2"),url("./media/Roboto-Bold-GE6V3ZS2.woff") format("woff"),url("./media/Roboto-Bold-5VUU6QI6.ttf") format("truetype"),url("./media/Roboto-Bold-UXMYHWKZ.svg#Roboto") format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-BoldItalic-ETKPZE3Z.eot");src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url("./media/Roboto-BoldItalic-ETKPZE3Z.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-BoldItalic-TBVJ3OTX.woff2") format("woff2"),url("./media/Roboto-BoldItalic-2CYTLDZJ.woff") format("woff"),url("./media/Roboto-BoldItalic-4MMIXUDR.ttf") format("truetype"),url("./media/Roboto-BoldItalic-TDTZWBKI.svg#Roboto") format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url("./media/Roboto-Black-FJBQ2JLX.eot");src:local("Roboto Black"),local("Roboto-Black"),url("./media/Roboto-Black-FJBQ2JLX.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-Black-OEG2WEQ3.woff2") format("woff2"),url("./media/Roboto-Black-AZ2AXCB4.woff") format("woff"),url("./media/Roboto-Black-IGTRSQU4.ttf") format("truetype"),url("./media/Roboto-Black-OEOHVSYK.svg#Roboto") format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url("./media/Roboto-BlackItalic-MXNS7VU5.eot");src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url("./media/Roboto-BlackItalic-MXNS7VU5.eot?#iefix") format("embedded-opentype"),url("./media/Roboto-BlackItalic-6QYHVQZM.woff2") format("woff2"),url("./media/Roboto-BlackItalic-7QMDFEK5.woff") format("woff"),url("./media/Roboto-BlackItalic-XIXMO2HU.ttf") format("truetype"),url("./media/Roboto-BlackItalic-EYMGZCJW.svg#Roboto") format("svg");font-weight:900;font-style:italic}:root{--blue: #007bff;--indigo: #6610f2;--purple: #6f42c1;--pink: #e83e8c;--red: #dc3545;--orange: #fd7e14;--yellow: #ffc107;--green: #28a745;--teal: #20c997;--cyan: #17a2b8;--white: #fff;--gray: #6c757d;--gray-dark: #343a40;--primary: #007bff;--secondary: #6c757d;--success: #28a745;--info: #17a2b8;--warning: #ffc107;--danger: #dc3545;--light: #f8f9fa;--dark: #343a40;--breakpoint-xs: 0;--breakpoint-sm: 576px;--breakpoint-md: 768px;--breakpoint-lg: 992px;--breakpoint-xl: 1200px;--font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}article,footer,header,main,nav,section{display:block}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}hr{box-sizing:content-box;height:0;overflow:visible}h1,h2,h3{margin-top:0;margin-bottom:.5rem}p{margin-top:0;margin-bottom:1rem}ol,ul{margin-top:0;margin-bottom:1rem}ul ul{margin-bottom:0}blockquote{margin:0 0 1rem}strong{font-weight:bolder}small{font-size:80%}a{color:#007bff;text-decoration:none;background-color:transparent}a:hover{color:#0056b3;text-decoration:underline}a:not([href]):not([class]){color:inherit;text-decoration:none}a:not([href]):not([class]):hover{color:inherit;text-decoration:none}pre,code{font-family:SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-size:1em}pre{margin-top:0;margin-bottom:1rem;overflow:auto;-ms-overflow-style:scrollbar}img{vertical-align:middle;border-style:none}table{border-collapse:collapse}th{text-align:inherit;text-align:-webkit-match-parent}h1,h2,h3{margin-bottom:.5rem;font-weight:500;line-height:1.2}h2{font-size:2rem}h3{font-size:1.75rem}hr{margin-top:1rem;margin-bottom:1rem;border:0;border-top:1px solid rgba(0,0,0,.1)}small{font-size:.875em;font-weight:400}.img-fluid{max-width:100%;height:auto}code{font-size:87.5%;color:#d81d73;word-wrap:break-word}a>code{color:inherit}pre{display:block;font-size:87.5%;color:#212529}pre code{font-size:inherit;color:inherit;word-break:normal}.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media(min-width:576px){.container{max-width:540px}}@media(min-width:768px){.container{max-width:720px}}@media(min-width:992px){.container{max-width:960px}}@media(min-width:1200px){.container{max-width:1140px}}.row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}.no-gutters{margin-right:0;margin-left:0}.no-gutters>[class*=col-]{padding-right:0;padding-left:0}.col-lg-10,.col-md-10,.col-md-6,.col-md-2,.col-sm-9,.col-sm-3,.col-12,.col-6{position:relative;width:100%;padding-right:15px;padding-left:15px}.col-6{flex:0 0 50%;max-width:50%}.col-12{flex:0 0 100%;max-width:100%}@media(min-width:576px){.col-sm-3{flex:0 0 25%;max-width:25%}.col-sm-9{flex:0 0 75%;max-width:75%}}@media(min-width:768px){.col-md-2{flex:0 0 16.66666667%;max-width:16.66666667%}.col-md-6{flex:0 0 50%;max-width:50%}.col-md-10{flex:0 0 83.33333333%;max-width:83.33333333%}}@media(min-width:992px){.col-lg-10{flex:0 0 83.33333333%;max-width:83.33333333%}}.btn{display:inline-block;font-weight:400;color:#212529;text-align:center;vertical-align:middle;-webkit-user-select:none;user-select:none;background-color:transparent;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media(prefers-reduced-motion:reduce){.btn{transition:none}}.btn:hover{color:#212529;text-decoration:none}.btn:focus{outline:0;box-shadow:0 0 0 .2rem #007bff40}.btn:disabled{opacity:.65}.btn:not(:disabled):not(.disabled){cursor:pointer}.btn-primary{color:#fff;background-color:#007bff;border-color:#007bff}.btn-primary:hover{color:#fff;background-color:#0069d9;border-color:#0062cc}.btn-primary:focus{color:#fff;background-color:#0069d9;border-color:#0062cc;box-shadow:0 0 0 .2rem #268fff80}.btn-primary:disabled{color:#fff;background-color:#007bff;border-color:#007bff}.btn-primary:not(:disabled):not(.disabled):active{color:#fff;background-color:#0062cc;border-color:#005cbf}.btn-primary:not(:disabled):not(.disabled):active:focus{box-shadow:0 0 0 .2rem #268fff80}.btn-sm{padding:.25rem .5rem;font-size:.875rem;line-height:1.5;border-radius:.2rem}.badge{display:inline-block;padding:.25em .4em;font-size:75%;font-weight:700;line-height:1;text-align:center;white-space:nowrap;vertical-align:baseline;border-radius:.25rem;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media(prefers-reduced-motion:reduce){.badge{transition:none}}.badge:empty{display:none}.badge-secondary{color:#fff;background-color:#6c757d}.rounded{border-radius:.25rem!important}.rounded-circle{border-radius:50%!important}.justify-content-between{justify-content:space-between!important}.align-items-center{align-items:center!important}.mr-1{margin-right:.25rem!important}.ml-1{margin-left:.25rem!important}.mr-2{margin-right:.5rem!important}.mt-4{margin-top:1.5rem!important}.mt-n5{margin-top:-3rem!important}.text-center{text-align:center!important}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}a:not(.btn){text-decoration:underline}pre{white-space:pre-wrap!important}pre,blockquote{border:1px solid #adb5bd;page-break-inside:avoid}tr,img{page-break-inside:avoid}p,h2,h3{orphans:3;widows:3}h2,h3{page-break-after:avoid}@page{size:a3}body,.container{min-width:992px!important}.badge{border:1px solid #000}}h1{font-size:2.5rem}h2{font-size:1.75rem}h3{font-size:1.25rem}.btn{box-shadow:0 2px 5px #00000029,0 2px 10px #0000001f;padding:.84rem 2.14rem;font-size:.81rem;transition:all .2s ease-in-out;margin:.375rem;border:0;border-radius:.125rem;cursor:pointer;text-transform:uppercase;white-space:normal;word-wrap:break-word;color:#fff}.btn:hover,.btn:active,.btn:focus{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026;outline:0}.btn:not([disabled]):not(.disabled):active{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026}.btn.btn-sm{padding:.5rem 1.6rem;font-size:.64rem}.btn:disabled:active,.btn:disabled:focus,.btn:disabled:hover{box-shadow:0 2px 5px #00000029,0 2px 10px #0000001f}.btn-primary{background-color:#79499c!important;color:#fff!important}.btn-primary:hover{background-color:#8651ad}.btn-primary:focus{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026}.btn-primary:focus,.btn-primary:active{background-color:#432857}.btn-primary:not([disabled]):not(.disabled):active{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026;background-color:#432857!important}.btn-primary:not([disabled]):not(.disabled):active:focus{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026}.blog__author{display:block;padding-top:1em;font-weight:500;margin-left:-2px;margin-right:-2px}@media screen and (max-width:768px){.blog__author{padding-bottom:1em}}.blog__date{font-size:13px;color:#383838;padding-left:2em;margin-bottom:2em}.blog__date:after{content:"";display:block;height:3px;width:1.5em;margin-top:-1em;margin-left:-2em;border-bottom:3px solid rgb(184.25,184.25,184.25)}.blog__headline{overflow-wrap:break-word;hyphens:auto}.blog__portrait{border:7px solid rgb(222.5,222.5,222.5);max-width:min(30vw,100%)}.blog__keywords{margin-top:1em;font-weight:700}.blog__keywords span:not(.badge){font-size:.9em}.blog__keywords span{margin-right:.5em}a:active,a:link,a:visited{color:#1e1e1e;text-decoration:none}a:hover{color:#79499c}strong{font-weight:700}.headline__page{color:#fff;margin:3em 0 .8em;font-size:36px;line-height:1.2em;font-weight:500;padding-right:1em}@media screen and (max-width:768px){.headline__page{font-size:32px;line-height:42px;margin:2em 0 .8em}}.headline__page:after{content:"";display:block;height:3px;width:.6em;margin-top:.5em;border-bottom:3px solid #FFF}.headline__page--blank:after{display:none}.headline__page--space-bottom{margin-top:1em}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#f8f8f8}header{padding:20px 0}a.content{text-decoration:underline}a.content:hover{text-decoration:none}html{overflow-y:scroll}.btn:focus-visible{outline:solid 2px rgb(0,95,204);outline-offset:1px}footer{padding:2em 0 5em;color:#9e9e9e;font-size:13px;font-weight:500;background:url("data:image/svg+xml,%3Csvg width='1248' height='327' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%237F7F7F' fill='none' fill-rule='evenodd' opacity='.15'%3E%3Cpath d='M470-24l185 693M220-24l185 693M-30-24l185 693M721-24l185 693M971-24l185 693M1221-24l185 693M540-24l685 689M882-24l685 689M199-24l685 689M-143-24l685 689M-484-24l685 689M1310.447 117L-141.131 506.13M1310.447-135L-141.131 254.13M387-25L199 673M135-25L-53 673M637-25L449 673M888-25L700 673M1138-25L950 673M650-25L-62 686M304-25l-712 711M991-25L279 686M1335-25L623 686M1303 330L-56-36M1303 581L-56 215'/%3E%3C/g%3E%3C/svg%3E")}@media screen and (max-width:576px){footer{text-align:center!important}}footer .links__item{color:#9e9e9e}footer .links__item:hover{color:#79499c}footer .links__bluesky,footer .links__linkedin{white-space:nowrap}footer .links__bluesky:before{font-family:"Font Awesome 7 Brands";content:"\e671"}footer .links__linkedin:before{font-family:"Font Awesome 7 Brands";content:"\f0e1"}.hero{background:linear-gradient(-2deg,#fff 250px,#c30023 251px,#535ea7);background-position:bottom}@media screen and (max-width:768px){.hero{background:linear-gradient(178deg,#535ea7,#c30023 90%,#fff 90.1%)}}.hero--smaller{background:linear-gradient(358deg,#f8f8f8 45.9%,#c30023 46%,#535ea7);padding-bottom:3em;min-height:12em}.hero__lines{background:url("data:image/svg+xml,%3Csvg width='1267' height='628' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23FFF' fill='none' fill-rule='evenodd' stroke-opacity='.1'%3E%3Cpath d='M461-51l185 693M211-51l185 693M-39-51l185 693M712-51l185 693M962-51l185 693M1212-51l185 693M531-51l685 689M873-51l685 689M190-51l685 689M-152-51l685 689M-493-51l685 689M1302 593l-178 47M1301.447 342L-150.131 731.13M1301.447 90L-150.131 479.13M1301.447-162L-150.131 227.13M378-52L190 646M126-52L-62 646M628-52L440 646M879-52L691 646M1129-52L941 646M641-52L-71 659M295-52l-712 711M982-52L270 659M1326-52L614 659M1294 303L-65-63M1294 554L-65 188M1294 804L-65 438'/%3E%3C/g%3E%3C/svg%3E") center;background-size:cover}main{overflow:hidden}.index{background:url("./media/symbol-index-4GN5EYIA.svg") 10% 5% no-repeat}.index .container{padding-right:0;padding-left:0}.index--list{background:url("data:image/svg+xml,%3Csvg width='310' height='244' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M66.429 182.679v11.071c0 1.5-.548 2.797-1.644 3.892-1.095 1.096-2.393 1.644-3.892 1.644H49.82c-1.499 0-2.796-.548-3.892-1.644-1.095-1.095-1.643-2.393-1.643-3.892v-11.071c0-1.5.548-2.797 1.643-3.893 1.096-1.095 2.393-1.643 3.892-1.643h11.072c1.5 0 2.797.548 3.892 1.643 1.096 1.096 1.644 2.393 1.644 3.893zm0-44.286v11.071c0 1.5-.548 2.797-1.644 3.893-1.095 1.095-2.393 1.643-3.892 1.643H49.82c-1.499 0-2.796-.548-3.892-1.643-1.095-1.096-1.643-2.393-1.643-3.893v-11.071c0-1.5.548-2.797 1.643-3.892 1.096-1.096 2.393-1.644 3.892-1.644h11.072c1.5 0 2.797.548 3.892 1.644 1.096 1.095 1.644 2.393 1.644 3.892zm0-44.286v11.072c0 1.499-.548 2.796-1.644 3.892-1.095 1.095-2.393 1.643-3.892 1.643H49.82c-1.499 0-2.796-.548-3.892-1.643-1.095-1.096-1.643-2.393-1.643-3.892V94.107c0-1.5.548-2.797 1.643-3.892 1.096-1.096 2.393-1.644 3.892-1.644h11.072c1.5 0 2.797.548 3.892 1.644 1.096 1.095 1.644 2.393 1.644 3.892zm199.285 88.572v11.071c0 1.5-.548 2.797-1.643 3.892-1.096 1.096-2.393 1.644-3.892 1.644H94.107c-1.5 0-2.797-.548-3.892-1.644-1.096-1.095-1.644-2.393-1.644-3.892v-11.071c0-1.5.548-2.797 1.644-3.893 1.095-1.095 2.393-1.643 3.892-1.643H260.18c1.499 0 2.796.548 3.892 1.643 1.095 1.096 1.643 2.393 1.643 3.893zm0-44.286v11.071c0 1.5-.548 2.797-1.643 3.893-1.096 1.095-2.393 1.643-3.892 1.643H94.107c-1.5 0-2.797-.548-3.892-1.643-1.096-1.096-1.644-2.393-1.644-3.893v-11.071c0-1.5.548-2.797 1.644-3.892 1.095-1.096 2.393-1.644 3.892-1.644H260.18c1.499 0 2.796.548 3.892 1.644 1.095 1.095 1.643 2.393 1.643 3.892zm0-44.286v11.072c0 1.499-.548 2.796-1.643 3.892-1.096 1.095-2.393 1.643-3.892 1.643H94.107c-1.5 0-2.797-.548-3.892-1.643-1.096-1.096-1.644-2.393-1.644-3.892V94.107c0-1.5.548-2.797 1.644-3.892 1.095-1.096 2.393-1.644 3.892-1.644H260.18c1.499 0 2.796.548 3.892 1.644 1.095 1.095 1.643 2.393 1.643 3.892zm22.143 121.786V71.964c0-1.499-.548-2.796-1.643-3.892-1.096-1.096-2.393-1.643-3.893-1.643H27.68c-1.5 0-2.797.547-3.893 1.643-1.095 1.096-1.643 2.393-1.643 3.892v143.929c0 1.5.548 2.797 1.643 3.892 1.096 1.096 2.393 1.644 3.893 1.644H282.32c1.5 0 2.797-.548 3.893-1.644 1.095-1.095 1.643-2.393 1.643-3.892zM310 27.679v188.214c0 7.611-2.71 14.127-8.13 19.548-5.421 5.42-11.937 8.13-19.549 8.13H27.68c-7.612 0-14.128-2.71-19.548-8.13C2.71 230.02 0 223.504 0 215.893V27.679C0 20.067 2.71 13.55 8.13 8.13 13.552 2.71 20.068 0 27.68 0H282.32c7.612 0 14.128 2.71 19.548 8.13C307.29 13.552 310 20.068 310 27.68z' fill='%23EFEFEF' fill-rule='evenodd'/%3E%3C/svg%3E") 10% 5% no-repeat}.index__stripe{background:linear-gradient(-2deg,rgb(235.25,235.25,235.25) 0%,rgb(235.25,235.25,235.25) 69.9%,#F8F8F8 70%,transparent 70.1%,transparent 100%);padding-bottom:3em}.index__stripe--list{background:linear-gradient(178deg,transparent 0px,transparent 199px,#F8F8F8 200px,rgb(235.25,235.25,235.25) 201px,rgb(235.25,235.25,235.25) 100%)}.index__item{background:url("data:image/svg+xml,%3Csvg width='23' height='25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient x1='52.535%25' y1='-39.489%25' x2='52.535%25' y2='92.656%25' id='a'%3E%3Cstop stop-color='%2379499c' offset='0%25'/%3E%3Cstop stop-color='%23C30023' offset='100%25'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M15.941 1.603L11.5 0 0 4.15l1.754 15.388L11.5 25l9.746-5.462L23 4.15l-3.458-1.248L11.185 22 3 6.23h4.405l3.8 7.157L15.94 1.603z' fill-rule='nonzero' fill='url(%23a)'/%3E%3C/svg%3E") no-repeat 1.4em 1.8em #fff;border-radius:4px;padding:2em 2em 2em 4.5em;margin-bottom:2em;position:relative}.index__item--list{background:#fff;padding:2em}@media screen and (max-width:768px){nav{display:flex;position:fixed;z-index:999;width:73vw;height:100%;background:#fff;top:0;left:-100vw;float:none;text-align:left;align-items:center;transition:all .25s ease-in-out}}nav a.nav__current{border-bottom:3px solid #848484}nav ul{margin:0;padding:0;list-style:none;float:right}@media screen and (max-width:768px){nav ul{float:none;width:100%}}nav li{display:inline-block;padding-left:20px;border-bottom:3px solid transparent;hyphens:auto;word-break:break-word}@media screen and (max-width:992px){nav li{padding-left:5px}}@media screen and (max-width:768px){nav li{display:block;text-align:center}}nav a{display:block;padding:10px 5px 2px;font-size:14px;font-weight:400;text-transform:uppercase}@media screen and (max-width:992px){nav a{padding:15px 10px}}@media screen and (max-width:768px){nav a{font-size:18px;border-bottom:1px solid rgb(221.25,221.25,221.25);margin:0 50px}}nav a.order{font-weight:500;color:#6c418b}.nav__toggle{display:none}@media screen and (max-width:768px){.nav__toggle{display:block;float:right}}@media screen and (max-width:768px){.nav__overlay{visibility:hidden;opacity:0;position:absolute;top:0;left:0;width:100%;height:100%;z-index:998;background:#0006;transition:all .25s ease-in-out}}.markdown-body{color-scheme:light;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;margin:0;line-height:1.6;word-wrap:break-word;scroll-behavior:auto!important}.markdown-body a{background-color:transparent;color:#79499c;text-decoration:none}.markdown-body strong{font-weight:600}.markdown-body small{font-size:90%}.markdown-body code,.markdown-body pre{font-family:monospace;font-size:1em}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:transparent;border-bottom:1px solid rgba(209,217,224,.7019607843);height:.25em;padding:0;margin:1.5rem 0;background-color:#d1d9e0;border:0}.markdown-body ::-webkit-input-placeholder{color:inherit;opacity:.54}.markdown-body ::-webkit-file-upload-button{-webkit-appearance:button;appearance:button;font:inherit}.markdown-body a:hover{text-decoration:underline}.markdown-body ::placeholder{color:#59636e;opacity:1}.markdown-body hr:before{display:table;content:""}.markdown-body hr:after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:max-content;max-width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body td code{background:none}.markdown-body a:focus{outline:2px solid #0969da;outline-offset:-2px;box-shadow:none}.markdown-body a:focus:not(:focus-visible){outline:solid 1px transparent}.markdown-body a:focus-visible{outline:2px solid #0969da;outline-offset:-2px;box-shadow:none}.markdown-body a:not([class]):focus,.markdown-body a:not([class]):focus-visible{outline-offset:0}.markdown-body h2,.markdown-body h3{margin-top:1.5rem;margin-bottom:1rem;font-weight:600;line-height:1.25}.markdown-body h2{font-weight:600;padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid rgba(209,217,224,.7019607843)}.markdown-body h3{font-weight:600;font-size:1.25em}.markdown-body p{margin-top:0;margin-bottom:10px}.markdown-body p a,.markdown-body li a{text-decoration:underline}.markdown-body li>a:only-child:not(:hover),.markdown-body li>a:first-child:nth-last-child(2):has(+ul,+ol):not(:hover){text-decoration:none}.markdown-body blockquote{margin:0;padding:0 1em;color:#59636e;border-left:.25em solid #d1d9e0}.markdown-body ul,.markdown-body ol{margin-top:0;margin-bottom:0;padding-left:2em}.markdown-body code{font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px}.markdown-body pre{margin-top:0;margin-bottom:0;font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px;word-wrap:normal}.markdown-body:before{display:table;content:""}.markdown-body:after{display:table;clear:both;content:""}.markdown-body>*:first-child{margin-top:0!important}.markdown-body>*:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body table,.markdown-body pre{margin-top:0;margin-bottom:1rem}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h2 code,.markdown-body h3 code{padding:0 .2em;font-size:inherit}.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:1rem}.markdown-body li+li{margin-top:.25em}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{padding:6px 13px;border:1px solid #d1d9e0}.markdown-body table td>:last-child{margin-bottom:0}.markdown-body table tr{background-color:#fff;border-top:1px solid rgba(209,217,224,.7019607843)}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body code{padding:.2em .4em;margin:0;font-size:85%;white-space:break-spaces;background-color:#818b9808;border-radius:6px}.markdown-body a code{background:none}.markdown-body pre code{font-size:100%}.markdown-body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body pre{padding:1rem;overflow:auto;font-size:85%;line-height:1.45;color:#1f2328;background-color:#f6f8fa;border-radius:6px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body a:focus:not(:focus-visible){outline:none;box-shadow:none}.hljs-comment{color:#696969}.hljs-variable{color:#d91e18}.hljs-number,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-attribute{color:#aa5d00}.hljs-string,.hljs-symbol,.hljs-bullet{color:green}.hljs-keyword,.hljs-selector-tag{color:#7928a1}@media screen and (-ms-high-contrast:active){.hljs-attribute,.hljs-built_in,.hljs-bullet,.hljs-comment,.hljs-literal,.hljs-number,.hljs-params,.hljs-string,.hljs-symbol{color:highlight}.hljs-keyword,.hljs-selector-tag{font-weight:700}}
+</style><link rel="stylesheet" href="styles-EDQFF2OG.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-EDQFF2OG.css"></noscript><style ng-app-id="ng">.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
+</style><meta property="og:title" content="Angular-Buch → Angular mit pnpm: sichere Dependencys und Best Practices"><meta name="twitter:title" content="Angular-Buch → Angular mit pnpm: sichere Dependencys und Best Practices"><meta name="description" content="📙 Die Zeiten, in denen der Paketmanager npm alternativlos war, sind längst vorbei.
+Mit pnpm steht ein alternativer Paketmanager zur Verfügung, der effizienter mit Speicherplatz umgeht, schneller installiert und moderne Sicherheitsmechanismen gegen Supply-Chain-Angriffe mitbringt."><meta property="og:description" content="📙 Die Zeiten, in denen der Paketmanager npm alternativlos war, sind längst vorbei.
+Mit pnpm steht ein alternativer Paketmanager zur Verfügung, der effizienter mit Speicherplatz umgeht, schneller installiert und moderne Sicherheitsmechanismen gegen Supply-Chain-Angriffe mitbringt."><meta name="twitter:description" content="📙 Die Zeiten, in denen der Paketmanager npm alternativlos war, sind längst vorbei.
+Mit pnpm steht ein alternativer Paketmanager zur Verfügung, der effizienter mit Speicherplatz umgeht, schneller installiert und moderne Sicherheitsmechanismen gegen Supply-Chain-Angriffe mitbringt."><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/blog/2026-08-angular-pnpm"><style ng-app-id="ng">.details-page-autor{margin-top:-110px}.details-thumbnail{margin-bottom:-18px}.details-thumbnail-inner{border-bottom:23px solid #dfdede;max-height:300px;overflow:hidden;background-color:#fff;border-radius:4px;display:flex;justify-content:center}.details-thumbnail-inner .darken-overlay{display:block;position:absolute;height:300px;width:100%;padding-left:15px;padding-right:15px;padding-bottom:23px}.details-thumbnail-inner .darken-overlay div{display:block;position:relative;width:100%;height:100%;background-color:#0003;border-radius:4px 4px 0 0/4px 4px 0px 0px}.details-thumbnail img{width:100%;align-self:center}.video-container{position:relative;padding-bottom:56.25%;padding-top:0;height:0;overflow:hidden;margin-top:2rem;margin-bottom:2rem}.video-container iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;height:100%}
+</style><meta property="og:image" content="https://website-articles.angular-buch.com/blog/2026-08-angular-pnpm/angular-pnpm.webp"><meta name="twitter:image" content="https://website-articles.angular-buch.com/blog/2026-08-angular-pnpm/angular-pnpm.webp"><meta name="twitter:card" content="summary_large_image"><link rel="site.standard.document" href="at://did:plc:emeppmrqgb5rixbjcjihzd35/site.standard.document/2026-08-angular-pnpm"><style ng-app-id="ng">img[_ngcontent-ng-c1420206749]{max-width:100%}</style><link as="image" href="https://website-articles.angular-buch.com/blog/2026-08-angular-pnpm/angular-pnpm.webp" rel="preload" fetchpriority="high"></head>
+<body><!--nghm--><script type="text/javascript" id="ng-event-dispatch-contract">(()=>{function p(t,n,r,o,e,i,f,m){return{eventType:t,event:n,targetElement:r,eic:o,timeStamp:e,eia:i,eirp:f,eiack:m}}function u(t){let n=[],r=e=>{n.push(e)};return{c:t,q:n,et:[],etc:[],d:r,h:e=>{r(p(e.type,e,e.target,t,Date.now()))}}}function s(t,n,r){for(let o=0;o<n.length;o++){let e=n[o];(r?t.etc:t.et).push(e),t.c.addEventListener(e,t.h,r)}}function c(t,n,r,o,e=window){let i=u(t);e._ejsas||(e._ejsas={}),e._ejsas[n]=i,s(i,r),s(i,o,!0)}window.__jsaction_bootstrap=c;})();
+</script><script>window.__jsaction_bootstrap(document.body,"ng",["click"],[]);</script>
+  <app-root ng-version="22.1.1" ngh="11" ng-server-context="ssg"><header ngh="4"><div class="nav__overlay" jsaction="click:;"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/" aria-label="Startseite" href="/" jsaction="click:;"><img src="assets/img/brand-400.png" alt="Angular-Buch.com" height="40" width="126" class="img-fluid"></a></div><div class="col-6 col-md-10"><nav class><ul><li><app-link ngh="0"><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/" class jsaction="click:;"><!----> Buch </a><!----><!----></app-link></li><li><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/blog" class="nav__current" aria-current="page" jsaction="click:;"><!----> Blog </a><!----><!----><!----></app-link></li><li><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/material" class jsaction="click:;"><!----> Begleitmaterial </a><!----><!----><!----></app-link></li><li><app-link ngh="2"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/kaufen" class jsaction="click:;"><img alt class="linkImage" src="assets/img/symbol-basket.svg"><!----> Jetzt kaufen </a><!----><!----><!----></app-link></li><li><app-link ngh="3"><!----><a class="order" href="//angular.schule/"><img alt class="linkImage" src="assets/img/symbol-group.svg"><!----> Schulungen </a><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" aria-label="Navigation" class="nav__toggle" jsaction="click:;"><img src="assets/img/symbol-menu.svg" alt></a></div></div></div></header><main><router-outlet></router-outlet><app-blog-details-page ngh="8"><app-hero-header headline="Blog" headlinelink="/blog" ngh="5"><section class="hero hero--smaller"><div class="hero__lines"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;" href="/blog" jsaction="click:;">Blog</a><!----><!----></h1></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list blog mt-n5"><div class="index__stripe index__stripe--list"><div class="container" lang="de"><a name="post" id="post"></a><div class="row details-thumbnail"><div class="col-12"><div class="details-thumbnail-inner"><img alt="Blog-Headerbild" priority class="img-fluid rounded" width="1600" height="840" loading="eager" fetchpriority="high" decoding="sync" ng-img="true" src="https://website-articles.angular-buch.com/blog/2026-08-angular-pnpm/angular-pnpm.webp"><!----></div></div><!----></div><div class="row"><div class="col-12"><article class="index__item index__item--list"><div class="row align-items-top"><div class="col-12 col-sm-3 col-md-2 text-center details-page-autor"><app-blog-avatar ngh="6"><!----><img alt width="200" height="200" class="blog__portrait img-fluid rounded-circle" loading="lazy" fetchpriority="auto" decoding="auto" ng-img="true" src="/img/blog/authors/danny-koppenhagen.jpg"><span class="blog__author">Danny Koppenhagen </span><!----><!----><!----></app-blog-avatar></div><div class="col-12 col-sm-9 col-md-10 col-lg-10"><h1 class="blog__headline">Angular mit pnpm: sichere Dependencys und Best Practices</h1><p class="blog__date"><time datetime="2026-08-13T00:00:00.000Z">13.08.2026</time><!----></p><app-markdown-content class="content markdown-body" _nghost-ng-c1420206749 ngh="7"><p>Die Zeiten, in denen der Paketmanager <em>npm</em> alternativlos war, sind längst vorbei.
+Mit <strong>pnpm</strong> steht ein alternativer Paketmanager zur Verfügung, der effizienter mit Speicherplatz umgeht, schneller installiert und moderne Sicherheitsmechanismen gegen Supply-Chain-Angriffe mitbringt.</p>
+<p>In diesem Artikel richten wir ein Angular-Projekt mit pnpm ein, konfigurieren eine sichere Entwicklungsumgebung und schauen uns Best Practices an, die sich in professionellen Teams bewährt haben: von Supply-Chain-Security bis hin zu reproduzierbaren Builds.</p>
+<h2 id="inhalt">Inhalt</h2>
+<ul>
+<li><a href="/blog/2026-08-angular-pnpm#warum-%C3%BCberhaupt-pnpm">Warum überhaupt pnpm?</a></li>
+<li><a href="/blog/2026-08-angular-pnpm#neues-angular-projekt-mit-pnpm-erstellen">Neues Angular-Projekt mit pnpm erstellen</a><ul>
+<li><a href="/blog/2026-08-angular-pnpm#pnpm-installieren-und-version-fixieren">pnpm installieren und Version fixieren</a></li>
+<li><a href="/blog/2026-08-angular-pnpm#projekt-erzeugen">Projekt erzeugen</a></li>
+</ul>
+</li>
+<li><a href="/blog/2026-08-angular-pnpm#projektstruktur-und-node_modules">Projektstruktur und <code>node_modules</code></a></li>
+<li><a href="/blog/2026-08-angular-pnpm#supply-chain-security-mit-pnpm">Supply-Chain-Security mit pnpm</a><ul>
+<li><a href="/blog/2026-08-angular-pnpm#pnpm-features-gegen-supply-chain-risiken">pnpm-Features gegen Supply-Chain-Risiken</a></li>
+<li><a href="/blog/2026-08-angular-pnpm#lifecycle-scripts-kontrollieren">Lifecycle Scripts kontrollieren</a></li>
+<li><a href="/blog/2026-08-angular-pnpm#minimumreleaseage-quarant%C3%A4ne-f%C3%BCr-neue-versionen"><code>minimumReleaseAge</code>: Quarantäne für neue Versionen</a></li>
+<li><a href="/blog/2026-08-angular-pnpm#blockexoticsubdeps-git-dependencys-absichern">blockExoticSubdeps: Git-Dependencys absichern</a></li>
+<li><a href="/blog/2026-08-angular-pnpm#lockfile-und-reproduzierbare-builds">Lockfile und reproduzierbare Builds</a></li>
+</ul>
+</li>
+<li><a href="/blog/2026-08-angular-pnpm#empfohlene-konfiguration">Empfohlene Konfiguration</a><ul>
+<li><a href="/blog/2026-08-angular-pnpm#npmrc"><code>.npmrc</code></a></li>
+<li><a href="/blog/2026-08-angular-pnpm#pnpm-workspaceyaml"><code>pnpm-workspace.yaml</code></a></li>
+<li><a href="/blog/2026-08-angular-pnpm#packagejson-auszug"><code>package.json</code> (Auszug)</a></li>
+</ul>
+</li>
+<li><a href="/blog/2026-08-angular-pnpm#bestehende-anwendung-auf-pnpm-umstellen">Bestehende Anwendung auf pnpm umstellen</a></li>
+<li><a href="/blog/2026-08-angular-pnpm#fazit">Fazit</a></li>
+<li><a href="/blog/2026-08-angular-pnpm#weiterf%C3%BChrende-links">Weiterführende Links</a></li>
+</ul>
+<h2 id="warum-überhaupt-pnpm">Warum überhaupt pnpm?</h2>
+<p>npm funktioniert, ist überall vorinstalliert und die meisten Tutorials verwenden es.
+Warum also wechseln?
+Die Antwort liegt in den architektonischen Entscheidungen, die pnpm anders trifft:</p>
+<p><strong>Content-addressable Store:</strong>
+Jede Paketversion wird genau einmal in einem zentralen Store gespeichert.
+Mehrere Projekte referenzieren dasselbe Paket per Hardlink, was erheblich Speicherplatz spart.</p>
+<p><strong>Strikte <code>node_modules</code>-Struktur:</strong>
+pnpm erstellt keine flache <code>node_modules</code>-Struktur, sondern nutzt Symlinks, bei denen jedes Paket nur auf seine deklarierten Abhängigkeiten zugreifen kann.
+Das verhindert das <em>Phantom-Dependency</em>-Problem: Code kann nicht versehentlich auf transitive Abhängigkeiten zugreifen.</p>
+<p><strong>Schnellere Installationen:</strong>
+Durch den zentralen Store und Hardlinks sind Installationen deutlich schneller, insbesondere bei wiederholten Installationen und in CI-Pipelines.</p>
+<p><strong>Monorepo-Unterstützung:</strong>
+pnpm bietet erstklassige <a href="https://pnpm.io/workspaces">Workspace-Unterstützung</a> mit Catalogs (zentrale Versionsverwaltung), dem Workspace-Protokoll und effizienter Verwaltung mehrerer Pakete.</p>
+<p><strong>Security by Default:</strong>
+Seit Version 10 blockiert pnpm standardmäßig Lifecycle-Scripts in Dependencys.
+Damit wird eine ganze Kategorie von Supply-Chain-Angriffen von Haus aus verhindert.</p>
+<table>
+<thead>
+<tr>
+<th>Merkmal</th>
+<th>npm</th>
+<th>pnpm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Speicherverbrauch</td>
+<td>hoch (jedes Projekt eigene Kopie)</td>
+<td>niedrig (Content-addressable Store)</td>
+</tr>
+<tr>
+<td>Installationsgeschwindigkeit</td>
+<td>mittel</td>
+<td>schnell</td>
+</tr>
+<tr>
+<td>Phantom Dependencies</td>
+<td>möglich (flache Struktur)</td>
+<td>ausgeschlossen (strikte Struktur)</td>
+</tr>
+<tr>
+<td>Lifecycle Scripts</td>
+<td>werden ausgeführt</td>
+<td>standardmäßig blockiert (ab v10)</td>
+</tr>
+<tr>
+<td>Monorepo-Support</td>
+<td>Workspaces (basic)</td>
+<td>Workspaces + Catalogs</td>
+</tr>
+<tr>
+<td>minimumReleaseAge</td>
+<td>ab npm 11.10 (<code>min-release-age</code>)</td>
+<td>ab pnpm 10.16</td>
+</tr>
+</tbody></table>
+<h2 id="neues-angular-projekt-mit-pnpm-erstellen">Neues Angular-Projekt mit pnpm erstellen</h2>
+<h3 id="pnpm-installieren-und-version-fixieren">pnpm installieren und Version fixieren</h3>
+<p>Für die Schnittstelle zwischen npm und alternativen Paketmanagern wird das Modul <code>corepack</code> verwendet.
+Es wird seit Node.js 16.13 mitgeliefert.
+Der folgende Befehl aktualisiert Corepack auf die aktuelle Version. Das ist insbesondere wegen veralteter Signaturen in älteren Corepack-Versionen sinnvoll. Falls Corepack in deiner Node.js-Installation bereits aktuell ist, kannst du diesen Schritt überspringen. Anschließend aktivierst du pnpm:</p>
+<pre><code class="language-bash">npm install --<span class="hljs-keyword">global</span> corepack<span class="hljs-symbol">@latest</span>
+corepack enable pnpm
+</code></pre><h3 id="projekt-erzeugen">Projekt erzeugen</h3>
+<p>Beim Erstellen eines neuen Projekts muss der Package Manager explizit angegeben werden.
+Ein einfaches <code>pnpm dlx @angular/cli@latest new book-monkey</code> reicht <strong>nicht</strong>: Die CLI würde trotzdem npm verwenden, da sie den aufrufenden Package Manager nicht automatisch erkennt.
+Stattdessen musst du der Angular CLI explizit mitteilen, welcher Paketmanager eingesetzt werden soll.</p>
+<pre><code class="language-bash"><span class="hljs-comment"># Bei globaler Installation:</span>
+ng <span class="hljs-keyword">new</span> book-monkey --package-manager pnpm
+
+<span class="hljs-comment"># Direkt ohne global installierte Angular CLI via npx:</span>
+npx @angular/cli@latest <span class="hljs-keyword">new</span> book-monkey --package-manager pnpm
+
+<span class="hljs-comment"># Direkt mit pnpm dlx:</span>
+pnpm dlx @angular/cli@latest <span class="hljs-keyword">new</span> book-monkey --package-manager pnpm
+</code></pre><p>Nach der Erstellung wechselst du in den Projektordner und fixierst dort die verwendete Version:</p>
+<pre><code class="language-bash">cd book-monkey
+corepack <span class="hljs-selector-tag">use</span> pnpm<span class="hljs-keyword">@latest</span>
+</code></pre><p>Der Befehl ergänzt das Feld <code>packageManager</code> in der <code>package.json</code>. Corepack aktiviert dann bei allen Teammitgliedern automatisch dieselbe pnpm-Version.</p>
+<p>Das Flag <code>--package-manager pnpm</code> bewirkt zwei Dinge:</p>
+<ol>
+<li>Die Pakete werden mit pnpm installiert.</li>
+<li>In der <code>angular.json</code> wird <code>"cli": { "packageManager": "pnpm" }</code> eingetragen.</li>
+</ol>
+<p>Dieser Eintrag teilt der Angular CLI mit, welchen Package Manager sie für alle zukünftigen Operationen (<code>ng add</code>, <code>ng update</code>, etc.) verwenden soll.
+Die CLI delegiert dann alle Paketoperationen transparent an pnpm, z. B. <code>ng add @angular/cdk</code>, <code>ng update</code>, <code>ng generate</code> funktionieren unverändert.</p>
+<blockquote>
+<p><strong>Tipp:</strong> Als zusätzliche Absicherung gegen versehentliches <code>npm install</code> empfiehlt sich ein <code>preinstall</code>-Script:</p>
+<pre><code class="language-json"><span class="hljs-attr">"scripts"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"preinstall"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"npx only-allow pnpm"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre></blockquote>
+<h2 id="projektstruktur-und-node_modules">Projektstruktur und <code>node_modules</code></h2>
+<p>Wenn du zum ersten Mal ein pnpm-Projekt öffnest, stellst du fest, dass <code>node_modules</code> anders aufgebaut ist:</p>
+<pre><code>node_modules<span class="hljs-symbol">/</span>
+├── .pnpm<span class="hljs-symbol">/</span>           ← Virtueller Store mit allen Paketen
+├── @angular<span class="hljs-symbol">/core</span>    ← Symlink nach .pnpm<span class="hljs-symbol">/...</span>
+├── rxjs             ← Symlink nach .pnpm<span class="hljs-symbol">/...</span>
+└── ...
+</code></pre><p>Jedes Paket in der obersten Ebene ist ein Symlink in den Ordner <code>.pnpm</code>, der wiederum Hardlinks zum globalen Store enthält.
+Die IDE-Unterstützung (TypeScript-Auflösung, Autocomplete) sowie Build-Tools (Vite, esbuild) funktionieren damit problemlos.</p>
+<h2 id="supply-chain-security-mit-pnpm">Supply-Chain-Security mit pnpm</h2>
+<p>Dies ist der wichtigste Grund, warum pnpm heute nicht nur eine Performance-Optimierung ist, sondern eine bewusste Architekturentscheidung für die Sicherheit eines Projekts.</p>
+<p>Supply-Chain-Attacken im npm-Ökosystem haben sich in den letzten Jahren dramatisch gehäuft.
+Einige bekannte Vorfälle:</p>
+<table>
+<thead>
+<tr>
+<th>Vorfall</th>
+<th>Jahr</th>
+<th>Auswirkung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ua-parser-js</td>
+<td>2021</td>
+<td>Kryptominer in 8-Mio-Downloads-Paket, 4 Stunden online</td>
+</tr>
+<tr>
+<td>colors &amp; faker</td>
+<td>2022</td>
+<td>Maintainer sabotierte eigene Pakete</td>
+</tr>
+<tr>
+<td>node-ipc</td>
+<td>2022</td>
+<td>Politisch motivierte Datei-Überschreibung</td>
+</tr>
+<tr>
+<td>eslint-config-prettier</td>
+<td>2025</td>
+<td>Phishing → gestohlener npm-Token → Malware via postinstall</td>
+</tr>
+<tr>
+<td>@ctrl/tinycolor (Shai-Hulud)</td>
+<td>2025</td>
+<td>Erster wurmartiger Angriff im npm-Ökosystem, 100+ Pakete betroffen</td>
+</tr>
+</tbody></table>
+<p>Alle diese Angriffe nutzen denselben Grundmechanismus: Ein vertrauenswürdiges Paket wird kompromittiert, und bei der nächsten Installation wird Schadcode über <code>postinstall</code>-Scripts ausgeführt.
+pnpm adressiert diese Risiken mit konkreten, konfigurierbaren Mechanismen.</p>
+<h3 id="pnpm-features-gegen-supply-chain-risiken">pnpm-Features gegen Supply-Chain-Risiken</h3>
+<table>
+<thead>
+<tr>
+<th>Risiko</th>
+<th>pnpm-Feature</th>
+<th>Wirkung</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Schadcode via <code>postinstall</code></td>
+<td>Lifecycle Scripts blockiert</td>
+<td>Kein automatischer Code bei <code>pnpm install</code></td>
+</tr>
+<tr>
+<td>Kompromittiertes Release</td>
+<td><code>minimumReleaseAge</code></td>
+<td>Neue Versionen erst nach Wartezeit installierbar</td>
+</tr>
+<tr>
+<td>Unbekannte Build Scripts</td>
+<td><code>onlyBuiltDependencies</code></td>
+<td>Nur explizit erlaubte Pakete dürfen Scripts ausführen</td>
+</tr>
+<tr>
+<td>Git-Dependencys mit Schadcode</td>
+<td><code>blockExoticSubdeps</code></td>
+<td>Git-hosted Deps können keine <code>prepare</code>-Scripts ausführen</td>
+</tr>
+<tr>
+<td>Nicht-reproduzierbare Builds</td>
+<td><code>pnpm-lock.yaml</code> + <code>--frozen-lockfile</code></td>
+<td>Exakt gleiche Installation in jedem Environment</td>
+</tr>
+</tbody></table>
+<h3 id="lifecycle-scripts-kontrollieren">Lifecycle Scripts kontrollieren</h3>
+<p>Seit pnpm 10 werden Scripts vom Typ <code>preinstall</code>, <code>install</code> und <code>postinstall</code> <strong>nicht mehr automatisch ausgeführt</strong>.
+Das ist der bedeutendste Sicherheitsunterschied zu npm.</p>
+<p>Bei einem frischen Angular-Projekt sieht man nach <code>pnpm install</code> eine Meldung wie:</p>
+<pre><code>[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: <span class="hljs-symbol">@parcel</span>/watcher<span class="hljs-symbol">@2</span><span class="hljs-number">.6</span><span class="hljs-number">.0</span>, esbuild<span class="hljs-symbol">@0</span><span class="hljs-number">.28</span><span class="hljs-number">.1</span>, lmdb<span class="hljs-symbol">@3</span><span class="hljs-number">.5</span><span class="hljs-number">.6</span>, msgpackr-extract<span class="hljs-symbol">@3</span><span class="hljs-number">.0</span><span class="hljs-number">.4</span>
+<span class="hljs-built_in">Run</span> <span class="hljs-string">"pnpm approve-builds"</span> <span class="hljs-keyword">to</span> pick which dependencies should be allowed <span class="hljs-keyword">to</span> <span class="hljs-built_in">run</span> scripts.
+</code></pre><p>Das ist kein Fehler: pnpm teilt mit, dass einige Pakete Build-Scripts mitbringen, die nicht ausgeführt wurden.
+Ohne diese Scripts fehlen ggf. native Binarys (z. B. für <code>esbuild</code>).</p>
+<p>Die Lösung: bewusste Freigabe mit <code>pnpm approve-builds</code>.
+Dieser Befehl zeigt interaktiv alle Pakete mit Build-Scripts an.
+Genehmigte Pakete werden in der Datei <code>pnpm-workspace.yaml</code> unter <code>onlyBuiltDependencies</code> gespeichert:</p>
+<pre><code class="language-yaml"><span class="hljs-attribute">onlyBuiltDependencies</span><span class="hljs-punctuation">:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">'@parcel/watcher'</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">esbuild</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">lmdb</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">msgpackr-extract</span>
+
+<span class="hljs-attribute">ignoredBuiltDependencies</span><span class="hljs-punctuation">:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">puppeteer</span>
+</code></pre><p>Wird später ein neues Paket mit Build-Scripts hinzugefügt, erscheint die Meldung erneut, und du entscheidest bewusst über die Freigabe.</p>
+<blockquote>
+<p><strong>Hinweis beim Wechsel von npm:</strong> Wenn du bisher <code>ignore-scripts=true</code> in der <code>.npmrc</code> verwendet hast, solltest du diese Einstellung bei pnpm 10+ <strong>entfernen</strong>.
+pnpm blockiert Lifecycle Scripts von Dependencys bereits standardmäßig, auch ohne <code>.npmrc</code>-Eintrag.
+Ein zusätzliches <code>ignore-scripts=true</code> würde auch die über <code>onlyBuiltDependencies</code> explizit freigegebenen Scripts blockieren und damit den granularen Freigabe-Mechanismus aushebeln.
+Native Binarys (z. B. für esbuild) könnten dann trotz Freigabe nicht gebaut werden.</p>
+</blockquote>
+<h3 id="minimumreleaseage-quarantäne-für-neue-versionen"><code>minimumReleaseAge</code>: Quarantäne für neue Versionen</h3>
+<p>Die meisten kompromittierten Pakete werden innerhalb weniger Stunden erkannt und entfernt.
+<code>minimumReleaseAge</code> nutzt dieses Zeitfenster als Schutz:</p>
+<pre><code class="language-yaml"><span class="hljs-attr">minimumReleaseAge:</span> <span class="hljs-number">1440</span>
+</code></pre><p>Der Wert <code>1440</code> entspricht 24 Stunden (in Minuten).
+pnpm installiert keine Paketversion, die weniger als 24 Stunden alt ist, weder direkt noch transitiv.</p>
+<p>Zur Einordnung: Der <a href="https://socket.dev/blog/eslint-prettier-malware">Angriff auf eslint-config-prettier</a> (2025) war nach 6 Stunden bereinigt, der <a href="https://socket.dev/blog/shai-hulud-npm-worm">Shai-Hulud-Wurm</a> (2025) nach 12 Stunden, die <a href="https://github.com/nicedoc/nicedoc/issues/1">Kompromittierung von ua-parser-js</a> (2021) nach 4 Stunden.
+Mit einer 24-Stunden-Quarantäne wären alle diese Angriffe ins Leere gelaufen.</p>
+<blockquote>
+<p><strong>Hinweis:</strong> <code>minimumReleaseAge</code> schützt nicht grundsätzlich vor allen Supply-Chain-Angriffen, reduziert aber effektiv das Risiko kurzfristig kompromittierter Releases. Das ist die mit Abstand häufigste Angriffsform.</p>
+</blockquote>
+<p>Seit pnpm 10.19 lässt sich mit <code>minimumReleaseAgeExclude</code> die Wartezeit für bestimmte Pakete (z. B. interne) deaktivieren:</p>
+<pre><code class="language-yaml"><span class="hljs-attribute">minimumReleaseAge</span><span class="hljs-punctuation">:</span> <span class="hljs-string">1440</span>
+<span class="hljs-attribute">minimumReleaseAgeExclude</span><span class="hljs-punctuation">:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">'@my-company/*'</span>
+</code></pre><h3 id="blockexoticsubdeps-git-dependencys-absichern">blockExoticSubdeps: Git-Dependencys absichern</h3>
+<p>Seit pnpm 10.26 werden Dependencys von Git-Repositorys daran gehindert, <code>prepare</code>-Scripts auszuführen.
+Ausnahmen lassen sich verwalten, indem die Pakete explizit in <code>onlyBuiltDependencies</code> gelistet werden:</p>
+<pre><code class="language-yaml"><span class="hljs-params">blockExoticSubdeps:</span> <span class="hljs-literal">true</span>
+</code></pre><h3 id="lockfile-und-reproduzierbare-builds">Lockfile und reproduzierbare Builds</h3>
+<p>Die <code>pnpm-lock.yaml</code> ist kein optionales Artefakt, sondern eine Sicherheitsfunktion.
+Sie stellt sicher, dass überall exakt dieselben Paketversionen installiert werden.</p>
+<p><strong>Goldene Regeln:</strong></p>
+<ol>
+<li><strong>Niemals löschen</strong>: Das Lockfile gehört ins Repository.</li>
+<li><strong><code>--frozen-lockfile</code> in CI</strong>: verhindert Lockfile-Aktualisierungen bei der Installation</li>
+<li><strong>Reviewen bei PRs</strong>: Änderungen am Lockfile sollten bewusst geprüft werden.</li>
+</ol>
+<pre><code class="language-bash"><span class="hljs-comment"># In CI-Pipelines immer verwenden:</span>
+pnpm <span class="hljs-keyword">install</span> --frozen-lockfile
+</code></pre><p>Dieses Kommando ist das Äquivalent zu <code>npm ci</code> mit <code>package-lock.json</code>. Durch die Hardlink-basierte Installation ist pnpm aber auch in CI-Pipelines deutlich schneller.</p>
+<h2 id="empfohlene-konfiguration">Empfohlene Konfiguration</h2>
+<p>Die folgende Konfiguration fasst alle besprochenen Best Practices zusammen.
+Wichtig: <code>.npmrc</code> und <code>pnpm-workspace.yaml</code> gehören versioniert ins Repository, damit die Security Policies automatisch für alle Teammitglieder und CI-Pipelines gelten.</p>
+<h3 id="npmrc"><code>.npmrc</code></h3>
+<pre><code class="language-ini"><span class="hljs-comment"># Strikte Peer Dependencies: Konflikte werden als Fehler behandelt</span>
+<span class="hljs-attr">strict-peer-dependencies</span>=<span class="hljs-literal">true</span>
+
+<span class="hljs-comment"># Keine automatische Installation von Peer Dependencies</span>
+<span class="hljs-attr">auto-install-peers</span>=<span class="hljs-literal">false</span>
+
+<span class="hljs-comment"># Integritätsprüfung des Stores</span>
+<span class="hljs-attr">verify-store-integrity</span>=<span class="hljs-literal">true</span>
+
+<span class="hljs-comment"># Höchste verfügbare Version bei der Auflösung bevorzugen</span>
+<span class="hljs-attr">resolution-mode</span>=highest
+</code></pre><h3 id="pnpm-workspaceyaml"><code>pnpm-workspace.yaml</code></h3>
+<pre><code class="language-yaml"><span class="hljs-attribute">packages</span><span class="hljs-punctuation">:</span> <span class="hljs-string">[]</span>
+
+<span class="hljs-attribute">onlyBuiltDependencies</span><span class="hljs-punctuation">:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">'@parcel/watcher'</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">esbuild</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">lmdb</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">msgpackr-extract</span>
+
+<span class="hljs-attribute">minimumReleaseAge</span><span class="hljs-punctuation">:</span> <span class="hljs-string">1440</span>
+</code></pre><h3 id="packagejson-auszug"><code>package.json</code> (Auszug)</h3>
+<pre><code class="language-json">{
+  <span class="hljs-string">"name"</span>: <span class="hljs-string">"book-manager"</span>,
+  <span class="hljs-string">"version"</span>: <span class="hljs-string">"0.0.0"</span>,
+  <span class="hljs-string">"packageManager"</span>: <span class="hljs-string">"pnpm<span class="hljs-variable">@x</span>.y.z"</span>,
+  <span class="hljs-string">"scripts"</span>: {
+    <span class="hljs-string">"preinstall"</span>: <span class="hljs-string">"npx only-allow pnpm"</span>,
+    <span class="hljs-string">"start"</span>: <span class="hljs-string">"ng serve"</span>,
+    <span class="hljs-string">"build"</span>: <span class="hljs-string">"ng build"</span>,
+    <span class="hljs-string">"test"</span>: <span class="hljs-string">"ng test"</span>
+  },
+  <span class="hljs-string">"dependencies"</span>: {
+    <span class="hljs-string">"<span class="hljs-variable">@angular</span>/core"</span>: <span class="hljs-string">"^22.0.0"</span>,
+    <span class="hljs-string">"<span class="hljs-variable">@angular</span>/common"</span>: <span class="hljs-string">"^22.0.0"</span>,
+    <span class="hljs-string">"<span class="hljs-variable">@angular</span>/compiler"</span>: <span class="hljs-string">"^22.0.0"</span>,
+    <span class="hljs-string">"<span class="hljs-variable">@angular</span>/platform-browser"</span>: <span class="hljs-string">"^22.0.0"</span>,
+    <span class="hljs-string">"<span class="hljs-variable">@angular</span>/platform-browser-dynamic"</span>: <span class="hljs-string">"^22.0.0"</span>,
+    <span class="hljs-string">"<span class="hljs-variable">@angular</span>/router"</span>: <span class="hljs-string">"^22.0.0"</span>,
+    <span class="hljs-string">"<span class="hljs-variable">@angular</span>/forms"</span>: <span class="hljs-string">"^22.0.0"</span>,
+    <span class="hljs-string">"rxjs"</span>: <span class="hljs-string">"^7.8.0"</span>,
+    <span class="hljs-string">"zone.js"</span>: <span class="hljs-string">"~0.15.0"</span>
+  },
+  <span class="hljs-string">"devDependencies"</span>: {
+    <span class="hljs-string">"<span class="hljs-variable">@angular</span>/compiler-cli"</span>: <span class="hljs-string">"^22.0.0"</span>,
+    <span class="hljs-string">"typescript"</span>: <span class="hljs-string">"~5.8.0"</span>
+  }
+}
+</code></pre><h2 id="bestehende-anwendung-auf-pnpm-umstellen">Bestehende Anwendung auf pnpm umstellen</h2>
+<p>Wenn du bereits eine Angular-Anwendung wie betreibst, brauchst du kein neues Projekt zu erzeugen. Die Unterschiede zum neuen Setup beschränken sich auf die Übernahme der bestehenden Konfiguration und Lockfile:</p>
+<ol>
+<li><p><strong>Arbeitsstand sichern:</strong> Lege einen Git-Branch an und prüfe, dass die Anwendung vor der Migration funktioniert.</p>
+</li>
+<li><p><strong>pnpm-Version festlegen:</strong> Führe im Projektverzeichnis <code>corepack use pnpm@latest</code> aus. Corepack ergänzt das <code>packageManager</code>-Feld in der vorhandenen <code>package.json</code> und trägt die konkret aufgelöste Version ein.</p>
+</li>
+<li><p><strong>Angular CLI konfigurieren:</strong> Ergänze in der bestehenden <code>angular.json</code> unter <code>cli</code> die Eigenschaft <code>"packageManager": "pnpm"</code>. Andere Projekteinstellungen und der verwendete Builder bleiben unverändert:</p>
+<pre><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"cli"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"packageManager"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"pnpm"</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre></li>
+<li><p><strong>Lockfile übernehmen:</strong> Liegt eine <code>package-lock.json</code> oder <code>yarn.lock</code> vor, führe zunächst <code>pnpm import</code> aus. Dadurch entsteht die <code>pnpm-lock.yaml</code>. Lösche die alte Lockfile erst, nachdem du die neue geprüft hast.</p>
+</li>
+<li><p><strong>Abhängigkeiten neu installieren:</strong> Entferne <code>node_modules</code> und installiere anschließend mit <code>pnpm install</code>:</p>
+<pre><code class="language-bash"><span class="hljs-built_in">rm</span> -rf node_modules
+pnpm install
+</code></pre></li>
+<li><p><strong>Automatisierung anpassen:</strong> Ersetze in CI und lokalen Skripten <code>npm install</code> beziehungsweise <code>npm ci</code> durch <code>pnpm install</code> beziehungsweise <code>pnpm install --frozen-lockfile</code>. Prüfe außerdem direkte Aufrufe von <code>npx</code> und <code>npm</code>.</p>
+</li>
+<li><p><strong>Migration prüfen:</strong> Führe Build, Tests und Entwicklungsserver aus. Bei blockierten Build-Scripts entscheidest du mit <code>pnpm approve-builds</code>, welche Abhängigkeiten diese ausführen dürfen.</p>
+</li>
+</ol>
+<p>Die ausführliche pnpm-Konfiguration aus den vorherigen Abschnitten – etwa <code>.npmrc</code>, <code>pnpm-workspace.yaml</code> und <code>onlyBuiltDependencies</code> – kannst du anschließend schrittweise übernehmen.</p>
+<h2 id="fazit">Fazit</h2>
+<p>pnpm bietet mehr als einen schnellen Package Manager, sondern liefert Werkzeuge, um Dependency Management bewusst zu gestalten:</p>
+<ul>
+<li><strong>Security-Features</strong> wie <code>minimumReleaseAge</code>, kontrollierte Build-Scripts und <code>blockExoticSubdeps</code> reduzieren Risiken in der Software Supply Chain.</li>
+<li><strong>Strikte <code>node_modules</code>-Isolation</strong> verhindert Phantom Dependencies.</li>
+<li><strong>Reproduzierbare Installationen</strong> via Lockfile und <code>--frozen-lockfile</code> sichern konsistente Builds.</li>
+</ul>
+<p>Dabei bleibt der gewohnte Angular-Workflow vollständig erhalten, denn die CLI delegiert Installationen transparent an pnpm.
+Wenn du später mehrere Anwendungen oder Bibliotheken verwalten möchtest, kannst du dieses Fundament ohne Architekturbruch um Workspaces, Catalogs und Nx erweitern.</p>
+<h2 id="weiterführende-links">Weiterführende Links</h2>
+<ul>
+<li><a href="https://pnpm.io">pnpm Dokumentation</a></li>
+<li><a href="https://pnpm.io/supply-chain-security">pnpm Supply-Chain-Security</a></li>
+<li><a href="https://pnpm.io/catalogs">pnpm Catalogs</a></li>
+<li><a href="https://nx.dev/concepts/integrated-vs-package-based#package-based">Nx mit pnpm</a></li>
+<li><a href="https://angular.dev/tools/cli/setup-local">Angular CLI – Package Manager Konfiguration</a></li>
+<li><a href="https://nodejs.org/api/corepack.html">Corepack Dokumentation</a></li>
+<li><a href="https://socket.dev/blog">Socket.dev – Security-Analysen zu npm-Angriffen</a></li>
+</ul>
+<p><small><strong>Titelbild:</strong> generiert mit AI, bearbeitet</small></p>
+<hr>
+
+<p><small>Vielen Dank an Ferdinand Malcher für das Review und das wertvolle Feedback!</small></p>
+</app-markdown-content><!----><!----><p class="blog__keywords"><span>Keywords:</span><span class="badge badge-secondary">Angular</span><span class="badge badge-secondary">pnpm</span><span class="badge badge-secondary">Corepack</span><span class="badge badge-secondary">Supply Chain Security</span><span class="badge badge-secondary">Package Manager</span><span class="badge badge-secondary">npm</span><span class="badge badge-secondary">Security</span><span class="badge badge-secondary">Dependencies</span><span class="badge badge-secondary">minimumReleaseAge</span><!----></p><!----><a routerlink="/blog" ripple-radius class="btn btn-sm btn-primary mt-4" href="/blog" jsaction="click:;"><i class="fa-solid fa-backward mr-2"></i> Zurück </a><hr><!---->Anregungen? Feedback? Fehler? <!----><a target="_blank" class="content" href="https://github.com/angular-buch/website-articles/blob/main/blog/2026-08-angular-pnpm/README.md"><i class="fa-brands fa-github mr-1"></i><!---->Forke/bearbeite diese Seite auf GitHub<!----></a>. </div></div></article></div></div><!----><!----></div><!----><!----></div></section><app-json-ld-outlet ngh="7"><script type="application/ld+json">{
+  "url": "https://angular-buch.com/blog/2026-08-angular-pnpm",
+  "headline": "Angular mit pnpm: sichere Dependencys und Best Practices",
+  "description": "Die Zeiten, in denen der Paketmanager npm alternativlos war, sind längst vorbei.\nMit pnpm steht ein alternativer Paketmanager zur Verfügung, der effizienter mit Speicherplatz umgeht, schneller installiert und moderne Sicherheitsmechanismen gegen Supply-Chain-Angriffe mitbringt.",
+  "datePublished": "2026-08-13",
+  "dateModified": "2026-08-13",
+  "publisher": {
+    "name": "Angular-Buch",
+    "url": "https://angular-buch.com",
+    "@type": "Organization",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://angular-buch.com/assets/img/brand-400.png"
+    }
+  },
+  "image": "https://website-articles.angular-buch.com/blog/2026-08-angular-pnpm/angular-pnpm.webp",
+  "thumbnailUrl": "https://website-articles.angular-buch.com/blog/2026-08-angular-pnpm/angular-pnpm.webp",
+  "author": {
+    "@type": "Person",
+    "name": "Danny Koppenhagen",
+    "email": "mail@k9n.dev"
+  },
+  "keywords": [
+    "Angular",
+    "pnpm",
+    "Corepack",
+    "Supply Chain Security",
+    "Package Manager",
+    "npm",
+    "Security",
+    "Dependencies",
+    "minimumReleaseAge"
+  ],
+  "mainEntityOfPage": "http://schema.org/WebPage",
+  "@type": "Article",
+  "@context": "http://schema.org"
+}</script></app-json-ld-outlet></app-blog-details-page><!----><footer ngh="10"><div class="container"><div class="row align-items-center"><div class="col-sm-9"><div class="links"><app-link ngh="0"><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/" jsaction="click:;"><!----> Home </a><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/impressum" jsaction="click:;"><!----> Impressum </a><!----><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/datenschutz" jsaction="click:;"><!----> Datenschutzerklärung </a><!----><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="9"><!----><a class="links__item links__linkedin ml-1" href="https://www.linkedin.com/company/angular-buch/" rel="nofollow"><!----> LinkedIn </a><!----><!----><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="9"><!----><a class="links__bluesky links__item ml-1" href="https://bsky.app/profile/angular-buch.com" rel="nofollow"><!----> Bluesky </a><!----><!----><!----><!----></app-link><!----><!----></div></div></div></div></footer></main><app-json-ld-outlet ngh="7"><script type="application/ld+json">{
+  "sku": "9783988890641",
+  "productID": "9783988890641",
+  "mpn": "9783988890641",
+  "name": "Angular: Das Praxisbuch",
+  "description": "Von den Grundlagen bis zur professionellen Entwicklung mit Signals. Das moderne Praxisbuch zu Angular – ab Version 22",
+  "aggregateRating": {
+    "reviewCount": 31,
+    "ratingValue": 4.870967741935484,
+    "@type": "AggregateRating"
+  },
+  "review": [
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Kann dieses Buch zu 100% empfehlen wenn man neu in Angular einsteigen will.",
+      "datePublished": "2018-07-08",
+      "author": {
+        "name": "DrDrakken, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Wer Angular von Grund auf lernen möchte, ist mit dem Buch bestens bedient.",
+      "datePublished": "2017-11-30",
+      "author": {
+        "name": "constructor, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Tolle Themen. Guter Praxisbezug. Habe den Kauf nicht bereut und würde es jederzeit weiterempfehlen.",
+      "datePublished": "2017-06-21",
+      "author": {
+        "name": "Jörg Manske, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Eine klare Empfehlung für alle, die sich einen Überblick über moderne SPA-Entwicklung mit Angular verschaffen möchten.",
+      "datePublished": "2017-12-11",
+      "author": {
+        "name": "schoettner, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ein Buch, das für Einsteiger und Wissenhungrige, empfehlenswert ist.",
+      "datePublished": "2018-02-22",
+      "author": {
+        "name": "Dominik Sprung, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Im Buch wird das Grundkonzept ausführlich aber nicht langweilig erklärt. [...] Ich gebe wirklich selten 5 Punkte in einer Rezession, hier geht es nicht anders.",
+      "datePublished": "2018-05-01",
+      "author": {
+        "name": "Torsten Lehmann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Es macht einfach Spass dieses Buch zu lesen. Ich empfehle es! Die Beispiele sind sehr klar und alles wird sehr gut erklärt.",
+      "datePublished": "2018-01-24",
+      "author": {
+        "name": "F. Salvi, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "In meinen Augen hat das Buch gute Chancen, Standardwerk bei der Angular-Ausbildung bei uns zu werden.",
+      "datePublished": "2018-12-01",
+      "author": {
+        "name": "Tobias Meier, Lead Softwarearchitekt, BridgingIT GmbH",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Der Leser wird von vornherein abgeholt und an die Hand genommen. Alles ist so ausreichend erklärt, dass man die Zusammenhänge verstehen kann und gleichzeitig auch nicht mit zu vielen Infos überfordert wird.",
+      "datePublished": "2017-12-03",
+      "author": {
+        "name": "Jan Buchholz, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Die Beispiele sind einfach gehalten und gut erklärt, so dass man direkt ein gutes Basiswissen aufbaut.",
+      "datePublished": "2017-05-30",
+      "author": {
+        "name": "Andre Fritzsche, IT Consultant, BridgingIT GmbH",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "It's 500+ pages that get you from beginner to top Angular expert level!",
+      "datePublished": "2017-06-15",
+      "author": {
+        "name": "Juri Strumpflohner, Blogger und Trainer für Angular",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Die Beispiele sind sehr gut beschrieben, sodass man jeden Schritt nachvollziehen kann. Der Kauf hat sich auf alle Fälle gelohnt.",
+      "datePublished": "2018-08-20",
+      "author": {
+        "name": "Mireille Puschmann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ich persönlich finde den didaktischen Aufbau des Buchs wirklich gelungen. Für eine Einführung ist die Tiefe genau richtig.",
+      "datePublished": "2023-08-14",
+      "author": {
+        "name": "Dr. Jochen Manns, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch eignet sich hervorragend als Nachschlagewerk, das auf dem Schreibtisch des Angular-Entwicklers nicht fehlen sollte.",
+      "datePublished": "2017-06-27",
+      "author": {
+        "name": "Guido K., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das lesen macht wirklich Spaß und es gibt eine gute Lernkurve.",
+      "datePublished": "2017-12-19",
+      "author": {
+        "name": "A.B., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Warten hat sich gelohnt! Danke für dieses geniale Buch!",
+      "datePublished": "2017-08-10",
+      "author": {
+        "name": "Stefan Kert, auf Twitter",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Der Schreibstil ist gut, kein Schaulaufen von Experten, sondern das Vermitteln von Wissen. Ich empfehle das Buch allen, die ingenieursmäßig denken und eine spannende Technologie besser kennenlernen wollen.",
+      "datePublished": "2017-06-22",
+      "author": {
+        "name": "Watzmann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch ist gut strukturiert, das Vorgehen Schritt-für-Schritt hilft dabei gut weiter. Die Autoren sind Profis, das erkennt man sofort, und verstehen von ihrem Handwerk.",
+      "datePublished": "2019-05-16",
+      "author": {
+        "name": "Anton, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch bietet einen guten ersten Anfang in die Welt von Angular. [...] Ich warte gespannt auf die 2 Version des Buches, um meine aktuellen Projekte umsetzen zu können.",
+      "datePublished": "2019-04-01",
+      "author": {
+        "name": "Leela, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ich habe den Eindruck, dass ich hier mit meinem Projekt gut aufgehoben bin. Sehr empfehlenswert!",
+      "datePublished": "2019-03-30",
+      "author": {
+        "name": "Metal King, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch ist sehr gut strukturiert, sehr gut zu lesen und durch das praktische Beispiel sehr gut zu verinnerlichen.",
+      "datePublished": "2019-01-28",
+      "author": {
+        "name": "ea, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Die einzelnen Kapitel sind sehr übersichtlich strukturiert und man kann den Erläuterungen zu jeder Zeit gut folgen. Ich kann dieses Buch guten Gewissens jedem empfehlen, der mit Angular zu tun hat. Es ist ein prima Nachschlagewerk.",
+      "datePublished": "2019-06-25",
+      "author": {
+        "name": "M.S., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch erklärt in einem wunderbaren Schreibstil, wie man als Neuling in der Angular-Welt den besten Einstieg bekommt. Man merkt, dass die Autoren sehr tief in der Materie sind und ihr Wissen gerne weitergeben. Somit ist das Buch stets professionell, aber immer nachvollziehbar und verständlich.",
+      "datePublished": "2020-07-05",
+      "author": {
+        "name": "C4bb4g3, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ich bin auf die beiden Autoren durch ein YouTube Video aufmerksam geworden und war gleich begeistert, weil sie so gut und verständlich erklären. Auch das Beispiel, das sich durchzieht, ist sehr gut und hilfreich.",
+      "datePublished": "2020-04-18",
+      "author": {
+        "name": "Klia Maus, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch ist von vorne bis hinten gut strukturiert und alle darin enthaltenen Themen detailliert erklärt. Absolute Kaufempfehlung für jeden, der sich mit dem Framework Angular bestens vertraut machen möchte! Ein Lob an die Autoren.",
+      "datePublished": "2020-03-06",
+      "author": {
+        "name": "Johannes Meinhard, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch hat mir sehr gut weiter geholfen und ich würde es weiterempfehlen. Der Aufbau sowie Schreibweise des Buchs haben mir gut gefallen, ich hatte beim Lesen nie das Gefühl, nicht folgen zu können.",
+      "datePublished": "2019-11-15",
+      "author": {
+        "name": "Katharinarrr, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Den kurzweiligen Mix aus Theorie und Praxis empfinde ich als sehr motivierend. Die Autoren können auch komplexe Themen sehr verständlich erklären. Ich empfehle das Buch jedem, der eine solide Einführung ins Thema Angular sucht.",
+      "datePublished": "2019-10-26",
+      "author": {
+        "name": "Matthias Hess, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Es ist sehr sorgfältig recherchiert, auf dem neuesten Stand und gibt Einblick in alles, was man von Angular wissen muss. Ich hatte davor schon Bücher von anderen Autoren zu diesem Thema, in diesen wurde jedoch nicht so sauber und anschaulich erklärt wie in diesem Buch.",
+      "datePublished": "2023-04-16",
+      "author": {
+        "name": "Daniel Ellermann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Didaktisch eine glatte 1 mit Sternchen! Hervorragend für mich als Wirtschaftsinformatiker zum Selbststudium, mit schneller Lernkurve geeignet.",
+      "datePublished": "2023-06-27",
+      "author": {
+        "name": "OD, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Insgesamt ein sehr solides und aktuelles Praxisbuch, das sich hervorragend als Nachschlagewerk und als kontinuierliche Lernbegleitung eignet. Für alle, die Angular professionell einsetzen oder einsetzen wollen, eine klare Empfehlung.",
+      "datePublished": "2026-01-11",
+      "author": {
+        "name": "Christian P., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das erste Angular-Buch von dieser Truppe war meiner Meinung nach das beste auf dem Markt. Allerdings hat sich in #Angular in den letzten 3-5 Jahren so unfassbar viel verändert, dass die drei statt einer 5. Auflage nun ein komplett neues geschrieben haben. Wer Angular (besser) verstehen möchte, ist hier richtig.",
+      "datePublished": "2026-05-23",
+      "author": {
+        "name": "Marcus Maack auf LinkedIn",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    }
+  ],
+  "@type": "Product",
+  "@context": "http://schema.org",
+  "brand": "Angular-Buch",
+  "image": "https://angular-buch.com/assets/img/book-cover-v1m.png",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "EUR",
+    "price": "39.90",
+    "priceValidUntil": "2030-12-31T23:59:59",
+    "itemCondition": "http://schema.org/NewCondition",
+    "availability": "http://schema.org/InStock",
+    "url": "https://angular-buch.com/kaufen",
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0",
+        "currency": "EUR"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": [
+          "DE",
+          "AT",
+          "CH"
+        ]
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 1,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 3,
+          "unitCode": "DAY"
+        }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 14,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    }
+  }
+}</script></app-json-ld-outlet></app-root>
+<script src="polyfills-KE2WY2BY.js" type="module"></script><script src="main-6X4WGRUI.js" type="module"></script>
+<link rel="modulepreload" href="chunk-49ddUqk_.js">
+<link rel="modulepreload" href="chunk-CZplKf9k.js">
+<link rel="modulepreload" href="chunk-C87_T3yj.js">
+<link rel="modulepreload" href="chunk-DyvgVTrY.js">
+<link rel="modulepreload" href="chunk-DXY4PT8Z.js">
+<link rel="modulepreload" href="chunk-ZQdrGJv5.js">
+<link rel="modulepreload" href="chunk-DSWnRwc_.js">
+
+
+<script id="ng-state" type="application/json">{"ee4be4ffe8a0a2a18a75776da80a181240def4372e33a43ea59b9c4d9e17520d":{"b":{"slug":"2026-08-angular-pnpm","html":"\u003Cp>Die Zeiten, in denen der Paketmanager \u003Cem>npm\u003C\u002Fem> alternativlos war, sind längst vorbei.\nMit \u003Cstrong>pnpm\u003C\u002Fstrong> steht ein alternativer Paketmanager zur Verfügung, der effizienter mit Speicherplatz umgeht, schneller installiert und moderne Sicherheitsmechanismen gegen Supply-Chain-Angriffe mitbringt.\u003C\u002Fp>\n\u003Cp>In diesem Artikel richten wir ein Angular-Projekt mit pnpm ein, konfigurieren eine sichere Entwicklungsumgebung und schauen uns Best Practices an, die sich in professionellen Teams bewährt haben: von Supply-Chain-Security bis hin zu reproduzierbaren Builds.\u003C\u002Fp>\n\u003Ch2 id=\"inhalt\">Inhalt\u003C\u002Fh2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#warum-%C3%BCberhaupt-pnpm\">Warum überhaupt pnpm?\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#neues-angular-projekt-mit-pnpm-erstellen\">Neues Angular-Projekt mit pnpm erstellen\u003C\u002Fa>\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#pnpm-installieren-und-version-fixieren\">pnpm installieren und Version fixieren\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#projekt-erzeugen\">Projekt erzeugen\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#projektstruktur-und-node_modules\">Projektstruktur und \u003Ccode>node_modules\u003C\u002Fcode>\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#supply-chain-security-mit-pnpm\">Supply-Chain-Security mit pnpm\u003C\u002Fa>\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#pnpm-features-gegen-supply-chain-risiken\">pnpm-Features gegen Supply-Chain-Risiken\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#lifecycle-scripts-kontrollieren\">Lifecycle Scripts kontrollieren\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#minimumreleaseage-quarant%C3%A4ne-f%C3%BCr-neue-versionen\">\u003Ccode>minimumReleaseAge\u003C\u002Fcode>: Quarantäne für neue Versionen\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#blockexoticsubdeps-git-dependencys-absichern\">blockExoticSubdeps: Git-Dependencys absichern\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#lockfile-und-reproduzierbare-builds\">Lockfile und reproduzierbare Builds\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#empfohlene-konfiguration\">Empfohlene Konfiguration\u003C\u002Fa>\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#npmrc\">\u003Ccode>.npmrc\u003C\u002Fcode>\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#pnpm-workspaceyaml\">\u003Ccode>pnpm-workspace.yaml\u003C\u002Fcode>\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#packagejson-auszug\">\u003Ccode>package.json\u003C\u002Fcode> (Auszug)\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#bestehende-anwendung-auf-pnpm-umstellen\">Bestehende Anwendung auf pnpm umstellen\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#fazit\">Fazit\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-08-angular-pnpm#weiterf%C3%BChrende-links\">Weiterführende Links\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003Ch2 id=\"warum-überhaupt-pnpm\">Warum überhaupt pnpm?\u003C\u002Fh2>\n\u003Cp>npm funktioniert, ist überall vorinstalliert und die meisten Tutorials verwenden es.\nWarum also wechseln?\nDie Antwort liegt in den architektonischen Entscheidungen, die pnpm anders trifft:\u003C\u002Fp>\n\u003Cp>\u003Cstrong>Content-addressable Store:\u003C\u002Fstrong>\nJede Paketversion wird genau einmal in einem zentralen Store gespeichert.\nMehrere Projekte referenzieren dasselbe Paket per Hardlink, was erheblich Speicherplatz spart.\u003C\u002Fp>\n\u003Cp>\u003Cstrong>Strikte \u003Ccode>node_modules\u003C\u002Fcode>-Struktur:\u003C\u002Fstrong>\npnpm erstellt keine flache \u003Ccode>node_modules\u003C\u002Fcode>-Struktur, sondern nutzt Symlinks, bei denen jedes Paket nur auf seine deklarierten Abhängigkeiten zugreifen kann.\nDas verhindert das \u003Cem>Phantom-Dependency\u003C\u002Fem>-Problem: Code kann nicht versehentlich auf transitive Abhängigkeiten zugreifen.\u003C\u002Fp>\n\u003Cp>\u003Cstrong>Schnellere Installationen:\u003C\u002Fstrong>\nDurch den zentralen Store und Hardlinks sind Installationen deutlich schneller, insbesondere bei wiederholten Installationen und in CI-Pipelines.\u003C\u002Fp>\n\u003Cp>\u003Cstrong>Monorepo-Unterstützung:\u003C\u002Fstrong>\npnpm bietet erstklassige \u003Ca href=\"https:\u002F\u002Fpnpm.io\u002Fworkspaces\">Workspace-Unterstützung\u003C\u002Fa> mit Catalogs (zentrale Versionsverwaltung), dem Workspace-Protokoll und effizienter Verwaltung mehrerer Pakete.\u003C\u002Fp>\n\u003Cp>\u003Cstrong>Security by Default:\u003C\u002Fstrong>\nSeit Version 10 blockiert pnpm standardmäßig Lifecycle-Scripts in Dependencys.\nDamit wird eine ganze Kategorie von Supply-Chain-Angriffen von Haus aus verhindert.\u003C\u002Fp>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>Merkmal\u003C\u002Fth>\n\u003Cth>npm\u003C\u002Fth>\n\u003Cth>pnpm\u003C\u002Fth>\n\u003C\u002Ftr>\n\u003C\u002Fthead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>Speicherverbrauch\u003C\u002Ftd>\n\u003Ctd>hoch (jedes Projekt eigene Kopie)\u003C\u002Ftd>\n\u003Ctd>niedrig (Content-addressable Store)\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>Installationsgeschwindigkeit\u003C\u002Ftd>\n\u003Ctd>mittel\u003C\u002Ftd>\n\u003Ctd>schnell\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>Phantom Dependencies\u003C\u002Ftd>\n\u003Ctd>möglich (flache Struktur)\u003C\u002Ftd>\n\u003Ctd>ausgeschlossen (strikte Struktur)\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>Lifecycle Scripts\u003C\u002Ftd>\n\u003Ctd>werden ausgeführt\u003C\u002Ftd>\n\u003Ctd>standardmäßig blockiert (ab v10)\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>Monorepo-Support\u003C\u002Ftd>\n\u003Ctd>Workspaces (basic)\u003C\u002Ftd>\n\u003Ctd>Workspaces + Catalogs\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>minimumReleaseAge\u003C\u002Ftd>\n\u003Ctd>ab npm 11.10 (\u003Ccode>min-release-age\u003C\u002Fcode>)\u003C\u002Ftd>\n\u003Ctd>ab pnpm 10.16\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003C\u002Ftbody>\u003C\u002Ftable>\n\u003Ch2 id=\"neues-angular-projekt-mit-pnpm-erstellen\">Neues Angular-Projekt mit pnpm erstellen\u003C\u002Fh2>\n\u003Ch3 id=\"pnpm-installieren-und-version-fixieren\">pnpm installieren und Version fixieren\u003C\u002Fh3>\n\u003Cp>Für die Schnittstelle zwischen npm und alternativen Paketmanagern wird das Modul \u003Ccode>corepack\u003C\u002Fcode> verwendet.\nEs wird seit Node.js 16.13 mitgeliefert.\nDer folgende Befehl aktualisiert Corepack auf die aktuelle Version. Das ist insbesondere wegen veralteter Signaturen in älteren Corepack-Versionen sinnvoll. Falls Corepack in deiner Node.js-Installation bereits aktuell ist, kannst du diesen Schritt überspringen. Anschließend aktivierst du pnpm:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">npm install --\u003Cspan class=\"hljs-keyword\">global\u003C\u002Fspan> corepack\u003Cspan class=\"hljs-symbol\">@latest\u003C\u002Fspan>\ncorepack enable pnpm\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"projekt-erzeugen\">Projekt erzeugen\u003C\u002Fh3>\n\u003Cp>Beim Erstellen eines neuen Projekts muss der Package Manager explizit angegeben werden.\nEin einfaches \u003Ccode>pnpm dlx @angular\u002Fcli@latest new book-monkey\u003C\u002Fcode> reicht \u003Cstrong>nicht\u003C\u002Fstrong>: Die CLI würde trotzdem npm verwenden, da sie den aufrufenden Package Manager nicht automatisch erkennt.\nStattdessen musst du der Angular CLI explizit mitteilen, welcher Paketmanager eingesetzt werden soll.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">\u003Cspan class=\"hljs-comment\"># Bei globaler Installation:\u003C\u002Fspan>\nng \u003Cspan class=\"hljs-keyword\">new\u003C\u002Fspan> book-monkey --package-manager pnpm\n\n\u003Cspan class=\"hljs-comment\"># Direkt ohne global installierte Angular CLI via npx:\u003C\u002Fspan>\nnpx @angular\u002Fcli@latest \u003Cspan class=\"hljs-keyword\">new\u003C\u002Fspan> book-monkey --package-manager pnpm\n\n\u003Cspan class=\"hljs-comment\"># Direkt mit pnpm dlx:\u003C\u002Fspan>\npnpm dlx @angular\u002Fcli@latest \u003Cspan class=\"hljs-keyword\">new\u003C\u002Fspan> book-monkey --package-manager pnpm\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Nach der Erstellung wechselst du in den Projektordner und fixierst dort die verwendete Version:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">cd book-monkey\ncorepack \u003Cspan class=\"hljs-selector-tag\">use\u003C\u002Fspan> pnpm\u003Cspan class=\"hljs-keyword\">@latest\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Der Befehl ergänzt das Feld \u003Ccode>packageManager\u003C\u002Fcode> in der \u003Ccode>package.json\u003C\u002Fcode>. Corepack aktiviert dann bei allen Teammitgliedern automatisch dieselbe pnpm-Version.\u003C\u002Fp>\n\u003Cp>Das Flag \u003Ccode>--package-manager pnpm\u003C\u002Fcode> bewirkt zwei Dinge:\u003C\u002Fp>\n\u003Col>\n\u003Cli>Die Pakete werden mit pnpm installiert.\u003C\u002Fli>\n\u003Cli>In der \u003Ccode>angular.json\u003C\u002Fcode> wird \u003Ccode>&quot;cli&quot;: { &quot;packageManager&quot;: &quot;pnpm&quot; }\u003C\u002Fcode> eingetragen.\u003C\u002Fli>\n\u003C\u002Fol>\n\u003Cp>Dieser Eintrag teilt der Angular CLI mit, welchen Package Manager sie für alle zukünftigen Operationen (\u003Ccode>ng add\u003C\u002Fcode>, \u003Ccode>ng update\u003C\u002Fcode>, etc.) verwenden soll.\nDie CLI delegiert dann alle Paketoperationen transparent an pnpm, z. B. \u003Ccode>ng add @angular\u002Fcdk\u003C\u002Fcode>, \u003Ccode>ng update\u003C\u002Fcode>, \u003Ccode>ng generate\u003C\u002Fcode> funktionieren unverändert.\u003C\u002Fp>\n\u003Cblockquote>\n\u003Cp>\u003Cstrong>Tipp:\u003C\u002Fstrong> Als zusätzliche Absicherung gegen versehentliches \u003Ccode>npm install\u003C\u002Fcode> empfiehlt sich ein \u003Ccode>preinstall\u003C\u002Fcode>-Script:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-json\">\u003Cspan class=\"hljs-attr\">&quot;scripts&quot;\u003C\u002Fspan>\u003Cspan class=\"hljs-punctuation\">:\u003C\u002Fspan> \u003Cspan class=\"hljs-punctuation\">{\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-attr\">&quot;preinstall&quot;\u003C\u002Fspan>\u003Cspan class=\"hljs-punctuation\">:\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&quot;npx only-allow pnpm&quot;\u003C\u002Fspan>\n\u003Cspan class=\"hljs-punctuation\">}\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003C\u002Fblockquote>\n\u003Ch2 id=\"projektstruktur-und-node_modules\">Projektstruktur und \u003Ccode>node_modules\u003C\u002Fcode>\u003C\u002Fh2>\n\u003Cp>Wenn du zum ersten Mal ein pnpm-Projekt öffnest, stellst du fest, dass \u003Ccode>node_modules\u003C\u002Fcode> anders aufgebaut ist:\u003C\u002Fp>\n\u003Cpre>\u003Ccode>node_modules\u003Cspan class=\"hljs-symbol\">\u002F\u003C\u002Fspan>\n├── .pnpm\u003Cspan class=\"hljs-symbol\">\u002F\u003C\u002Fspan>           ← Virtueller Store mit allen Paketen\n├── @angular\u003Cspan class=\"hljs-symbol\">\u002Fcore\u003C\u002Fspan>    ← Symlink nach .pnpm\u003Cspan class=\"hljs-symbol\">\u002F...\u003C\u002Fspan>\n├── rxjs             ← Symlink nach .pnpm\u003Cspan class=\"hljs-symbol\">\u002F...\u003C\u002Fspan>\n└── ...\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Jedes Paket in der obersten Ebene ist ein Symlink in den Ordner \u003Ccode>.pnpm\u003C\u002Fcode>, der wiederum Hardlinks zum globalen Store enthält.\nDie IDE-Unterstützung (TypeScript-Auflösung, Autocomplete) sowie Build-Tools (Vite, esbuild) funktionieren damit problemlos.\u003C\u002Fp>\n\u003Ch2 id=\"supply-chain-security-mit-pnpm\">Supply-Chain-Security mit pnpm\u003C\u002Fh2>\n\u003Cp>Dies ist der wichtigste Grund, warum pnpm heute nicht nur eine Performance-Optimierung ist, sondern eine bewusste Architekturentscheidung für die Sicherheit eines Projekts.\u003C\u002Fp>\n\u003Cp>Supply-Chain-Attacken im npm-Ökosystem haben sich in den letzten Jahren dramatisch gehäuft.\nEinige bekannte Vorfälle:\u003C\u002Fp>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>Vorfall\u003C\u002Fth>\n\u003Cth>Jahr\u003C\u002Fth>\n\u003Cth>Auswirkung\u003C\u002Fth>\n\u003C\u002Ftr>\n\u003C\u002Fthead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>ua-parser-js\u003C\u002Ftd>\n\u003Ctd>2021\u003C\u002Ftd>\n\u003Ctd>Kryptominer in 8-Mio-Downloads-Paket, 4 Stunden online\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>colors &amp; faker\u003C\u002Ftd>\n\u003Ctd>2022\u003C\u002Ftd>\n\u003Ctd>Maintainer sabotierte eigene Pakete\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>node-ipc\u003C\u002Ftd>\n\u003Ctd>2022\u003C\u002Ftd>\n\u003Ctd>Politisch motivierte Datei-Überschreibung\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>eslint-config-prettier\u003C\u002Ftd>\n\u003Ctd>2025\u003C\u002Ftd>\n\u003Ctd>Phishing → gestohlener npm-Token → Malware via postinstall\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>@ctrl\u002Ftinycolor (Shai-Hulud)\u003C\u002Ftd>\n\u003Ctd>2025\u003C\u002Ftd>\n\u003Ctd>Erster wurmartiger Angriff im npm-Ökosystem, 100+ Pakete betroffen\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003C\u002Ftbody>\u003C\u002Ftable>\n\u003Cp>Alle diese Angriffe nutzen denselben Grundmechanismus: Ein vertrauenswürdiges Paket wird kompromittiert, und bei der nächsten Installation wird Schadcode über \u003Ccode>postinstall\u003C\u002Fcode>-Scripts ausgeführt.\npnpm adressiert diese Risiken mit konkreten, konfigurierbaren Mechanismen.\u003C\u002Fp>\n\u003Ch3 id=\"pnpm-features-gegen-supply-chain-risiken\">pnpm-Features gegen Supply-Chain-Risiken\u003C\u002Fh3>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>Risiko\u003C\u002Fth>\n\u003Cth>pnpm-Feature\u003C\u002Fth>\n\u003Cth>Wirkung\u003C\u002Fth>\n\u003C\u002Ftr>\n\u003C\u002Fthead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>Schadcode via \u003Ccode>postinstall\u003C\u002Fcode>\u003C\u002Ftd>\n\u003Ctd>Lifecycle Scripts blockiert\u003C\u002Ftd>\n\u003Ctd>Kein automatischer Code bei \u003Ccode>pnpm install\u003C\u002Fcode>\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>Kompromittiertes Release\u003C\u002Ftd>\n\u003Ctd>\u003Ccode>minimumReleaseAge\u003C\u002Fcode>\u003C\u002Ftd>\n\u003Ctd>Neue Versionen erst nach Wartezeit installierbar\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>Unbekannte Build Scripts\u003C\u002Ftd>\n\u003Ctd>\u003Ccode>onlyBuiltDependencies\u003C\u002Fcode>\u003C\u002Ftd>\n\u003Ctd>Nur explizit erlaubte Pakete dürfen Scripts ausführen\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>Git-Dependencys mit Schadcode\u003C\u002Ftd>\n\u003Ctd>\u003Ccode>blockExoticSubdeps\u003C\u002Fcode>\u003C\u002Ftd>\n\u003Ctd>Git-hosted Deps können keine \u003Ccode>prepare\u003C\u002Fcode>-Scripts ausführen\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>Nicht-reproduzierbare Builds\u003C\u002Ftd>\n\u003Ctd>\u003Ccode>pnpm-lock.yaml\u003C\u002Fcode> + \u003Ccode>--frozen-lockfile\u003C\u002Fcode>\u003C\u002Ftd>\n\u003Ctd>Exakt gleiche Installation in jedem Environment\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003C\u002Ftbody>\u003C\u002Ftable>\n\u003Ch3 id=\"lifecycle-scripts-kontrollieren\">Lifecycle Scripts kontrollieren\u003C\u002Fh3>\n\u003Cp>Seit pnpm 10 werden Scripts vom Typ \u003Ccode>preinstall\u003C\u002Fcode>, \u003Ccode>install\u003C\u002Fcode> und \u003Ccode>postinstall\u003C\u002Fcode> \u003Cstrong>nicht mehr automatisch ausgeführt\u003C\u002Fstrong>.\nDas ist der bedeutendste Sicherheitsunterschied zu npm.\u003C\u002Fp>\n\u003Cp>Bei einem frischen Angular-Projekt sieht man nach \u003Ccode>pnpm install\u003C\u002Fcode> eine Meldung wie:\u003C\u002Fp>\n\u003Cpre>\u003Ccode>[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: \u003Cspan class=\"hljs-symbol\">@parcel\u003C\u002Fspan>\u002Fwatcher\u003Cspan class=\"hljs-symbol\">@2\u003C\u002Fspan>\u003Cspan class=\"hljs-number\">.6\u003C\u002Fspan>\u003Cspan class=\"hljs-number\">.0\u003C\u002Fspan>, esbuild\u003Cspan class=\"hljs-symbol\">@0\u003C\u002Fspan>\u003Cspan class=\"hljs-number\">.28\u003C\u002Fspan>\u003Cspan class=\"hljs-number\">.1\u003C\u002Fspan>, lmdb\u003Cspan class=\"hljs-symbol\">@3\u003C\u002Fspan>\u003Cspan class=\"hljs-number\">.5\u003C\u002Fspan>\u003Cspan class=\"hljs-number\">.6\u003C\u002Fspan>, msgpackr-extract\u003Cspan class=\"hljs-symbol\">@3\u003C\u002Fspan>\u003Cspan class=\"hljs-number\">.0\u003C\u002Fspan>\u003Cspan class=\"hljs-number\">.4\u003C\u002Fspan>\n\u003Cspan class=\"hljs-built_in\">Run\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&quot;pnpm approve-builds&quot;\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">to\u003C\u002Fspan> pick which dependencies should be allowed \u003Cspan class=\"hljs-keyword\">to\u003C\u002Fspan> \u003Cspan class=\"hljs-built_in\">run\u003C\u002Fspan> scripts.\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Das ist kein Fehler: pnpm teilt mit, dass einige Pakete Build-Scripts mitbringen, die nicht ausgeführt wurden.\nOhne diese Scripts fehlen ggf. native Binarys (z. B. für \u003Ccode>esbuild\u003C\u002Fcode>).\u003C\u002Fp>\n\u003Cp>Die Lösung: bewusste Freigabe mit \u003Ccode>pnpm approve-builds\u003C\u002Fcode>.\nDieser Befehl zeigt interaktiv alle Pakete mit Build-Scripts an.\nGenehmigte Pakete werden in der Datei \u003Ccode>pnpm-workspace.yaml\u003C\u002Fcode> unter \u003Ccode>onlyBuiltDependencies\u003C\u002Fcode> gespeichert:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-yaml\">\u003Cspan class=\"hljs-attribute\">onlyBuiltDependencies\u003C\u002Fspan>\u003Cspan class=\"hljs-punctuation\">:\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-bullet\">-\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@parcel\u002Fwatcher&#x27;\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-bullet\">-\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">esbuild\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-bullet\">-\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">lmdb\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-bullet\">-\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">msgpackr-extract\u003C\u002Fspan>\n\n\u003Cspan class=\"hljs-attribute\">ignoredBuiltDependencies\u003C\u002Fspan>\u003Cspan class=\"hljs-punctuation\">:\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-bullet\">-\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">puppeteer\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Wird später ein neues Paket mit Build-Scripts hinzugefügt, erscheint die Meldung erneut, und du entscheidest bewusst über die Freigabe.\u003C\u002Fp>\n\u003Cblockquote>\n\u003Cp>\u003Cstrong>Hinweis beim Wechsel von npm:\u003C\u002Fstrong> Wenn du bisher \u003Ccode>ignore-scripts=true\u003C\u002Fcode> in der \u003Ccode>.npmrc\u003C\u002Fcode> verwendet hast, solltest du diese Einstellung bei pnpm 10+ \u003Cstrong>entfernen\u003C\u002Fstrong>.\npnpm blockiert Lifecycle Scripts von Dependencys bereits standardmäßig, auch ohne \u003Ccode>.npmrc\u003C\u002Fcode>-Eintrag.\nEin zusätzliches \u003Ccode>ignore-scripts=true\u003C\u002Fcode> würde auch die über \u003Ccode>onlyBuiltDependencies\u003C\u002Fcode> explizit freigegebenen Scripts blockieren und damit den granularen Freigabe-Mechanismus aushebeln.\nNative Binarys (z. B. für esbuild) könnten dann trotz Freigabe nicht gebaut werden.\u003C\u002Fp>\n\u003C\u002Fblockquote>\n\u003Ch3 id=\"minimumreleaseage-quarantäne-für-neue-versionen\">\u003Ccode>minimumReleaseAge\u003C\u002Fcode>: Quarantäne für neue Versionen\u003C\u002Fh3>\n\u003Cp>Die meisten kompromittierten Pakete werden innerhalb weniger Stunden erkannt und entfernt.\n\u003Ccode>minimumReleaseAge\u003C\u002Fcode> nutzt dieses Zeitfenster als Schutz:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-yaml\">\u003Cspan class=\"hljs-attr\">minimumReleaseAge:\u003C\u002Fspan> \u003Cspan class=\"hljs-number\">1440\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Der Wert \u003Ccode>1440\u003C\u002Fcode> entspricht 24 Stunden (in Minuten).\npnpm installiert keine Paketversion, die weniger als 24 Stunden alt ist, weder direkt noch transitiv.\u003C\u002Fp>\n\u003Cp>Zur Einordnung: Der \u003Ca href=\"https:\u002F\u002Fsocket.dev\u002Fblog\u002Feslint-prettier-malware\">Angriff auf eslint-config-prettier\u003C\u002Fa> (2025) war nach 6 Stunden bereinigt, der \u003Ca href=\"https:\u002F\u002Fsocket.dev\u002Fblog\u002Fshai-hulud-npm-worm\">Shai-Hulud-Wurm\u003C\u002Fa> (2025) nach 12 Stunden, die \u003Ca href=\"https:\u002F\u002Fgithub.com\u002Fnicedoc\u002Fnicedoc\u002Fissues\u002F1\">Kompromittierung von ua-parser-js\u003C\u002Fa> (2021) nach 4 Stunden.\nMit einer 24-Stunden-Quarantäne wären alle diese Angriffe ins Leere gelaufen.\u003C\u002Fp>\n\u003Cblockquote>\n\u003Cp>\u003Cstrong>Hinweis:\u003C\u002Fstrong> \u003Ccode>minimumReleaseAge\u003C\u002Fcode> schützt nicht grundsätzlich vor allen Supply-Chain-Angriffen, reduziert aber effektiv das Risiko kurzfristig kompromittierter Releases. Das ist die mit Abstand häufigste Angriffsform.\u003C\u002Fp>\n\u003C\u002Fblockquote>\n\u003Cp>Seit pnpm 10.19 lässt sich mit \u003Ccode>minimumReleaseAgeExclude\u003C\u002Fcode> die Wartezeit für bestimmte Pakete (z. B. interne) deaktivieren:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-yaml\">\u003Cspan class=\"hljs-attribute\">minimumReleaseAge\u003C\u002Fspan>\u003Cspan class=\"hljs-punctuation\">:\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">1440\u003C\u002Fspan>\n\u003Cspan class=\"hljs-attribute\">minimumReleaseAgeExclude\u003C\u002Fspan>\u003Cspan class=\"hljs-punctuation\">:\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-bullet\">-\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@my-company\u002F*&#x27;\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"blockexoticsubdeps-git-dependencys-absichern\">blockExoticSubdeps: Git-Dependencys absichern\u003C\u002Fh3>\n\u003Cp>Seit pnpm 10.26 werden Dependencys von Git-Repositorys daran gehindert, \u003Ccode>prepare\u003C\u002Fcode>-Scripts auszuführen.\nAusnahmen lassen sich verwalten, indem die Pakete explizit in \u003Ccode>onlyBuiltDependencies\u003C\u002Fcode> gelistet werden:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-yaml\">\u003Cspan class=\"hljs-params\">blockExoticSubdeps:\u003C\u002Fspan> \u003Cspan class=\"hljs-literal\">true\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"lockfile-und-reproduzierbare-builds\">Lockfile und reproduzierbare Builds\u003C\u002Fh3>\n\u003Cp>Die \u003Ccode>pnpm-lock.yaml\u003C\u002Fcode> ist kein optionales Artefakt, sondern eine Sicherheitsfunktion.\nSie stellt sicher, dass überall exakt dieselben Paketversionen installiert werden.\u003C\u002Fp>\n\u003Cp>\u003Cstrong>Goldene Regeln:\u003C\u002Fstrong>\u003C\u002Fp>\n\u003Col>\n\u003Cli>\u003Cstrong>Niemals löschen\u003C\u002Fstrong>: Das Lockfile gehört ins Repository.\u003C\u002Fli>\n\u003Cli>\u003Cstrong>\u003Ccode>--frozen-lockfile\u003C\u002Fcode> in CI\u003C\u002Fstrong>: verhindert Lockfile-Aktualisierungen bei der Installation\u003C\u002Fli>\n\u003Cli>\u003Cstrong>Reviewen bei PRs\u003C\u002Fstrong>: Änderungen am Lockfile sollten bewusst geprüft werden.\u003C\u002Fli>\n\u003C\u002Fol>\n\u003Cpre>\u003Ccode class=\"language-bash\">\u003Cspan class=\"hljs-comment\"># In CI-Pipelines immer verwenden:\u003C\u002Fspan>\npnpm \u003Cspan class=\"hljs-keyword\">install\u003C\u002Fspan> --frozen-lockfile\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Dieses Kommando ist das Äquivalent zu \u003Ccode>npm ci\u003C\u002Fcode> mit \u003Ccode>package-lock.json\u003C\u002Fcode>. Durch die Hardlink-basierte Installation ist pnpm aber auch in CI-Pipelines deutlich schneller.\u003C\u002Fp>\n\u003Ch2 id=\"empfohlene-konfiguration\">Empfohlene Konfiguration\u003C\u002Fh2>\n\u003Cp>Die folgende Konfiguration fasst alle besprochenen Best Practices zusammen.\nWichtig: \u003Ccode>.npmrc\u003C\u002Fcode> und \u003Ccode>pnpm-workspace.yaml\u003C\u002Fcode> gehören versioniert ins Repository, damit die Security Policies automatisch für alle Teammitglieder und CI-Pipelines gelten.\u003C\u002Fp>\n\u003Ch3 id=\"npmrc\">\u003Ccode>.npmrc\u003C\u002Fcode>\u003C\u002Fh3>\n\u003Cpre>\u003Ccode class=\"language-ini\">\u003Cspan class=\"hljs-comment\"># Strikte Peer Dependencies: Konflikte werden als Fehler behandelt\u003C\u002Fspan>\n\u003Cspan class=\"hljs-attr\">strict-peer-dependencies\u003C\u002Fspan>=\u003Cspan class=\"hljs-literal\">true\u003C\u002Fspan>\n\n\u003Cspan class=\"hljs-comment\"># Keine automatische Installation von Peer Dependencies\u003C\u002Fspan>\n\u003Cspan class=\"hljs-attr\">auto-install-peers\u003C\u002Fspan>=\u003Cspan class=\"hljs-literal\">false\u003C\u002Fspan>\n\n\u003Cspan class=\"hljs-comment\"># Integritätsprüfung des Stores\u003C\u002Fspan>\n\u003Cspan class=\"hljs-attr\">verify-store-integrity\u003C\u002Fspan>=\u003Cspan class=\"hljs-literal\">true\u003C\u002Fspan>\n\n\u003Cspan class=\"hljs-comment\"># Höchste verfügbare Version bei der Auflösung bevorzugen\u003C\u002Fspan>\n\u003Cspan class=\"hljs-attr\">resolution-mode\u003C\u002Fspan>=highest\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"pnpm-workspaceyaml\">\u003Ccode>pnpm-workspace.yaml\u003C\u002Fcode>\u003C\u002Fh3>\n\u003Cpre>\u003Ccode class=\"language-yaml\">\u003Cspan class=\"hljs-attribute\">packages\u003C\u002Fspan>\u003Cspan class=\"hljs-punctuation\">:\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">[]\u003C\u002Fspan>\n\n\u003Cspan class=\"hljs-attribute\">onlyBuiltDependencies\u003C\u002Fspan>\u003Cspan class=\"hljs-punctuation\">:\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-bullet\">-\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@parcel\u002Fwatcher&#x27;\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-bullet\">-\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">esbuild\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-bullet\">-\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">lmdb\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-bullet\">-\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">msgpackr-extract\u003C\u002Fspan>\n\n\u003Cspan class=\"hljs-attribute\">minimumReleaseAge\u003C\u002Fspan>\u003Cspan class=\"hljs-punctuation\">:\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">1440\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"packagejson-auszug\">\u003Ccode>package.json\u003C\u002Fcode> (Auszug)\u003C\u002Fh3>\n\u003Cpre>\u003Ccode class=\"language-json\">{\n  \u003Cspan class=\"hljs-string\">&quot;name&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;book-manager&quot;\u003C\u002Fspan>,\n  \u003Cspan class=\"hljs-string\">&quot;version&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;0.0.0&quot;\u003C\u002Fspan>,\n  \u003Cspan class=\"hljs-string\">&quot;packageManager&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;pnpm\u003Cspan class=\"hljs-variable\">@x\u003C\u002Fspan>.y.z&quot;\u003C\u002Fspan>,\n  \u003Cspan class=\"hljs-string\">&quot;scripts&quot;\u003C\u002Fspan>: {\n    \u003Cspan class=\"hljs-string\">&quot;preinstall&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;npx only-allow pnpm&quot;\u003C\u002Fspan>,\n    \u003Cspan class=\"hljs-string\">&quot;start&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;ng serve&quot;\u003C\u002Fspan>,\n    \u003Cspan class=\"hljs-string\">&quot;build&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;ng build&quot;\u003C\u002Fspan>,\n    \u003Cspan class=\"hljs-string\">&quot;test&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;ng test&quot;\u003C\u002Fspan>\n  },\n  \u003Cspan class=\"hljs-string\">&quot;dependencies&quot;\u003C\u002Fspan>: {\n    \u003Cspan class=\"hljs-string\">&quot;\u003Cspan class=\"hljs-variable\">@angular\u003C\u002Fspan>\u002Fcore&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;^22.0.0&quot;\u003C\u002Fspan>,\n    \u003Cspan class=\"hljs-string\">&quot;\u003Cspan class=\"hljs-variable\">@angular\u003C\u002Fspan>\u002Fcommon&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;^22.0.0&quot;\u003C\u002Fspan>,\n    \u003Cspan class=\"hljs-string\">&quot;\u003Cspan class=\"hljs-variable\">@angular\u003C\u002Fspan>\u002Fcompiler&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;^22.0.0&quot;\u003C\u002Fspan>,\n    \u003Cspan class=\"hljs-string\">&quot;\u003Cspan class=\"hljs-variable\">@angular\u003C\u002Fspan>\u002Fplatform-browser&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;^22.0.0&quot;\u003C\u002Fspan>,\n    \u003Cspan class=\"hljs-string\">&quot;\u003Cspan class=\"hljs-variable\">@angular\u003C\u002Fspan>\u002Fplatform-browser-dynamic&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;^22.0.0&quot;\u003C\u002Fspan>,\n    \u003Cspan class=\"hljs-string\">&quot;\u003Cspan class=\"hljs-variable\">@angular\u003C\u002Fspan>\u002Frouter&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;^22.0.0&quot;\u003C\u002Fspan>,\n    \u003Cspan class=\"hljs-string\">&quot;\u003Cspan class=\"hljs-variable\">@angular\u003C\u002Fspan>\u002Fforms&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;^22.0.0&quot;\u003C\u002Fspan>,\n    \u003Cspan class=\"hljs-string\">&quot;rxjs&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;^7.8.0&quot;\u003C\u002Fspan>,\n    \u003Cspan class=\"hljs-string\">&quot;zone.js&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;~0.15.0&quot;\u003C\u002Fspan>\n  },\n  \u003Cspan class=\"hljs-string\">&quot;devDependencies&quot;\u003C\u002Fspan>: {\n    \u003Cspan class=\"hljs-string\">&quot;\u003Cspan class=\"hljs-variable\">@angular\u003C\u002Fspan>\u002Fcompiler-cli&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;^22.0.0&quot;\u003C\u002Fspan>,\n    \u003Cspan class=\"hljs-string\">&quot;typescript&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;~5.8.0&quot;\u003C\u002Fspan>\n  }\n}\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch2 id=\"bestehende-anwendung-auf-pnpm-umstellen\">Bestehende Anwendung auf pnpm umstellen\u003C\u002Fh2>\n\u003Cp>Wenn du bereits eine Angular-Anwendung wie betreibst, brauchst du kein neues Projekt zu erzeugen. Die Unterschiede zum neuen Setup beschränken sich auf die Übernahme der bestehenden Konfiguration und Lockfile:\u003C\u002Fp>\n\u003Col>\n\u003Cli>\u003Cp>\u003Cstrong>Arbeitsstand sichern:\u003C\u002Fstrong> Lege einen Git-Branch an und prüfe, dass die Anwendung vor der Migration funktioniert.\u003C\u002Fp>\n\u003C\u002Fli>\n\u003Cli>\u003Cp>\u003Cstrong>pnpm-Version festlegen:\u003C\u002Fstrong> Führe im Projektverzeichnis \u003Ccode>corepack use pnpm@latest\u003C\u002Fcode> aus. Corepack ergänzt das \u003Ccode>packageManager\u003C\u002Fcode>-Feld in der vorhandenen \u003Ccode>package.json\u003C\u002Fcode> und trägt die konkret aufgelöste Version ein.\u003C\u002Fp>\n\u003C\u002Fli>\n\u003Cli>\u003Cp>\u003Cstrong>Angular CLI konfigurieren:\u003C\u002Fstrong> Ergänze in der bestehenden \u003Ccode>angular.json\u003C\u002Fcode> unter \u003Ccode>cli\u003C\u002Fcode> die Eigenschaft \u003Ccode>&quot;packageManager&quot;: &quot;pnpm&quot;\u003C\u002Fcode>. Andere Projekteinstellungen und der verwendete Builder bleiben unverändert:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-json\">\u003Cspan class=\"hljs-punctuation\">{\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-attr\">&quot;cli&quot;\u003C\u002Fspan>\u003Cspan class=\"hljs-punctuation\">:\u003C\u002Fspan> \u003Cspan class=\"hljs-punctuation\">{\u003C\u002Fspan>\n    \u003Cspan class=\"hljs-attr\">&quot;packageManager&quot;\u003C\u002Fspan>\u003Cspan class=\"hljs-punctuation\">:\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&quot;pnpm&quot;\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-punctuation\">}\u003C\u002Fspan>\n\u003Cspan class=\"hljs-punctuation\">}\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003C\u002Fli>\n\u003Cli>\u003Cp>\u003Cstrong>Lockfile übernehmen:\u003C\u002Fstrong> Liegt eine \u003Ccode>package-lock.json\u003C\u002Fcode> oder \u003Ccode>yarn.lock\u003C\u002Fcode> vor, führe zunächst \u003Ccode>pnpm import\u003C\u002Fcode> aus. Dadurch entsteht die \u003Ccode>pnpm-lock.yaml\u003C\u002Fcode>. Lösche die alte Lockfile erst, nachdem du die neue geprüft hast.\u003C\u002Fp>\n\u003C\u002Fli>\n\u003Cli>\u003Cp>\u003Cstrong>Abhängigkeiten neu installieren:\u003C\u002Fstrong> Entferne \u003Ccode>node_modules\u003C\u002Fcode> und installiere anschließend mit \u003Ccode>pnpm install\u003C\u002Fcode>:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">\u003Cspan class=\"hljs-built_in\">rm\u003C\u002Fspan> -rf node_modules\npnpm install\n\u003C\u002Fcode>\u003C\u002Fpre>\u003C\u002Fli>\n\u003Cli>\u003Cp>\u003Cstrong>Automatisierung anpassen:\u003C\u002Fstrong> Ersetze in CI und lokalen Skripten \u003Ccode>npm install\u003C\u002Fcode> beziehungsweise \u003Ccode>npm ci\u003C\u002Fcode> durch \u003Ccode>pnpm install\u003C\u002Fcode> beziehungsweise \u003Ccode>pnpm install --frozen-lockfile\u003C\u002Fcode>. Prüfe außerdem direkte Aufrufe von \u003Ccode>npx\u003C\u002Fcode> und \u003Ccode>npm\u003C\u002Fcode>.\u003C\u002Fp>\n\u003C\u002Fli>\n\u003Cli>\u003Cp>\u003Cstrong>Migration prüfen:\u003C\u002Fstrong> Führe Build, Tests und Entwicklungsserver aus. Bei blockierten Build-Scripts entscheidest du mit \u003Ccode>pnpm approve-builds\u003C\u002Fcode>, welche Abhängigkeiten diese ausführen dürfen.\u003C\u002Fp>\n\u003C\u002Fli>\n\u003C\u002Fol>\n\u003Cp>Die ausführliche pnpm-Konfiguration aus den vorherigen Abschnitten – etwa \u003Ccode>.npmrc\u003C\u002Fcode>, \u003Ccode>pnpm-workspace.yaml\u003C\u002Fcode> und \u003Ccode>onlyBuiltDependencies\u003C\u002Fcode> – kannst du anschließend schrittweise übernehmen.\u003C\u002Fp>\n\u003Ch2 id=\"fazit\">Fazit\u003C\u002Fh2>\n\u003Cp>pnpm bietet mehr als einen schnellen Package Manager, sondern liefert Werkzeuge, um Dependency Management bewusst zu gestalten:\u003C\u002Fp>\n\u003Cul>\n\u003Cli>\u003Cstrong>Security-Features\u003C\u002Fstrong> wie \u003Ccode>minimumReleaseAge\u003C\u002Fcode>, kontrollierte Build-Scripts und \u003Ccode>blockExoticSubdeps\u003C\u002Fcode> reduzieren Risiken in der Software Supply Chain.\u003C\u002Fli>\n\u003Cli>\u003Cstrong>Strikte \u003Ccode>node_modules\u003C\u002Fcode>-Isolation\u003C\u002Fstrong> verhindert Phantom Dependencies.\u003C\u002Fli>\n\u003Cli>\u003Cstrong>Reproduzierbare Installationen\u003C\u002Fstrong> via Lockfile und \u003Ccode>--frozen-lockfile\u003C\u002Fcode> sichern konsistente Builds.\u003C\u002Fli>\n\u003C\u002Ful>\n\u003Cp>Dabei bleibt der gewohnte Angular-Workflow vollständig erhalten, denn die CLI delegiert Installationen transparent an pnpm.\nWenn du später mehrere Anwendungen oder Bibliotheken verwalten möchtest, kannst du dieses Fundament ohne Architekturbruch um Workspaces, Catalogs und Nx erweitern.\u003C\u002Fp>\n\u003Ch2 id=\"weiterführende-links\">Weiterführende Links\u003C\u002Fh2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"https:\u002F\u002Fpnpm.io\">pnpm Dokumentation\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"https:\u002F\u002Fpnpm.io\u002Fsupply-chain-security\">pnpm Supply-Chain-Security\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"https:\u002F\u002Fpnpm.io\u002Fcatalogs\">pnpm Catalogs\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"https:\u002F\u002Fnx.dev\u002Fconcepts\u002Fintegrated-vs-package-based#package-based\">Nx mit pnpm\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"https:\u002F\u002Fangular.dev\u002Ftools\u002Fcli\u002Fsetup-local\">Angular CLI – Package Manager Konfiguration\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"https:\u002F\u002Fnodejs.org\u002Fapi\u002Fcorepack.html\">Corepack Dokumentation\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"https:\u002F\u002Fsocket.dev\u002Fblog\">Socket.dev – Security-Analysen zu npm-Angriffen\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003Cp>\u003Csmall>\u003Cstrong>Titelbild:\u003C\u002Fstrong> generiert mit AI, bearbeitet\u003C\u002Fsmall>\u003C\u002Fp>\n\u003Chr>\n\n\u003Cp>\u003Csmall>Vielen Dank an Ferdinand Malcher für das Review und das wertvolle Feedback!\u003C\u002Fsmall>\u003C\u002Fp>\n","meta":{"title":"Angular mit pnpm: sichere Dependencys und Best Practices","author":"Danny Koppenhagen","mail":"mail@k9n.dev","published":"2026-08-13T00:00:00.000Z","lastModified":"2026-08-13T00:00:00.000Z","keywords":["Angular","pnpm","Corepack","Supply Chain Security","Package Manager","npm","Security","Dependencies","minimumReleaseAge"],"language":"de","header":{"url":"angular-pnpm.webp","width":1600,"height":840},"hidden":false,"sticky":false,"darkenHeader":false}},"h":{},"s":200,"st":"OK","u":"https:\u002F\u002Fwebsite-articles.angular-buch.com\u002Fblog\u002F2026-08-angular-pnpm\u002Fentry.json","rt":"json"},"__nghData__":[{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[],"1":[],"2":[{"i":"t5","r":1,"t":{"1":"t6"},"c":{"1":[]}}]}}]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[],"1":[{"i":"t4","r":1,"t":{"1":"t7"},"c":{"1":[]}}],"2":[]}}]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[],"1":[{"i":"t4","r":1,"t":{"1":"t7"},"c":{"1":[{"i":"t7","r":1}]}}],"2":[]}}]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[{"i":"t3","r":1,"t":{"1":"t8"},"c":{"1":[{"i":"t8","r":1}]}}],"1":[],"2":[]}}]}},{"t":{"10":"t0"},"c":{"10":[{"i":"t0","r":1,"x":5}]}},{"t":{"6":"t18","7":"t19"},"c":{"6":[{"i":"t18","r":1}],"7":[]}},{"t":{"1":"t29","2":"t32"},"c":{"1":[{"i":"t29","r":4,"t":{"0":"t30","3":"t31"},"c":{"0":[],"3":[{"i":"t31","r":1}]}}],"2":[]}},{},{"t":{"3":"t26","4":"t44"},"c":{"3":[{"i":"t26","r":1,"t":{"3":"t27","18":"t33","19":"t34","20":"t35","21":"t36","26":"t38","27":"t39","30":"t40","31":"t41","34":"t42"},"c":{"3":[{"i":"t27","r":1,"t":{"3":"t28"},"c":{"3":[]}}],"18":[],"19":[{"i":"t34","r":1}],"20":[],"21":[{"i":"t36","r":1,"t":{"4":"t37"},"c":{"4":[{"i":"t37","r":1,"x":9}]}}],"26":[],"27":[{"i":"t39","r":1}],"30":[],"31":[{"i":"t41","r":1}],"34":[{"i":"t42","r":1,"t":{"0":"t43"},"c":{"0":[]}}]}}],"4":[]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[{"i":"t3","r":1,"t":{"1":"t8"},"c":{"1":[]}}],"1":[],"2":[]}}]}},{"t":{"5":"t16"},"c":{"5":[{"i":"t16","r":3,"t":{"1":"t17"},"c":{"1":[{"i":"t17","r":1}]},"x":4},{"i":"t16","r":2,"t":{"1":"t17"},"c":{"1":[]}}]}},{"c":{"3":[{"i":"c3853696235","r":1}]}}]}</script></body></html>
