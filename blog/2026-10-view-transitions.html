@@ -1,0 +1,1017 @@
+<!DOCTYPE html><html lang="de" dir="ltr"><head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://website-articles.angular-buch.com">
+  <link rel="site.standard.publication" href="at://did:plc:emeppmrqgb5rixbjcjihzd35/site.standard.publication/self">
+
+  <title>Angular-Buch → View Transitions in Angular: Shared-Element-Animationen zwischen Routen</title>
+  
+
+  
+
+  <meta property="book:isbn" content="9783988890641">
+  <meta property="book:release_date" content="2026-05-29">
+  <meta property="book:tag" content="Angular">
+  <meta property="book:tag" content="Signals">
+  <meta property="book:tag" content="Webentwicklung">
+  <meta property="book:tag" content="AngularJS">
+  <meta property="book:tag" content="TypeScript">
+  <meta property="book:tag" content="JavaScript">
+  <meta property="book:tag" content="HTML5">
+  <meta property="book:tag" content="CSS">
+  <meta property="book:tag" content="RxJS">
+  <meta property="book:tag" content="Signal Forms">
+  <meta property="book:tag" content="Resource API">
+
+  <base href="/">
+<link rel="preload" as="font" crossorigin="anonymous" href="/media/fa-brands-400-LA6RBN2H.woff2"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-Thin-GAS35NAQ.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-ThinItalic-HQCJJ3KQ.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-Light-TT7V6J7W.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-LightItalic-JJ225GLJ.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-Regular-WINA5356.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-RegularItalic-43QNLNAN.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-Medium-TKOJIIN4.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-MediumItalic-5WUL7G7J.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-Bold-BUUHB5PB.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-BoldItalic-ETKPZE3Z.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-Black-FJBQ2JLX.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-BlackItalic-MXNS7VU5.eot?#iefix"><style>@charset "UTF-8";.fa-solid,.fa-brands{--_fa-family:var(--fa-family, var(--fa-style-family, "Font Awesome 7 Free"));-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;display:var(--fa-display, inline-block);font-family:var(--_fa-family);font-feature-settings:normal;font-style:normal;font-synthesis:none;font-variant:normal;font-weight:var(--fa-style, 900);line-height:1;text-align:center;text-rendering:auto;width:var(--fa-width, 1.25em)}.fa-backward{--fa:"\f04a"}:root{--fa-family-classic:"Font Awesome 7 Free";--fa-font-solid:normal 900 1em/1 var(--fa-family-classic);--fa-style-family-classic:var(--fa-family-classic)}.fa-solid{--fa-style:900}:root{--fa-family-brands:"Font Awesome 7 Brands";--fa-font-brands:normal 400 1em/1 var(--fa-family-brands)}@font-face{font-family:"Font Awesome 7 Brands";font-style:normal;font-weight:400;font-display:block;src:url("/media/fa-brands-400-LA6RBN2H.woff2")}.fa-brands{--fa-family:var(--fa-family-brands);--fa-style:400}.fa-github{--fa:"\f09b"}@font-face{font-family:Roboto;src:url("/media/Roboto-Thin-GAS35NAQ.eot");src:local("Roboto Thin"),local("Roboto-Thin"),url("/media/Roboto-Thin-GAS35NAQ.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-Thin-UUU7IP4L.woff2") format("woff2"),url("/media/Roboto-Thin-BT5WDCMC.woff") format("woff"),url("/media/Roboto-Thin-STLHGJGZ.ttf") format("truetype"),url("/media/Roboto-Thin-OYOYLS5N.svg#Roboto") format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url("/media/Roboto-ThinItalic-HQCJJ3KQ.eot");src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url("/media/Roboto-ThinItalic-HQCJJ3KQ.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-ThinItalic-PVCCLVHZ.woff2") format("woff2"),url("/media/Roboto-ThinItalic-OJCFQICS.woff") format("woff"),url("/media/Roboto-ThinItalic-OKVQEY6M.ttf") format("truetype"),url("/media/Roboto-ThinItalic-PU7U6F54.svg#Roboto") format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url("/media/Roboto-Light-TT7V6J7W.eot");src:local("Roboto Light"),local("Roboto-Light"),url("/media/Roboto-Light-TT7V6J7W.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-Light-OEL5QP53.woff2") format("woff2"),url("/media/Roboto-Light-EGEOUPZ7.woff") format("woff"),url("/media/Roboto-Light-KYCYMX5R.ttf") format("truetype"),url("/media/Roboto-Light-O5NB3DZS.svg#Roboto") format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url("/media/Roboto-LightItalic-JJ225GLJ.eot");src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url("/media/Roboto-LightItalic-JJ225GLJ.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-LightItalic-SZU3UOEY.woff2") format("woff2"),url("/media/Roboto-LightItalic-5LJGTDBY.woff") format("woff"),url("/media/Roboto-LightItalic-ZTOFFLND.ttf") format("truetype"),url("/media/Roboto-LightItalic-FE5GYQJO.svg#Roboto") format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url("/media/Roboto-Regular-WINA5356.eot");src:local("Roboto Regular"),local("Roboto-Regular"),url("/media/Roboto-Regular-WINA5356.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-Regular-4ZFX4XNS.woff2") format("woff2"),url("/media/Roboto-Regular-EMJ7NDAQ.woff") format("woff"),url("/media/Roboto-Regular-W6LM4ZNI.ttf") format("truetype"),url("/media/Roboto-Regular-DDBAS5OS.svg#Roboto") format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url("/media/Roboto-RegularItalic-43QNLNAN.eot");src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url("/media/Roboto-RegularItalic-43QNLNAN.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-RegularItalic-2REFJECD.woff2") format("woff2"),url("/media/Roboto-RegularItalic-NSJ4HBKT.woff") format("woff"),url("/media/Roboto-RegularItalic-YZDJVEXU.ttf") format("truetype"),url("/media/Roboto-RegularItalic-7A3VJZ2J.svg#Roboto") format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url("/media/Roboto-Medium-TKOJIIN4.eot");src:local("Roboto Medium"),local("Roboto-Medium"),url("/media/Roboto-Medium-TKOJIIN4.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-Medium-GHCC3HN6.woff2") format("woff2"),url("/media/Roboto-Medium-O2PKKQNT.woff") format("woff"),url("/media/Roboto-Medium-ANIBKV6W.ttf") format("truetype"),url("/media/Roboto-Medium-RJM2M5RS.svg#Roboto") format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url("/media/Roboto-MediumItalic-5WUL7G7J.eot");src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url("/media/Roboto-MediumItalic-5WUL7G7J.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-MediumItalic-FMJUHMWQ.woff2") format("woff2"),url("/media/Roboto-MediumItalic-EJXCUUAA.woff") format("woff"),url("/media/Roboto-MediumItalic-ZZ274MH6.ttf") format("truetype"),url("/media/Roboto-MediumItalic-WUJRBJ2B.svg#Roboto") format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url("/media/Roboto-Bold-BUUHB5PB.eot");src:local("Roboto Bold"),local("Roboto-Bold"),url("/media/Roboto-Bold-BUUHB5PB.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-Bold-NGAPMV26.woff2") format("woff2"),url("/media/Roboto-Bold-GE6V3ZS2.woff") format("woff"),url("/media/Roboto-Bold-5VUU6QI6.ttf") format("truetype"),url("/media/Roboto-Bold-UXMYHWKZ.svg#Roboto") format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url("/media/Roboto-BoldItalic-ETKPZE3Z.eot");src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url("/media/Roboto-BoldItalic-ETKPZE3Z.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-BoldItalic-TBVJ3OTX.woff2") format("woff2"),url("/media/Roboto-BoldItalic-2CYTLDZJ.woff") format("woff"),url("/media/Roboto-BoldItalic-4MMIXUDR.ttf") format("truetype"),url("/media/Roboto-BoldItalic-TDTZWBKI.svg#Roboto") format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url("/media/Roboto-Black-FJBQ2JLX.eot");src:local("Roboto Black"),local("Roboto-Black"),url("/media/Roboto-Black-FJBQ2JLX.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-Black-OEG2WEQ3.woff2") format("woff2"),url("/media/Roboto-Black-AZ2AXCB4.woff") format("woff"),url("/media/Roboto-Black-IGTRSQU4.ttf") format("truetype"),url("/media/Roboto-Black-OEOHVSYK.svg#Roboto") format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url("/media/Roboto-BlackItalic-MXNS7VU5.eot");src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url("/media/Roboto-BlackItalic-MXNS7VU5.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-BlackItalic-6QYHVQZM.woff2") format("woff2"),url("/media/Roboto-BlackItalic-7QMDFEK5.woff") format("woff"),url("/media/Roboto-BlackItalic-XIXMO2HU.ttf") format("truetype"),url("/media/Roboto-BlackItalic-EYMGZCJW.svg#Roboto") format("svg");font-weight:900;font-style:italic}:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}article,figcaption,figure,footer,header,main,nav,section{display:block}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}hr{box-sizing:content-box;height:0;overflow:visible}h1,h2,h3{margin-top:0;margin-bottom:.5rem}p{margin-top:0;margin-bottom:1rem}ul{margin-top:0;margin-bottom:1rem}ul ul{margin-bottom:0}blockquote{margin:0 0 1rem}strong{font-weight:bolder}a{color:#007bff;text-decoration:none;background-color:transparent}a:hover{color:#0056b3;text-decoration:underline}a:not([href]):not([class]){color:inherit;text-decoration:none}a:not([href]):not([class]):hover{color:inherit;text-decoration:none}pre,code{font-family:SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-size:1em}pre{margin-top:0;margin-bottom:1rem;overflow:auto;-ms-overflow-style:scrollbar}figure{margin:0 0 1rem}img{vertical-align:middle;border-style:none}h1,h2,h3{margin-bottom:.5rem;font-weight:500;line-height:1.2}h2{font-size:2rem}h3{font-size:1.75rem}hr{margin-top:1rem;margin-bottom:1rem;border:0;border-top:1px solid rgba(0,0,0,.1)}.img-fluid{max-width:100%;height:auto}code{font-size:87.5%;color:#d81d73;word-wrap:break-word}a>code{color:inherit}pre{display:block;font-size:87.5%;color:#212529}pre code{font-size:inherit;color:inherit;word-break:normal}.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media(min-width:576px){.container{max-width:540px}}@media(min-width:768px){.container{max-width:720px}}@media(min-width:992px){.container{max-width:960px}}@media(min-width:1200px){.container{max-width:1140px}}.row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}.no-gutters{margin-right:0;margin-left:0}.no-gutters>[class*=col-]{padding-right:0;padding-left:0}.col-lg-10,.col-md-10,.col-md-6,.col-md-2,.col-sm-9,.col-sm-3,.col-12,.col-6{position:relative;width:100%;padding-right:15px;padding-left:15px}.col-6{flex:0 0 50%;max-width:50%}.col-12{flex:0 0 100%;max-width:100%}@media(min-width:576px){.col-sm-3{flex:0 0 25%;max-width:25%}.col-sm-9{flex:0 0 75%;max-width:75%}}@media(min-width:768px){.col-md-2{flex:0 0 16.66666667%;max-width:16.66666667%}.col-md-6{flex:0 0 50%;max-width:50%}.col-md-10{flex:0 0 83.33333333%;max-width:83.33333333%}}@media(min-width:992px){.col-lg-10{flex:0 0 83.33333333%;max-width:83.33333333%}}.btn{display:inline-block;font-weight:400;color:#212529;text-align:center;vertical-align:middle;-webkit-user-select:none;user-select:none;background-color:transparent;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media(prefers-reduced-motion:reduce){.btn{transition:none}}.btn:hover{color:#212529;text-decoration:none}.btn:focus{outline:0;box-shadow:0 0 0 .2rem #007bff40}.btn:disabled{opacity:.65}.btn:not(:disabled):not(.disabled){cursor:pointer}.btn-primary{color:#fff;background-color:#007bff;border-color:#007bff}.btn-primary:hover{color:#fff;background-color:#0069d9;border-color:#0062cc}.btn-primary:focus{color:#fff;background-color:#0069d9;border-color:#0062cc;box-shadow:0 0 0 .2rem #268fff80}.btn-primary:disabled{color:#fff;background-color:#007bff;border-color:#007bff}.btn-primary:not(:disabled):not(.disabled):active{color:#fff;background-color:#0062cc;border-color:#005cbf}.btn-primary:not(:disabled):not(.disabled):active:focus{box-shadow:0 0 0 .2rem #268fff80}.btn-sm{padding:.25rem .5rem;font-size:.875rem;line-height:1.5;border-radius:.2rem}.badge{display:inline-block;padding:.25em .4em;font-size:75%;font-weight:700;line-height:1;text-align:center;white-space:nowrap;vertical-align:baseline;border-radius:.25rem;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media(prefers-reduced-motion:reduce){.badge{transition:none}}.badge:empty{display:none}.badge-secondary{color:#fff;background-color:#6c757d}.rounded{border-radius:.25rem!important}.rounded-circle{border-radius:50%!important}.justify-content-between{justify-content:space-between!important}.align-items-center{align-items:center!important}.mr-1{margin-right:.25rem!important}.ml-1{margin-left:.25rem!important}.mr-2{margin-right:.5rem!important}.mt-4{margin-top:1.5rem!important}.mt-n5{margin-top:-3rem!important}.text-center{text-align:center!important}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}a:not(.btn){text-decoration:underline}pre{white-space:pre-wrap!important}pre,blockquote{border:1px solid #adb5bd;page-break-inside:avoid}img{page-break-inside:avoid}p,h2,h3{orphans:3;widows:3}h2,h3{page-break-after:avoid}@page{size:a3};body,.container{min-width:992px!important}.badge{border:1px solid #000}}h1{font-size:2.5rem}h2{font-size:1.75rem}h3{font-size:1.25rem}.btn{box-shadow:0 2px 5px #00000029,0 2px 10px #0000001f;padding:.84rem 2.14rem;font-size:.81rem;transition:all .2s ease-in-out;margin:.375rem;border:0;border-radius:.125rem;cursor:pointer;text-transform:uppercase;white-space:normal;word-wrap:break-word;color:#fff}.btn:hover,.btn:active,.btn:focus{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026;outline:0}.btn:not([disabled]):not(.disabled):active{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026}.btn.btn-sm{padding:.5rem 1.6rem;font-size:.64rem}.btn:disabled:active,.btn:disabled:focus,.btn:disabled:hover{box-shadow:0 2px 5px #00000029,0 2px 10px #0000001f}.btn-primary{background-color:#79499c!important;color:#fff!important}.btn-primary:hover{background-color:#8651ad}.btn-primary:focus{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026}.btn-primary:focus,.btn-primary:active{background-color:#432857}.btn-primary:not([disabled]):not(.disabled):active{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026;background-color:#432857!important}.btn-primary:not([disabled]):not(.disabled):active:focus{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026}.blog__author{display:block;padding-top:1em;font-weight:500;margin-left:-2px;margin-right:-2px}@media screen and (max-width:768px){.blog__author{padding-bottom:1em}}.blog__date{font-size:13px;color:#383838;padding-left:2em;margin-bottom:2em}.blog__date:after{content:"";display:block;height:3px;width:1.5em;margin-top:-1em;margin-left:-2em;border-bottom:3px solid rgb(72.2549019608%,72.2549019608%,72.2549019608%)}.blog__headline{overflow-wrap:break-word;hyphens:auto}.blog__portrait{border:7px solid rgb(87.2549019608%,87.2549019608%,87.2549019608%);max-width:min(30vw,100%)}.blog__keywords{margin-top:1em;font-weight:700}.blog__keywords span:not(.badge){font-size:.9em}.blog__keywords span{margin-right:.5em}main:focus{outline:none}a:active,a:link,a:visited{color:#1e1e1e;text-decoration:none}a:hover{color:#79499c}strong{font-weight:700}.headline__page{color:#fff;margin:3em 0 .8em;font-size:36px;line-height:1.2em;font-weight:500;padding-right:1em}@media screen and (max-width:768px){.headline__page{font-size:32px;line-height:42px;margin:2em 0 .8em}}.headline__page:after{content:"";display:block;height:3px;width:.6em;margin-top:.5em;border-bottom:3px solid #FFF}.headline__page--blank:after{display:none}.headline__page--space-bottom{margin-top:1em}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#f8f8f8}header{padding:20px 0}a.content{text-decoration:underline}a.content:hover{text-decoration:none}html{overflow-y:scroll}.btn:focus-visible{outline:solid 2px rgb(0,95,204);outline-offset:1px}footer{padding:2em 0 5em;color:#9e9e9e;font-size:13px;font-weight:500;background:url("data:image/svg+xml,%3Csvg width='1248' height='327' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%237F7F7F' fill='none' fill-rule='evenodd' opacity='.15'%3E%3Cpath d='M470-24l185 693M220-24l185 693M-30-24l185 693M721-24l185 693M971-24l185 693M1221-24l185 693M540-24l685 689M882-24l685 689M199-24l685 689M-143-24l685 689M-484-24l685 689M1310.447 117L-141.131 506.13M1310.447-135L-141.131 254.13M387-25L199 673M135-25L-53 673M637-25L449 673M888-25L700 673M1138-25L950 673M650-25L-62 686M304-25l-712 711M991-25L279 686M1335-25L623 686M1303 330L-56-36M1303 581L-56 215'/%3E%3C/g%3E%3C/svg%3E")}@media screen and (max-width:576px){footer{text-align:center!important}}footer .links__item{color:#9e9e9e}footer .links__item:hover{color:#79499c}footer .links__bluesky,footer .links__linkedin{white-space:nowrap}footer .links__bluesky:before{font-family:"Font Awesome 7 Brands";content:"\e671"}footer .links__linkedin:before{font-family:"Font Awesome 7 Brands";content:"\f0e1"}.hero{background:linear-gradient(-2deg,#fff 250px,#c30023 251px,#535ea7);background-position:bottom}@media screen and (max-width:768px){.hero{background:linear-gradient(178deg,#535ea7,#c30023 90%,#fff 90.1%)}}.hero--smaller{background:linear-gradient(358deg,#f8f8f8 45.9%,#c30023 46%,#535ea7);padding-bottom:3em;min-height:12em}.hero__lines{background:url("data:image/svg+xml,%3Csvg width='1267' height='628' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23FFF' fill='none' fill-rule='evenodd' stroke-opacity='.1'%3E%3Cpath d='M461-51l185 693M211-51l185 693M-39-51l185 693M712-51l185 693M962-51l185 693M1212-51l185 693M531-51l685 689M873-51l685 689M190-51l685 689M-152-51l685 689M-493-51l685 689M1302 593l-178 47M1301.447 342L-150.131 731.13M1301.447 90L-150.131 479.13M1301.447-162L-150.131 227.13M378-52L190 646M126-52L-62 646M628-52L440 646M879-52L691 646M1129-52L941 646M641-52L-71 659M295-52l-712 711M982-52L270 659M1326-52L614 659M1294 303L-65-63M1294 554L-65 188M1294 804L-65 438'/%3E%3C/g%3E%3C/svg%3E") center;background-size:cover}main{overflow:hidden}.index{background:url("/media/symbol-index-4GN5EYIA.svg") 10% 5% no-repeat}.index .container{padding-right:0;padding-left:0}.index--list{background:url("data:image/svg+xml,%3Csvg width='310' height='244' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M66.429 182.679v11.071c0 1.5-.548 2.797-1.644 3.892-1.095 1.096-2.393 1.644-3.892 1.644H49.82c-1.499 0-2.796-.548-3.892-1.644-1.095-1.095-1.643-2.393-1.643-3.892v-11.071c0-1.5.548-2.797 1.643-3.893 1.096-1.095 2.393-1.643 3.892-1.643h11.072c1.5 0 2.797.548 3.892 1.643 1.096 1.096 1.644 2.393 1.644 3.893zm0-44.286v11.071c0 1.5-.548 2.797-1.644 3.893-1.095 1.095-2.393 1.643-3.892 1.643H49.82c-1.499 0-2.796-.548-3.892-1.643-1.095-1.096-1.643-2.393-1.643-3.893v-11.071c0-1.5.548-2.797 1.643-3.892 1.096-1.096 2.393-1.644 3.892-1.644h11.072c1.5 0 2.797.548 3.892 1.644 1.096 1.095 1.644 2.393 1.644 3.892zm0-44.286v11.072c0 1.499-.548 2.796-1.644 3.892-1.095 1.095-2.393 1.643-3.892 1.643H49.82c-1.499 0-2.796-.548-3.892-1.643-1.095-1.096-1.643-2.393-1.643-3.892V94.107c0-1.5.548-2.797 1.643-3.892 1.096-1.096 2.393-1.644 3.892-1.644h11.072c1.5 0 2.797.548 3.892 1.644 1.096 1.095 1.644 2.393 1.644 3.892zm199.285 88.572v11.071c0 1.5-.548 2.797-1.643 3.892-1.096 1.096-2.393 1.644-3.892 1.644H94.107c-1.5 0-2.797-.548-3.892-1.644-1.096-1.095-1.644-2.393-1.644-3.892v-11.071c0-1.5.548-2.797 1.644-3.893 1.095-1.095 2.393-1.643 3.892-1.643H260.18c1.499 0 2.796.548 3.892 1.643 1.095 1.096 1.643 2.393 1.643 3.893zm0-44.286v11.071c0 1.5-.548 2.797-1.643 3.893-1.096 1.095-2.393 1.643-3.892 1.643H94.107c-1.5 0-2.797-.548-3.892-1.643-1.096-1.096-1.644-2.393-1.644-3.893v-11.071c0-1.5.548-2.797 1.644-3.892 1.095-1.096 2.393-1.644 3.892-1.644H260.18c1.499 0 2.796.548 3.892 1.644 1.095 1.095 1.643 2.393 1.643 3.892zm0-44.286v11.072c0 1.499-.548 2.796-1.643 3.892-1.096 1.095-2.393 1.643-3.892 1.643H94.107c-1.5 0-2.797-.548-3.892-1.643-1.096-1.096-1.644-2.393-1.644-3.892V94.107c0-1.5.548-2.797 1.644-3.892 1.095-1.096 2.393-1.644 3.892-1.644H260.18c1.499 0 2.796.548 3.892 1.644 1.095 1.095 1.643 2.393 1.643 3.892zm22.143 121.786V71.964c0-1.499-.548-2.796-1.643-3.892-1.096-1.096-2.393-1.643-3.893-1.643H27.68c-1.5 0-2.797.547-3.893 1.643-1.095 1.096-1.643 2.393-1.643 3.892v143.929c0 1.5.548 2.797 1.643 3.892 1.096 1.096 2.393 1.644 3.893 1.644H282.32c1.5 0 2.797-.548 3.893-1.644 1.095-1.095 1.643-2.393 1.643-3.892zM310 27.679v188.214c0 7.611-2.71 14.127-8.13 19.548-5.421 5.42-11.937 8.13-19.549 8.13H27.68c-7.612 0-14.128-2.71-19.548-8.13C2.71 230.02 0 223.504 0 215.893V27.679C0 20.067 2.71 13.55 8.13 8.13 13.552 2.71 20.068 0 27.68 0H282.32c7.612 0 14.128 2.71 19.548 8.13C307.29 13.552 310 20.068 310 27.68z' fill='%23EFEFEF' fill-rule='evenodd'/%3E%3C/svg%3E") 10% 5% no-repeat}.index__stripe{background:linear-gradient(-2deg,rgb(92.2549019608%,92.2549019608%,92.2549019608%) 0%,rgb(92.2549019608%,92.2549019608%,92.2549019608%) 69.9%,#F8F8F8 70%,transparent 70.1%,transparent 100%);padding-bottom:3em}.index__stripe--list{background:linear-gradient(178deg,transparent 0px,transparent 199px,#F8F8F8 200px,rgb(92.2549019608%,92.2549019608%,92.2549019608%) 201px,rgb(92.2549019608%,92.2549019608%,92.2549019608%) 100%)}.index__item{background:url("data:image/svg+xml,%3Csvg width='23' height='25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient x1='52.535%25' y1='-39.489%25' x2='52.535%25' y2='92.656%25' id='a'%3E%3Cstop stop-color='%2379499c' offset='0%25'/%3E%3Cstop stop-color='%23C30023' offset='100%25'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M15.941 1.603L11.5 0 0 4.15l1.754 15.388L11.5 25l9.746-5.462L23 4.15l-3.458-1.248L11.185 22 3 6.23h4.405l3.8 7.157L15.94 1.603z' fill-rule='nonzero' fill='url(%23a)'/%3E%3C/svg%3E") no-repeat 1.4em 1.8em #fff;border-radius:4px;padding:2em 2em 2em 4.5em;margin-bottom:2em;position:relative}.index__item--list{background:#fff;padding:2em}@media screen and (max-width:768px){nav{display:flex;position:fixed;z-index:999;width:73vw;height:100%;background:#fff;top:0;left:-100vw;float:none;text-align:left;align-items:center;transition:all .25s ease-in-out}}nav a.nav__current{border-bottom:3px solid #848484}nav ul{margin:0;padding:0;list-style:none;float:right}@media screen and (max-width:768px){nav ul{float:none;width:100%}}nav li{display:inline-block;padding-left:20px;border-bottom:3px solid transparent;hyphens:auto;word-break:break-word}@media screen and (max-width:992px){nav li{padding-left:5px}}@media screen and (max-width:768px){nav li{display:block;text-align:center}}nav a{display:block;padding:10px 5px 2px;font-size:14px;font-weight:400;text-transform:uppercase}@media screen and (max-width:992px){nav a{padding:15px 10px}}@media screen and (max-width:768px){nav a{font-size:18px;border-bottom:1px solid rgb(86.7647058824%,86.7647058824%,86.7647058824%);margin:0 50px}}nav a.order{font-weight:500;color:#6c418b}.nav__toggle{display:none}@media screen and (max-width:768px){.nav__toggle{display:block;float:right}.nav__overlay{visibility:hidden;opacity:0;position:absolute;top:0;left:0;width:100%;height:100%;z-index:998;background:#0006;transition:all .25s ease-in-out}}.markdown-body{color-scheme:light;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;margin:0;line-height:1.6;word-wrap:break-word;scroll-behavior:auto!important}.markdown-body figcaption,.markdown-body figure{display:block}.markdown-body a{background-color:transparent;color:#79499c;text-decoration:none}.markdown-body strong{font-weight:600}.markdown-body img{border-style:none;max-width:100%;box-sizing:content-box}.markdown-body code,.markdown-body pre{font-family:monospace;font-size:1em}.markdown-body figure{margin:1.5em 0}.markdown-body figcaption{font-size:.875em;color:#656d76;font-style:italic;text-align:center;margin-top:.5em}.markdown-body ::-webkit-input-placeholder{color:inherit;opacity:.54}.markdown-body ::-webkit-file-upload-button{-webkit-appearance:button;appearance:button;font:inherit}.markdown-body a:hover{text-decoration:underline}.markdown-body ::placeholder{color:#59636e;opacity:1}.markdown-body a:focus{outline:2px solid #0969da;outline-offset:-2px;box-shadow:none}.markdown-body a:focus:not(:focus-visible){outline:solid 1px transparent}.markdown-body a:focus-visible{outline:2px solid #0969da;outline-offset:-2px;box-shadow:none}.markdown-body a:not([class]):focus,.markdown-body a:not([class]):focus-visible{outline-offset:0}.markdown-body h2,.markdown-body h3{margin-top:1.5rem;margin-bottom:1rem;font-weight:600;line-height:1.25}.markdown-body h2{font-weight:600;padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid rgba(209,217,224,.7019607843)}.markdown-body h3{font-weight:600;font-size:1.25em}.markdown-body p{margin-top:0;margin-bottom:10px}.markdown-body p a,.markdown-body li a{text-decoration:underline}.markdown-body li>a:only-child:not(:hover),.markdown-body li>a:first-child:nth-last-child(2):has(+ul,+ol):not(:hover){text-decoration:none}.markdown-body blockquote{margin:0;padding:0 1em;color:#59636e;border-left:.25em solid #d1d9e0}.markdown-body ul{margin-top:0;margin-bottom:0;padding-left:2em}.markdown-body code{font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px}.markdown-body pre{margin-top:0;margin-bottom:0;font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px;word-wrap:normal}.markdown-body:before{display:table;content:""}.markdown-body:after{display:table;clear:both;content:""}.markdown-body>*:first-child{margin-top:0!important}.markdown-body>*:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body pre{margin-top:0;margin-bottom:1rem}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body h2 code{padding:0 .2em;font-size:inherit}.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li+li{margin-top:.25em}.markdown-body code{padding:.2em .4em;margin:0;font-size:85%;white-space:break-spaces;background-color:#818b9808;border-radius:6px}.markdown-body a code{background:none}.markdown-body pre code{font-size:100%}.markdown-body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body pre{padding:1rem;overflow:auto;font-size:85%;line-height:1.45;color:#1f2328;background-color:#f6f8fa;border-radius:6px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body a:focus:not(:focus-visible){outline:none;box-shadow:none}.hljs-comment{color:#696969}.hljs-template-variable,.hljs-tag,.hljs-name,.hljs-selector-class,.hljs-regexp{color:#d91e18}.hljs-number,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-attribute{color:#aa5d00}.hljs-string{color:green}.hljs-title{color:#007aa3}.hljs-keyword,.hljs-selector-tag{color:#7928a1}@media screen and (-ms-high-contrast:active){.hljs-attribute,.hljs-built_in,.hljs-comment,.hljs-literal,.hljs-number,.hljs-params,.hljs-string{color:highlight}.hljs-keyword,.hljs-selector-tag{font-weight:700}}</style><link rel="stylesheet" href="styles-N4QSOUV5.css" media="print" data-beasties-media="all"><noscript><link rel="stylesheet" href="styles-N4QSOUV5.css"></noscript><style ng-app-id="ng">.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
+</style><meta property="og:title" content="Angular-Buch → View Transitions in Angular: Shared-Element-Animationen zwischen Routen"><meta name="twitter:title" content="Angular-Buch → View Transitions in Angular: Shared-Element-Animationen zwischen Routen"><meta name="description" content="📙 Ein Routenwechsel in einer Single-Page-Anwendung ist meist ein harter Schnitt: Die eine Ansicht verschwindet, die nächste erscheint. Mit der View Transitions API des Browsers lässt sich dieser Wechsel in eine flüssige Animation verwandeln.
+Das Beste dabei: Angular bringt die passende Integration gleich mit."><meta property="og:description" content="📙 Ein Routenwechsel in einer Single-Page-Anwendung ist meist ein harter Schnitt: Die eine Ansicht verschwindet, die nächste erscheint. Mit der View Transitions API des Browsers lässt sich dieser Wechsel in eine flüssige Animation verwandeln.
+Das Beste dabei: Angular bringt die passende Integration gleich mit."><meta name="twitter:description" content="📙 Ein Routenwechsel in einer Single-Page-Anwendung ist meist ein harter Schnitt: Die eine Ansicht verschwindet, die nächste erscheint. Mit der View Transitions API des Browsers lässt sich dieser Wechsel in eine flüssige Animation verwandeln.
+Das Beste dabei: Angular bringt die passende Integration gleich mit."><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/blog/2026-10-view-transitions"><style ng-app-id="ng">.details-page-autor{margin-top:-110px}.details-thumbnail{margin-bottom:-18px}.details-thumbnail-inner{border-bottom:23px solid #dfdede;max-height:300px;overflow:hidden;background-color:#fff;border-radius:4px;display:flex;justify-content:center}.details-thumbnail-inner .darken-overlay{display:block;position:absolute;height:300px;width:100%;padding-left:15px;padding-right:15px;padding-bottom:23px}.details-thumbnail-inner .darken-overlay div{display:block;position:relative;width:100%;height:100%;background-color:#0003;border-radius:4px 4px 0 0/4px 4px 0px 0px}.details-thumbnail img{width:100%;align-self:center}.video-container{position:relative;padding-bottom:56.25%;padding-top:0;height:0;overflow:hidden;margin-top:2rem;margin-bottom:2rem}.video-container iframe,.video-container object,.video-container embed{position:absolute;top:0;left:0;width:100%;height:100%}
+</style><meta property="og:image" content="https://website-articles.angular-buch.com/blog/2026-10-view-transitions/view-transitions-header.webp"><meta name="twitter:image" content="https://website-articles.angular-buch.com/blog/2026-10-view-transitions/view-transitions-header.webp"><meta name="twitter:card" content="summary_large_image"><link rel="site.standard.document" href="at://did:plc:emeppmrqgb5rixbjcjihzd35/site.standard.document/2026-10-view-transitions"><style ng-app-id="ng">img[_ngcontent-ng-c1420206749]{max-width:100%}</style><link as="image" href="https://website-articles.angular-buch.com/blog/2026-10-view-transitions/view-transitions-header.webp" rel="preload" fetchpriority="high"></head>
+<body><!--nghm--><script type="text/javascript" id="ng-event-dispatch-contract">(()=>{function p(t,n,r,o,e,i,f,m){return{eventType:t,event:n,targetElement:r,eic:o,timeStamp:e,eia:i,eirp:f,eiack:m}}function u(t){let n=[],r=e=>{n.push(e)};return{c:t,q:n,et:[],etc:[],d:r,h:e=>{r(p(e.type,e,e.target,t,Date.now()))}}}function s(t,n,r){for(let o=0;o<n.length;o++){let e=n[o];(r?t.etc:t.et).push(e),t.c.addEventListener(e,t.h,r)}}function c(t,n,r,o,e=window){let i=u(t);e._ejsas||(e._ejsas={}),e._ejsas[n]=i,s(i,r),s(i,o,!0)}window.__jsaction_bootstrap=c;})();
+</script><script>window.__jsaction_bootstrap(document.body,"ng",["click"],[]);</script>
+  <app-root ng-version="22.2.3" ngh="11" ng-server-context="ssg"><header ngh="4"><div class="nav__overlay" jsaction="click:;"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/" aria-label="Startseite" href="/" jsaction="click:;"><img src="assets/img/brand-400.png" alt="Angular-Buch.com" height="40" width="126" class="img-fluid"></a></div><div class="col-6 col-md-10"><nav class=""><ul><li><app-link ngh="0"><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/" class="" jsaction="click:;"><!----> Buch </a><!----><!----></app-link></li><li><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/blog" class="nav__current" aria-current="page" jsaction="click:;"><!----> Blog </a><!----><!----><!----></app-link></li><li><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/material" class="" jsaction="click:;"><!----> Begleitmaterial </a><!----><!----><!----></app-link></li><li><app-link ngh="2"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/kaufen" class="" jsaction="click:;"><img alt="" class="linkImage" src="assets/img/symbol-basket.svg"><!----> Jetzt kaufen </a><!----><!----><!----></app-link></li><li><app-link ngh="3"><!----><a class="order" href="//angular.schule/"><img alt="" class="linkImage" src="assets/img/symbol-group.svg"><!----> Schulungen </a><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" aria-label="Navigation" class="nav__toggle" jsaction="click:;"><img src="assets/img/symbol-menu.svg" alt=""></a></div></div></div></header><main><router-outlet></router-outlet><app-blog-details-page ngh="8"><app-hero-header headline="Blog" headlinelink="/blog" ngh="5"><section class="hero hero--smaller"><div class="hero__lines"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;" href="/blog" jsaction="click:;">Blog</a><!----><!----></h1></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list blog mt-n5"><div class="index__stripe index__stripe--list"><div class="container" lang="de"><a name="post" id="post"></a><div class="row details-thumbnail"><div class="col-12"><div class="details-thumbnail-inner"><img alt="Blog-Headerbild" priority="" class="img-fluid rounded" width="1536" height="583" loading="eager" fetchpriority="high" decoding="sync" ng-img="true" src="https://website-articles.angular-buch.com/blog/2026-10-view-transitions/view-transitions-header.webp"><!----></div></div><!----></div><div class="row"><div class="col-12"><article class="index__item index__item--list"><div class="row align-items-top"><div class="col-12 col-sm-3 col-md-2 text-center details-page-autor"><app-blog-avatar ngh="6"><!----><img alt="" width="200" height="200" class="blog__portrait img-fluid rounded-circle" loading="lazy" fetchpriority="auto" decoding="auto" ng-img="true" src="/img/blog/authors/danny-koppenhagen.jpg"><span class="blog__author">Danny Koppenhagen </span><!----><!----><!----></app-blog-avatar></div><div class="col-12 col-sm-9 col-md-10 col-lg-10"><h1 class="blog__headline">View Transitions in Angular: Shared-Element-Animationen zwischen Routen</h1><p class="blog__date"><time datetime="2026-10-19T00:00:00.000Z">19.10.2026</time><!----></p><app-markdown-content class="content markdown-body" _nghost-ng-c1420206749="" ngh="7"><p>Ein Routenwechsel in einer Single-Page-Anwendung ist meist ein harter Schnitt: Die eine Ansicht verschwindet, die nächste erscheint. Mit der View Transitions API des Browsers lässt sich dieser Wechsel in eine flüssige Animation verwandeln.
+Das Beste dabei: Angular bringt die passende Integration gleich mit.</p>
+<p>In diesem Artikel bauen wir eine Übergangsanimation zwischen einer Buchliste und einer Detailseite zu einem Buch.
+Das Ziel: Die Listen-Card „zoomt“ zur Detailseite, während Cover, Titel, Untertitel und ISBN von ihrer Position in der Liste an ihre neue Position auf der Detailseite wandern.
+Neu hinzukommende Inhalte wie Autoren und Beschreibung blenden sanft ein.
+Das Ganze funktioniert ohne zusätzliche Abhängigkeit, allein mit der Browser-API und ein wenig CSS.
+In Browsern ohne Unterstützung der View Transitions API findet der Routenwechsel wie gewohnt ohne Animation statt.</p>
+<blockquote>
+<p>⚠️ <strong>Developer Preview:</strong> Die hier vorgestellten Funktionen <code>withViewTransitions()</code> und <code>withRouterResources()</code> sind (Stand Angular 22.2) als Developer Preview markiert.
+Die APIs können sich in zukünftigen Versionen noch ändern.</p>
+</blockquote>
+<h2 id="inhalt">Inhalt</h2>
+<ul>
+<li><a href="/blog/2026-10-view-transitions#was-sind-view-transitions">Was sind View Transitions?</a><ul>
+<li><a href="/blog/2026-10-view-transitions#zwei-varianten-spa-same-document-vs-mpa-cross-document">Zwei Varianten: SPA (same-document) vs. MPA (cross-document)</a></li>
+<li><a href="/blog/2026-10-view-transitions#browsersupport-und-stand">Browsersupport und Stand</a></li>
+</ul>
+</li>
+<li><a href="/blog/2026-10-view-transitions#das-beispielprojekt">Das Beispielprojekt</a><ul>
+<li><a href="/blog/2026-10-view-transitions#view-transitions-im-router-aktivieren">View Transitions im Router aktivieren</a></li>
+<li><a href="/blog/2026-10-view-transitions#ein-grundlegender-seiten%C3%BCbergang-per-css">Ein grundlegender Seitenübergang per CSS</a></li>
+<li><a href="/blog/2026-10-view-transitions#shared-element-transitions-f%C3%BCr-cover-und-titel">Shared-Element-Transitions für Cover und Titel</a></li>
+<li><a href="/blog/2026-10-view-transitions#daten-synchron-bereitstellen-mit-router-resources">Daten synchron bereitstellen mit Router Resources</a></li>
+<li><a href="/blog/2026-10-view-transitions#weitere-zuordenbare-elemente-und-das-ein--und-ausblenden">Weitere zuordenbare Elemente und das Ein- und Ausblenden</a></li>
+<li><a href="/blog/2026-10-view-transitions#bereiche-gezielt-sofort-ausblenden-statt-faden">Bereiche gezielt sofort ausblenden statt faden</a></li>
+<li><a href="/blog/2026-10-view-transitions#feinschliff-zeitlicher-versatz">Feinschliff: zeitlicher Versatz</a></li>
+</ul>
+</li>
+<li><a href="/blog/2026-10-view-transitions#untersuchung-und-nachvollziehbarkeit-mit-den-chrome-devtools">Untersuchung und Nachvollziehbarkeit mit den Chrome DevTools</a><ul>
+<li><a href="/blog/2026-10-view-transitions#das-animations-panel-%C3%B6ffnen">Das Animations-Panel öffnen</a></li>
+<li><a href="/blog/2026-10-view-transitions#aufzeichnen-und-wiederholen">Aufzeichnen und wiederholen</a></li>
+<li><a href="/blog/2026-10-view-transitions#verlangsamen-f%C3%BCr-die-analyse">Verlangsamen für die Analyse</a></li>
+<li><a href="/blog/2026-10-view-transitions#nachweis-morph-oder-fade">Nachweis: Morph oder Fade?</a></li>
+</ul>
+</li>
+<li><a href="/blog/2026-10-view-transitions#barrierefreiheit-prefers-reduced-motion">Barrierefreiheit: <code>prefers-reduced-motion</code></a><ul>
+<li><a href="/blog/2026-10-view-transitions#%C3%BCberg%C3%A4nge-bei-reinen-query-parameter-wechseln-%C3%BCberspringen">Übergänge bei reinen Query-Parameter-Wechseln überspringen</a></li>
+</ul>
+</li>
+<li><a href="/blog/2026-10-view-transitions#fazit">Fazit</a></li>
+<li><a href="/blog/2026-10-view-transitions#weiterf%C3%BChrende-links">Weiterführende Links</a></li>
+</ul>
+<h2 id="was-sind-view-transitions">Was sind View Transitions?</h2>
+<p>Die <a href="https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API">View Transitions API</a> ist eine native Browserschnittstelle, die Übergänge zwischen zwei Zuständen einer Oberfläche animiert.
+Der Kern ist die Methode <code>document.startViewTransition()</code>: Sie bekommt ein Callback, das die eigentliche DOM-Änderung vornimmt.</p>
+<p>Der Browser arbeitet dabei in vier Phasen:
+Zuerst erfasst er den aktuellen Zustand der Seite als Momentaufnahme.
+Dann führt er das DOM-Update aus unserem Callback aus.
+Anschließend erfasst er den neuen Zustand.
+Zum Schluss animiert er den Übergang zwischen beiden Momentaufnahmen.</p>
+<p></p><figure><img src="https://website-articles.angular-buch.com/blog/2026-10-view-transitions/view-transitions-flow.svg" alt="Ablaufdiagramm der View Transitions API: alten Zustand als Snapshot erfassen, DOM aktualisieren, neuen Zustand erfassen, zwischen beiden Snapshots animieren." title="Die vier Phasen einer View Transition."><figcaption>Die vier Phasen einer View Transition.</figcaption></figure><p></p>
+<p>Für die Animation legt der Browser im Hintergrund einen Baum aus Pseudo-Elementen an:
+Pro benanntem Bereich entsteht eine <code>::view-transition-group()</code>, die Position und Größe interpoliert. Darin liegt ein <code>::view-transition-image-pair()</code> mit <code>::view-transition-old()</code> und <code>::view-transition-new()</code>, die vom alten zum neuen Zustand überblenden.
+Diese Pseudo-Elemente lassen sich mit CSS gezielt ansprechen.
+Darüber steuern wir später die Animation.</p>
+<p>Wichtig zur Einordnung: Hier ist keine Animations-Engine von Angular im Spiel. Es handelt sich um eine reine Browser-API. Angular klinkt sich lediglich in den Navigationszyklus des Routers ein.</p>
+<p>Noch ein Detail, das man kennen sollte: Während der Übergang läuft, legt der Browser die Pseudo-Element-Schicht als Überlagerung über die eigentliche Seite. Der alte Zustand wird dabei als statisches Bild festgehalten, der neue Zustand als Live-Abbild des neuen DOM.
+Diese Überlagerung fängt standardmäßig Zeiger-Interaktionen ab, sodass die Seite für die Dauer der Animation praktisch nicht bedienbar ist.
+Das ist ein guter Grund, Übergänge kurz zu halten (in unserem Beispiel eine halbe Sekunde): Je länger die Animation ist, desto länger kann die nutzende Person nicht klicken oder scrollen.</p>
+<h3 id="zwei-varianten-spa-same-document-vs-mpa-cross-document">Zwei Varianten: SPA (same-document) vs. MPA (cross-document)</h3>
+<p>Die View Transitions API deckt zwei unterschiedliche Szenarien ab, jedes mit einem eigenen Einstiegspunkt:</p>
+<ul>
+<li><strong>Same-document (SPA):</strong> Der Übergang findet zwischen zwei DOM-Zuständen <em>innerhalb</em> derselben Seite statt. Er wird imperativ über <code>document.startViewTransition(callback)</code> ausgelöst. Diesen Weg nutzt der Angular-Router intern.</li>
+<li><strong>Cross-document (MPA, Multi-Page Application):</strong> Der Übergang findet bei der Navigation <em>zwischen</em> zwei Dokumenten statt. Er wird deklarativ über die CSS-At-Rule <code>@view-transition { navigation: auto; }</code> aktiviert, und beide Seiten müssen von derselben Origin stammen. Das ist der Weg für klassische, serverseitig gerenderte Seiten ohne Framework.</li>
+</ul>
+<p>Da eine Angular-Anwendung eine Single-Page-Anwendung (SPA) ist, geht es im weiteren Verlauf ausschließlich um den same-document-Weg.
+Die MPA-Variante kommt ganz ohne JavaScript aus. Sie ist ein eigenes Thema und hier nur zur Einordnung erwähnt.</p>
+<h3 id="browsersupport-und-stand">Browsersupport und Stand</h3>
+<p><em>Same-document View Transitions</em> sind seit Oktober 2025 in allen großen Browsern verfügbar („Baseline Newly available“): Chrome und Edge ab 111, Safari ab 18, Firefox ab 144.
+Die in diesem Artikel verwendeten View-Transition-Klassen (<code>view-transition-class</code>) benötigen allerdings Chrome und Edge ab 125 bzw. Safari ab 18.2.</p>
+<p>Der Charakter als <em>Progressive Enhancement</em> bleibt trotzdem wichtig: In Browsern ohne Unterstützung führt Angular den Routenwechsel einfach ohne Animation aus.
+Somit bleibt die Anwendung voll funktionsfähig.
+Da sich der Support laufend ändert, lohnt sich ein Blick auf die aktuelle <a href="https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API#browser_compatibility">Browserkompatibilitätstabelle bei MDN</a>.</p>
+<h2 id="das-beispielprojekt">Das Beispielprojekt</h2>
+<p>Als Grundlage dient der <a href="https://bm1.angular-buch.com/#bm15">BookManager aus dem Angular-Buch in der Variante <code>15-rxjs</code></a>. Die Anwendung hat zwei relevante Routen: eine Buchliste (<code>BooksOverviewPage</code>, die pro Buch eine <code>BookCard</code> rendert) und eine Detailseite (<code>BookDetailsPage</code>). Beide arbeiten mit demselben Datenmodell <code>Book</code>, das unter anderem ISBN, Titel, Autoren, die Cover-URL und weitere Metadaten enthält.</p>
+<p>Ohne weitere Konfiguration ist der Wechsel von der Liste zur Detailansicht ein harter Schnitt. Diesen Übergang bauen wir Schritt für Schritt zu einer zusammenhängenden Animation aus.
+Der Artikel zeigt dabei nur die relevanten Ausschnitte. Den vollständigen, lauffähigen Stand mit allen Namen und Styles gibt es als <a href="https://stackblitz.com/edit/angular-buch-book-manager1-view-transition-api">StackBlitz-Projekt zum Nachbauen und Ausprobieren</a>.</p>
+<p></p><figure><img src="https://website-articles.angular-buch.com/blog/2026-10-view-transitions/view-transition-book-manager-demo.webp" alt="Animierte Demo im Book Manager: Beim Klick auf ein Buch in der Liste morpht das Cover zusammen mit Titel, Untertitel und ISBN flüssig in die Detailansicht." title="Das Ziel: ein zusammenhängender Übergang von der Buchliste zur Detailseite."><figcaption>Das Ziel: ein zusammenhängender Übergang von der Buchliste zur Detailseite.</figcaption></figure><p></p>
+<h3 id="view-transitions-im-router-aktivieren">View Transitions im Router aktivieren</h3>
+<p>Damit der Router die View Transitions unterstützt, müssen wir das Feature zunächst aktivieren.
+Wir ergänzen die Router-Konfiguration um das Feature <code>withViewTransitions()</code>.
+Von da an ruft der Router bei jeder Navigation automatisch <code>document.startViewTransition()</code> auf und wickelt den Routenwechsel darin ab.</p>
+<pre><code class="language-typescript">// app<span class="hljs-selector-class">.config</span><span class="hljs-selector-class">.ts</span>
+export const appConfig: ApplicationConfig = {
+  providers: [
+    <span class="hljs-built_in">provideBrowserGlobalErrorListeners</span>(),
+    <span class="hljs-built_in">provideRouter</span>(
+      routes,
+      <span class="hljs-built_in">withComponentInputBinding</span>(),
+      <span class="hljs-built_in">withViewTransitions</span>()       // aktiviert View Transitions
+    )
+  ]
+};
+</code></pre><p>Unterstützt der Browser die API nicht, bleibt alles beim normalen DOM-Wechsel und es treten keine Fehler auf.</p>
+<p>Schon jetzt gibt es einen sichtbaren Effekt: Der gesamte Seiteninhalt wird beim Routenwechsel sanft übergeblendet.
+Das ist das Standardverhalten des Browsers: Er gibt dem <code>&lt;html&gt;</code>-Element automatisch den <code>view-transition-name</code> <code>root</code> und blendet es als Ganzes über.</p>
+<h3 id="ein-grundlegender-seitenübergang-per-css">Ein grundlegender Seitenübergang per CSS</h3>
+<p>Bevor wir zu den geteilten Elementen kommen, lohnt ein Blick auf den einfachsten Fall: ein gleichmäßiger Übergang des gerouteten Inhalts.
+Dazu geben wir dem Element direkt hinter dem <code>router-outlet</code> einen <code>view-transition-name</code> und definieren zwei Keyframe-Animationen für das Ein- und Ausblenden.</p>
+<pre><code class="language-css"><span class="hljs-comment">/* styles.css */</span>
+router-outlet + * {
+  <span class="hljs-attribute">view-transition-name</span>: route-content;
+}
+
+<span class="hljs-keyword">@keyframes</span> route-fade-out {
+  <span class="hljs-selector-tag">from</span> { <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>; <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">0</span>); }
+  <span class="hljs-selector-tag">to</span>   { <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>; <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(-<span class="hljs-number">10px</span>); }
+}
+
+<span class="hljs-keyword">@keyframes</span> route-fade-in {
+  <span class="hljs-selector-tag">from</span> { <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>; <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">10px</span>); }
+  <span class="hljs-selector-tag">to</span>   { <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>; <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">0</span>); }
+}
+
+::<span class="hljs-built_in">view-transition-old</span>(route-content) {
+  <span class="hljs-attribute">animation</span>: <span class="hljs-number">200ms</span> ease-out both route-fade-out;
+}
+
+::<span class="hljs-built_in">view-transition-new</span>(route-content) {
+  <span class="hljs-attribute">animation</span>: <span class="hljs-number">300ms</span> ease-in both route-fade-in;
+}
+</code></pre><p>Diese Regeln gehören in die <strong>globalen</strong> Styles, nicht in die gekapselten Styles einer Komponente.
+Angulars View Encapsulation versieht komponentenlokale Stile mit Attributselektoren.
+Die vom Browser erzeugten <code>::view-transition-*</code>-Pseudo-Elemente liegen aber außerhalb jeder Komponente und werden von solchen Selektoren nicht erreicht.</p>
+<h3 id="shared-element-transitions-für-cover-und-titel">Shared-Element-Transitions für Cover und Titel</h3>
+<p>Spannender werden View Transitions mit sogenannten <em>Shared Elements</em>:
+Trägt ein Element in <em>beiden</em> Ansichten den gleichen <code>view-transition-name</code>, erkennt der Browser es als dasselbe Element wieder und interpoliert Position und Größe von der alten zur neuen Lage.
+Der Effekt: Das Element <em>wandert</em> sichtbar, statt zu verschwinden und neu zu erscheinen.</p>
+<p></p><figure><img src="https://website-articles.angular-buch.com/blog/2026-10-view-transitions/shared-element-morph.svg" alt="Shared-Element-Morph: Das Cover sitzt in der Listen-Card rechts und klein, auf der Detailseite groß und unten links. Ein Pfeil verdeutlicht, dass derselbe view-transition-name den Browser Position und Größe interpolieren lässt." title="Dasselbe Cover in beiden Ansichten: der Browser interpoliert Position und Größe."><figcaption>Dasselbe Cover in beiden Ansichten: der Browser interpoliert Position und Größe.</figcaption></figure><p></p>
+<p>Die Namen müssen dabei pro Übergang eindeutig sein.
+In der Liste gibt es aber viele <code>BookCard</code>-Instanzen gleichzeitig, die über <code>@for</code> iteriert werden.
+Würden alle Cover denselben Namen tragen, käme es zum Konflikt.
+Deshalb leiten wir den Namen aus der ISBN des jeweiligen Buchs ab, etwa <code>book-cover-&lt;isbn&gt;</code> und <code>book-title-&lt;isbn&gt;</code>.
+Zusätzlich vergeben wir eine <code>view-transition-class</code>, über die wir später alle gleichartigen Elemente mit einer einzigen CSS-Regel ansprechen können.</p>
+<p>In der <code>BookCard</code> sieht das für Cover und Titel so aus:</p>
+<pre><code class="language-html"><span class="language-xml"><span class="hljs-comment">&lt;!-- book-card.html (Ausschnitt) --&gt;</span>
+@let b = book();
+@let titleId = `title-${b.isbn}`;
+
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Buchcover"</span>
+  [<span class="hljs-attr">src</span>]=<span class="hljs-string">"b.imageUrl"</span>
+  [<span class="hljs-attr">style.view-transition-name</span>]=<span class="hljs-string">"'book-cover-' + b.isbn"</span>
+  [<span class="hljs-attr">style.view-transition-class</span>]=<span class="hljs-string">"'book-cover'"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span> [<span class="hljs-attr">id</span>]=<span class="hljs-string">"titleId"</span>
+  [<span class="hljs-attr">style.view-transition-name</span>]=<span class="hljs-string">"'book-title-' + b.isbn"</span>
+  [<span class="hljs-attr">style.view-transition-class</span>]=<span class="hljs-string">"'book-title'"</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">b.title</span> }}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+</code></pre><p>Auf der Detailseite geben wir im Anschluss dem großen Cover und der Überschrift dieselben Namen.
+Damit kann der Browser nun die entsprechenden Paare finden:</p>
+<pre><code class="language-html"><span class="language-xml"><span class="hljs-comment">&lt;!-- book-details-page.html (Ausschnitt) --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span> [<span class="hljs-attr">id</span>]=<span class="hljs-string">"titleId"</span>
+  [<span class="hljs-attr">style.view-transition-name</span>]=<span class="hljs-string">"'book-title-' + b.isbn"</span>
+  [<span class="hljs-attr">style.view-transition-class</span>]=<span class="hljs-string">"'book-title'"</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">b.title</span> }}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Buchcover"</span>
+  [<span class="hljs-attr">src</span>]=<span class="hljs-string">"b.imageUrl"</span>
+  [<span class="hljs-attr">style.view-transition-name</span>]=<span class="hljs-string">"'book-cover-' + b.isbn"</span>
+  [<span class="hljs-attr">style.view-transition-class</span>]=<span class="hljs-string">"'book-cover'"</span> /&gt;</span></span>
+</code></pre><p>Beim Styling lauert ein verbreiteter Stolperstein.
+Verlockend wäre es, auf <code>::view-transition-old()</code> und <code>::view-transition-new()</code> eigene <code>transform</code>-Keyframes zu legen, um die Bewegung direkt zu steuern.
+Das würde aber den Effekt zerstören: Die automatische Interpolation von Position und Größe steckt bereits in der <code>::view-transition-group()</code>.
+Überschreibt man <code>old</code>/<code>new</code> mit eigenen Transforms, bleibt nur noch ein Überblenden: das Element fadet, statt zu wandern.</p>
+<p>Richtig ist, die Bewegung dem Browser zu überlassen und über die Gruppe nur Dauer und Easing vorzugeben.
+Das <code>old</code>/<code>new</code>-Paar überblenden wir lediglich ineinander:</p>
+<pre><code class="language-css">::<span class="hljs-built_in">view-transition-group</span>(.book-cover) {
+  <span class="hljs-attribute">animation-duration</span>: <span class="hljs-number">500ms</span>;
+  <span class="hljs-attribute">animation-timing-function</span>: <span class="hljs-built_in">cubic-bezier</span>(<span class="hljs-number">0.22</span>, <span class="hljs-number">0.61</span>, <span class="hljs-number">0.36</span>, <span class="hljs-number">1</span>);
+}
+
+::<span class="hljs-built_in">view-transition-old</span>(.book-cover),
+::<span class="hljs-built_in">view-transition-new</span>(.book-cover) {
+  <span class="hljs-attribute">animation-duration</span>: <span class="hljs-number">500ms</span>;
+  <span class="hljs-attribute">animation-timing-function</span>: <span class="hljs-built_in">cubic-bezier</span>(<span class="hljs-number">0.22</span>, <span class="hljs-number">0.61</span>, <span class="hljs-number">0.36</span>, <span class="hljs-number">1</span>);
+  <span class="hljs-comment">/* Momentaufnahme füllt die Gruppe, Seitenverhältnis bleibt erhalten */</span>
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">object-fit</span>: cover;
+}
+</code></pre><h3 id="daten-synchron-bereitstellen-mit-router-resources">Daten synchron bereitstellen mit Router Resources</h3>
+<p>An dieser Stelle stößt man schnell auf ein (vielleicht überraschendes) Problem: Das Cover fadet statt zu wandern, obwohl alles korrekt benannt ist.
+Der Grund liegt im Timing.</p>
+<p>Angular wartet bei View Transitions bewusst <em>nicht</em> auf asynchrone Daten.
+Lädt die Detailseite ihr Buch erst nach der Aktivierung, werden die Daten noch nicht angezeigt, wenn der Browser den neuen Zustand erfasst.
+Es existiert also weder die Überschrift noch das Cover.
+Für die geteilten Elemente existiert dann nur ein <code>::view-transition-old()</code>, aber kein <code>::view-transition-new()</code>.
+Es gibt also kein Gegenstück, zu dem hin interpoliert werden könnte.
+Das Ergebnis ist genau das beobachtete Ausblenden statt eines Morphs.</p>
+<p></p><figure><img src="https://website-articles.angular-buch.com/blog/2026-10-view-transitions/resource-timing.svg" alt="Timeline-Vergleich: Bei async geladenem httpResource läuft der HTTP-Request noch, wenn der Browser den neuen Zustand erfasst. Die Daten kommen zu spät, es bleibt beim Fade. Bei einer blockierenden Router Resource sind die Daten vor dem Capture da und das DOM ist vollständig, der Morph gelingt." title="Warum das Timing entscheidet: Das DOM muss beim Capture vollständig sein."><figcaption>Warum das Timing entscheidet: Das DOM muss beim Capture vollständig sein.</figcaption></figure><p></p>
+<p>Die Lösung: Das Buch muss schon beim Aktivieren der Route synchron vorliegen.
+Ein vorab gefüllter Cache ist dafür ein möglicher Weg: Liegt das Buch bereits im Speicher, steht es ohne Verzögerung bereit.
+Verlässlich erzwingen lässt sich das synchrone Vorliegen aber über eine <em>blockierende</em> Router Resource, die mit Angular 22.2 als Developer Preview eingeführt wurde.
+Dafür aktivieren wir jetzt das Router-Feature <code>withRouterResources()</code>:</p>
+<pre><code class="language-typescript"><span class="hljs-comment">// app.config.ts (Ausschnitt)</span>
+<span class="hljs-built_in">provideRouter</span>(
+  routes,
+  withComponentInputBinding(),
+  <span class="hljs-built_in">withViewTransitions</span>(),
+  <span class="hljs-built_in">withRouterResources</span>()       <span class="hljs-comment">// aktiviert Router Resources</span>
+)
+</code></pre><p>In den Routen können wir nun Resources angeben, die automatisch vom Router aufgelöst werden.
+Bevor die Komponente aktiviert wird, wird blockierend auf den geladenen Wert der Resource gewartet. Erst danach wird die Komponente geladen.
+Unser <code>BookStore</code> stellt bereits eine Methode <code>getSingle()</code> bereit, die auf einem signalbasierten <code>httpResource</code> aufsetzt und auf einen wechselnden ISBN-Parameter reagiert.
+Diese Resource können wir direkt verwenden. Wir übergeben den Routenparameter als Funktion, die die ISBN zurückgibt:</p>
+<pre><code class="language-typescript"><span class="hljs-comment">// book-store.ts (Ausschnitt)</span>
+getSingle(isbn: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> string): HttpResourceRef&lt;Book | <span class="hljs-literal">undefined</span>&gt; {
+  <span class="hljs-keyword">return</span> httpResource&lt;Book&gt;(
+    <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${this.#apiUrl}</span>/books/<span class="hljs-subst">${isbn()}</span>`</span>
+  );
+}
+</code></pre><pre><code class="language-typescript"><span class="hljs-regexp">//</span> books-portal.routes.ts (Ausschnitt)
+{
+  path: <span class="hljs-string">'details/:isbn'</span>,
+  component: BookDetailsPage,
+  resources: <span class="hljs-function"><span class="hljs-params">(ctx)</span> =&gt;</span> {
+    const bookStore = inject(BookStore);
+    <span class="hljs-keyword">return</span> {
+      book: bookStore.getSingle(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ctx.params()[<span class="hljs-string">'isbn'</span>] || <span class="hljs-string">''</span>)
+    };
+  }
+}
+</code></pre><p>Die Komponente schrumpft dadurch auf das Wesentliche.
+Das Ergebnis wird mittels <em>Component Input Binding</em> an ein Input der Komponente gebunden: Der Schlüssel <code>book</code> aus dem <code>resources</code>-Objekt landet im gleichnamigen Input <code>book</code>.
+Statt eine Resource selbst zu verwalten, nimmt die Komponente also das fertige Buch einfach als Input entgegen:</p>
+<pre><code class="language-typescript"><span class="hljs-comment">// book-details-page.ts</span>
+export <span class="hljs-keyword">class</span> <span class="hljs-title class_">BookDetailsPage</span> {
+  <span class="hljs-keyword">readonly</span> book = input.required&lt;Book&gt;();   <span class="hljs-comment">// kommt aus der blockierenden Resource</span>
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre><p>Dass eine <em>Non-Blocking Router Resource</em> hier keine Alternative ist, ergibt sich aus demselben Timing-Argument: Die Komponente bekäme dann die Resource selbst als Input und würde gerendert, bevor die Daten da sind.
+Der Effekt: Wir landen wieder beim Fade.</p>
+<p>Einen Trade-off haben Router Resources allerdings: Die Navigation wartet kurz auf den Request, bevor der Übergang startet.
+Bei einer schnellen Server-API ist das kaum wahrnehmbar.
+Dafür gibt es einen praktischen Zusatznutzen: Im Fall einer unbekannten ISBN, bei dem die blockierende Resource die Navigation abbrechen würde, lässt sich in der ladenden Funktion der Resource ein <code>RedirectCommand</code> werfen und so umleiten.
+Im Minimalbeispiel haben wir an dieser Stelle aber darauf verzichtet.</p>
+<blockquote>
+<p><strong>Router Resources oder klassischer Resolver?</strong> Der Gedanke, Daten „vor der Aktivierung“ blockierend zu laden, ist nicht neu: Klassischerweise haben wir dafür einen <em>Resolver</em> genutzt (<code>ResolveFn&lt;T&gt;</code>, registriert unter <code>resolve</code> in der Route).
+Resolver und Router Resource teilen genau die Eigenschaft, auf die es uns hier ankommt: Beide blockieren die Navigation und stellen das Ergebnis über ein Component Input Binding synchron als Input bereit.
+Für unseren Shared-Element-Morph wäre ein Resolver also grundsätzlich ebenso geeignet.</p>
+<p>Wir setzen hier trotzdem Router Resources ein, weil sie signal-basiert und damit reaktiv sind: ändert sich ein Routenparameter, lädt die Resource neu, und ein <code>reload()</code> ist ohne erneute Navigation möglich.
+Über die Routen-Hierarchie laufen mehrere Resources zudem <em>parallel</em>, während Resolver von der Eltern- zur Kindroute nacheinander abgearbeitet werden.
+Außerdem fügen sie sich konsistent in ein Projekt ein, das ohnehin mit <code>httpResource</code> und Signals arbeitet, und <code>nonBlocking()</code> steht als expliziter Opt-out bereit, wenn man den Ladezustand doch in der Komponente behandeln möchte.
+Die Fehlerbehandlung funktioniert in beiden Welten ähnlich: Resolver fangen Fehler an der Quelle ab (z. B. mit <code>catchError()</code>) oder nutzen <code>withNavigationErrorHandler()</code>. Eine Router Resource wirft in ihrer ladenden Funktion ein <code>RedirectCommand</code>.</p>
+<p>Wer Resolver im Projekt hat und zufrieden damit ist, muss nichts umbauen. Resolver bleiben ein valides Werkzeug. Eine ausführliche Behandlung inklusive Fehlerbehandlung und der UX-Problematik blockierender Navigation findet sich im Buch-Zusatzmaterial <a href="/material/resolvers">Resolvers: Daten beim Routing vorladen</a>.
+Dort argumentieren wir, dass blockierende Resolver aus UX-Sicht meist ungünstig sind.
+Unser Fall ist die begründete Ausnahme: Hier müssen die Daten synchron vorliegen, sonst kann die View Transition nicht morphen.
+Hinzu kommt, dass die View Transition selbst die wahrgenommene Wartezeit überbrückt: Ein harter Schnitt mit kurzer Pause wirkt wie ein Hänger, der animierte Übergang zeigt dagegen, dass etwas passiert.</p>
+</blockquote>
+<h3 id="weitere-zuordenbare-elemente-und-das-ein--und-ausblenden">Weitere zuordenbare Elemente und das Ein- und Ausblenden</h3>
+<p>Nach dem Prinzip, das wir eben kennengelernt haben, lassen sich beliebig viele Elemente paaren.
+Alles, was in beiden Ansichten vorkommt, bekommt einen geteilten Namen.
+Zusätzlich zum Cover und Titel verknüpfen wir also auch Untertitel (<code>book-subtitle-&lt;isbn&gt;</code>) und ISBN (<code>book-isbn-&lt;isbn&gt;</code>).
+Selbst dem umgebenden <code>&lt;article&gt;</code> geben wir einen Namen (<code>book-frame-&lt;isbn&gt;</code>).
+Dadurch morpht der Rahmen als Ganzes, und die kompakte Listen-Card „zoomt“ sichtbar zur ausgedehnten Detailseite.
+Wo genau diese Namen im Markup sitzen, zeigt das vollständige <a href="https://stackblitz.com/edit/angular-buch-book-manager1-view-transition-api"><code>book-card.html</code> im StackBlitz-Projekt</a>.</p>
+<p>Elemente, die nur in einer der beiden Ansichten existieren, behandelt der Browser automatisch sinnvoll: Neue Inhalte wie Autoren, Beschreibung und Datum blenden über den Standard-Überblendeffekt des Frames ein.</p>
+<p>Interessant ist das Zusammenspiel von Rahmen und Inhalt. Ein benanntes Kind-Element wird aus seinem benannten Vorfahren „herausgehoben“ und als eigene Top-Level-Gruppe animiert.
+Der Frame morpht also, ohne Cover, Titel und Co. mitzuzerren: Diese wandern unabhängig obendrauf.
+So entsteht die zusammengesetzte Choreografie aus einem zoomenden Rahmen und mehreren eigenständig wandernden Elementen.</p>
+<h3 id="bereiche-gezielt-sofort-ausblenden-statt-faden">Bereiche gezielt sofort ausblenden statt faden</h3>
+<p>Der <code>&lt;footer&gt;</code> der Card mit dem Link „Details“ und dem Button „Like“ existiert auf der Detailseite nicht.
+Über den Überblendeffekt des Frames würde er langsam ausfaden.
+Wir wollen aber, dass der gesamte Footer sofort verschwindet.</p>
+<p>Die Lösung ist, dem gesamten <code>&lt;footer&gt;</code> einen eigenen <code>view-transition-name</code> samt Klasse <code>book-actions</code> zu geben.
+Da das Element nur in der Liste vorkommt, enthält seine Gruppe nur ein <code>::view-transition-old()</code> und kein <code>::view-transition-new()</code>.</p>
+<p>Hier lauert noch eine Feinheit: <code>animation: none</code> wäre falsch, denn das ließe die Momentaufnahme über die gesamte Transition stehen.
+Der Footer bliebe also sichtbar.
+Stattdessen setzen wir ihn in einem einzigen Schritt einfach auf <code>opacity: 0</code>:</p>
+<pre><code class="language-css">::<span class="hljs-built_in">view-transition-old</span>(.book-actions) {
+  <span class="hljs-attribute">animation</span>: <span class="hljs-number">1ms</span> step-end both book-actions-hide;
+}
+
+<span class="hljs-keyword">@keyframes</span> book-actions-hide {
+  <span class="hljs-selector-tag">from</span>, <span class="hljs-selector-tag">to</span> { <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>; }
+}
+</code></pre><p>Ein eigener Name kombiniert mit einem <code>opacity: 0</code>-Keyframe ist der allgemeine Weg, um Bereiche, die nur in einer Ansicht vorkommen, gezielt sofort ein- oder auszublenden, statt sie zu faden.</p>
+<h3 id="feinschliff-zeitlicher-versatz">Feinschliff: zeitlicher Versatz</h3>
+<p>Ein Übergang wirkt lebendiger, wenn sich nicht alle Elemente exakt gleichzeitig bewegen, sondern leicht gestaffelt.
+In unserem Beispiel startet das Cover seine Wanderung bewusst 100 Millisekunden nach dem Rahmen und den übrigen Elementen.
+Umgesetzt wird das über <code>animation-delay</code> auf der Cover-Gruppe.
+Mit <code>animation-fill-mode: both</code> bleibt das Cover während der Verzögerung an seiner Startposition stehen, statt zu springen:</p>
+<pre><code class="language-css">::<span class="hljs-built_in">view-transition-group</span>(.book-cover) {
+  <span class="hljs-attribute">animation-duration</span>: <span class="hljs-number">500ms</span>;
+  <span class="hljs-attribute">animation-delay</span>: <span class="hljs-number">100ms</span>;      <span class="hljs-comment">/* startet versetzt */</span>
+  <span class="hljs-attribute">animation-fill-mode</span>: both;   <span class="hljs-comment">/* hält Start-/Endbild in der Verzögerung */</span>
+  <span class="hljs-attribute">animation-timing-function</span>: <span class="hljs-built_in">cubic-bezier</span>(<span class="hljs-number">0.22</span>, <span class="hljs-number">0.61</span>, <span class="hljs-number">0.36</span>, <span class="hljs-number">1</span>);
+}
+</code></pre><p>Die gleichen Werte für <code>animation-delay</code> und <code>animation-fill-mode</code> setzen wir auch auf <code>::view-transition-old(.book-cover)</code> und <code>::view-transition-new(.book-cover)</code>, damit Überblendung und Positions-Morph synchron bleiben.
+Im nächsten Abschnitt sehen wir, dass dieser Versatz in den DevTools gut sichtbar wird: In der Zeitleiste beginnt die Cover-Spur erkennbar später als die des Rahmens.</p>
+<h2 id="untersuchung-und-nachvollziehbarkeit-mit-den-chrome-devtools">Untersuchung und Nachvollziehbarkeit mit den Chrome DevTools</h2>
+<p>Eine View Transition läuft in etwa einer halben Sekunde ab.
+Das ist oftmals zu schnell, um mit bloßem Auge zu beurteilen, ob ein Element wirklich wandert oder nur überblendet.
+Die Chrome DevTools bringen mit dem Animations-Panel ein Werkzeug mit, das genau diese Analyse ermöglicht.
+Die offizielle Dokumentation dazu findet sich unter <a href="https://developer.chrome.com/docs/devtools/css/animations/">Inspect CSS animations</a>.</p>
+<h3 id="das-animations-panel-öffnen">Das Animations-Panel öffnen</h3>
+<p>Am schnellsten geht es über das Command-Menü: Mit <code>Cmd</code>/<code>Ctrl</code> + <code>Shift</code> + <code>P</code> die Eingabe „Show Animations“ aufrufen.
+Alternativ lässt sich das Panel über das Drawer-Menü („More tools“ → „Animations“) öffnen.
+Das Panel zeigt die aufgezeichneten Animationsgruppen untereinander, jeweils als Balken auf einer gemeinsamen Zeitleiste, und bietet einen Abspielmarker, mit dem man die Animation manuell durch die Zeit ziehen kann.</p>
+<p></p><figure><img src="https://website-articles.angular-buch.com/blog/2026-10-view-transitions/devtools-animations-panel.svg" alt="Annotiertes Chrome-DevTools-Animations-Panel: Buttons für „Clear all“ und „Pause all“, Geschwindigkeits-Buttons und eine Zeitleiste mit je einer Spur pro view-transition-Gruppe (Rahmen, Cover, Titel, Untertitel, ISBN) sowie dem Seiten-Crossfade." title="Das Animations-Panel: Zeitleiste, Geschwindigkeit und Abspielmarker."><figcaption>Das Animations-Panel: Zeitleiste, Geschwindigkeit und Abspielmarker.</figcaption></figure><p></p>
+<h3 id="aufzeichnen-und-wiederholen">Aufzeichnen und wiederholen</h3>
+<p>Das Panel zeichnet automatisch auf, sobald eine Animation startet.
+Es genügt also, bei geöffnetem Panel die Navigation auszulösen: In unserem Fall also ein Klick auf „Details“.
+Die aufgezeichnete Transition erscheint als Gruppe von Zeitleisten-Spuren, und über den Replay-Button lässt sie sich beliebig oft erneut abspielen, ohne erneut navigieren zu müssen.
+Hier tauchen die einzelnen Gruppen namentlich auf, etwa <code>::view-transition-group(book-cover-…)</code>.
+Mit dem Abspielmarker lässt sich der Übergang von Hand durch die Zeit ziehen, sodass man jeden Zwischenzustand in Ruhe betrachten kann.</p>
+<h3 id="verlangsamen-für-die-analyse">Verlangsamen für die Analyse</h3>
+<p>Im Panel lässt sich die Abspielgeschwindigkeit reduzieren, etwa auf 25 % oder 10 %. In dieser Zeitlupe wird unmittelbar sichtbar, was im Normaltempo verborgen bleibt: Verändert ein Element Position und Größe, läuft also tatsächlich eine <code>group</code>-Animation, dann funktioniert die Shared-Element-Transition.
+Blendet es dagegen nur ein oder aus, handelt es sich um ein reines Fade. Dann fehlt das Gegenstück im neuen DOM.</p>
+<h3 id="nachweis-morph-oder-fade">Nachweis: Morph oder Fade?</h3>
+<p>Wer es genau wissen will, kann die laufenden Pseudo-Element-Animationen auch programmatisch auslesen.
+<code>document.getAnimations()</code> liefert alle aktiven Animationen, über deren <code>effect.pseudoElement</code> sich die zugehörigen <code>::view-transition-*</code>-Namen ablesen lassen.
+Das Erfolgskriterium ist eindeutig: Existiert für ein geteiltes Element sowohl eine <code>::view-transition-group(name)</code> als auch ein <code>::view-transition-new(name)</code>, handelt es sich um einen echten Morph.
+Findet sich dagegen nur ein <code>::view-transition-old(name)</code> ohne <code>::view-transition-new(name)</code>, fehlt das Element im neuen DOM. Es kann nur ausblenden.
+Das ist typischerweise die Signatur asynchron geladener Daten und führt direkt zurück zu unserer Lösung mit den Router Resources oder alternativ Resolvern.
+Zusätzlich lassen sich <code>transform</code>, <code>width</code> und <code>height</code> der Gruppe am Anfang und Ende auslesen, um die Interpolation schwarz auf weiß zu belegen.</p>
+<h2 id="barrierefreiheit-prefers-reduced-motion">Barrierefreiheit: <code>prefers-reduced-motion</code></h2>
+<p>Beim Thema Bewegung sind zwei Konzepte auseinanderzuhalten. Das eine ist Progressive Enhancement im Sinne fehlender Browserfähigkeiten.
+Das deckt die View Transitions API bereits selbst ab, indem Angular ohne Unterstützung ein normales DOM-Update macht.
+Das andere ist <code>prefers-reduced-motion</code>: eine bewusste Nutzerpräferenz, etwa bei vestibulären Beschwerden.
+Das ist kein Fähigkeits-Fallback, sondern eine Opt-out-Entscheidung der nutzenden Person.</p>
+<p>Die eigentliche Lösung liefert Angulars View-Transitions-Integration.
+<code>withViewTransitions()</code> akzeptiert ein Optionsobjekt mit dem Callback <code>onViewTransitionCreated</code>.
+Dieses läuft in einem Injection Context und bekommt unter anderem die native Instanz von <code>ViewTransition</code> übergeben.
+Darauf rufen wir bei <code>reduce</code> <code>skipTransition()</code> auf. Das überspringt die Animation, während das DOM-Update (also der Routenwechsel) trotzdem ausgeführt wird:</p>
+<pre><code class="language-typescript"><span class="hljs-comment">// app.config.ts</span>
+<span class="hljs-selector-tag">provideRouter</span>(
+  routes,
+  <span class="hljs-built_in">withComponentInputBinding</span>(),
+  <span class="hljs-built_in">withViewTransitions</span>({
+    <span class="hljs-attribute">onViewTransitionCreated</span>: ({ transition }) =&gt; {
+      const prefersReducedMotion =
+        <span class="hljs-built_in">matchMedia</span>(<span class="hljs-string">'(prefers-reduced-motion: reduce)'</span>).matches;
+      if (prefersReducedMotion) {
+        transition.<span class="hljs-built_in">skipTransition</span>();
+      }
+    }
+  }),
+  <span class="hljs-built_in">withRouterResources</span>()
+)
+</code></pre><p><code>skipTransition()</code> deckt den View-Transition-Fall vollständig ab: Es unterbindet sowohl unsere eigenen Keyframes als auch den browsereigenen Standard-Überblendeffekt, der den gesamten Seiteninhalt betrifft.
+Inhalt und Navigation bleiben dabei voll funktionsfähig, lediglich die zusätzliche Bewegung entfällt.</p>
+<p>Als zweite Absicherung können wir unsere eigenen Keyframes zusätzlich in <code>@media (prefers-reduced-motion: no-preference)</code> kapseln.
+Für die Angular-Integration ist das zwar nicht mehr nötig, da <code>skipTransition()</code> den Übergang ohnehin überspringt. Es ist aber eine gute Angewohnheit und greift auch dort, wo View Transitions ohne die Router-Integration zum Einsatz kommen:</p>
+<pre><code class="language-css"><span class="hljs-comment">/* Animationen nur, wenn keine Reduktion gewünscht ist (opt-in) */</span>
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">prefers-reduced-motion</span>: no-preference) {
+  ::<span class="hljs-built_in">view-transition-group</span>(.book-cover) {
+    <span class="hljs-attribute">animation-duration</span>: <span class="hljs-number">500ms</span>;
+    <span class="hljs-attribute">animation-timing-function</span>: <span class="hljs-built_in">cubic-bezier</span>(<span class="hljs-number">0.22</span>, <span class="hljs-number">0.61</span>, <span class="hljs-number">0.36</span>, <span class="hljs-number">1</span>);
+  }
+  <span class="hljs-comment">/* … alle weiteren View-Transition-Regeln hier hinein … */</span>
+}
+</code></pre><h3 id="übergänge-bei-reinen-query-parameter-wechseln-überspringen">Übergänge bei reinen Query-Parameter-Wechseln überspringen</h3>
+<p><code>onViewTransitionCreated</code> eignet sich noch für einen weiteren Fall.
+Der Router löst bei <em>jeder</em> Navigation einen Übergang aus, also auch dann, wenn sich nur Query-Parameter oder das Fragment ändern.
+Ein typisches Beispiel ist ein Suchfeld, das den Suchbegriff als Query-Parameter in die URL schreibt: Jeder Tastendruck würde eine View Transition samt Überblendung und blockierender Overlay-Schicht auslösen.</p>
+<p>Die Angular-Dokumentation zeigt dafür das passende Muster: den Übergang überspringen, wenn sich die eigentliche Route gar nicht ändert.
+Die Prüfung lässt sich mit der Bedingung für reduzierte Bewegung aus dem vorigen Abschnitt im selben Callback kombinieren:</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Router</span>, withViewTransitions, isActive, <span class="hljs-title class_">IsActiveMatchOptions</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/router'</span>;
+
+<span class="hljs-title function_">withViewTransitions</span>({
+  <span class="hljs-attr">onViewTransitionCreated</span>: <span class="hljs-function">(<span class="hljs-params">{ transition }</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> router = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">Router</span>);
+    <span class="hljs-keyword">const</span> targetUrl = router.<span class="hljs-title function_">currentNavigation</span>()!.<span class="hljs-property">finalUrl</span>!;
+
+    <span class="hljs-comment">// Übergang überspringen, wenn sich nur Fragment oder Query-Parameter ändern</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-attr">config</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">IsActiveMatchOptions</span>&gt; = {
+      <span class="hljs-attr">paths</span>: <span class="hljs-string">'exact'</span>,
+      <span class="hljs-attr">matrixParams</span>: <span class="hljs-string">'exact'</span>,
+      <span class="hljs-attr">fragment</span>: <span class="hljs-string">'ignored'</span>,
+      <span class="hljs-attr">queryParams</span>: <span class="hljs-string">'ignored'</span>
+    };
+    <span class="hljs-keyword">const</span> isTargetRouteCurrent = <span class="hljs-title function_">isActive</span>(targetUrl, router, config);
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isTargetRouteCurrent</span>()) {
+      transition.<span class="hljs-title function_">skipTransition</span>();
+    }
+  }
+})
+</code></pre><h2 id="fazit">Fazit</h2>
+<p>Mit der View Transitions API lassen sich Routenwechsel in Angular ohne zusätzliche Abhängigkeit animieren.
+Es funktioniert als Progressive Enhancement, das in nicht unterstützenden Browsern zum normalen Verhalten degradiert.
+Drei Bausteine tragen das Ergebnis:</p>
+<ul>
+<li><code>withViewTransitions()</code> aktiviert die Integration,</li>
+<li>geteilte <code>view-transition-name</code>-Werte verwandeln einzelne Elemente in wandernde Shared Elements, und</li>
+<li>eine blockierende Router Resource stellt die Daten synchron bereit, damit beim Erfassen des neuen Zustands die zu morphenden Elemente tatsächlich vorhanden sind.</li>
+</ul>
+<p>Die Chrome DevTools mit ihrem Animations-Panel und der Möglichkeit zum Verlangsamen sind dabei das Werkzeug der Wahl, um einen Übergang Schritt für Schritt zu analysieren.</p>
+<p>Von hier aus lässt sich weiterdenken: View Transition Types für unterschiedliche Übergangsstile je nach Navigationsrichtung, eine eigene Choreografie für den Rückweg von der Detailseite zur Liste oder komplexere gestaffelte Abläufe.
+Und nicht vergessen: Die Angular-Implementierungen für View Transitions und Router Resources sind in Angular 22.2 noch Developer Preview.</p>
+<p>Wie setzt ihr View Transitions in euren Projekten ein? Schreibt uns gern eure Erfahrungen und Fragen.</p>
+<h2 id="weiterführende-links">Weiterführende Links</h2>
+<ul>
+<li>Demo: <a href="https://stackblitz.com/edit/angular-buch-book-manager1-view-transition-api">BookManager mit View Transitions auf StackBlitz</a></li>
+<li>Angular Guide: <a href="https://angular.dev/guide/routing/route-transition-animations">Route transition animations</a></li>
+<li>Angular Guide: <a href="https://angular.dev/guide/routing/data-fetching-with-resources">Data fetching with resources</a></li>
+<li>Buch-Zusatzmaterial: <a href="/material/resolvers">Resolvers – Daten beim Routing vorladen</a></li>
+<li>Chrome DevTools: <a href="https://developer.chrome.com/docs/devtools/css/animations/">Animationen inspizieren</a></li>
+<li>Chrome Blog: <a href="https://developer.chrome.com/blog/view-transitions-in-2025">What's new in view transitions (2025)</a></li>
+<li>MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API">View Transition API</a></li>
+<li>MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API#browser_compatibility">Browserkompatibilität der View Transition API</a></li>
+<li>MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@view-transition"><code>@view-transition</code> – cross-document / MPA</a></li>
+</ul>
+</app-markdown-content><!----><!----><p class="blog__keywords"><span>Keywords:</span><span class="badge badge-secondary">Angular</span><span class="badge badge-secondary">View Transitions</span><span class="badge badge-secondary">View Transitions API</span><span class="badge badge-secondary">Routing</span><span class="badge badge-secondary">Animations</span><span class="badge badge-secondary">Shared Element Transition</span><span class="badge badge-secondary">Router Resources</span><span class="badge badge-secondary">Chrome DevTools</span><span class="badge badge-secondary">Angular 22</span><!----></p><!----><a routerlink="/blog" ripple-radius="" class="btn btn-sm btn-primary mt-4" href="/blog" jsaction="click:;"><i class="fa-solid fa-backward mr-2"></i> Zurück </a><hr><!---->Anregungen? Feedback? Fehler? <!----><a target="_blank" class="content" href="https://github.com/angular-buch/website-articles/blob/main/blog/2026-10-view-transitions/README.md"><i class="fa-brands fa-github mr-1"></i><!---->Forke/bearbeite diese Seite auf GitHub<!----></a>. </div></div></article></div></div><!----><!----></div><!----><!----></div></section><app-json-ld-outlet ngh="7"><script type="application/ld+json">{
+  "url": "https://angular-buch.com/blog/2026-10-view-transitions",
+  "headline": "View Transitions in Angular: Shared-Element-Animationen zwischen Routen",
+  "description": "Ein Routenwechsel in einer Single-Page-Anwendung ist meist ein harter Schnitt: Die eine Ansicht verschwindet, die nächste erscheint. Mit der View Transitions API des Browsers lässt sich dieser Wechsel in eine flüssige Animation verwandeln.\nDas Beste dabei: Angular bringt die passende Integration gleich mit.",
+  "datePublished": "2026-10-19",
+  "dateModified": "2026-10-19",
+  "publisher": {
+    "name": "Angular-Buch",
+    "url": "https://angular-buch.com",
+    "@type": "Organization",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://angular-buch.com/assets/img/brand-400.png"
+    }
+  },
+  "image": "https://website-articles.angular-buch.com/blog/2026-10-view-transitions/view-transitions-header.webp",
+  "thumbnailUrl": "https://website-articles.angular-buch.com/blog/2026-10-view-transitions/view-transitions-header.webp",
+  "author": {
+    "@type": "Person",
+    "name": "Danny Koppenhagen",
+    "email": "mail@k9n.dev"
+  },
+  "keywords": [
+    "Angular",
+    "View Transitions",
+    "View Transitions API",
+    "Routing",
+    "Animations",
+    "Shared Element Transition",
+    "Router Resources",
+    "Chrome DevTools",
+    "Angular 22"
+  ],
+  "mainEntityOfPage": "http://schema.org/WebPage",
+  "@type": "Article",
+  "@context": "http://schema.org"
+}</script></app-json-ld-outlet></app-blog-details-page><!----><footer ngh="10"><div class="container"><div class="row align-items-center"><div class="col-sm-9"><div class="links"><app-link ngh="0"><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/" jsaction="click:;"><!----> Home </a><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/impressum" jsaction="click:;"><!----> Impressum </a><!----><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/datenschutz" jsaction="click:;"><!----> Datenschutzerklärung </a><!----><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="9"><!----><a class="links__item links__linkedin ml-1" href="https://www.linkedin.com/company/angular-buch/" rel="nofollow"><!----> LinkedIn </a><!----><!----><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="9"><!----><a class="links__bluesky links__item ml-1" href="https://bsky.app/profile/angular-buch.com" rel="nofollow"><!----> Bluesky </a><!----><!----><!----><!----></app-link><!----><!----></div></div></div></div></footer></main><app-json-ld-outlet ngh="7"><script type="application/ld+json">{
+  "sku": "9783988890641",
+  "productID": "9783988890641",
+  "mpn": "9783988890641",
+  "name": "Angular: Das Praxisbuch",
+  "description": "Von den Grundlagen bis zur professionellen Entwicklung mit Signals. Das moderne Praxisbuch zu Angular – ab Version 22",
+  "aggregateRating": {
+    "reviewCount": 31,
+    "ratingValue": 4.870967741935484,
+    "@type": "AggregateRating"
+  },
+  "review": [
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Kann dieses Buch zu 100% empfehlen wenn man neu in Angular einsteigen will.",
+      "datePublished": "2018-07-08",
+      "author": {
+        "name": "DrDrakken, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Wer Angular von Grund auf lernen möchte, ist mit dem Buch bestens bedient.",
+      "datePublished": "2017-11-30",
+      "author": {
+        "name": "constructor, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Tolle Themen. Guter Praxisbezug. Habe den Kauf nicht bereut und würde es jederzeit weiterempfehlen.",
+      "datePublished": "2017-06-21",
+      "author": {
+        "name": "Jörg Manske, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Eine klare Empfehlung für alle, die sich einen Überblick über moderne SPA-Entwicklung mit Angular verschaffen möchten.",
+      "datePublished": "2017-12-11",
+      "author": {
+        "name": "schoettner, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ein Buch, das für Einsteiger und Wissenhungrige, empfehlenswert ist.",
+      "datePublished": "2018-02-22",
+      "author": {
+        "name": "Dominik Sprung, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Im Buch wird das Grundkonzept ausführlich aber nicht langweilig erklärt. [...] Ich gebe wirklich selten 5 Punkte in einer Rezession, hier geht es nicht anders.",
+      "datePublished": "2018-05-01",
+      "author": {
+        "name": "Torsten Lehmann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Es macht einfach Spass dieses Buch zu lesen. Ich empfehle es! Die Beispiele sind sehr klar und alles wird sehr gut erklärt.",
+      "datePublished": "2018-01-24",
+      "author": {
+        "name": "F. Salvi, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "In meinen Augen hat das Buch gute Chancen, Standardwerk bei der Angular-Ausbildung bei uns zu werden.",
+      "datePublished": "2018-12-01",
+      "author": {
+        "name": "Tobias Meier, Lead Softwarearchitekt, BridgingIT GmbH",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Der Leser wird von vornherein abgeholt und an die Hand genommen. Alles ist so ausreichend erklärt, dass man die Zusammenhänge verstehen kann und gleichzeitig auch nicht mit zu vielen Infos überfordert wird.",
+      "datePublished": "2017-12-03",
+      "author": {
+        "name": "Jan Buchholz, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Die Beispiele sind einfach gehalten und gut erklärt, so dass man direkt ein gutes Basiswissen aufbaut.",
+      "datePublished": "2017-05-30",
+      "author": {
+        "name": "Andre Fritzsche, IT Consultant, BridgingIT GmbH",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "It's 500+ pages that get you from beginner to top Angular expert level!",
+      "datePublished": "2017-06-15",
+      "author": {
+        "name": "Juri Strumpflohner, Blogger und Trainer für Angular",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Die Beispiele sind sehr gut beschrieben, sodass man jeden Schritt nachvollziehen kann. Der Kauf hat sich auf alle Fälle gelohnt.",
+      "datePublished": "2018-08-20",
+      "author": {
+        "name": "Mireille Puschmann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ich persönlich finde den didaktischen Aufbau des Buchs wirklich gelungen. Für eine Einführung ist die Tiefe genau richtig.",
+      "datePublished": "2023-08-14",
+      "author": {
+        "name": "Dr. Jochen Manns, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch eignet sich hervorragend als Nachschlagewerk, das auf dem Schreibtisch des Angular-Entwicklers nicht fehlen sollte.",
+      "datePublished": "2017-06-27",
+      "author": {
+        "name": "Guido K., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das lesen macht wirklich Spaß und es gibt eine gute Lernkurve.",
+      "datePublished": "2017-12-19",
+      "author": {
+        "name": "A.B., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Warten hat sich gelohnt! Danke für dieses geniale Buch!",
+      "datePublished": "2017-08-10",
+      "author": {
+        "name": "Stefan Kert, auf Twitter",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Der Schreibstil ist gut, kein Schaulaufen von Experten, sondern das Vermitteln von Wissen. Ich empfehle das Buch allen, die ingenieursmäßig denken und eine spannende Technologie besser kennenlernen wollen.",
+      "datePublished": "2017-06-22",
+      "author": {
+        "name": "Watzmann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch ist gut strukturiert, das Vorgehen Schritt-für-Schritt hilft dabei gut weiter. Die Autoren sind Profis, das erkennt man sofort, und verstehen von ihrem Handwerk.",
+      "datePublished": "2019-05-16",
+      "author": {
+        "name": "Anton, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch bietet einen guten ersten Anfang in die Welt von Angular. [...] Ich warte gespannt auf die 2 Version des Buches, um meine aktuellen Projekte umsetzen zu können.",
+      "datePublished": "2019-04-01",
+      "author": {
+        "name": "Leela, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ich habe den Eindruck, dass ich hier mit meinem Projekt gut aufgehoben bin. Sehr empfehlenswert!",
+      "datePublished": "2019-03-30",
+      "author": {
+        "name": "Metal King, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch ist sehr gut strukturiert, sehr gut zu lesen und durch das praktische Beispiel sehr gut zu verinnerlichen.",
+      "datePublished": "2019-01-28",
+      "author": {
+        "name": "ea, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Die einzelnen Kapitel sind sehr übersichtlich strukturiert und man kann den Erläuterungen zu jeder Zeit gut folgen. Ich kann dieses Buch guten Gewissens jedem empfehlen, der mit Angular zu tun hat. Es ist ein prima Nachschlagewerk.",
+      "datePublished": "2019-06-25",
+      "author": {
+        "name": "M.S., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch erklärt in einem wunderbaren Schreibstil, wie man als Neuling in der Angular-Welt den besten Einstieg bekommt. Man merkt, dass die Autoren sehr tief in der Materie sind und ihr Wissen gerne weitergeben. Somit ist das Buch stets professionell, aber immer nachvollziehbar und verständlich.",
+      "datePublished": "2020-07-05",
+      "author": {
+        "name": "C4bb4g3, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ich bin auf die beiden Autoren durch ein YouTube Video aufmerksam geworden und war gleich begeistert, weil sie so gut und verständlich erklären. Auch das Beispiel, das sich durchzieht, ist sehr gut und hilfreich.",
+      "datePublished": "2020-04-18",
+      "author": {
+        "name": "Klia Maus, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch ist von vorne bis hinten gut strukturiert und alle darin enthaltenen Themen detailliert erklärt. Absolute Kaufempfehlung für jeden, der sich mit dem Framework Angular bestens vertraut machen möchte! Ein Lob an die Autoren.",
+      "datePublished": "2020-03-06",
+      "author": {
+        "name": "Johannes Meinhard, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch hat mir sehr gut weiter geholfen und ich würde es weiterempfehlen. Der Aufbau sowie Schreibweise des Buchs haben mir gut gefallen, ich hatte beim Lesen nie das Gefühl, nicht folgen zu können.",
+      "datePublished": "2019-11-15",
+      "author": {
+        "name": "Katharinarrr, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Den kurzweiligen Mix aus Theorie und Praxis empfinde ich als sehr motivierend. Die Autoren können auch komplexe Themen sehr verständlich erklären. Ich empfehle das Buch jedem, der eine solide Einführung ins Thema Angular sucht.",
+      "datePublished": "2019-10-26",
+      "author": {
+        "name": "Matthias Hess, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Es ist sehr sorgfältig recherchiert, auf dem neuesten Stand und gibt Einblick in alles, was man von Angular wissen muss. Ich hatte davor schon Bücher von anderen Autoren zu diesem Thema, in diesen wurde jedoch nicht so sauber und anschaulich erklärt wie in diesem Buch.",
+      "datePublished": "2023-04-16",
+      "author": {
+        "name": "Daniel Ellermann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Didaktisch eine glatte 1 mit Sternchen! Hervorragend für mich als Wirtschaftsinformatiker zum Selbststudium, mit schneller Lernkurve geeignet.",
+      "datePublished": "2023-06-27",
+      "author": {
+        "name": "OD, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Insgesamt ein sehr solides und aktuelles Praxisbuch, das sich hervorragend als Nachschlagewerk und als kontinuierliche Lernbegleitung eignet. Für alle, die Angular professionell einsetzen oder einsetzen wollen, eine klare Empfehlung.",
+      "datePublished": "2026-01-11",
+      "author": {
+        "name": "Christian P., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das erste Angular-Buch von dieser Truppe war meiner Meinung nach das beste auf dem Markt. Allerdings hat sich in #Angular in den letzten 3-5 Jahren so unfassbar viel verändert, dass die drei statt einer 5. Auflage nun ein komplett neues geschrieben haben. Wer Angular (besser) verstehen möchte, ist hier richtig.",
+      "datePublished": "2026-05-23",
+      "author": {
+        "name": "Marcus Maack auf LinkedIn",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    }
+  ],
+  "@type": "Product",
+  "@context": "http://schema.org",
+  "brand": "Angular-Buch",
+  "image": "https://angular-buch.com/assets/img/book-cover-v1m.png",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "EUR",
+    "price": "39.90",
+    "priceValidUntil": "2030-12-31T23:59:59",
+    "itemCondition": "http://schema.org/NewCondition",
+    "availability": "http://schema.org/InStock",
+    "url": "https://angular-buch.com/kaufen",
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0",
+        "currency": "EUR"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": [
+          "DE",
+          "AT",
+          "CH"
+        ]
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 1,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 3,
+          "unitCode": "DAY"
+        }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 14,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    }
+  }
+}</script></app-json-ld-outlet></app-root>
+<link rel="modulepreload" href="chunk-2nJVSVam.js"><script src="polyfills-KE2WY2BY.js" type="module"></script><script src="main-ZJUGMWHQ.js" type="module"></script>
+<link rel="modulepreload" href="chunk-C5inJ-qG.js">
+<link rel="modulepreload" href="chunk-DWOzhvQQ.js">
+<link rel="modulepreload" href="chunk-D-Esn4Ul.js">
+<link rel="modulepreload" href="chunk-DYp7Vrst.js">
+<link rel="modulepreload" href="chunk-B5P_-JKC.js">
+<link rel="modulepreload" href="chunk-D7Rg8uhi.js">
+
+
+<script id="ng-state" type="application/json">{"910496fc0b2b81eced65364b6004a8b8d7eeabdfa2ed8b3b89a71aeb323c1cdc":{"b":{"slug":"2026-10-view-transitions","html":"\u003Cp>Ein Routenwechsel in einer Single-Page-Anwendung ist meist ein harter Schnitt: Die eine Ansicht verschwindet, die nächste erscheint. Mit der View Transitions API des Browsers lässt sich dieser Wechsel in eine flüssige Animation verwandeln.\nDas Beste dabei: Angular bringt die passende Integration gleich mit.\u003C\u002Fp>\n\u003Cp>In diesem Artikel bauen wir eine Übergangsanimation zwischen einer Buchliste und einer Detailseite zu einem Buch.\nDas Ziel: Die Listen-Card „zoomt“ zur Detailseite, während Cover, Titel, Untertitel und ISBN von ihrer Position in der Liste an ihre neue Position auf der Detailseite wandern.\nNeu hinzukommende Inhalte wie Autoren und Beschreibung blenden sanft ein.\nDas Ganze funktioniert ohne zusätzliche Abhängigkeit, allein mit der Browser-API und ein wenig CSS.\nIn Browsern ohne Unterstützung der View Transitions API findet der Routenwechsel wie gewohnt ohne Animation statt.\u003C\u002Fp>\n\u003Cblockquote>\n\u003Cp>⚠️ \u003Cstrong>Developer Preview:\u003C\u002Fstrong> Die hier vorgestellten Funktionen \u003Ccode>withViewTransitions()\u003C\u002Fcode> und \u003Ccode>withRouterResources()\u003C\u002Fcode> sind (Stand Angular 22.2) als Developer Preview markiert.\nDie APIs können sich in zukünftigen Versionen noch ändern.\u003C\u002Fp>\n\u003C\u002Fblockquote>\n\u003Ch2 id=\"inhalt\">Inhalt\u003C\u002Fh2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#was-sind-view-transitions\">Was sind View Transitions?\u003C\u002Fa>\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#zwei-varianten-spa-same-document-vs-mpa-cross-document\">Zwei Varianten: SPA (same-document) vs. MPA (cross-document)\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#browsersupport-und-stand\">Browsersupport und Stand\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#das-beispielprojekt\">Das Beispielprojekt\u003C\u002Fa>\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#view-transitions-im-router-aktivieren\">View Transitions im Router aktivieren\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#ein-grundlegender-seiten%C3%BCbergang-per-css\">Ein grundlegender Seitenübergang per CSS\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#shared-element-transitions-f%C3%BCr-cover-und-titel\">Shared-Element-Transitions für Cover und Titel\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#daten-synchron-bereitstellen-mit-router-resources\">Daten synchron bereitstellen mit Router Resources\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#weitere-zuordenbare-elemente-und-das-ein--und-ausblenden\">Weitere zuordenbare Elemente und das Ein- und Ausblenden\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#bereiche-gezielt-sofort-ausblenden-statt-faden\">Bereiche gezielt sofort ausblenden statt faden\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#feinschliff-zeitlicher-versatz\">Feinschliff: zeitlicher Versatz\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#untersuchung-und-nachvollziehbarkeit-mit-den-chrome-devtools\">Untersuchung und Nachvollziehbarkeit mit den Chrome DevTools\u003C\u002Fa>\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#das-animations-panel-%C3%B6ffnen\">Das Animations-Panel öffnen\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#aufzeichnen-und-wiederholen\">Aufzeichnen und wiederholen\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#verlangsamen-f%C3%BCr-die-analyse\">Verlangsamen für die Analyse\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#nachweis-morph-oder-fade\">Nachweis: Morph oder Fade?\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#barrierefreiheit-prefers-reduced-motion\">Barrierefreiheit: \u003Ccode>prefers-reduced-motion\u003C\u002Fcode>\u003C\u002Fa>\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#%C3%BCberg%C3%A4nge-bei-reinen-query-parameter-wechseln-%C3%BCberspringen\">Übergänge bei reinen Query-Parameter-Wechseln überspringen\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#fazit\">Fazit\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fblog\u002F2026-10-view-transitions#weiterf%C3%BChrende-links\">Weiterführende Links\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003Ch2 id=\"was-sind-view-transitions\">Was sind View Transitions?\u003C\u002Fh2>\n\u003Cp>Die \u003Ca href=\"https:\u002F\u002Fdeveloper.mozilla.org\u002Fen-US\u002Fdocs\u002FWeb\u002FAPI\u002FView_Transition_API\">View Transitions API\u003C\u002Fa> ist eine native Browserschnittstelle, die Übergänge zwischen zwei Zuständen einer Oberfläche animiert.\nDer Kern ist die Methode \u003Ccode>document.startViewTransition()\u003C\u002Fcode>: Sie bekommt ein Callback, das die eigentliche DOM-Änderung vornimmt.\u003C\u002Fp>\n\u003Cp>Der Browser arbeitet dabei in vier Phasen:\nZuerst erfasst er den aktuellen Zustand der Seite als Momentaufnahme.\nDann führt er das DOM-Update aus unserem Callback aus.\nAnschließend erfasst er den neuen Zustand.\nZum Schluss animiert er den Übergang zwischen beiden Momentaufnahmen.\u003C\u002Fp>\n\u003Cp>\u003Cfigure>\u003Cimg src=\"%%MARKDOWN_BASE_URL%%\u002Fblog\u002F2026-10-view-transitions\u002Fview-transitions-flow.svg\" alt=\"Ablaufdiagramm der View Transitions API: alten Zustand als Snapshot erfassen, DOM aktualisieren, neuen Zustand erfassen, zwischen beiden Snapshots animieren.\" title=\"Die vier Phasen einer View Transition.\">\u003Cfigcaption>Die vier Phasen einer View Transition.\u003C\u002Ffigcaption>\u003C\u002Ffigure>\u003C\u002Fp>\n\u003Cp>Für die Animation legt der Browser im Hintergrund einen Baum aus Pseudo-Elementen an:\nPro benanntem Bereich entsteht eine \u003Ccode>::view-transition-group()\u003C\u002Fcode>, die Position und Größe interpoliert. Darin liegt ein \u003Ccode>::view-transition-image-pair()\u003C\u002Fcode> mit \u003Ccode>::view-transition-old()\u003C\u002Fcode> und \u003Ccode>::view-transition-new()\u003C\u002Fcode>, die vom alten zum neuen Zustand überblenden.\nDiese Pseudo-Elemente lassen sich mit CSS gezielt ansprechen.\nDarüber steuern wir später die Animation.\u003C\u002Fp>\n\u003Cp>Wichtig zur Einordnung: Hier ist keine Animations-Engine von Angular im Spiel. Es handelt sich um eine reine Browser-API. Angular klinkt sich lediglich in den Navigationszyklus des Routers ein.\u003C\u002Fp>\n\u003Cp>Noch ein Detail, das man kennen sollte: Während der Übergang läuft, legt der Browser die Pseudo-Element-Schicht als Überlagerung über die eigentliche Seite. Der alte Zustand wird dabei als statisches Bild festgehalten, der neue Zustand als Live-Abbild des neuen DOM.\nDiese Überlagerung fängt standardmäßig Zeiger-Interaktionen ab, sodass die Seite für die Dauer der Animation praktisch nicht bedienbar ist.\nDas ist ein guter Grund, Übergänge kurz zu halten (in unserem Beispiel eine halbe Sekunde): Je länger die Animation ist, desto länger kann die nutzende Person nicht klicken oder scrollen.\u003C\u002Fp>\n\u003Ch3 id=\"zwei-varianten-spa-same-document-vs-mpa-cross-document\">Zwei Varianten: SPA (same-document) vs. MPA (cross-document)\u003C\u002Fh3>\n\u003Cp>Die View Transitions API deckt zwei unterschiedliche Szenarien ab, jedes mit einem eigenen Einstiegspunkt:\u003C\u002Fp>\n\u003Cul>\n\u003Cli>\u003Cstrong>Same-document (SPA):\u003C\u002Fstrong> Der Übergang findet zwischen zwei DOM-Zuständen \u003Cem>innerhalb\u003C\u002Fem> derselben Seite statt. Er wird imperativ über \u003Ccode>document.startViewTransition(callback)\u003C\u002Fcode> ausgelöst. Diesen Weg nutzt der Angular-Router intern.\u003C\u002Fli>\n\u003Cli>\u003Cstrong>Cross-document (MPA, Multi-Page Application):\u003C\u002Fstrong> Der Übergang findet bei der Navigation \u003Cem>zwischen\u003C\u002Fem> zwei Dokumenten statt. Er wird deklarativ über die CSS-At-Rule \u003Ccode>@view-transition { navigation: auto; }\u003C\u002Fcode> aktiviert, und beide Seiten müssen von derselben Origin stammen. Das ist der Weg für klassische, serverseitig gerenderte Seiten ohne Framework.\u003C\u002Fli>\n\u003C\u002Ful>\n\u003Cp>Da eine Angular-Anwendung eine Single-Page-Anwendung (SPA) ist, geht es im weiteren Verlauf ausschließlich um den same-document-Weg.\nDie MPA-Variante kommt ganz ohne JavaScript aus. Sie ist ein eigenes Thema und hier nur zur Einordnung erwähnt.\u003C\u002Fp>\n\u003Ch3 id=\"browsersupport-und-stand\">Browsersupport und Stand\u003C\u002Fh3>\n\u003Cp>\u003Cem>Same-document View Transitions\u003C\u002Fem> sind seit Oktober 2025 in allen großen Browsern verfügbar („Baseline Newly available“): Chrome und Edge ab 111, Safari ab 18, Firefox ab 144.\nDie in diesem Artikel verwendeten View-Transition-Klassen (\u003Ccode>view-transition-class\u003C\u002Fcode>) benötigen allerdings Chrome und Edge ab 125 bzw. Safari ab 18.2.\u003C\u002Fp>\n\u003Cp>Der Charakter als \u003Cem>Progressive Enhancement\u003C\u002Fem> bleibt trotzdem wichtig: In Browsern ohne Unterstützung führt Angular den Routenwechsel einfach ohne Animation aus.\nSomit bleibt die Anwendung voll funktionsfähig.\nDa sich der Support laufend ändert, lohnt sich ein Blick auf die aktuelle \u003Ca href=\"https:\u002F\u002Fdeveloper.mozilla.org\u002Fen-US\u002Fdocs\u002FWeb\u002FAPI\u002FView_Transition_API#browser_compatibility\">Browserkompatibilitätstabelle bei MDN\u003C\u002Fa>.\u003C\u002Fp>\n\u003Ch2 id=\"das-beispielprojekt\">Das Beispielprojekt\u003C\u002Fh2>\n\u003Cp>Als Grundlage dient der \u003Ca href=\"https:\u002F\u002Fbm1.angular-buch.com\u002F#bm15\">BookManager aus dem Angular-Buch in der Variante \u003Ccode>15-rxjs\u003C\u002Fcode>\u003C\u002Fa>. Die Anwendung hat zwei relevante Routen: eine Buchliste (\u003Ccode>BooksOverviewPage\u003C\u002Fcode>, die pro Buch eine \u003Ccode>BookCard\u003C\u002Fcode> rendert) und eine Detailseite (\u003Ccode>BookDetailsPage\u003C\u002Fcode>). Beide arbeiten mit demselben Datenmodell \u003Ccode>Book\u003C\u002Fcode>, das unter anderem ISBN, Titel, Autoren, die Cover-URL und weitere Metadaten enthält.\u003C\u002Fp>\n\u003Cp>Ohne weitere Konfiguration ist der Wechsel von der Liste zur Detailansicht ein harter Schnitt. Diesen Übergang bauen wir Schritt für Schritt zu einer zusammenhängenden Animation aus.\nDer Artikel zeigt dabei nur die relevanten Ausschnitte. Den vollständigen, lauffähigen Stand mit allen Namen und Styles gibt es als \u003Ca href=\"https:\u002F\u002Fstackblitz.com\u002Fedit\u002Fangular-buch-book-manager1-view-transition-api\">StackBlitz-Projekt zum Nachbauen und Ausprobieren\u003C\u002Fa>.\u003C\u002Fp>\n\u003Cp>\u003Cfigure>\u003Cimg src=\"%%MARKDOWN_BASE_URL%%\u002Fblog\u002F2026-10-view-transitions\u002Fview-transition-book-manager-demo.webp\" alt=\"Animierte Demo im Book Manager: Beim Klick auf ein Buch in der Liste morpht das Cover zusammen mit Titel, Untertitel und ISBN flüssig in die Detailansicht.\" title=\"Das Ziel: ein zusammenhängender Übergang von der Buchliste zur Detailseite.\">\u003Cfigcaption>Das Ziel: ein zusammenhängender Übergang von der Buchliste zur Detailseite.\u003C\u002Ffigcaption>\u003C\u002Ffigure>\u003C\u002Fp>\n\u003Ch3 id=\"view-transitions-im-router-aktivieren\">View Transitions im Router aktivieren\u003C\u002Fh3>\n\u003Cp>Damit der Router die View Transitions unterstützt, müssen wir das Feature zunächst aktivieren.\nWir ergänzen die Router-Konfiguration um das Feature \u003Ccode>withViewTransitions()\u003C\u002Fcode>.\nVon da an ruft der Router bei jeder Navigation automatisch \u003Ccode>document.startViewTransition()\u003C\u002Fcode> auf und wickelt den Routenwechsel darin ab.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u002F\u002F app\u003Cspan class=\"hljs-selector-class\">.config\u003C\u002Fspan>\u003Cspan class=\"hljs-selector-class\">.ts\u003C\u002Fspan>\nexport const appConfig: ApplicationConfig = {\n  providers: [\n    \u003Cspan class=\"hljs-built_in\">provideBrowserGlobalErrorListeners\u003C\u002Fspan>(),\n    \u003Cspan class=\"hljs-built_in\">provideRouter\u003C\u002Fspan>(\n      routes,\n      \u003Cspan class=\"hljs-built_in\">withComponentInputBinding\u003C\u002Fspan>(),\n      \u003Cspan class=\"hljs-built_in\">withViewTransitions\u003C\u002Fspan>()       \u002F\u002F aktiviert View Transitions\n    )\n  ]\n};\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Unterstützt der Browser die API nicht, bleibt alles beim normalen DOM-Wechsel und es treten keine Fehler auf.\u003C\u002Fp>\n\u003Cp>Schon jetzt gibt es einen sichtbaren Effekt: Der gesamte Seiteninhalt wird beim Routenwechsel sanft übergeblendet.\nDas ist das Standardverhalten des Browsers: Er gibt dem \u003Ccode>&lt;html&gt;\u003C\u002Fcode>-Element automatisch den \u003Ccode>view-transition-name\u003C\u002Fcode> \u003Ccode>root\u003C\u002Fcode> und blendet es als Ganzes über.\u003C\u002Fp>\n\u003Ch3 id=\"ein-grundlegender-seitenübergang-per-css\">Ein grundlegender Seitenübergang per CSS\u003C\u002Fh3>\n\u003Cp>Bevor wir zu den geteilten Elementen kommen, lohnt ein Blick auf den einfachsten Fall: ein gleichmäßiger Übergang des gerouteten Inhalts.\nDazu geben wir dem Element direkt hinter dem \u003Ccode>router-outlet\u003C\u002Fcode> einen \u003Ccode>view-transition-name\u003C\u002Fcode> und definieren zwei Keyframe-Animationen für das Ein- und Ausblenden.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-css\">\u003Cspan class=\"hljs-comment\">\u002F* styles.css *\u002F\u003C\u002Fspan>\nrouter-outlet + * {\n  \u003Cspan class=\"hljs-attribute\">view-transition-name\u003C\u002Fspan>: route-content;\n}\n\n\u003Cspan class=\"hljs-keyword\">@keyframes\u003C\u002Fspan> route-fade-out {\n  \u003Cspan class=\"hljs-selector-tag\">from\u003C\u002Fspan> { \u003Cspan class=\"hljs-attribute\">opacity\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">1\u003C\u002Fspan>; \u003Cspan class=\"hljs-attribute\">transform\u003C\u002Fspan>: \u003Cspan class=\"hljs-built_in\">translateY\u003C\u002Fspan>(\u003Cspan class=\"hljs-number\">0\u003C\u002Fspan>); }\n  \u003Cspan class=\"hljs-selector-tag\">to\u003C\u002Fspan>   { \u003Cspan class=\"hljs-attribute\">opacity\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">0\u003C\u002Fspan>; \u003Cspan class=\"hljs-attribute\">transform\u003C\u002Fspan>: \u003Cspan class=\"hljs-built_in\">translateY\u003C\u002Fspan>(-\u003Cspan class=\"hljs-number\">10px\u003C\u002Fspan>); }\n}\n\n\u003Cspan class=\"hljs-keyword\">@keyframes\u003C\u002Fspan> route-fade-in {\n  \u003Cspan class=\"hljs-selector-tag\">from\u003C\u002Fspan> { \u003Cspan class=\"hljs-attribute\">opacity\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">0\u003C\u002Fspan>; \u003Cspan class=\"hljs-attribute\">transform\u003C\u002Fspan>: \u003Cspan class=\"hljs-built_in\">translateY\u003C\u002Fspan>(\u003Cspan class=\"hljs-number\">10px\u003C\u002Fspan>); }\n  \u003Cspan class=\"hljs-selector-tag\">to\u003C\u002Fspan>   { \u003Cspan class=\"hljs-attribute\">opacity\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">1\u003C\u002Fspan>; \u003Cspan class=\"hljs-attribute\">transform\u003C\u002Fspan>: \u003Cspan class=\"hljs-built_in\">translateY\u003C\u002Fspan>(\u003Cspan class=\"hljs-number\">0\u003C\u002Fspan>); }\n}\n\n::\u003Cspan class=\"hljs-built_in\">view-transition-old\u003C\u002Fspan>(route-content) {\n  \u003Cspan class=\"hljs-attribute\">animation\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">200ms\u003C\u002Fspan> ease-out both route-fade-out;\n}\n\n::\u003Cspan class=\"hljs-built_in\">view-transition-new\u003C\u002Fspan>(route-content) {\n  \u003Cspan class=\"hljs-attribute\">animation\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">300ms\u003C\u002Fspan> ease-in both route-fade-in;\n}\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Diese Regeln gehören in die \u003Cstrong>globalen\u003C\u002Fstrong> Styles, nicht in die gekapselten Styles einer Komponente.\nAngulars View Encapsulation versieht komponentenlokale Stile mit Attributselektoren.\nDie vom Browser erzeugten \u003Ccode>::view-transition-*\u003C\u002Fcode>-Pseudo-Elemente liegen aber außerhalb jeder Komponente und werden von solchen Selektoren nicht erreicht.\u003C\u002Fp>\n\u003Ch3 id=\"shared-element-transitions-für-cover-und-titel\">Shared-Element-Transitions für Cover und Titel\u003C\u002Fh3>\n\u003Cp>Spannender werden View Transitions mit sogenannten \u003Cem>Shared Elements\u003C\u002Fem>:\nTrägt ein Element in \u003Cem>beiden\u003C\u002Fem> Ansichten den gleichen \u003Ccode>view-transition-name\u003C\u002Fcode>, erkennt der Browser es als dasselbe Element wieder und interpoliert Position und Größe von der alten zur neuen Lage.\nDer Effekt: Das Element \u003Cem>wandert\u003C\u002Fem> sichtbar, statt zu verschwinden und neu zu erscheinen.\u003C\u002Fp>\n\u003Cp>\u003Cfigure>\u003Cimg src=\"%%MARKDOWN_BASE_URL%%\u002Fblog\u002F2026-10-view-transitions\u002Fshared-element-morph.svg\" alt=\"Shared-Element-Morph: Das Cover sitzt in der Listen-Card rechts und klein, auf der Detailseite groß und unten links. Ein Pfeil verdeutlicht, dass derselbe view-transition-name den Browser Position und Größe interpolieren lässt.\" title=\"Dasselbe Cover in beiden Ansichten: der Browser interpoliert Position und Größe.\">\u003Cfigcaption>Dasselbe Cover in beiden Ansichten: der Browser interpoliert Position und Größe.\u003C\u002Ffigcaption>\u003C\u002Ffigure>\u003C\u002Fp>\n\u003Cp>Die Namen müssen dabei pro Übergang eindeutig sein.\nIn der Liste gibt es aber viele \u003Ccode>BookCard\u003C\u002Fcode>-Instanzen gleichzeitig, die über \u003Ccode>@for\u003C\u002Fcode> iteriert werden.\nWürden alle Cover denselben Namen tragen, käme es zum Konflikt.\nDeshalb leiten wir den Namen aus der ISBN des jeweiligen Buchs ab, etwa \u003Ccode>book-cover-&lt;isbn&gt;\u003C\u002Fcode> und \u003Ccode>book-title-&lt;isbn&gt;\u003C\u002Fcode>.\nZusätzlich vergeben wir eine \u003Ccode>view-transition-class\u003C\u002Fcode>, über die wir später alle gleichartigen Elemente mit einer einzigen CSS-Regel ansprechen können.\u003C\u002Fp>\n\u003Cp>In der \u003Ccode>BookCard\u003C\u002Fcode> sieht das für Cover und Titel so aus:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-html\">\u003Cspan class=\"language-xml\">\u003Cspan class=\"hljs-comment\">&lt;!-- book-card.html (Ausschnitt) --&gt;\u003C\u002Fspan>\n@let b = book();\n@let titleId = `title-${b.isbn}`;\n\n\u003Cspan class=\"hljs-tag\">&lt;\u003Cspan class=\"hljs-name\">img\u003C\u002Fspan> \u003Cspan class=\"hljs-attr\">alt\u003C\u002Fspan>=\u003Cspan class=\"hljs-string\">&quot;Buchcover&quot;\u003C\u002Fspan>\n  [\u003Cspan class=\"hljs-attr\">src\u003C\u002Fspan>]=\u003Cspan class=\"hljs-string\">&quot;b.imageUrl&quot;\u003C\u002Fspan>\n  [\u003Cspan class=\"hljs-attr\">style.view-transition-name\u003C\u002Fspan>]=\u003Cspan class=\"hljs-string\">&quot;&#x27;book-cover-&#x27; + b.isbn&quot;\u003C\u002Fspan>\n  [\u003Cspan class=\"hljs-attr\">style.view-transition-class\u003C\u002Fspan>]=\u003Cspan class=\"hljs-string\">&quot;&#x27;book-cover&#x27;&quot;\u003C\u002Fspan> \u002F&gt;\u003C\u002Fspan>\n\u003Cspan class=\"hljs-tag\">&lt;\u003Cspan class=\"hljs-name\">h2\u003C\u002Fspan> [\u003Cspan class=\"hljs-attr\">id\u003C\u002Fspan>]=\u003Cspan class=\"hljs-string\">&quot;titleId&quot;\u003C\u002Fspan>\n  [\u003Cspan class=\"hljs-attr\">style.view-transition-name\u003C\u002Fspan>]=\u003Cspan class=\"hljs-string\">&quot;&#x27;book-title-&#x27; + b.isbn&quot;\u003C\u002Fspan>\n  [\u003Cspan class=\"hljs-attr\">style.view-transition-class\u003C\u002Fspan>]=\u003Cspan class=\"hljs-string\">&quot;&#x27;book-title&#x27;&quot;\u003C\u002Fspan>&gt;\u003C\u002Fspan>\u003C\u002Fspan>\u003Cspan class=\"hljs-template-variable\">{{ \u003Cspan class=\"hljs-name\">b.title\u003C\u002Fspan> }}\u003C\u002Fspan>\u003Cspan class=\"language-xml\">\u003Cspan class=\"hljs-tag\">&lt;\u002F\u003Cspan class=\"hljs-name\">h2\u003C\u002Fspan>&gt;\u003C\u002Fspan>\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Auf der Detailseite geben wir im Anschluss dem großen Cover und der Überschrift dieselben Namen.\nDamit kann der Browser nun die entsprechenden Paare finden:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-html\">\u003Cspan class=\"language-xml\">\u003Cspan class=\"hljs-comment\">&lt;!-- book-details-page.html (Ausschnitt) --&gt;\u003C\u002Fspan>\n\u003Cspan class=\"hljs-tag\">&lt;\u003Cspan class=\"hljs-name\">h1\u003C\u002Fspan> [\u003Cspan class=\"hljs-attr\">id\u003C\u002Fspan>]=\u003Cspan class=\"hljs-string\">&quot;titleId&quot;\u003C\u002Fspan>\n  [\u003Cspan class=\"hljs-attr\">style.view-transition-name\u003C\u002Fspan>]=\u003Cspan class=\"hljs-string\">&quot;&#x27;book-title-&#x27; + b.isbn&quot;\u003C\u002Fspan>\n  [\u003Cspan class=\"hljs-attr\">style.view-transition-class\u003C\u002Fspan>]=\u003Cspan class=\"hljs-string\">&quot;&#x27;book-title&#x27;&quot;\u003C\u002Fspan>&gt;\u003C\u002Fspan>\u003C\u002Fspan>\u003Cspan class=\"hljs-template-variable\">{{ \u003Cspan class=\"hljs-name\">b.title\u003C\u002Fspan> }}\u003C\u002Fspan>\u003Cspan class=\"language-xml\">\u003Cspan class=\"hljs-tag\">&lt;\u002F\u003Cspan class=\"hljs-name\">h1\u003C\u002Fspan>&gt;\u003C\u002Fspan>\n\u003Cspan class=\"hljs-tag\">&lt;\u003Cspan class=\"hljs-name\">img\u003C\u002Fspan> \u003Cspan class=\"hljs-attr\">alt\u003C\u002Fspan>=\u003Cspan class=\"hljs-string\">&quot;Buchcover&quot;\u003C\u002Fspan>\n  [\u003Cspan class=\"hljs-attr\">src\u003C\u002Fspan>]=\u003Cspan class=\"hljs-string\">&quot;b.imageUrl&quot;\u003C\u002Fspan>\n  [\u003Cspan class=\"hljs-attr\">style.view-transition-name\u003C\u002Fspan>]=\u003Cspan class=\"hljs-string\">&quot;&#x27;book-cover-&#x27; + b.isbn&quot;\u003C\u002Fspan>\n  [\u003Cspan class=\"hljs-attr\">style.view-transition-class\u003C\u002Fspan>]=\u003Cspan class=\"hljs-string\">&quot;&#x27;book-cover&#x27;&quot;\u003C\u002Fspan> \u002F&gt;\u003C\u002Fspan>\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Beim Styling lauert ein verbreiteter Stolperstein.\nVerlockend wäre es, auf \u003Ccode>::view-transition-old()\u003C\u002Fcode> und \u003Ccode>::view-transition-new()\u003C\u002Fcode> eigene \u003Ccode>transform\u003C\u002Fcode>-Keyframes zu legen, um die Bewegung direkt zu steuern.\nDas würde aber den Effekt zerstören: Die automatische Interpolation von Position und Größe steckt bereits in der \u003Ccode>::view-transition-group()\u003C\u002Fcode>.\nÜberschreibt man \u003Ccode>old\u003C\u002Fcode>\u002F\u003Ccode>new\u003C\u002Fcode> mit eigenen Transforms, bleibt nur noch ein Überblenden: das Element fadet, statt zu wandern.\u003C\u002Fp>\n\u003Cp>Richtig ist, die Bewegung dem Browser zu überlassen und über die Gruppe nur Dauer und Easing vorzugeben.\nDas \u003Ccode>old\u003C\u002Fcode>\u002F\u003Ccode>new\u003C\u002Fcode>-Paar überblenden wir lediglich ineinander:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-css\">::\u003Cspan class=\"hljs-built_in\">view-transition-group\u003C\u002Fspan>(.book-cover) {\n  \u003Cspan class=\"hljs-attribute\">animation-duration\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">500ms\u003C\u002Fspan>;\n  \u003Cspan class=\"hljs-attribute\">animation-timing-function\u003C\u002Fspan>: \u003Cspan class=\"hljs-built_in\">cubic-bezier\u003C\u002Fspan>(\u003Cspan class=\"hljs-number\">0.22\u003C\u002Fspan>, \u003Cspan class=\"hljs-number\">0.61\u003C\u002Fspan>, \u003Cspan class=\"hljs-number\">0.36\u003C\u002Fspan>, \u003Cspan class=\"hljs-number\">1\u003C\u002Fspan>);\n}\n\n::\u003Cspan class=\"hljs-built_in\">view-transition-old\u003C\u002Fspan>(.book-cover),\n::\u003Cspan class=\"hljs-built_in\">view-transition-new\u003C\u002Fspan>(.book-cover) {\n  \u003Cspan class=\"hljs-attribute\">animation-duration\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">500ms\u003C\u002Fspan>;\n  \u003Cspan class=\"hljs-attribute\">animation-timing-function\u003C\u002Fspan>: \u003Cspan class=\"hljs-built_in\">cubic-bezier\u003C\u002Fspan>(\u003Cspan class=\"hljs-number\">0.22\u003C\u002Fspan>, \u003Cspan class=\"hljs-number\">0.61\u003C\u002Fspan>, \u003Cspan class=\"hljs-number\">0.36\u003C\u002Fspan>, \u003Cspan class=\"hljs-number\">1\u003C\u002Fspan>);\n  \u003Cspan class=\"hljs-comment\">\u002F* Momentaufnahme füllt die Gruppe, Seitenverhältnis bleibt erhalten *\u002F\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-attribute\">height\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">100%\u003C\u002Fspan>;\n  \u003Cspan class=\"hljs-attribute\">object-fit\u003C\u002Fspan>: cover;\n}\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"daten-synchron-bereitstellen-mit-router-resources\">Daten synchron bereitstellen mit Router Resources\u003C\u002Fh3>\n\u003Cp>An dieser Stelle stößt man schnell auf ein (vielleicht überraschendes) Problem: Das Cover fadet statt zu wandern, obwohl alles korrekt benannt ist.\nDer Grund liegt im Timing.\u003C\u002Fp>\n\u003Cp>Angular wartet bei View Transitions bewusst \u003Cem>nicht\u003C\u002Fem> auf asynchrone Daten.\nLädt die Detailseite ihr Buch erst nach der Aktivierung, werden die Daten noch nicht angezeigt, wenn der Browser den neuen Zustand erfasst.\nEs existiert also weder die Überschrift noch das Cover.\nFür die geteilten Elemente existiert dann nur ein \u003Ccode>::view-transition-old()\u003C\u002Fcode>, aber kein \u003Ccode>::view-transition-new()\u003C\u002Fcode>.\nEs gibt also kein Gegenstück, zu dem hin interpoliert werden könnte.\nDas Ergebnis ist genau das beobachtete Ausblenden statt eines Morphs.\u003C\u002Fp>\n\u003Cp>\u003Cfigure>\u003Cimg src=\"%%MARKDOWN_BASE_URL%%\u002Fblog\u002F2026-10-view-transitions\u002Fresource-timing.svg\" alt=\"Timeline-Vergleich: Bei async geladenem httpResource läuft der HTTP-Request noch, wenn der Browser den neuen Zustand erfasst. Die Daten kommen zu spät, es bleibt beim Fade. Bei einer blockierenden Router Resource sind die Daten vor dem Capture da und das DOM ist vollständig, der Morph gelingt.\" title=\"Warum das Timing entscheidet: Das DOM muss beim Capture vollständig sein.\">\u003Cfigcaption>Warum das Timing entscheidet: Das DOM muss beim Capture vollständig sein.\u003C\u002Ffigcaption>\u003C\u002Ffigure>\u003C\u002Fp>\n\u003Cp>Die Lösung: Das Buch muss schon beim Aktivieren der Route synchron vorliegen.\nEin vorab gefüllter Cache ist dafür ein möglicher Weg: Liegt das Buch bereits im Speicher, steht es ohne Verzögerung bereit.\nVerlässlich erzwingen lässt sich das synchrone Vorliegen aber über eine \u003Cem>blockierende\u003C\u002Fem> Router Resource, die mit Angular 22.2 als Developer Preview eingeführt wurde.\nDafür aktivieren wir jetzt das Router-Feature \u003Ccode>withRouterResources()\u003C\u002Fcode>:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-comment\">\u002F\u002F app.config.ts (Ausschnitt)\u003C\u002Fspan>\n\u003Cspan class=\"hljs-built_in\">provideRouter\u003C\u002Fspan>(\n  routes,\n  withComponentInputBinding(),\n  \u003Cspan class=\"hljs-built_in\">withViewTransitions\u003C\u002Fspan>(),\n  \u003Cspan class=\"hljs-built_in\">withRouterResources\u003C\u002Fspan>()       \u003Cspan class=\"hljs-comment\">\u002F\u002F aktiviert Router Resources\u003C\u002Fspan>\n)\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>In den Routen können wir nun Resources angeben, die automatisch vom Router aufgelöst werden.\nBevor die Komponente aktiviert wird, wird blockierend auf den geladenen Wert der Resource gewartet. Erst danach wird die Komponente geladen.\nUnser \u003Ccode>BookStore\u003C\u002Fcode> stellt bereits eine Methode \u003Ccode>getSingle()\u003C\u002Fcode> bereit, die auf einem signalbasierten \u003Ccode>httpResource\u003C\u002Fcode> aufsetzt und auf einen wechselnden ISBN-Parameter reagiert.\nDiese Resource können wir direkt verwenden. Wir übergeben den Routenparameter als Funktion, die die ISBN zurückgibt:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-comment\">\u002F\u002F book-store.ts (Ausschnitt)\u003C\u002Fspan>\ngetSingle(isbn: \u003Cspan class=\"hljs-function\">\u003Cspan class=\"hljs-params\">()\u003C\u002Fspan> =&gt;\u003C\u002Fspan> string): HttpResourceRef&lt;Book | \u003Cspan class=\"hljs-literal\">undefined\u003C\u002Fspan>&gt; {\n  \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> httpResource&lt;Book&gt;(\n    \u003Cspan class=\"hljs-function\">\u003Cspan class=\"hljs-params\">()\u003C\u002Fspan> =&gt;\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">`\u003Cspan class=\"hljs-subst\">${this.#apiUrl}\u003C\u002Fspan>\u002Fbooks\u002F\u003Cspan class=\"hljs-subst\">${isbn()}\u003C\u002Fspan>`\u003C\u002Fspan>\n  );\n}\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-regexp\">\u002F\u002F\u003C\u002Fspan> books-portal.routes.ts (Ausschnitt)\n{\n  path: \u003Cspan class=\"hljs-string\">&#x27;details\u002F:isbn&#x27;\u003C\u002Fspan>,\n  component: BookDetailsPage,\n  resources: \u003Cspan class=\"hljs-function\">\u003Cspan class=\"hljs-params\">(ctx)\u003C\u002Fspan> =&gt;\u003C\u002Fspan> {\n    const bookStore = inject(BookStore);\n    \u003Cspan class=\"hljs-keyword\">return\u003C\u002Fspan> {\n      book: bookStore.getSingle(\u003Cspan class=\"hljs-function\">\u003Cspan class=\"hljs-params\">()\u003C\u002Fspan> =&gt;\u003C\u002Fspan> ctx.params()[\u003Cspan class=\"hljs-string\">&#x27;isbn&#x27;\u003C\u002Fspan>] || \u003Cspan class=\"hljs-string\">&#x27;&#x27;\u003C\u002Fspan>)\n    };\n  }\n}\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Die Komponente schrumpft dadurch auf das Wesentliche.\nDas Ergebnis wird mittels \u003Cem>Component Input Binding\u003C\u002Fem> an ein Input der Komponente gebunden: Der Schlüssel \u003Ccode>book\u003C\u002Fcode> aus dem \u003Ccode>resources\u003C\u002Fcode>-Objekt landet im gleichnamigen Input \u003Ccode>book\u003C\u002Fcode>.\nStatt eine Resource selbst zu verwalten, nimmt die Komponente also das fertige Buch einfach als Input entgegen:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-comment\">\u002F\u002F book-details-page.ts\u003C\u002Fspan>\nexport \u003Cspan class=\"hljs-keyword\">class\u003C\u002Fspan> \u003Cspan class=\"hljs-title class_\">BookDetailsPage\u003C\u002Fspan> {\n  \u003Cspan class=\"hljs-keyword\">readonly\u003C\u002Fspan> book = input.required&lt;Book&gt;();   \u003Cspan class=\"hljs-comment\">\u002F\u002F kommt aus der blockierenden Resource\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-comment\">\u002F\u002F ...\u003C\u002Fspan>\n}\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Dass eine \u003Cem>Non-Blocking Router Resource\u003C\u002Fem> hier keine Alternative ist, ergibt sich aus demselben Timing-Argument: Die Komponente bekäme dann die Resource selbst als Input und würde gerendert, bevor die Daten da sind.\nDer Effekt: Wir landen wieder beim Fade.\u003C\u002Fp>\n\u003Cp>Einen Trade-off haben Router Resources allerdings: Die Navigation wartet kurz auf den Request, bevor der Übergang startet.\nBei einer schnellen Server-API ist das kaum wahrnehmbar.\nDafür gibt es einen praktischen Zusatznutzen: Im Fall einer unbekannten ISBN, bei dem die blockierende Resource die Navigation abbrechen würde, lässt sich in der ladenden Funktion der Resource ein \u003Ccode>RedirectCommand\u003C\u002Fcode> werfen und so umleiten.\nIm Minimalbeispiel haben wir an dieser Stelle aber darauf verzichtet.\u003C\u002Fp>\n\u003Cblockquote>\n\u003Cp>\u003Cstrong>Router Resources oder klassischer Resolver?\u003C\u002Fstrong> Der Gedanke, Daten „vor der Aktivierung“ blockierend zu laden, ist nicht neu: Klassischerweise haben wir dafür einen \u003Cem>Resolver\u003C\u002Fem> genutzt (\u003Ccode>ResolveFn&lt;T&gt;\u003C\u002Fcode>, registriert unter \u003Ccode>resolve\u003C\u002Fcode> in der Route).\nResolver und Router Resource teilen genau die Eigenschaft, auf die es uns hier ankommt: Beide blockieren die Navigation und stellen das Ergebnis über ein Component Input Binding synchron als Input bereit.\nFür unseren Shared-Element-Morph wäre ein Resolver also grundsätzlich ebenso geeignet.\u003C\u002Fp>\n\u003Cp>Wir setzen hier trotzdem Router Resources ein, weil sie signal-basiert und damit reaktiv sind: ändert sich ein Routenparameter, lädt die Resource neu, und ein \u003Ccode>reload()\u003C\u002Fcode> ist ohne erneute Navigation möglich.\nÜber die Routen-Hierarchie laufen mehrere Resources zudem \u003Cem>parallel\u003C\u002Fem>, während Resolver von der Eltern- zur Kindroute nacheinander abgearbeitet werden.\nAußerdem fügen sie sich konsistent in ein Projekt ein, das ohnehin mit \u003Ccode>httpResource\u003C\u002Fcode> und Signals arbeitet, und \u003Ccode>nonBlocking()\u003C\u002Fcode> steht als expliziter Opt-out bereit, wenn man den Ladezustand doch in der Komponente behandeln möchte.\nDie Fehlerbehandlung funktioniert in beiden Welten ähnlich: Resolver fangen Fehler an der Quelle ab (z. B. mit \u003Ccode>catchError()\u003C\u002Fcode>) oder nutzen \u003Ccode>withNavigationErrorHandler()\u003C\u002Fcode>. Eine Router Resource wirft in ihrer ladenden Funktion ein \u003Ccode>RedirectCommand\u003C\u002Fcode>.\u003C\u002Fp>\n\u003Cp>Wer Resolver im Projekt hat und zufrieden damit ist, muss nichts umbauen. Resolver bleiben ein valides Werkzeug. Eine ausführliche Behandlung inklusive Fehlerbehandlung und der UX-Problematik blockierender Navigation findet sich im Buch-Zusatzmaterial \u003Ca href=\"\u002Fmaterial\u002Fresolvers\">Resolvers: Daten beim Routing vorladen\u003C\u002Fa>.\nDort argumentieren wir, dass blockierende Resolver aus UX-Sicht meist ungünstig sind.\nUnser Fall ist die begründete Ausnahme: Hier müssen die Daten synchron vorliegen, sonst kann die View Transition nicht morphen.\nHinzu kommt, dass die View Transition selbst die wahrgenommene Wartezeit überbrückt: Ein harter Schnitt mit kurzer Pause wirkt wie ein Hänger, der animierte Übergang zeigt dagegen, dass etwas passiert.\u003C\u002Fp>\n\u003C\u002Fblockquote>\n\u003Ch3 id=\"weitere-zuordenbare-elemente-und-das-ein--und-ausblenden\">Weitere zuordenbare Elemente und das Ein- und Ausblenden\u003C\u002Fh3>\n\u003Cp>Nach dem Prinzip, das wir eben kennengelernt haben, lassen sich beliebig viele Elemente paaren.\nAlles, was in beiden Ansichten vorkommt, bekommt einen geteilten Namen.\nZusätzlich zum Cover und Titel verknüpfen wir also auch Untertitel (\u003Ccode>book-subtitle-&lt;isbn&gt;\u003C\u002Fcode>) und ISBN (\u003Ccode>book-isbn-&lt;isbn&gt;\u003C\u002Fcode>).\nSelbst dem umgebenden \u003Ccode>&lt;article&gt;\u003C\u002Fcode> geben wir einen Namen (\u003Ccode>book-frame-&lt;isbn&gt;\u003C\u002Fcode>).\nDadurch morpht der Rahmen als Ganzes, und die kompakte Listen-Card „zoomt“ sichtbar zur ausgedehnten Detailseite.\nWo genau diese Namen im Markup sitzen, zeigt das vollständige \u003Ca href=\"https:\u002F\u002Fstackblitz.com\u002Fedit\u002Fangular-buch-book-manager1-view-transition-api\">\u003Ccode>book-card.html\u003C\u002Fcode> im StackBlitz-Projekt\u003C\u002Fa>.\u003C\u002Fp>\n\u003Cp>Elemente, die nur in einer der beiden Ansichten existieren, behandelt der Browser automatisch sinnvoll: Neue Inhalte wie Autoren, Beschreibung und Datum blenden über den Standard-Überblendeffekt des Frames ein.\u003C\u002Fp>\n\u003Cp>Interessant ist das Zusammenspiel von Rahmen und Inhalt. Ein benanntes Kind-Element wird aus seinem benannten Vorfahren „herausgehoben“ und als eigene Top-Level-Gruppe animiert.\nDer Frame morpht also, ohne Cover, Titel und Co. mitzuzerren: Diese wandern unabhängig obendrauf.\nSo entsteht die zusammengesetzte Choreografie aus einem zoomenden Rahmen und mehreren eigenständig wandernden Elementen.\u003C\u002Fp>\n\u003Ch3 id=\"bereiche-gezielt-sofort-ausblenden-statt-faden\">Bereiche gezielt sofort ausblenden statt faden\u003C\u002Fh3>\n\u003Cp>Der \u003Ccode>&lt;footer&gt;\u003C\u002Fcode> der Card mit dem Link „Details“ und dem Button „Like“ existiert auf der Detailseite nicht.\nÜber den Überblendeffekt des Frames würde er langsam ausfaden.\nWir wollen aber, dass der gesamte Footer sofort verschwindet.\u003C\u002Fp>\n\u003Cp>Die Lösung ist, dem gesamten \u003Ccode>&lt;footer&gt;\u003C\u002Fcode> einen eigenen \u003Ccode>view-transition-name\u003C\u002Fcode> samt Klasse \u003Ccode>book-actions\u003C\u002Fcode> zu geben.\nDa das Element nur in der Liste vorkommt, enthält seine Gruppe nur ein \u003Ccode>::view-transition-old()\u003C\u002Fcode> und kein \u003Ccode>::view-transition-new()\u003C\u002Fcode>.\u003C\u002Fp>\n\u003Cp>Hier lauert noch eine Feinheit: \u003Ccode>animation: none\u003C\u002Fcode> wäre falsch, denn das ließe die Momentaufnahme über die gesamte Transition stehen.\nDer Footer bliebe also sichtbar.\nStattdessen setzen wir ihn in einem einzigen Schritt einfach auf \u003Ccode>opacity: 0\u003C\u002Fcode>:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-css\">::\u003Cspan class=\"hljs-built_in\">view-transition-old\u003C\u002Fspan>(.book-actions) {\n  \u003Cspan class=\"hljs-attribute\">animation\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">1ms\u003C\u002Fspan> step-end both book-actions-hide;\n}\n\n\u003Cspan class=\"hljs-keyword\">@keyframes\u003C\u002Fspan> book-actions-hide {\n  \u003Cspan class=\"hljs-selector-tag\">from\u003C\u002Fspan>, \u003Cspan class=\"hljs-selector-tag\">to\u003C\u002Fspan> { \u003Cspan class=\"hljs-attribute\">opacity\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">0\u003C\u002Fspan>; }\n}\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Ein eigener Name kombiniert mit einem \u003Ccode>opacity: 0\u003C\u002Fcode>-Keyframe ist der allgemeine Weg, um Bereiche, die nur in einer Ansicht vorkommen, gezielt sofort ein- oder auszublenden, statt sie zu faden.\u003C\u002Fp>\n\u003Ch3 id=\"feinschliff-zeitlicher-versatz\">Feinschliff: zeitlicher Versatz\u003C\u002Fh3>\n\u003Cp>Ein Übergang wirkt lebendiger, wenn sich nicht alle Elemente exakt gleichzeitig bewegen, sondern leicht gestaffelt.\nIn unserem Beispiel startet das Cover seine Wanderung bewusst 100 Millisekunden nach dem Rahmen und den übrigen Elementen.\nUmgesetzt wird das über \u003Ccode>animation-delay\u003C\u002Fcode> auf der Cover-Gruppe.\nMit \u003Ccode>animation-fill-mode: both\u003C\u002Fcode> bleibt das Cover während der Verzögerung an seiner Startposition stehen, statt zu springen:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-css\">::\u003Cspan class=\"hljs-built_in\">view-transition-group\u003C\u002Fspan>(.book-cover) {\n  \u003Cspan class=\"hljs-attribute\">animation-duration\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">500ms\u003C\u002Fspan>;\n  \u003Cspan class=\"hljs-attribute\">animation-delay\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">100ms\u003C\u002Fspan>;      \u003Cspan class=\"hljs-comment\">\u002F* startet versetzt *\u002F\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-attribute\">animation-fill-mode\u003C\u002Fspan>: both;   \u003Cspan class=\"hljs-comment\">\u002F* hält Start-\u002FEndbild in der Verzögerung *\u002F\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-attribute\">animation-timing-function\u003C\u002Fspan>: \u003Cspan class=\"hljs-built_in\">cubic-bezier\u003C\u002Fspan>(\u003Cspan class=\"hljs-number\">0.22\u003C\u002Fspan>, \u003Cspan class=\"hljs-number\">0.61\u003C\u002Fspan>, \u003Cspan class=\"hljs-number\">0.36\u003C\u002Fspan>, \u003Cspan class=\"hljs-number\">1\u003C\u002Fspan>);\n}\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Die gleichen Werte für \u003Ccode>animation-delay\u003C\u002Fcode> und \u003Ccode>animation-fill-mode\u003C\u002Fcode> setzen wir auch auf \u003Ccode>::view-transition-old(.book-cover)\u003C\u002Fcode> und \u003Ccode>::view-transition-new(.book-cover)\u003C\u002Fcode>, damit Überblendung und Positions-Morph synchron bleiben.\nIm nächsten Abschnitt sehen wir, dass dieser Versatz in den DevTools gut sichtbar wird: In der Zeitleiste beginnt die Cover-Spur erkennbar später als die des Rahmens.\u003C\u002Fp>\n\u003Ch2 id=\"untersuchung-und-nachvollziehbarkeit-mit-den-chrome-devtools\">Untersuchung und Nachvollziehbarkeit mit den Chrome DevTools\u003C\u002Fh2>\n\u003Cp>Eine View Transition läuft in etwa einer halben Sekunde ab.\nDas ist oftmals zu schnell, um mit bloßem Auge zu beurteilen, ob ein Element wirklich wandert oder nur überblendet.\nDie Chrome DevTools bringen mit dem Animations-Panel ein Werkzeug mit, das genau diese Analyse ermöglicht.\nDie offizielle Dokumentation dazu findet sich unter \u003Ca href=\"https:\u002F\u002Fdeveloper.chrome.com\u002Fdocs\u002Fdevtools\u002Fcss\u002Fanimations\u002F\">Inspect CSS animations\u003C\u002Fa>.\u003C\u002Fp>\n\u003Ch3 id=\"das-animations-panel-öffnen\">Das Animations-Panel öffnen\u003C\u002Fh3>\n\u003Cp>Am schnellsten geht es über das Command-Menü: Mit \u003Ccode>Cmd\u003C\u002Fcode>\u002F\u003Ccode>Ctrl\u003C\u002Fcode> + \u003Ccode>Shift\u003C\u002Fcode> + \u003Ccode>P\u003C\u002Fcode> die Eingabe „Show Animations“ aufrufen.\nAlternativ lässt sich das Panel über das Drawer-Menü („More tools“ → „Animations“) öffnen.\nDas Panel zeigt die aufgezeichneten Animationsgruppen untereinander, jeweils als Balken auf einer gemeinsamen Zeitleiste, und bietet einen Abspielmarker, mit dem man die Animation manuell durch die Zeit ziehen kann.\u003C\u002Fp>\n\u003Cp>\u003Cfigure>\u003Cimg src=\"%%MARKDOWN_BASE_URL%%\u002Fblog\u002F2026-10-view-transitions\u002Fdevtools-animations-panel.svg\" alt=\"Annotiertes Chrome-DevTools-Animations-Panel: Buttons für „Clear all“ und „Pause all“, Geschwindigkeits-Buttons und eine Zeitleiste mit je einer Spur pro view-transition-Gruppe (Rahmen, Cover, Titel, Untertitel, ISBN) sowie dem Seiten-Crossfade.\" title=\"Das Animations-Panel: Zeitleiste, Geschwindigkeit und Abspielmarker.\">\u003Cfigcaption>Das Animations-Panel: Zeitleiste, Geschwindigkeit und Abspielmarker.\u003C\u002Ffigcaption>\u003C\u002Ffigure>\u003C\u002Fp>\n\u003Ch3 id=\"aufzeichnen-und-wiederholen\">Aufzeichnen und wiederholen\u003C\u002Fh3>\n\u003Cp>Das Panel zeichnet automatisch auf, sobald eine Animation startet.\nEs genügt also, bei geöffnetem Panel die Navigation auszulösen: In unserem Fall also ein Klick auf „Details“.\nDie aufgezeichnete Transition erscheint als Gruppe von Zeitleisten-Spuren, und über den Replay-Button lässt sie sich beliebig oft erneut abspielen, ohne erneut navigieren zu müssen.\nHier tauchen die einzelnen Gruppen namentlich auf, etwa \u003Ccode>::view-transition-group(book-cover-…)\u003C\u002Fcode>.\nMit dem Abspielmarker lässt sich der Übergang von Hand durch die Zeit ziehen, sodass man jeden Zwischenzustand in Ruhe betrachten kann.\u003C\u002Fp>\n\u003Ch3 id=\"verlangsamen-für-die-analyse\">Verlangsamen für die Analyse\u003C\u002Fh3>\n\u003Cp>Im Panel lässt sich die Abspielgeschwindigkeit reduzieren, etwa auf 25 % oder 10 %. In dieser Zeitlupe wird unmittelbar sichtbar, was im Normaltempo verborgen bleibt: Verändert ein Element Position und Größe, läuft also tatsächlich eine \u003Ccode>group\u003C\u002Fcode>-Animation, dann funktioniert die Shared-Element-Transition.\nBlendet es dagegen nur ein oder aus, handelt es sich um ein reines Fade. Dann fehlt das Gegenstück im neuen DOM.\u003C\u002Fp>\n\u003Ch3 id=\"nachweis-morph-oder-fade\">Nachweis: Morph oder Fade?\u003C\u002Fh3>\n\u003Cp>Wer es genau wissen will, kann die laufenden Pseudo-Element-Animationen auch programmatisch auslesen.\n\u003Ccode>document.getAnimations()\u003C\u002Fcode> liefert alle aktiven Animationen, über deren \u003Ccode>effect.pseudoElement\u003C\u002Fcode> sich die zugehörigen \u003Ccode>::view-transition-*\u003C\u002Fcode>-Namen ablesen lassen.\nDas Erfolgskriterium ist eindeutig: Existiert für ein geteiltes Element sowohl eine \u003Ccode>::view-transition-group(name)\u003C\u002Fcode> als auch ein \u003Ccode>::view-transition-new(name)\u003C\u002Fcode>, handelt es sich um einen echten Morph.\nFindet sich dagegen nur ein \u003Ccode>::view-transition-old(name)\u003C\u002Fcode> ohne \u003Ccode>::view-transition-new(name)\u003C\u002Fcode>, fehlt das Element im neuen DOM. Es kann nur ausblenden.\nDas ist typischerweise die Signatur asynchron geladener Daten und führt direkt zurück zu unserer Lösung mit den Router Resources oder alternativ Resolvern.\nZusätzlich lassen sich \u003Ccode>transform\u003C\u002Fcode>, \u003Ccode>width\u003C\u002Fcode> und \u003Ccode>height\u003C\u002Fcode> der Gruppe am Anfang und Ende auslesen, um die Interpolation schwarz auf weiß zu belegen.\u003C\u002Fp>\n\u003Ch2 id=\"barrierefreiheit-prefers-reduced-motion\">Barrierefreiheit: \u003Ccode>prefers-reduced-motion\u003C\u002Fcode>\u003C\u002Fh2>\n\u003Cp>Beim Thema Bewegung sind zwei Konzepte auseinanderzuhalten. Das eine ist Progressive Enhancement im Sinne fehlender Browserfähigkeiten.\nDas deckt die View Transitions API bereits selbst ab, indem Angular ohne Unterstützung ein normales DOM-Update macht.\nDas andere ist \u003Ccode>prefers-reduced-motion\u003C\u002Fcode>: eine bewusste Nutzerpräferenz, etwa bei vestibulären Beschwerden.\nDas ist kein Fähigkeits-Fallback, sondern eine Opt-out-Entscheidung der nutzenden Person.\u003C\u002Fp>\n\u003Cp>Die eigentliche Lösung liefert Angulars View-Transitions-Integration.\n\u003Ccode>withViewTransitions()\u003C\u002Fcode> akzeptiert ein Optionsobjekt mit dem Callback \u003Ccode>onViewTransitionCreated\u003C\u002Fcode>.\nDieses läuft in einem Injection Context und bekommt unter anderem die native Instanz von \u003Ccode>ViewTransition\u003C\u002Fcode> übergeben.\nDarauf rufen wir bei \u003Ccode>reduce\u003C\u002Fcode> \u003Ccode>skipTransition()\u003C\u002Fcode> auf. Das überspringt die Animation, während das DOM-Update (also der Routenwechsel) trotzdem ausgeführt wird:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-comment\">\u002F\u002F app.config.ts\u003C\u002Fspan>\n\u003Cspan class=\"hljs-selector-tag\">provideRouter\u003C\u002Fspan>(\n  routes,\n  \u003Cspan class=\"hljs-built_in\">withComponentInputBinding\u003C\u002Fspan>(),\n  \u003Cspan class=\"hljs-built_in\">withViewTransitions\u003C\u002Fspan>({\n    \u003Cspan class=\"hljs-attribute\">onViewTransitionCreated\u003C\u002Fspan>: ({ transition }) =&gt; {\n      const prefersReducedMotion =\n        \u003Cspan class=\"hljs-built_in\">matchMedia\u003C\u002Fspan>(\u003Cspan class=\"hljs-string\">&#x27;(prefers-reduced-motion: reduce)&#x27;\u003C\u002Fspan>).matches;\n      if (prefersReducedMotion) {\n        transition.\u003Cspan class=\"hljs-built_in\">skipTransition\u003C\u002Fspan>();\n      }\n    }\n  }),\n  \u003Cspan class=\"hljs-built_in\">withRouterResources\u003C\u002Fspan>()\n)\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>\u003Ccode>skipTransition()\u003C\u002Fcode> deckt den View-Transition-Fall vollständig ab: Es unterbindet sowohl unsere eigenen Keyframes als auch den browsereigenen Standard-Überblendeffekt, der den gesamten Seiteninhalt betrifft.\nInhalt und Navigation bleiben dabei voll funktionsfähig, lediglich die zusätzliche Bewegung entfällt.\u003C\u002Fp>\n\u003Cp>Als zweite Absicherung können wir unsere eigenen Keyframes zusätzlich in \u003Ccode>@media (prefers-reduced-motion: no-preference)\u003C\u002Fcode> kapseln.\nFür die Angular-Integration ist das zwar nicht mehr nötig, da \u003Ccode>skipTransition()\u003C\u002Fcode> den Übergang ohnehin überspringt. Es ist aber eine gute Angewohnheit und greift auch dort, wo View Transitions ohne die Router-Integration zum Einsatz kommen:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-css\">\u003Cspan class=\"hljs-comment\">\u002F* Animationen nur, wenn keine Reduktion gewünscht ist (opt-in) *\u002F\u003C\u002Fspan>\n\u003Cspan class=\"hljs-keyword\">@media\u003C\u002Fspan> (\u003Cspan class=\"hljs-attribute\">prefers-reduced-motion\u003C\u002Fspan>: no-preference) {\n  ::\u003Cspan class=\"hljs-built_in\">view-transition-group\u003C\u002Fspan>(.book-cover) {\n    \u003Cspan class=\"hljs-attribute\">animation-duration\u003C\u002Fspan>: \u003Cspan class=\"hljs-number\">500ms\u003C\u002Fspan>;\n    \u003Cspan class=\"hljs-attribute\">animation-timing-function\u003C\u002Fspan>: \u003Cspan class=\"hljs-built_in\">cubic-bezier\u003C\u002Fspan>(\u003Cspan class=\"hljs-number\">0.22\u003C\u002Fspan>, \u003Cspan class=\"hljs-number\">0.61\u003C\u002Fspan>, \u003Cspan class=\"hljs-number\">0.36\u003C\u002Fspan>, \u003Cspan class=\"hljs-number\">1\u003C\u002Fspan>);\n  }\n  \u003Cspan class=\"hljs-comment\">\u002F* … alle weiteren View-Transition-Regeln hier hinein … *\u002F\u003C\u002Fspan>\n}\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"übergänge-bei-reinen-query-parameter-wechseln-überspringen\">Übergänge bei reinen Query-Parameter-Wechseln überspringen\u003C\u002Fh3>\n\u003Cp>\u003Ccode>onViewTransitionCreated\u003C\u002Fcode> eignet sich noch für einen weiteren Fall.\nDer Router löst bei \u003Cem>jeder\u003C\u002Fem> Navigation einen Übergang aus, also auch dann, wenn sich nur Query-Parameter oder das Fragment ändern.\nEin typisches Beispiel ist ein Suchfeld, das den Suchbegriff als Query-Parameter in die URL schreibt: Jeder Tastendruck würde eine View Transition samt Überblendung und blockierender Overlay-Schicht auslösen.\u003C\u002Fp>\n\u003Cp>Die Angular-Dokumentation zeigt dafür das passende Muster: den Übergang überspringen, wenn sich die eigentliche Route gar nicht ändert.\nDie Prüfung lässt sich mit der Bedingung für reduzierte Bewegung aus dem vorigen Abschnitt im selben Callback kombinieren:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { inject } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Fcore&#x27;\u003C\u002Fspan>;\n\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { \u003Cspan class=\"hljs-title class_\">Router\u003C\u002Fspan>, withViewTransitions, isActive, \u003Cspan class=\"hljs-title class_\">IsActiveMatchOptions\u003C\u002Fspan> } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Frouter&#x27;\u003C\u002Fspan>;\n\n\u003Cspan class=\"hljs-title function_\">withViewTransitions\u003C\u002Fspan>({\n  \u003Cspan class=\"hljs-attr\">onViewTransitionCreated\u003C\u002Fspan>: \u003Cspan class=\"hljs-function\">(\u003Cspan class=\"hljs-params\">{ transition }\u003C\u002Fspan>) =&gt;\u003C\u002Fspan> {\n    \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> router = \u003Cspan class=\"hljs-title function_\">inject\u003C\u002Fspan>(\u003Cspan class=\"hljs-title class_\">Router\u003C\u002Fspan>);\n    \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> targetUrl = router.\u003Cspan class=\"hljs-title function_\">currentNavigation\u003C\u002Fspan>()!.\u003Cspan class=\"hljs-property\">finalUrl\u003C\u002Fspan>!;\n\n    \u003Cspan class=\"hljs-comment\">\u002F\u002F Übergang überspringen, wenn sich nur Fragment oder Query-Parameter ändern\u003C\u002Fspan>\n    \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> \u003Cspan class=\"hljs-attr\">config\u003C\u002Fspan>: \u003Cspan class=\"hljs-title class_\">Partial\u003C\u002Fspan>&lt;\u003Cspan class=\"hljs-title class_\">IsActiveMatchOptions\u003C\u002Fspan>&gt; = {\n      \u003Cspan class=\"hljs-attr\">paths\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;exact&#x27;\u003C\u002Fspan>,\n      \u003Cspan class=\"hljs-attr\">matrixParams\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;exact&#x27;\u003C\u002Fspan>,\n      \u003Cspan class=\"hljs-attr\">fragment\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;ignored&#x27;\u003C\u002Fspan>,\n      \u003Cspan class=\"hljs-attr\">queryParams\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&#x27;ignored&#x27;\u003C\u002Fspan>\n    };\n    \u003Cspan class=\"hljs-keyword\">const\u003C\u002Fspan> isTargetRouteCurrent = \u003Cspan class=\"hljs-title function_\">isActive\u003C\u002Fspan>(targetUrl, router, config);\n\n    \u003Cspan class=\"hljs-keyword\">if\u003C\u002Fspan> (\u003Cspan class=\"hljs-title function_\">isTargetRouteCurrent\u003C\u002Fspan>()) {\n      transition.\u003Cspan class=\"hljs-title function_\">skipTransition\u003C\u002Fspan>();\n    }\n  }\n})\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch2 id=\"fazit\">Fazit\u003C\u002Fh2>\n\u003Cp>Mit der View Transitions API lassen sich Routenwechsel in Angular ohne zusätzliche Abhängigkeit animieren.\nEs funktioniert als Progressive Enhancement, das in nicht unterstützenden Browsern zum normalen Verhalten degradiert.\nDrei Bausteine tragen das Ergebnis:\u003C\u002Fp>\n\u003Cul>\n\u003Cli>\u003Ccode>withViewTransitions()\u003C\u002Fcode> aktiviert die Integration,\u003C\u002Fli>\n\u003Cli>geteilte \u003Ccode>view-transition-name\u003C\u002Fcode>-Werte verwandeln einzelne Elemente in wandernde Shared Elements, und\u003C\u002Fli>\n\u003Cli>eine blockierende Router Resource stellt die Daten synchron bereit, damit beim Erfassen des neuen Zustands die zu morphenden Elemente tatsächlich vorhanden sind.\u003C\u002Fli>\n\u003C\u002Ful>\n\u003Cp>Die Chrome DevTools mit ihrem Animations-Panel und der Möglichkeit zum Verlangsamen sind dabei das Werkzeug der Wahl, um einen Übergang Schritt für Schritt zu analysieren.\u003C\u002Fp>\n\u003Cp>Von hier aus lässt sich weiterdenken: View Transition Types für unterschiedliche Übergangsstile je nach Navigationsrichtung, eine eigene Choreografie für den Rückweg von der Detailseite zur Liste oder komplexere gestaffelte Abläufe.\nUnd nicht vergessen: Die Angular-Implementierungen für View Transitions und Router Resources sind in Angular 22.2 noch Developer Preview.\u003C\u002Fp>\n\u003Cp>Wie setzt ihr View Transitions in euren Projekten ein? Schreibt uns gern eure Erfahrungen und Fragen.\u003C\u002Fp>\n\u003Ch2 id=\"weiterführende-links\">Weiterführende Links\u003C\u002Fh2>\n\u003Cul>\n\u003Cli>Demo: \u003Ca href=\"https:\u002F\u002Fstackblitz.com\u002Fedit\u002Fangular-buch-book-manager1-view-transition-api\">BookManager mit View Transitions auf StackBlitz\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>Angular Guide: \u003Ca href=\"https:\u002F\u002Fangular.dev\u002Fguide\u002Frouting\u002Froute-transition-animations\">Route transition animations\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>Angular Guide: \u003Ca href=\"https:\u002F\u002Fangular.dev\u002Fguide\u002Frouting\u002Fdata-fetching-with-resources\">Data fetching with resources\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>Buch-Zusatzmaterial: \u003Ca href=\"\u002Fmaterial\u002Fresolvers\">Resolvers – Daten beim Routing vorladen\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>Chrome DevTools: \u003Ca href=\"https:\u002F\u002Fdeveloper.chrome.com\u002Fdocs\u002Fdevtools\u002Fcss\u002Fanimations\u002F\">Animationen inspizieren\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>Chrome Blog: \u003Ca href=\"https:\u002F\u002Fdeveloper.chrome.com\u002Fblog\u002Fview-transitions-in-2025\">What&#39;s new in view transitions (2025)\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>MDN: \u003Ca href=\"https:\u002F\u002Fdeveloper.mozilla.org\u002Fen-US\u002Fdocs\u002FWeb\u002FAPI\u002FView_Transition_API\">View Transition API\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>MDN: \u003Ca href=\"https:\u002F\u002Fdeveloper.mozilla.org\u002Fen-US\u002Fdocs\u002FWeb\u002FAPI\u002FView_Transition_API#browser_compatibility\">Browserkompatibilität der View Transition API\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>MDN: \u003Ca href=\"https:\u002F\u002Fdeveloper.mozilla.org\u002Fen-US\u002Fdocs\u002FWeb\u002FCSS\u002F@view-transition\">\u003Ccode>@view-transition\u003C\u002Fcode> – cross-document \u002F MPA\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n","meta":{"title":"View Transitions in Angular: Shared-Element-Animationen zwischen Routen","author":"Danny Koppenhagen","mail":"mail@k9n.dev","published":"2026-10-19T00:00:00.000Z","lastModified":"2026-10-19T00:00:00.000Z","keywords":["Angular","View Transitions","View Transitions API","Routing","Animations","Shared Element Transition","Router Resources","Chrome DevTools","Angular 22"],"language":"de","header":{"url":"view-transitions-header.webp","width":1536,"height":583},"sticky":false,"hidden":false,"darkenHeader":false}},"h":{},"s":200,"st":"OK","u":"https:\u002F\u002Fwebsite-articles.angular-buch.com\u002Fblog\u002F2026-10-view-transitions\u002Fentry.json","rt":"json"},"__nghData__":[{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[],"1":[],"2":[{"i":"t5","r":1,"t":{"1":"t6"},"c":{"1":[]}}]}}]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[],"1":[{"i":"t4","r":1,"t":{"1":"t7"},"c":{"1":[]}}],"2":[]}}]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[],"1":[{"i":"t4","r":1,"t":{"1":"t7"},"c":{"1":[{"i":"t7","r":1}]}}],"2":[]}}]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[{"i":"t3","r":1,"t":{"1":"t8"},"c":{"1":[{"i":"t8","r":1}]}}],"1":[],"2":[]}}]}},{"t":{"10":"t0"},"c":{"10":[{"i":"t0","r":1,"x":5}]}},{"t":{"6":"t18","7":"t19"},"c":{"6":[{"i":"t18","r":1}],"7":[]}},{"t":{"1":"t32","2":"t35"},"c":{"1":[{"i":"t32","r":4,"t":{"0":"t33","3":"t34"},"c":{"0":[],"3":[{"i":"t34","r":1}]}}],"2":[]}},{},{"t":{"3":"t29","4":"t47"},"c":{"3":[{"i":"t29","r":1,"t":{"3":"t30","18":"t36","19":"t37","20":"t38","21":"t39","26":"t41","27":"t42","30":"t43","31":"t44","34":"t45"},"c":{"3":[{"i":"t30","r":1,"t":{"3":"t31"},"c":{"3":[]}}],"18":[],"19":[{"i":"t37","r":1}],"20":[],"21":[{"i":"t39","r":1,"t":{"4":"t40"},"c":{"4":[{"i":"t40","r":1,"x":9}]}}],"26":[],"27":[{"i":"t42","r":1}],"30":[],"31":[{"i":"t44","r":1}],"34":[{"i":"t45","r":1,"t":{"0":"t46"},"c":{"0":[]}}]}}],"4":[]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[{"i":"t3","r":1,"t":{"1":"t8"},"c":{"1":[]}}],"1":[],"2":[]}}]}},{"t":{"5":"t16"},"c":{"5":[{"i":"t16","r":3,"t":{"1":"t17"},"c":{"1":[{"i":"t17","r":1}]},"x":4},{"i":"t16","r":2,"t":{"1":"t17"},"c":{"1":[]}}]}},{"c":{"3":[{"i":"c3853696235","r":1}]}}]}</script><script>document.querySelectorAll('link[data-beasties-media]').forEach(function(l){l.media=l.getAttribute('data-beasties-media');l.removeAttribute('data-beasties-media')})</script></body></html>
