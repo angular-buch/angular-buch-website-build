@@ -1,0 +1,846 @@
+<!DOCTYPE html><html lang="de" dir="ltr"><head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://website-articles.angular-buch.com">
+  <link rel="site.standard.publication" href="at://did:plc:emeppmrqgb5rixbjcjihzd35/site.standard.publication/self">
+
+  <title>Angular-Buch → Workspace und Monorepo mit der Angular CLI</title>
+  
+
+  
+
+  <meta property="book:isbn" content="9783988890641">
+  <meta property="book:release_date" content="2026-05-29">
+  <meta property="book:tag" content="Angular">
+  <meta property="book:tag" content="Signals">
+  <meta property="book:tag" content="Webentwicklung">
+  <meta property="book:tag" content="AngularJS">
+  <meta property="book:tag" content="TypeScript">
+  <meta property="book:tag" content="JavaScript">
+  <meta property="book:tag" content="HTML5">
+  <meta property="book:tag" content="CSS">
+  <meta property="book:tag" content="RxJS">
+  <meta property="book:tag" content="Signal Forms">
+  <meta property="book:tag" content="Resource API">
+
+  <base href="/">
+<link rel="preload" as="font" crossorigin="anonymous" href="/media/fa-brands-400-LA6RBN2H.woff2"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-Thin-GAS35NAQ.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-ThinItalic-HQCJJ3KQ.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-Light-TT7V6J7W.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-LightItalic-JJ225GLJ.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-Regular-WINA5356.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-RegularItalic-43QNLNAN.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-Medium-TKOJIIN4.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-MediumItalic-5WUL7G7J.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-Bold-BUUHB5PB.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-BoldItalic-ETKPZE3Z.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-Black-FJBQ2JLX.eot?#iefix"><link rel="preload" as="font" crossorigin="anonymous" href="/media/Roboto-BlackItalic-MXNS7VU5.eot?#iefix"><style>@charset "UTF-8";.fa-solid,.fa-brands{--_fa-family:var(--fa-family, var(--fa-style-family, "Font Awesome 7 Free"));-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;display:var(--fa-display, inline-block);font-family:var(--_fa-family);font-feature-settings:normal;font-style:normal;font-synthesis:none;font-variant:normal;font-weight:var(--fa-style, 900);line-height:1;text-align:center;text-rendering:auto;width:var(--fa-width, 1.25em)}.fa-backward{--fa:"\f04a"}:root{--fa-family-classic:"Font Awesome 7 Free";--fa-font-solid:normal 900 1em/1 var(--fa-family-classic);--fa-style-family-classic:var(--fa-family-classic)}.fa-solid{--fa-style:900}:root{--fa-family-brands:"Font Awesome 7 Brands";--fa-font-brands:normal 400 1em/1 var(--fa-family-brands)}@font-face{font-family:"Font Awesome 7 Brands";font-style:normal;font-weight:400;font-display:block;src:url("/media/fa-brands-400-LA6RBN2H.woff2")}.fa-brands{--fa-family:var(--fa-family-brands);--fa-style:400}.fa-github{--fa:"\f09b"}@font-face{font-family:Roboto;src:url("/media/Roboto-Thin-GAS35NAQ.eot");src:local("Roboto Thin"),local("Roboto-Thin"),url("/media/Roboto-Thin-GAS35NAQ.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-Thin-UUU7IP4L.woff2") format("woff2"),url("/media/Roboto-Thin-BT5WDCMC.woff") format("woff"),url("/media/Roboto-Thin-STLHGJGZ.ttf") format("truetype"),url("/media/Roboto-Thin-OYOYLS5N.svg#Roboto") format("svg");font-weight:100;font-style:normal}@font-face{font-family:Roboto;src:url("/media/Roboto-ThinItalic-HQCJJ3KQ.eot");src:local("Roboto ThinItalic"),local("Roboto-ThinItalic"),url("/media/Roboto-ThinItalic-HQCJJ3KQ.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-ThinItalic-PVCCLVHZ.woff2") format("woff2"),url("/media/Roboto-ThinItalic-OJCFQICS.woff") format("woff"),url("/media/Roboto-ThinItalic-OKVQEY6M.ttf") format("truetype"),url("/media/Roboto-ThinItalic-PU7U6F54.svg#Roboto") format("svg");font-weight:100;font-style:italic}@font-face{font-family:Roboto;src:url("/media/Roboto-Light-TT7V6J7W.eot");src:local("Roboto Light"),local("Roboto-Light"),url("/media/Roboto-Light-TT7V6J7W.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-Light-OEL5QP53.woff2") format("woff2"),url("/media/Roboto-Light-EGEOUPZ7.woff") format("woff"),url("/media/Roboto-Light-KYCYMX5R.ttf") format("truetype"),url("/media/Roboto-Light-O5NB3DZS.svg#Roboto") format("svg");font-weight:300;font-style:normal}@font-face{font-family:Roboto;src:url("/media/Roboto-LightItalic-JJ225GLJ.eot");src:local("Roboto LightItalic"),local("Roboto-LightItalic"),url("/media/Roboto-LightItalic-JJ225GLJ.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-LightItalic-SZU3UOEY.woff2") format("woff2"),url("/media/Roboto-LightItalic-5LJGTDBY.woff") format("woff"),url("/media/Roboto-LightItalic-ZTOFFLND.ttf") format("truetype"),url("/media/Roboto-LightItalic-FE5GYQJO.svg#Roboto") format("svg");font-weight:300;font-style:italic}@font-face{font-family:Roboto;src:url("/media/Roboto-Regular-WINA5356.eot");src:local("Roboto Regular"),local("Roboto-Regular"),url("/media/Roboto-Regular-WINA5356.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-Regular-4ZFX4XNS.woff2") format("woff2"),url("/media/Roboto-Regular-EMJ7NDAQ.woff") format("woff"),url("/media/Roboto-Regular-W6LM4ZNI.ttf") format("truetype"),url("/media/Roboto-Regular-DDBAS5OS.svg#Roboto") format("svg");font-weight:400;font-style:normal}@font-face{font-family:Roboto;src:url("/media/Roboto-RegularItalic-43QNLNAN.eot");src:local("Roboto RegularItalic"),local("Roboto-RegularItalic"),url("/media/Roboto-RegularItalic-43QNLNAN.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-RegularItalic-2REFJECD.woff2") format("woff2"),url("/media/Roboto-RegularItalic-NSJ4HBKT.woff") format("woff"),url("/media/Roboto-RegularItalic-YZDJVEXU.ttf") format("truetype"),url("/media/Roboto-RegularItalic-7A3VJZ2J.svg#Roboto") format("svg");font-weight:400;font-style:italic}@font-face{font-family:Roboto;src:url("/media/Roboto-Medium-TKOJIIN4.eot");src:local("Roboto Medium"),local("Roboto-Medium"),url("/media/Roboto-Medium-TKOJIIN4.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-Medium-GHCC3HN6.woff2") format("woff2"),url("/media/Roboto-Medium-O2PKKQNT.woff") format("woff"),url("/media/Roboto-Medium-ANIBKV6W.ttf") format("truetype"),url("/media/Roboto-Medium-RJM2M5RS.svg#Roboto") format("svg");font-weight:500;font-style:normal}@font-face{font-family:Roboto;src:url("/media/Roboto-MediumItalic-5WUL7G7J.eot");src:local("Roboto MediumItalic"),local("Roboto-MediumItalic"),url("/media/Roboto-MediumItalic-5WUL7G7J.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-MediumItalic-FMJUHMWQ.woff2") format("woff2"),url("/media/Roboto-MediumItalic-EJXCUUAA.woff") format("woff"),url("/media/Roboto-MediumItalic-ZZ274MH6.ttf") format("truetype"),url("/media/Roboto-MediumItalic-WUJRBJ2B.svg#Roboto") format("svg");font-weight:500;font-style:italic}@font-face{font-family:Roboto;src:url("/media/Roboto-Bold-BUUHB5PB.eot");src:local("Roboto Bold"),local("Roboto-Bold"),url("/media/Roboto-Bold-BUUHB5PB.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-Bold-NGAPMV26.woff2") format("woff2"),url("/media/Roboto-Bold-GE6V3ZS2.woff") format("woff"),url("/media/Roboto-Bold-5VUU6QI6.ttf") format("truetype"),url("/media/Roboto-Bold-UXMYHWKZ.svg#Roboto") format("svg");font-weight:700;font-style:normal}@font-face{font-family:Roboto;src:url("/media/Roboto-BoldItalic-ETKPZE3Z.eot");src:local("Roboto BoldItalic"),local("Roboto-BoldItalic"),url("/media/Roboto-BoldItalic-ETKPZE3Z.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-BoldItalic-TBVJ3OTX.woff2") format("woff2"),url("/media/Roboto-BoldItalic-2CYTLDZJ.woff") format("woff"),url("/media/Roboto-BoldItalic-4MMIXUDR.ttf") format("truetype"),url("/media/Roboto-BoldItalic-TDTZWBKI.svg#Roboto") format("svg");font-weight:700;font-style:italic}@font-face{font-family:Roboto;src:url("/media/Roboto-Black-FJBQ2JLX.eot");src:local("Roboto Black"),local("Roboto-Black"),url("/media/Roboto-Black-FJBQ2JLX.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-Black-OEG2WEQ3.woff2") format("woff2"),url("/media/Roboto-Black-AZ2AXCB4.woff") format("woff"),url("/media/Roboto-Black-IGTRSQU4.ttf") format("truetype"),url("/media/Roboto-Black-OEOHVSYK.svg#Roboto") format("svg");font-weight:900;font-style:normal}@font-face{font-family:Roboto;src:url("/media/Roboto-BlackItalic-MXNS7VU5.eot");src:local("Roboto BlackItalic"),local("Roboto-BlackItalic"),url("/media/Roboto-BlackItalic-MXNS7VU5.eot?#iefix") format("embedded-opentype"),url("/media/Roboto-BlackItalic-6QYHVQZM.woff2") format("woff2"),url("/media/Roboto-BlackItalic-7QMDFEK5.woff") format("woff"),url("/media/Roboto-BlackItalic-XIXMO2HU.ttf") format("truetype"),url("/media/Roboto-BlackItalic-EYMGZCJW.svg#Roboto") format("svg");font-weight:900;font-style:italic}:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-family-monospace:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}*,*:before,*:after{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}article,figcaption,figure,footer,header,main,nav,section{display:block}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}hr{box-sizing:content-box;height:0;overflow:visible}h1,h2,h3{margin-top:0;margin-bottom:.5rem}p{margin-top:0;margin-bottom:1rem}ul{margin-top:0;margin-bottom:1rem}ul ul{margin-bottom:0}a{color:#007bff;text-decoration:none;background-color:transparent}a:hover{color:#0056b3;text-decoration:underline}a:not([href]):not([class]){color:inherit;text-decoration:none}a:not([href]):not([class]):hover{color:inherit;text-decoration:none}pre,code{font-family:SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-size:1em}pre{margin-top:0;margin-bottom:1rem;overflow:auto;-ms-overflow-style:scrollbar}figure{margin:0 0 1rem}img{vertical-align:middle;border-style:none}table{border-collapse:collapse}th{text-align:inherit;text-align:-webkit-match-parent}h1,h2,h3{margin-bottom:.5rem;font-weight:500;line-height:1.2}h2{font-size:2rem}h3{font-size:1.75rem}hr{margin-top:1rem;margin-bottom:1rem;border:0;border-top:1px solid rgba(0,0,0,.1)}.small{font-size:.875em;font-weight:400}.img-fluid{max-width:100%;height:auto}code{font-size:87.5%;color:#d81d73;word-wrap:break-word}a>code{color:inherit}pre{display:block;font-size:87.5%;color:#212529}pre code{font-size:inherit;color:inherit;word-break:normal}.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media(min-width:576px){.container{max-width:540px}}@media(min-width:768px){.container{max-width:720px}}@media(min-width:992px){.container{max-width:960px}}@media(min-width:1200px){.container{max-width:1140px}}.row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}.no-gutters{margin-right:0;margin-left:0}.no-gutters>[class*=col-]{padding-right:0;padding-left:0}.col-md-10,.col-md-6,.col-md-2,.col-sm-9,.col-12,.col-6{position:relative;width:100%;padding-right:15px;padding-left:15px}.col-6{flex:0 0 50%;max-width:50%}.col-12{flex:0 0 100%;max-width:100%}@media(min-width:576px){.col-sm-9{flex:0 0 75%;max-width:75%}}@media(min-width:768px){.col-md-2{flex:0 0 16.66666667%;max-width:16.66666667%}.col-md-6{flex:0 0 50%;max-width:50%}.col-md-10{flex:0 0 83.33333333%;max-width:83.33333333%}}.btn{display:inline-block;font-weight:400;color:#212529;text-align:center;vertical-align:middle;-webkit-user-select:none;user-select:none;background-color:transparent;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media(prefers-reduced-motion:reduce){.btn{transition:none}}.btn:hover{color:#212529;text-decoration:none}.btn:focus{outline:0;box-shadow:0 0 0 .2rem #007bff40}.btn:disabled{opacity:.65}.btn:not(:disabled):not(.disabled){cursor:pointer}.btn-primary{color:#fff;background-color:#007bff;border-color:#007bff}.btn-primary:hover{color:#fff;background-color:#0069d9;border-color:#0062cc}.btn-primary:focus{color:#fff;background-color:#0069d9;border-color:#0062cc;box-shadow:0 0 0 .2rem #268fff80}.btn-primary:disabled{color:#fff;background-color:#007bff;border-color:#007bff}.btn-primary:not(:disabled):not(.disabled):active{color:#fff;background-color:#0062cc;border-color:#005cbf}.btn-primary:not(:disabled):not(.disabled):active:focus{box-shadow:0 0 0 .2rem #268fff80}.btn-sm{padding:.25rem .5rem;font-size:.875rem;line-height:1.5;border-radius:.2rem}.bg-light{background-color:#f8f9fa!important}.border{border:1px solid #dee2e6!important}.rounded{border-radius:.25rem!important}.justify-content-between{justify-content:space-between!important}.align-items-center{align-items:center!important}.mb-0{margin-bottom:0!important}.mr-1{margin-right:.25rem!important}.ml-1{margin-left:.25rem!important}.mr-2{margin-right:.5rem!important}.mt-4{margin-top:1.5rem!important}.mb-4{margin-bottom:1.5rem!important}.mb-5{margin-bottom:3rem!important}.p-3{padding:1rem!important}.mt-n5{margin-top:-3rem!important}@media print{*,*:before,*:after{text-shadow:none!important;box-shadow:none!important}a:not(.btn){text-decoration:underline}pre{white-space:pre-wrap!important}pre{border:1px solid #adb5bd;page-break-inside:avoid}tr,img{page-break-inside:avoid}p,h2,h3{orphans:3;widows:3}h2,h3{page-break-after:avoid}@page{size:a3};body,.container{min-width:992px!important}}h1{font-size:2.5rem}h2{font-size:1.75rem}h3{font-size:1.25rem}.btn{box-shadow:0 2px 5px #00000029,0 2px 10px #0000001f;padding:.84rem 2.14rem;font-size:.81rem;transition:all .2s ease-in-out;margin:.375rem;border:0;border-radius:.125rem;cursor:pointer;text-transform:uppercase;white-space:normal;word-wrap:break-word;color:#fff}.btn:hover,.btn:active,.btn:focus{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026;outline:0}.btn:not([disabled]):not(.disabled):active{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026}.btn.btn-sm{padding:.5rem 1.6rem;font-size:.64rem}.btn:disabled:active,.btn:disabled:focus,.btn:disabled:hover{box-shadow:0 2px 5px #00000029,0 2px 10px #0000001f}.btn-primary{background-color:#79499c!important;color:#fff!important}.btn-primary:hover{background-color:#8651ad}.btn-primary:focus{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026}.btn-primary:focus,.btn-primary:active{background-color:#432857}.btn-primary:not([disabled]):not(.disabled):active{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026;background-color:#432857!important}.btn-primary:not([disabled]):not(.disabled):active:focus{box-shadow:0 5px 11px #0000002e,0 4px 15px #00000026}.blog__headline{overflow-wrap:break-word;hyphens:auto}main:focus{outline:none}a:active,a:link,a:visited{color:#1e1e1e;text-decoration:none}a:hover{color:#79499c}.headline__page{color:#fff;margin:3em 0 .8em;font-size:36px;line-height:1.2em;font-weight:500;padding-right:1em}@media screen and (max-width:768px){.headline__page{font-size:32px;line-height:42px;margin:2em 0 .8em}}.headline__page:after{content:"";display:block;height:3px;width:.6em;margin-top:.5em;border-bottom:3px solid #FFF}.headline__page--blank:after{display:none}.headline__page--space-bottom{margin-top:1em}body{color:#1e1e1e;font-family:"Roboto","Helvetica Neue",Helvetica,Arial sans-serif;font-size:16px;line-height:1.35em;font-weight:400;background:#f8f8f8}header{padding:20px 0}a.content{text-decoration:underline}a.content:hover{text-decoration:none}html{overflow-y:scroll}.btn:focus-visible{outline:solid 2px rgb(0,95,204);outline-offset:1px}footer{padding:2em 0 5em;color:#9e9e9e;font-size:13px;font-weight:500;background:url("data:image/svg+xml,%3Csvg width='1248' height='327' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%237F7F7F' fill='none' fill-rule='evenodd' opacity='.15'%3E%3Cpath d='M470-24l185 693M220-24l185 693M-30-24l185 693M721-24l185 693M971-24l185 693M1221-24l185 693M540-24l685 689M882-24l685 689M199-24l685 689M-143-24l685 689M-484-24l685 689M1310.447 117L-141.131 506.13M1310.447-135L-141.131 254.13M387-25L199 673M135-25L-53 673M637-25L449 673M888-25L700 673M1138-25L950 673M650-25L-62 686M304-25l-712 711M991-25L279 686M1335-25L623 686M1303 330L-56-36M1303 581L-56 215'/%3E%3C/g%3E%3C/svg%3E")}@media screen and (max-width:576px){footer{text-align:center!important}}footer .links__item{color:#9e9e9e}footer .links__item:hover{color:#79499c}footer .links__bluesky,footer .links__linkedin{white-space:nowrap}footer .links__bluesky:before{font-family:"Font Awesome 7 Brands";content:"\e671"}footer .links__linkedin:before{font-family:"Font Awesome 7 Brands";content:"\f0e1"}.hero{background:linear-gradient(-2deg,#fff 250px,#c30023 251px,#535ea7);background-position:bottom}@media screen and (max-width:768px){.hero{background:linear-gradient(178deg,#535ea7,#c30023 90%,#fff 90.1%)}}.hero--smaller{background:linear-gradient(358deg,#f8f8f8 45.9%,#c30023 46%,#535ea7);padding-bottom:3em;min-height:12em}.hero__lines{background:url("data:image/svg+xml,%3Csvg width='1267' height='628' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23FFF' fill='none' fill-rule='evenodd' stroke-opacity='.1'%3E%3Cpath d='M461-51l185 693M211-51l185 693M-39-51l185 693M712-51l185 693M962-51l185 693M1212-51l185 693M531-51l685 689M873-51l685 689M190-51l685 689M-152-51l685 689M-493-51l685 689M1302 593l-178 47M1301.447 342L-150.131 731.13M1301.447 90L-150.131 479.13M1301.447-162L-150.131 227.13M378-52L190 646M126-52L-62 646M628-52L440 646M879-52L691 646M1129-52L941 646M641-52L-71 659M295-52l-712 711M982-52L270 659M1326-52L614 659M1294 303L-65-63M1294 554L-65 188M1294 804L-65 438'/%3E%3C/g%3E%3C/svg%3E") center;background-size:cover}main{overflow:hidden}.index{background:url("/media/symbol-index-4GN5EYIA.svg") 10% 5% no-repeat}.index .container{padding-right:0;padding-left:0}.index--list{background:url("data:image/svg+xml,%3Csvg width='310' height='244' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M66.429 182.679v11.071c0 1.5-.548 2.797-1.644 3.892-1.095 1.096-2.393 1.644-3.892 1.644H49.82c-1.499 0-2.796-.548-3.892-1.644-1.095-1.095-1.643-2.393-1.643-3.892v-11.071c0-1.5.548-2.797 1.643-3.893 1.096-1.095 2.393-1.643 3.892-1.643h11.072c1.5 0 2.797.548 3.892 1.643 1.096 1.096 1.644 2.393 1.644 3.893zm0-44.286v11.071c0 1.5-.548 2.797-1.644 3.893-1.095 1.095-2.393 1.643-3.892 1.643H49.82c-1.499 0-2.796-.548-3.892-1.643-1.095-1.096-1.643-2.393-1.643-3.893v-11.071c0-1.5.548-2.797 1.643-3.892 1.096-1.096 2.393-1.644 3.892-1.644h11.072c1.5 0 2.797.548 3.892 1.644 1.096 1.095 1.644 2.393 1.644 3.892zm0-44.286v11.072c0 1.499-.548 2.796-1.644 3.892-1.095 1.095-2.393 1.643-3.892 1.643H49.82c-1.499 0-2.796-.548-3.892-1.643-1.095-1.096-1.643-2.393-1.643-3.892V94.107c0-1.5.548-2.797 1.643-3.892 1.096-1.096 2.393-1.644 3.892-1.644h11.072c1.5 0 2.797.548 3.892 1.644 1.096 1.095 1.644 2.393 1.644 3.892zm199.285 88.572v11.071c0 1.5-.548 2.797-1.643 3.892-1.096 1.096-2.393 1.644-3.892 1.644H94.107c-1.5 0-2.797-.548-3.892-1.644-1.096-1.095-1.644-2.393-1.644-3.892v-11.071c0-1.5.548-2.797 1.644-3.893 1.095-1.095 2.393-1.643 3.892-1.643H260.18c1.499 0 2.796.548 3.892 1.643 1.095 1.096 1.643 2.393 1.643 3.893zm0-44.286v11.071c0 1.5-.548 2.797-1.643 3.893-1.096 1.095-2.393 1.643-3.892 1.643H94.107c-1.5 0-2.797-.548-3.892-1.643-1.096-1.096-1.644-2.393-1.644-3.893v-11.071c0-1.5.548-2.797 1.644-3.892 1.095-1.096 2.393-1.644 3.892-1.644H260.18c1.499 0 2.796.548 3.892 1.644 1.095 1.095 1.643 2.393 1.643 3.892zm0-44.286v11.072c0 1.499-.548 2.796-1.643 3.892-1.096 1.095-2.393 1.643-3.892 1.643H94.107c-1.5 0-2.797-.548-3.892-1.643-1.096-1.096-1.644-2.393-1.644-3.892V94.107c0-1.5.548-2.797 1.644-3.892 1.095-1.096 2.393-1.644 3.892-1.644H260.18c1.499 0 2.796.548 3.892 1.644 1.095 1.095 1.643 2.393 1.643 3.892zm22.143 121.786V71.964c0-1.499-.548-2.796-1.643-3.892-1.096-1.096-2.393-1.643-3.893-1.643H27.68c-1.5 0-2.797.547-3.893 1.643-1.095 1.096-1.643 2.393-1.643 3.892v143.929c0 1.5.548 2.797 1.643 3.892 1.096 1.096 2.393 1.644 3.893 1.644H282.32c1.5 0 2.797-.548 3.893-1.644 1.095-1.095 1.643-2.393 1.643-3.892zM310 27.679v188.214c0 7.611-2.71 14.127-8.13 19.548-5.421 5.42-11.937 8.13-19.549 8.13H27.68c-7.612 0-14.128-2.71-19.548-8.13C2.71 230.02 0 223.504 0 215.893V27.679C0 20.067 2.71 13.55 8.13 8.13 13.552 2.71 20.068 0 27.68 0H282.32c7.612 0 14.128 2.71 19.548 8.13C307.29 13.552 310 20.068 310 27.68z' fill='%23EFEFEF' fill-rule='evenodd'/%3E%3C/svg%3E") 10% 5% no-repeat}.index__stripe{background:linear-gradient(-2deg,rgb(92.2549019608%,92.2549019608%,92.2549019608%) 0%,rgb(92.2549019608%,92.2549019608%,92.2549019608%) 69.9%,#F8F8F8 70%,transparent 70.1%,transparent 100%);padding-bottom:3em}.index__stripe--list{background:linear-gradient(178deg,transparent 0px,transparent 199px,#F8F8F8 200px,rgb(92.2549019608%,92.2549019608%,92.2549019608%) 201px,rgb(92.2549019608%,92.2549019608%,92.2549019608%) 100%)}.index__item{background:url("data:image/svg+xml,%3Csvg width='23' height='25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient x1='52.535%25' y1='-39.489%25' x2='52.535%25' y2='92.656%25' id='a'%3E%3Cstop stop-color='%2379499c' offset='0%25'/%3E%3Cstop stop-color='%23C30023' offset='100%25'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M15.941 1.603L11.5 0 0 4.15l1.754 15.388L11.5 25l9.746-5.462L23 4.15l-3.458-1.248L11.185 22 3 6.23h4.405l3.8 7.157L15.94 1.603z' fill-rule='nonzero' fill='url(%23a)'/%3E%3C/svg%3E") no-repeat 1.4em 1.8em #fff;border-radius:4px;padding:2em 2em 2em 4.5em;margin-bottom:2em;position:relative}.index__item--list{background:#fff;padding:2em}@media screen and (max-width:768px){nav{display:flex;position:fixed;z-index:999;width:73vw;height:100%;background:#fff;top:0;left:-100vw;float:none;text-align:left;align-items:center;transition:all .25s ease-in-out}}nav a.nav__current{border-bottom:3px solid #848484}nav ul{margin:0;padding:0;list-style:none;float:right}@media screen and (max-width:768px){nav ul{float:none;width:100%}}nav li{display:inline-block;padding-left:20px;border-bottom:3px solid transparent;hyphens:auto;word-break:break-word}@media screen and (max-width:992px){nav li{padding-left:5px}}@media screen and (max-width:768px){nav li{display:block;text-align:center}}nav a{display:block;padding:10px 5px 2px;font-size:14px;font-weight:400;text-transform:uppercase}@media screen and (max-width:992px){nav a{padding:15px 10px}}@media screen and (max-width:768px){nav a{font-size:18px;border-bottom:1px solid rgb(86.7647058824%,86.7647058824%,86.7647058824%);margin:0 50px}}nav a.order{font-weight:500;color:#6c418b}.nav__toggle{display:none}@media screen and (max-width:768px){.nav__toggle{display:block;float:right}.nav__overlay{visibility:hidden;opacity:0;position:absolute;top:0;left:0;width:100%;height:100%;z-index:998;background:#0006;transition:all .25s ease-in-out}}.markdown-body{color-scheme:light;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;margin:0;line-height:1.6;word-wrap:break-word;scroll-behavior:auto!important}.markdown-body figcaption,.markdown-body figure{display:block}.markdown-body a{background-color:transparent;color:#79499c;text-decoration:none}.markdown-body img{border-style:none;max-width:100%;box-sizing:content-box}.markdown-body code,.markdown-body pre{font-family:monospace;font-size:1em}.markdown-body figure{margin:1.5em 0}.markdown-body figcaption{font-size:.875em;color:#656d76;font-style:italic;text-align:center;margin-top:.5em}.markdown-body ::-webkit-input-placeholder{color:inherit;opacity:.54}.markdown-body ::-webkit-file-upload-button{-webkit-appearance:button;appearance:button;font:inherit}.markdown-body a:hover{text-decoration:underline}.markdown-body ::placeholder{color:#59636e;opacity:1}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:max-content;max-width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body td code{background:none}.markdown-body a:focus{outline:2px solid #0969da;outline-offset:-2px;box-shadow:none}.markdown-body a:focus:not(:focus-visible){outline:solid 1px transparent}.markdown-body a:focus-visible{outline:2px solid #0969da;outline-offset:-2px;box-shadow:none}.markdown-body a:not([class]):focus,.markdown-body a:not([class]):focus-visible{outline-offset:0}.markdown-body h2,.markdown-body h3{margin-top:1.5rem;margin-bottom:1rem;font-weight:600;line-height:1.25}.markdown-body h2{font-weight:600;padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid rgba(209,217,224,.7019607843)}.markdown-body h3{font-weight:600;font-size:1.25em}.markdown-body p{margin-top:0;margin-bottom:10px}.markdown-body p a,.markdown-body li a{text-decoration:underline}.markdown-body li>a:only-child:not(:hover),.markdown-body li>a:first-child:nth-last-child(2):has(+ul,+ol):not(:hover){text-decoration:none}.markdown-body ul{margin-top:0;margin-bottom:0;padding-left:2em}.markdown-body code{font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px}.markdown-body pre{margin-top:0;margin-bottom:0;font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px;word-wrap:normal}.markdown-body:before{display:table;content:""}.markdown-body:after{display:table;clear:both;content:""}.markdown-body>*:first-child{margin-top:0!important}.markdown-body>*:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body p,.markdown-body ul,.markdown-body table,.markdown-body pre{margin-top:0;margin-bottom:1rem}.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li+li{margin-top:.25em}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{padding:6px 13px;border:1px solid #d1d9e0}.markdown-body table td>:last-child{margin-bottom:0}.markdown-body table tr{background-color:#fff;border-top:1px solid rgba(209,217,224,.7019607843)}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body code{padding:.2em .4em;margin:0;font-size:85%;white-space:break-spaces;background-color:#818b9808;border-radius:6px}.markdown-body a code{background:none}.markdown-body pre code{font-size:100%}.markdown-body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body pre{padding:1rem;overflow:auto;font-size:85%;line-height:1.45;color:#1f2328;background-color:#f6f8fa;border-radius:6px}.markdown-body pre code{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body a:focus:not(:focus-visible){outline:none;box-shadow:none}.hljs-comment{color:#696969}.hljs-selector-class{color:#d91e18}.hljs-built_in{color:#aa5d00}.hljs-string,.hljs-symbol{color:green}.hljs-title{color:#007aa3}.hljs-keyword{color:#7928a1}@media screen and (-ms-high-contrast:active){.hljs-built_in,.hljs-comment,.hljs-string,.hljs-symbol{color:highlight}.hljs-keyword{font-weight:700}}</style><link rel="stylesheet" href="styles-N4QSOUV5.css" media="print" data-beasties-media="all"><noscript><link rel="stylesheet" href="styles-N4QSOUV5.css"></noscript><style ng-app-id="ng">.width-6{width:6.5rem}.width-8{width:8rem}.linkImage{margin-right:3px;margin-top:-3px}
+</style><meta property="og:title" content="Angular-Buch → Workspace und Monorepo mit der Angular CLI"><meta name="twitter:title" content="Angular-Buch → Workspace und Monorepo mit der Angular CLI"><meta name="description" content="Mit ng new entsteht nicht nur eine Angular-Anwendung, sondern immer auch ein Workspace.
+Oft enthält er genau eine Anwendung, aber das muss nicht so bleiben:
+Die Angular CLI kann in einem einzigen Workspace mehrere Anwendungen und Bibliotheken verwalten."><meta property="og:description" content="Mit ng new entsteht nicht nur eine Angular-Anwendung, sondern immer auch ein Workspace.
+Oft enthält er genau eine Anwendung, aber das muss nicht so bleiben:
+Die Angular CLI kann in einem einzigen Workspace mehrere Anwendungen und Bibliotheken verwalten."><meta name="twitter:description" content="Mit ng new entsteht nicht nur eine Angular-Anwendung, sondern immer auch ein Workspace.
+Oft enthält er genau eine Anwendung, aber das muss nicht so bleiben:
+Die Angular CLI kann in einem einzigen Workspace mehrere Anwendungen und Bibliotheken verwalten."><meta name="twitter:site" content="@angular_buch"><meta property="og:locale" content="de_DE"><meta property="og:type" content="website"><meta property="og:url" content="https://angular-buch.com/material/workspace"><link rel="site.standard.document" href="at://did:plc:emeppmrqgb5rixbjcjihzd35/site.standard.document/workspace"><style ng-app-id="ng">img[_ngcontent-ng-c1420206749]{max-width:100%}</style></head>
+<body><!--nghm--><script type="text/javascript" id="ng-event-dispatch-contract">(()=>{function p(t,n,r,o,e,i,f,m){return{eventType:t,event:n,targetElement:r,eic:o,timeStamp:e,eia:i,eirp:f,eiack:m}}function u(t){let n=[],r=e=>{n.push(e)};return{c:t,q:n,et:[],etc:[],d:r,h:e=>{r(p(e.type,e,e.target,t,Date.now()))}}}function s(t,n,r){for(let o=0;o<n.length;o++){let e=n[o];(r?t.etc:t.et).push(e),t.c.addEventListener(e,t.h,r)}}function c(t,n,r,o,e=window){let i=u(t);e._ejsas||(e._ejsas={}),e._ejsas[n]=i,s(i,r),s(i,o,!0)}window.__jsaction_bootstrap=c;})();
+</script><script>window.__jsaction_bootstrap(document.body,"ng",["click"],[]);</script>
+  <app-root ng-version="22.2.4" ngh="10" ng-server-context="ssg"><header ngh="4"><div class="nav__overlay" jsaction="click:;"></div><div class="container"><div class="row no-gutters align-items-center"><div class="col-6 col-md-2"><a routerlink="/" aria-label="Startseite" href="/" jsaction="click:;"><img src="assets/img/brand-400.png" alt="Angular-Buch.com" height="40" width="126" class="img-fluid"></a></div><div class="col-6 col-md-10"><nav class=""><ul><li><app-link ngh="0"><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/" class="" jsaction="click:;"><!----> Buch </a><!----><!----></app-link></li><li><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/blog" class="" jsaction="click:;"><!----> Blog </a><!----><!----><!----></app-link></li><li><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/material" class="nav__current" aria-current="page" jsaction="click:;"><!----> Begleitmaterial </a><!----><!----><!----></app-link></li><li><app-link ngh="2"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" href="/kaufen" class="" jsaction="click:;"><img alt="" class="linkImage" src="assets/img/symbol-basket.svg"><!----> Jetzt kaufen </a><!----><!----><!----></app-link></li><li><app-link ngh="3"><!----><a class="order" href="//angular.schule/"><img alt="" class="linkImage" src="assets/img/symbol-group.svg"><!----> Schulungen </a><!----><!----><!----><!----></app-link></li><!----></ul></nav><a href="/" aria-label="Navigation" class="nav__toggle" jsaction="click:;"><img src="assets/img/symbol-menu.svg" alt=""></a></div></div></div></header><main><router-outlet></router-outlet><app-material-post-details ngh="7"><app-hero-header headline="Begleitmaterial" headlinelink="/material" ngh="5"><section class="hero hero--smaller"><div class="hero__lines"><div class="container"><div class="row justify-content-between"><div class="col-md-6 col-xs-12"><h1 class="headline__page headline__page--blank headline__page--space-bottom"><a style="color: white;" href="/material" jsaction="click:;">Begleitmaterial</a><!----><!----></h1></div></div></div></div></section><a name="content" id="content"></a></app-hero-header><section class="index index--list mt-n5"><div class="index__stripe index__stripe--list"><div class="container"><!----><div class="row"><div class="col-12"><article lang="de" class="index__item index__item--list"><h1 class="mb-4 blog__headline">Workspace und Monorepo mit der Angular CLI</h1><div class="bg-light border rounded p-3 mb-5"><p class="small mb-0"> von Ferdinand Malcher, Danny Koppenhagen, Johannes Hoppe </p><p class="small mb-0"> Letzte Aktualisierung: <time datetime="2026-11-02T00:00:00.000Z">02.11.2026</time><!----><!----></p></div><app-markdown-content class="content markdown-body" _nghost-ng-c1420206749="" ngh="6"><p>Mit <code>ng new</code> entsteht nicht nur eine Angular-Anwendung, sondern immer auch ein <em>Workspace</em>.
+Oft enthält er genau eine Anwendung, aber das muss nicht so bleiben:
+Die Angular CLI kann in einem einzigen Workspace mehrere Anwendungen und Bibliotheken verwalten.</p>
+<p>In diesem Artikel geht es darum, wie du diese Bordmittel der Angular CLI einsetzt.
+Das ist bewusst kein Grundlagenartikel zu Monorepos:
+Wir vergleichen keine Repository-Strategien und diskutieren auch nicht, wann sich ein Monorepo für dein Unternehmen lohnt.
+Einen guten allgemeinen Überblick über das Thema findest du auf <a href="https://monorepo.tools/">monorepo.tools</a>.</p>
+<h2 id="inhalt">Inhalt</h2>
+<ul>
+<li><a href="/material/workspace#der-workspace">Der Workspace</a></li>
+<li><a href="/material/workspace#applikationen-angular-apps-im-workspace">Applikationen: Angular-Apps im Workspace</a></li>
+<li><a href="/material/workspace#bibliotheken-code-zwischen-anwendungen-teilen">Bibliotheken: Code zwischen Anwendungen teilen</a><ul>
+<li><a href="/material/workspace#eine-bibliothek-als-npm-paket-bereitstellen">Eine Bibliothek als NPM-Paket bereitstellen</a></li>
+</ul>
+</li>
+<li><a href="/material/workspace#ausblick-nx">Ausblick: Nx</a><ul>
+<li><a href="/material/workspace#verwaltung-von-abh%C3%A4ngigkeiten">Verwaltung von Abhängigkeiten</a></li>
+<li><a href="/material/workspace#affected-builds-und-caching">Affected Builds und Caching</a></li>
+<li><a href="/material/workspace#nx-verwenden">Nx verwenden</a></li>
+<li><a href="/material/workspace#fazit-zu-nx">Fazit zu Nx</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="der-workspace">Der Workspace</h2>
+<p>In einem Angular-Projekt existiert auf oberster Ebene immer ein Workspace.
+Dieser wird beim Aufruf von <code>ng new</code> erzeugt und standardmäßig bereits mit einer Angular-Anwendung aufgesetzt.
+Ein Workspace der Angular CLI kann jedoch mehrere Unterprojekte beinhalten, die entweder <em>Applikationen</em> oder <em>Bibliotheken</em> sind.
+Nutzen wir einen Workspace für die Verwaltung mehrerer Applikationen oder Bibliotheken, so sprechen wir von einem <em>Monorepo</em>.</p>
+<p>Jedes der Projekte im Workspace besitzt einen eigenen Abschnitt in der Datei <code>angular.json</code>.
+Der Schlüssel <code>projectType</code> gibt dabei an, ob es sich um eine Applikation (<code>application</code>) oder eine Bibliothek (<code>library</code>) handelt.</p>
+<pre><code class="language-json">{
+  <span class="hljs-string">"$schema"</span>: <span class="hljs-string">"./node_modules/@angular/cli/lib/config/schema.json"</span>,
+  <span class="hljs-string">"version"</span>: 1,
+  <span class="hljs-string">//</span> <span class="hljs-string">...</span>
+  <span class="hljs-string">"newProjectRoot"</span>: <span class="hljs-string">"projects"</span>,
+  <span class="hljs-string">"projects"</span>: {
+    <span class="hljs-string">"my-app"</span>: {
+      <span class="hljs-string">"projectType"</span>: <span class="hljs-string">"application"</span>,
+      <span class="hljs-string">//</span> <span class="hljs-string">...</span>
+    },
+    <span class="hljs-string">"my-library"</span>: {
+      <span class="hljs-string">"projectType"</span>: <span class="hljs-string">"library"</span>,
+      <span class="hljs-string">//</span> <span class="hljs-string">...</span>
+    }
+  }
+}
+</code></pre><p>Wenn wir einen Workspace erzeugen, können wir ihn auch gänzlich ohne eine initiale Applikation oder Bibliothek erstellen:</p>
+<pre><code class="language-bash">ng <span class="hljs-keyword">new</span> my-workspace --<span class="hljs-keyword">create</span>-application=<span class="hljs-keyword">false</span>
+</code></pre><p>Es wird dann lediglich die Basiskonfiguration angelegt.
+Alle enthaltenen Applikationen und Bibliotheken müssen wir anschließend selbst generieren.</p>
+<pre><code>my-workspace
+├── <span class="hljs-selector-class">.vscode</span>
+├── node_modules
+├── <span class="hljs-selector-class">.editorconfig</span>
+├── <span class="hljs-selector-class">.gitignore</span>
+├── <span class="hljs-selector-class">.prettierrc</span>
+├── angular<span class="hljs-selector-class">.json</span>
+├── package-lock<span class="hljs-selector-class">.json</span>
+├── package<span class="hljs-selector-class">.json</span>
+├── README<span class="hljs-selector-class">.md</span>
+└── tsconfig.json
+</code></pre><h2 id="applikationen-angular-apps-im-workspace">Applikationen: Angular-Apps im Workspace</h2>
+<p>Jede Anwendung, die wir mit der Angular CLI generieren und starten können, ist eine <em>Applikation</em> in einem Workspace.
+Entwickeln wir Anwendungen, die vollkommen unabhängig voneinander sind, so werden wir hier in der Regel eine 1:1-Beziehung vorfinden.
+Nutzen wir <code>ng new</code> zur Erzeugung eines Workspace, so wird initial auch gleich eine Applikation mit erzeugt.
+Das Hauptverzeichnis der Anwendung befindet sich in diesem Fall standardmäßig unter <code>src</code>.
+So sind die meisten Angular-Projekte aufgebaut: ein Workspace, der eine einzige Anwendung beinhaltet.</p>
+<p>Es gibt jedoch Situationen, in denen die Anwendungen nicht unabhängig voneinander sind.
+Anstatt einzelne Workspaces mit verwandten Anwendungen zu pflegen, können wir einen einzigen Workspace mit mehreren Apps als Monorepo verwalten.
+Dadurch können wir in allen Applikationen die gleiche Konfiguration nutzen, und wir können gemeinsam genutzten Code zwischen den Applikationen teilen.
+Dieser wiederverwendbare Code wird dabei in Bibliotheken abgelegt.</p>
+<p>Im Beispiel wollen wir eine Anwendung entwickeln, die aus mehreren Features besteht.
+Firmen können die Features separat buchen und zwischen verschiedenen Layouts wählen.
+Für jede Firma kann das Design entsprechend dem Unternehmensbranding angepasst werden.</p>
+<p></p><figure><img src="https://website-articles.angular-buch.com/material/workspace/branded-app.webp" alt="Zwei Browserfenster zeigen dieselbe Anwendung für Company A und Company B mit unterschiedlichem Layout und unterschiedlichen Features." title="Eine Anwendung in verschiedenen Ausprägungen"><figcaption>Eine Anwendung in verschiedenen Ausprägungen</figcaption></figure><p></p>
+<p>Für diese Aufgabe könnten wir nun den Workspace jeweils duplizieren und anpassen, und die Arbeit wäre damit zunächst getan.
+Das erscheint auf den ersten Blick charmant und geht schnell von der Hand.
+Problematisch wird es jedoch, wenn Änderungen an der Grundanwendung vorgenommen werden: Wir entdecken einen Bug, machen ein Sicherheitsupdate, implementieren ein neues Basisfeature oder führen einfach nur ein Update von Angular durch.
+Diese Anpassungen musst du in allen Kopien des ursprünglichen Workspace durchführen, und diese Aufgabe wird schnell zur Qual.</p>
+<p>Mit einem Monorepo, also einem Workspace, der alle Anwendungen in allen Varianten beinhaltet, lässt sich die Aufgabe effizienter bewältigen.
+Updates von Angular oder anderen Abhängigkeiten haben eine direkte Auswirkung auf alle Anwendungen und sind somit wesentlich schneller umgesetzt.
+Außerdem können wir gemeinsam genutzten Code in Bibliotheken auslagern und so die Wartung vereinfachen.</p>
+<p>Eine neue Anwendung in einem existierenden Workspace kannst du mit dem folgenden Befehl erzeugen:</p>
+<pre><code class="language-bash">ng g <span class="hljs-built_in">application</span> <span class="hljs-keyword">my</span>-app
+</code></pre><p>Die neue Anwendung befindet sich anschließend im Verzeichnis <code>projects/my-app</code>.
+Außerdem sorgt Angular CLI dafür, dass ein entsprechender Eintrag in der Datei <code>angular.json</code> angelegt wird.
+Das neue Projekt wird auch in der Datei <code>tsconfig.json</code> referenziert.</p>
+<p>Haben wir mehrere Anwendungen in unserem Workspace, können wir diese separat starten oder bauen.
+Hierfür geben wir nach dem üblichen <code>ng build</code> oder <code>ng serve</code> zusätzlich den Namen der Anwendung an:</p>
+<pre><code class="language-bash">ng build <span class="hljs-keyword">my</span>-app
+ng serve <span class="hljs-keyword">my</span>-app
+</code></pre><p>Wollen wir nun wiederverwendbaren Code der Anwendungen teilen, können wir diesen in Bibliotheken auslagern.</p>
+<h2 id="bibliotheken-code-zwischen-anwendungen-teilen">Bibliotheken: Code zwischen Anwendungen teilen</h2>
+<p>Verwalten wir mehrere Applikationen in einem Workspace, können wir wiederverwendbaren Code zwischen diesen Anwendungen teilen.
+Dazu werden <em>Bibliotheken</em> verwendet.
+Eine Bibliothek ist eine Sammlung von Programmteilen, die separat von den Anwendungen gepflegt werden und gemeinsam genutzt werden können, z. B. Komponenten, Direktiven, Pipes, Services, Konstanten, Funktionen und Interfaces.
+Diese können wir anschließend in anderen Anwendungen des Workspace verwenden oder auch separat als NPM-Paket veröffentlichen.</p>
+<p>Mit dem folgenden Befehl können wir eine Bibliothek in einem existierenden Workspace erzeugen:</p>
+<pre><code class="language-bash">ng g <span class="hljs-keyword">library</span> my-<span class="hljs-keyword">library</span>
+</code></pre><p>Das Projekt für die Bibliothek befindet sich danach im Verzeichnis <code>projects/my-library</code>.
+Auch hier wird ein entsprechender Eintrag in der Datei <code>angular.json</code> erzeugt, und es erfolgt eine Referenzierung in der Datei <code>tsconfig.json</code>.</p>
+<p>Die CLI legt dort bereits eine Komponente <code>MyLibrary</code> an.
+Alles, was die Bibliothek nach außen anbieten soll, exportieren wir in der Datei <code>src/public-api.ts</code>.
+Neue Bestandteile wie Komponenten, Pipes, Direktiven oder Services müssen wir hier also ebenfalls eintragen:</p>
+<pre><code class="language-typescript"><span class="hljs-comment">/*
+ * Public API Surface of my-library
+ */</span>
+
+<span class="hljs-keyword">export</span> * <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib/my-library'</span>;
+<span class="hljs-keyword">export</span> * <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib/book-card'</span>;
+</code></pre><p>Wollen wir die Bibliothek in einer Applikation innerhalb des Workspace nutzen, muss die Bibliothek zunächst gebaut werden:</p>
+<pre><code class="language-bash">ng build <span class="hljs-keyword">my</span>-library
+</code></pre><p>Anschließend können wir die Bibliothek direkt in unseren Applikationen verwenden, als hätten wir sie zuvor als NPM-Paket installiert:</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { BookCard } <span class="hljs-keyword">from</span> <span class="hljs-string">'my-library'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'app-root'</span>,
+  imports: [BookCard],
+  template: `<span class="language-javascript">&lt;lib-book-card /&gt;</span>`
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> {}
+</code></pre><p>Das Mapping vom Bibliotheksnamen auf den Pfad im Dateisystem wird in der <code>tsconfig.json</code> konfiguriert.
+Es zeigt auf das Build-Ergebnis im Ordner <code>dist</code>, deshalb ist es notwendig, die Bibliothek vorher zu bauen:</p>
+<pre><code class="language-json">{
+  <span class="hljs-string">"compilerOptions"</span>: {
+    <span class="hljs-string">"paths"</span>: {
+      <span class="hljs-string">"my-library"</span>: [
+        <span class="hljs-string">"./dist/my-library"</span>
+      ]
+    },
+    <span class="hljs-string">//</span> <span class="hljs-string">...</span>
+  }
+}
+</code></pre><p>Bitte importiere die Bestandteile nicht direkt aus dem Quellcode einer Bibliothek, sondern nutze immer den Pfad-Alias.</p>
+<p>Nehmen wir nun Änderungen am Code der Bibliothek vor, dürfen wir nicht vergessen, erneut den Build für die Bibliothek auszuführen.
+Um diesen Ablauf zu vereinfachen, können wir den <em>Watch-Modus</em> aktivieren, sodass die Bibliothek direkt auf Änderungen überwacht wird und der Build automatisch neu gestartet wird:</p>
+<pre><code class="language-bash">ng build <span class="hljs-keyword">my</span>-library <span class="hljs-comment">--watch</span>
+</code></pre><h3 id="eine-bibliothek-als-npm-paket-bereitstellen">Eine Bibliothek als NPM-Paket bereitstellen</h3>
+<p>Haben wir eine Bibliothek entwickelt, können wir diese auch außerhalb unseres Workspace nutzen.
+Wir können sie dazu als NPM-Paket bereitstellen und so für andere Teams zugänglich machen.
+Die Bibliothek muss zunächst gebaut werden, danach können wir sie mittels <code>npm publish</code> veröffentlichen:</p>
+<pre><code class="language-bash">ng build my-<span class="hljs-keyword">library</span>
+cd <span class="hljs-keyword">dist</span>/my-<span class="hljs-keyword">library</span>
+npm publish
+</code></pre><h2 id="ausblick-nx">Ausblick: Nx</h2>
+<p>Die Angular CLI liefert die Grundlagen für Monorepos.
+Wer das Konzept konsequent weitertreiben möchte, sollte sich das Buildwerkzeug <a href="https://nx.dev/">Nx</a> ansehen.
+Nx setzt von Grund auf auf Monorepos und hat die hier vorgestellten Ideen sehr weit durchdacht.
+Es ist dabei nicht auf Angular beschränkt, sondern unterstützt unter anderem Vue, React, Node.js, Java, .NET und reine TypeScript-Bibliotheken.</p>
+<p>Das Konzept „Monorepo“ bedeutet dabei nicht zwangsläufig, dass der <em>gesamte</em> Code des Unternehmens in einem einzigen Git-Repository aufbewahrt wird.
+Vielmehr geht es darum, zusammenhängende Teile eines Projekts modular zu organisieren, indem wiederverwendbare Bibliotheken in einem Workspace verwaltet werden.
+Die Applikationen sind idealerweise leichtgewichtige Hüllen, die mehrere Bibliotheken für die konkrete Nutzung aggregieren und verdrahten.
+Die tatsächliche Geschäftslogik und die fachspezifischen Komponenten sind in Bibliotheken ausgelagert.
+So erreichen wir einen hohen Grad an Wiederverwendbarkeit und Entkopplung.</p>
+<p>Die Angular CLI bietet dafür bereits eine gute Unterstützung, die Anforderungen im Enterprise-Umfeld sind aber spezieller:
+Die Verwaltung von Projekten mit mehreren Dutzend Bibliotheken kann aufwendig und schwerfällig sein.
+An dieser Stelle kommt Nx ins Spiel.</p>
+<p>Nx ist ursprünglich als Erweiterung für die Angular CLI entstanden, und diese Verwandtschaft ist weiterhin erkennbar.
+Kommst du aus der Angular-Welt, wirst du dich in Nx schnell heimisch fühlen.
+Man schreibt hier vorzugsweise einheitlich <code>nx generate</code>, <code>nx build</code> und so weiter, denn mit Nx werden nicht nur Angular-Anwendungen entwickelt.</p>
+<p>Anstatt die Konfiguration in <em>einer</em> globalen Datei <code>angular.json</code> aufzubewahren, ist sie in einem Nx-Workspace auf die einzelnen Projekte verteilt, die jeweils eine Datei <code>project.json</code> besitzen.
+Das vermeidet Merge-Konflikte und steigert die Übersichtlichkeit.</p>
+<h3 id="verwaltung-von-abhängigkeiten">Verwaltung von Abhängigkeiten</h3>
+<p>Zur Verwaltung der Bibliotheken bietet Nx einige ausgefeilte Features.
+Bibliotheken und Apps hängen voneinander ab, wenn ihre Bestandteile importiert werden.
+Dabei ist es besonders wichtig, den Überblick über die Beziehungen zwischen den Projekten zu behalten.
+Nx ermittelt dafür einen Graphen, der die Zusammenhänge grafisch darstellt.
+Mit dem Befehl <code>nx graph</code> kannst du <a href="https://nx.dev/docs/features/explore-graph">im Browser analysieren</a>, was wovon abhängt.</p>
+<p></p><figure><img src="https://website-articles.angular-buch.com/material/workspace/nx-graph.webp" alt="Der Graph zeigt eine Anwendung, die von den Bibliotheken feature-admin und feature-books abhängt. Diese nutzen wiederum data-access-books und util-books." title="Abhängigkeiten zwischen den Projekten im Nx-Graphen"><figcaption>Abhängigkeiten zwischen den Projekten im Nx-Graphen</figcaption></figure><p></p>
+<p>Ein gutes Beispiel für die durchdachte Struktur sind die <a href="https://nx.dev/docs/concepts/decisions/project-dependency-rules">empfohlenen Library-Typen</a>:
+Nx schlägt vor, Bibliotheken nach ihrer Aufgabe einzuteilen, und legt dazu passende Regeln für die Imports nahe.</p>
+<table>
+<thead>
+<tr>
+<th>Typ</th>
+<th>Aufgabe</th>
+<th>darf importieren aus</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>feature</code></td>
+<td>Komponenten für einen konkreten Use Case</td>
+<td>allen Typen</td>
+</tr>
+<tr>
+<td><code>ui</code></td>
+<td>reine Präsentationskomponenten</td>
+<td><code>ui</code>, <code>util</code></td>
+</tr>
+<tr>
+<td><code>data-access</code></td>
+<td>Kommunikation mit dem Backend, State</td>
+<td><code>data-access</code>, <code>util</code></td>
+</tr>
+<tr>
+<td><code>util</code></td>
+<td>allgemeine Hilfsfunktionen</td>
+<td><code>util</code></td>
+</tr>
+</tbody></table>
+<p>Diese Typen sind eine Empfehlung und keine feste Vorgabe.
+Jede Bibliothek und jede App kann mit Tags versehen werden, um ihr einen fachlichen Bereich oder eine Rolle zuzuweisen.
+Über diese Tags und die ESLint-Regel <a href="https://nx.dev/docs/features/enforce-module-boundaries"><code>@nx/enforce-module-boundaries</code></a> lassen sich solche Constraints durchsetzen:
+Importiert eine <code>ui</code>-Bibliothek versehentlich aus einer <code>feature</code>-Bibliothek, meldet das Linting einen Fehler.
+So bleibt die Architektur auch mit vielen Bibliotheken sauber.</p>
+<h3 id="affected-builds-und-caching">Affected Builds und Caching</h3>
+<p>Nx bietet <a href="https://nx.dev/docs/features/ci-features/affected"><em>Affected Builds</em></a> an:
+Das Tool kennt die Abhängigkeiten zwischen den Projekten und ermittelt daraus, welche Aufgaben von einer Änderung tatsächlich betroffen sind.
+Mit dem folgenden Befehl werden nur diese Builds und Tests ausgeführt, alles andere wird übersprungen.
+Das spart besonders in der CI viel Zeit.</p>
+<pre><code class="language-bash">nx affected -t build <span class="hljs-built_in">test</span>
+</code></pre><p>Außerdem verfügt Nx über ein ausgefeiltes Konzept zum <a href="https://nx.dev/docs/features/cache-task-results">Caching</a>:
+Die Ergebnisse von Aufgaben werden zwischengespeichert, um die nächste Ausführung zu beschleunigen.
+Seine große Stärke entfaltet dieses Konzept beim <a href="https://nx.dev/docs/features/ci-features/remote-cache">Remote Caching</a>: Anstatt die Caches nur lokal zu halten, können sie über das Netzwerk geteilt werden.
+Wurde ein Teil des Codes bereits auf einer anderen Maschine gebaut, muss er nicht noch einmal den Build-Prozess durchlaufen.
+Die Build-Zeit bei großen Projekten lässt sich damit drastisch reduzieren.</p>
+<h3 id="nx-verwenden">Nx verwenden</h3>
+<p>Um einen neuen Nx-Workspace zu erstellen, verwenden wir den folgenden Befehl.
+Ein interaktiver Wizard begleitet uns bei der Einrichtung.</p>
+<pre><code class="language-bash">npx create-nx-<span class="hljs-keyword">workspace</span>@latest
+</code></pre><p>Haben wir bereits einen von der Angular CLI generierten Workspace, können wir diesen <a href="https://nx.dev/docs/technologies/angular/migration/angular">zu einem Nx-Workspace migrieren</a>:</p>
+<pre><code class="language-bash">npx <span class="hljs-symbol">nx@</span>latest <span class="hljs-keyword">init</span>
+</code></pre><p>In der <a href="https://nx.dev/docs/technologies/angular/introduction">Dokumentation von Nx</a> findest du ausführliche Anleitungen und Referenzen für die verschiedenen Befehle.</p>
+<h3 id="fazit-zu-nx">Fazit zu Nx</h3>
+<p>Nx ist ein vielfältiges und umfangreiches Buildwerkzeug, das vor allem für die Verwaltung von Monorepos konzipiert wurde.
+Es legt den Fokus auf Schnelligkeit und eine breite Toolunterstützung.
+Durch die Verwandtschaft mit der Angular CLI fällt der Umstieg in der Regel nicht schwer.</p>
+<p>Für den Anfang reichen die Bordmittel der Angular CLI aber völlig aus.
+Ein Workspace mit einigen Anwendungen und Bibliotheken lässt sich damit gut verwalten.
+Wenn das Projekt später wächst, kannst du immer noch auf Nx umsteigen.</p>
+</app-markdown-content><a routerlink="/material" class="btn btn-sm btn-primary mt-4" href="/material" jsaction="click:;"><i class="fa-solid fa-backward mr-2"></i> Zurück </a><hr> Anregungen? Feedback? Fehler? <a target="_blank" rel="noopener noreferer" class="content" href="https://github.com/angular-buch/website-articles/blob/main/material/workspace/README.md"><i class="fa-brands fa-github mr-1"></i> Forke/bearbeite diese Seite auf GitHub</a>. </article></div></div><!----><!----></div></div></section><app-json-ld-outlet ngh="6"><script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "headline": "Workspace und Monorepo mit der Angular CLI",
+  "description": "Mit ng new entsteht nicht nur eine Angular-Anwendung, sondern immer auch ein Workspace.\nOft enthält er genau eine Anwendung, aber das muss nicht so bleiben:\nDie Angular CLI kann in einem einzigen Workspace mehrere Anwendungen und Bibliotheken verwalten.",
+  "url": "https://angular-buch.com/material/workspace",
+  "datePublished": "2026-11-02T00:00:00.000Z",
+  "dateModified": "2026-11-02T00:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Ferdinand Malcher"
+    },
+    {
+      "@type": "Person",
+      "name": "Danny Koppenhagen"
+    },
+    {
+      "@type": "Person",
+      "name": "Johannes Hoppe"
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Angular-Buch",
+    "url": "https://angular-buch.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://angular-buch.com/assets/img/brand-400.png"
+    }
+  },
+  "mainEntityOfPage": "http://schema.org/WebPage"
+}</script></app-json-ld-outlet></app-material-post-details><!----><footer ngh="9"><div class="container"><div class="row align-items-center"><div class="col-sm-9"><div class="links"><app-link ngh="0"><!----><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/" jsaction="click:;"><!----> Home </a><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/impressum" jsaction="click:;"><!----> Impressum </a><!----><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="1"><!----><!----><a routerlinkactive="nav__current" ariacurrentwhenactive="page" class="links__item" href="/datenschutz" jsaction="click:;"><!----> Datenschutzerklärung </a><!----><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="8"><!----><a class="links__item links__linkedin ml-1" href="https://www.linkedin.com/company/angular-buch/" rel="nofollow"><!----> LinkedIn </a><!----><!----><!----><!----></app-link><span aria-hidden="true">|</span><!----><app-link ngh="8"><!----><a class="links__bluesky links__item ml-1" href="https://bsky.app/profile/angular-buch.com" rel="nofollow"><!----> Bluesky </a><!----><!----><!----><!----></app-link><!----><!----></div></div></div></div></footer></main><app-json-ld-outlet ngh="6"><script type="application/ld+json">{
+  "sku": "9783988890641",
+  "productID": "9783988890641",
+  "mpn": "9783988890641",
+  "name": "Angular: Das Praxisbuch",
+  "description": "Von den Grundlagen bis zur professionellen Entwicklung mit Signals. Das moderne Praxisbuch zu Angular – ab Version 22",
+  "aggregateRating": {
+    "reviewCount": 31,
+    "ratingValue": 4.870967741935484,
+    "@type": "AggregateRating"
+  },
+  "review": [
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Kann dieses Buch zu 100% empfehlen wenn man neu in Angular einsteigen will.",
+      "datePublished": "2018-07-08",
+      "author": {
+        "name": "DrDrakken, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Wer Angular von Grund auf lernen möchte, ist mit dem Buch bestens bedient.",
+      "datePublished": "2017-11-30",
+      "author": {
+        "name": "constructor, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Tolle Themen. Guter Praxisbezug. Habe den Kauf nicht bereut und würde es jederzeit weiterempfehlen.",
+      "datePublished": "2017-06-21",
+      "author": {
+        "name": "Jörg Manske, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Eine klare Empfehlung für alle, die sich einen Überblick über moderne SPA-Entwicklung mit Angular verschaffen möchten.",
+      "datePublished": "2017-12-11",
+      "author": {
+        "name": "schoettner, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ein Buch, das für Einsteiger und Wissenhungrige, empfehlenswert ist.",
+      "datePublished": "2018-02-22",
+      "author": {
+        "name": "Dominik Sprung, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Im Buch wird das Grundkonzept ausführlich aber nicht langweilig erklärt. [...] Ich gebe wirklich selten 5 Punkte in einer Rezession, hier geht es nicht anders.",
+      "datePublished": "2018-05-01",
+      "author": {
+        "name": "Torsten Lehmann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Es macht einfach Spass dieses Buch zu lesen. Ich empfehle es! Die Beispiele sind sehr klar und alles wird sehr gut erklärt.",
+      "datePublished": "2018-01-24",
+      "author": {
+        "name": "F. Salvi, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "In meinen Augen hat das Buch gute Chancen, Standardwerk bei der Angular-Ausbildung bei uns zu werden.",
+      "datePublished": "2018-12-01",
+      "author": {
+        "name": "Tobias Meier, Lead Softwarearchitekt, BridgingIT GmbH",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Der Leser wird von vornherein abgeholt und an die Hand genommen. Alles ist so ausreichend erklärt, dass man die Zusammenhänge verstehen kann und gleichzeitig auch nicht mit zu vielen Infos überfordert wird.",
+      "datePublished": "2017-12-03",
+      "author": {
+        "name": "Jan Buchholz, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Die Beispiele sind einfach gehalten und gut erklärt, so dass man direkt ein gutes Basiswissen aufbaut.",
+      "datePublished": "2017-05-30",
+      "author": {
+        "name": "Andre Fritzsche, IT Consultant, BridgingIT GmbH",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "It's 500+ pages that get you from beginner to top Angular expert level!",
+      "datePublished": "2017-06-15",
+      "author": {
+        "name": "Juri Strumpflohner, Blogger und Trainer für Angular",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Die Beispiele sind sehr gut beschrieben, sodass man jeden Schritt nachvollziehen kann. Der Kauf hat sich auf alle Fälle gelohnt.",
+      "datePublished": "2018-08-20",
+      "author": {
+        "name": "Mireille Puschmann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ich persönlich finde den didaktischen Aufbau des Buchs wirklich gelungen. Für eine Einführung ist die Tiefe genau richtig.",
+      "datePublished": "2023-08-14",
+      "author": {
+        "name": "Dr. Jochen Manns, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch eignet sich hervorragend als Nachschlagewerk, das auf dem Schreibtisch des Angular-Entwicklers nicht fehlen sollte.",
+      "datePublished": "2017-06-27",
+      "author": {
+        "name": "Guido K., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das lesen macht wirklich Spaß und es gibt eine gute Lernkurve.",
+      "datePublished": "2017-12-19",
+      "author": {
+        "name": "A.B., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Warten hat sich gelohnt! Danke für dieses geniale Buch!",
+      "datePublished": "2017-08-10",
+      "author": {
+        "name": "Stefan Kert, auf Twitter",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Der Schreibstil ist gut, kein Schaulaufen von Experten, sondern das Vermitteln von Wissen. Ich empfehle das Buch allen, die ingenieursmäßig denken und eine spannende Technologie besser kennenlernen wollen.",
+      "datePublished": "2017-06-22",
+      "author": {
+        "name": "Watzmann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch ist gut strukturiert, das Vorgehen Schritt-für-Schritt hilft dabei gut weiter. Die Autoren sind Profis, das erkennt man sofort, und verstehen von ihrem Handwerk.",
+      "datePublished": "2019-05-16",
+      "author": {
+        "name": "Anton, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch bietet einen guten ersten Anfang in die Welt von Angular. [...] Ich warte gespannt auf die 2 Version des Buches, um meine aktuellen Projekte umsetzen zu können.",
+      "datePublished": "2019-04-01",
+      "author": {
+        "name": "Leela, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ich habe den Eindruck, dass ich hier mit meinem Projekt gut aufgehoben bin. Sehr empfehlenswert!",
+      "datePublished": "2019-03-30",
+      "author": {
+        "name": "Metal King, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch ist sehr gut strukturiert, sehr gut zu lesen und durch das praktische Beispiel sehr gut zu verinnerlichen.",
+      "datePublished": "2019-01-28",
+      "author": {
+        "name": "ea, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Die einzelnen Kapitel sind sehr übersichtlich strukturiert und man kann den Erläuterungen zu jeder Zeit gut folgen. Ich kann dieses Buch guten Gewissens jedem empfehlen, der mit Angular zu tun hat. Es ist ein prima Nachschlagewerk.",
+      "datePublished": "2019-06-25",
+      "author": {
+        "name": "M.S., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch erklärt in einem wunderbaren Schreibstil, wie man als Neuling in der Angular-Welt den besten Einstieg bekommt. Man merkt, dass die Autoren sehr tief in der Materie sind und ihr Wissen gerne weitergeben. Somit ist das Buch stets professionell, aber immer nachvollziehbar und verständlich.",
+      "datePublished": "2020-07-05",
+      "author": {
+        "name": "C4bb4g3, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Ich bin auf die beiden Autoren durch ein YouTube Video aufmerksam geworden und war gleich begeistert, weil sie so gut und verständlich erklären. Auch das Beispiel, das sich durchzieht, ist sehr gut und hilfreich.",
+      "datePublished": "2020-04-18",
+      "author": {
+        "name": "Klia Maus, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch ist von vorne bis hinten gut strukturiert und alle darin enthaltenen Themen detailliert erklärt. Absolute Kaufempfehlung für jeden, der sich mit dem Framework Angular bestens vertraut machen möchte! Ein Lob an die Autoren.",
+      "datePublished": "2020-03-06",
+      "author": {
+        "name": "Johannes Meinhard, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 4,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das Buch hat mir sehr gut weiter geholfen und ich würde es weiterempfehlen. Der Aufbau sowie Schreibweise des Buchs haben mir gut gefallen, ich hatte beim Lesen nie das Gefühl, nicht folgen zu können.",
+      "datePublished": "2019-11-15",
+      "author": {
+        "name": "Katharinarrr, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Den kurzweiligen Mix aus Theorie und Praxis empfinde ich als sehr motivierend. Die Autoren können auch komplexe Themen sehr verständlich erklären. Ich empfehle das Buch jedem, der eine solide Einführung ins Thema Angular sucht.",
+      "datePublished": "2019-10-26",
+      "author": {
+        "name": "Matthias Hess, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Es ist sehr sorgfältig recherchiert, auf dem neuesten Stand und gibt Einblick in alles, was man von Angular wissen muss. Ich hatte davor schon Bücher von anderen Autoren zu diesem Thema, in diesen wurde jedoch nicht so sauber und anschaulich erklärt wie in diesem Buch.",
+      "datePublished": "2023-04-16",
+      "author": {
+        "name": "Daniel Ellermann, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Didaktisch eine glatte 1 mit Sternchen! Hervorragend für mich als Wirtschaftsinformatiker zum Selbststudium, mit schneller Lernkurve geeignet.",
+      "datePublished": "2023-06-27",
+      "author": {
+        "name": "OD, auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Insgesamt ein sehr solides und aktuelles Praxisbuch, das sich hervorragend als Nachschlagewerk und als kontinuierliche Lernbegleitung eignet. Für alle, die Angular professionell einsetzen oder einsetzen wollen, eine klare Empfehlung.",
+      "datePublished": "2026-01-11",
+      "author": {
+        "name": "Christian P., auf Amazon.de",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    },
+    {
+      "reviewRating": {
+        "worstRating": "1",
+        "ratingValue": 5,
+        "bestRating": "5",
+        "@type": "Rating"
+      },
+      "name": "Das erste Angular-Buch von dieser Truppe war meiner Meinung nach das beste auf dem Markt. Allerdings hat sich in #Angular in den letzten 3-5 Jahren so unfassbar viel verändert, dass die drei statt einer 5. Auflage nun ein komplett neues geschrieben haben. Wer Angular (besser) verstehen möchte, ist hier richtig.",
+      "datePublished": "2026-05-23",
+      "author": {
+        "name": "Marcus Maack auf LinkedIn",
+        "@type": "Person"
+      },
+      "@type": "Review"
+    }
+  ],
+  "@type": "Product",
+  "@context": "http://schema.org",
+  "brand": "Angular-Buch",
+  "image": "https://angular-buch.com/assets/img/book-cover-v1m.png",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "EUR",
+    "price": "39.90",
+    "priceValidUntil": "2030-12-31T23:59:59",
+    "itemCondition": "http://schema.org/NewCondition",
+    "availability": "http://schema.org/InStock",
+    "url": "https://angular-buch.com/kaufen",
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0",
+        "currency": "EUR"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": [
+          "DE",
+          "AT",
+          "CH"
+        ]
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 1,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 3,
+          "unitCode": "DAY"
+        }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": [
+        "DE",
+        "AT",
+        "CH"
+      ],
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 14,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    }
+  }
+}</script></app-json-ld-outlet></app-root>
+<link rel="modulepreload" href="chunk-BlRON4FE.js"><script src="polyfills-KE2WY2BY.js" type="module"></script><script src="main-NELXZSUR.js" type="module"></script>
+<link rel="modulepreload" href="chunk-BPWdqkRQ.js">
+<link rel="modulepreload" href="chunk-DPzV4oAZ.js">
+<link rel="modulepreload" href="chunk-DeAa4bNC.js">
+<link rel="modulepreload" href="chunk-k6GCvH-T.js">
+<link rel="modulepreload" href="chunk-BfH7C9yv.js">
+<link rel="modulepreload" href="chunk-ByLTu1rD.js">
+
+
+<script id="ng-state" type="application/json">{"be0e35ea2065280cabc13d31e9aa13335ad0d439b827cac168e164f62c9540d7":{"b":[{"slug":"typescript","html":"\u003Cp>Für die Entwicklung mit Angular verwenden wir die Programmiersprache \u003Cstrong>TypeScript\u003C\u002Fstrong>.\nDieser Artikel richtet sich an alle, die mit modernem JavaScript und TypeScript noch nicht vertraut sind.\nWir gehen die wichtigsten Sprachfeatures Schritt für Schritt durch und legen damit das Fundament für die Arbeit mit Angular.\u003C\u002Fp>","meta":{"title":"Einführung in TypeScript","published":"2026-05-14T00:00:00.000Z","lastModified":"2026-05-14T00:00:00.000Z","sortKey":1}},{"slug":"directives","html":"\u003Cp>In diesem Artikel geht es um \u003Cem>Direktiven\u003C\u002Fem> in Angular.\nMit Direktiven können wir das Verhalten von DOM-Elementen steuern und erweitern.\nWir betrachten die Unterschiede zwischen Attribut- und Strukturdirektiven, lernen, wie wir eigene Direktiven entwickeln können, und schauen uns die Komposition mit Host-Direktiven an.\u003C\u002Fp>","meta":{"title":"Direktiven: Logik für DOM-Elemente","published":"2026-04-25T00:00:00.000Z","lastModified":"2026-04-25T00:00:00.000Z","sortKey":5}},{"slug":"content-projection","html":"\u003Cp>Wenn wir eine Komponente in unser Template einbinden, notieren wir sie üblicherweise ohne weiteren Inhalt zwischen dem öffnenden und schließenden Tag.\nManchmal ist es aber sinnvoll, einer Komponente eigenes Markup oder auch andere Komponenten als Kindelemente mitzugeben – zum Beispiel bei Cards, Dialogen oder Layouts.\nAngular ermöglicht das mit \u003Cstrong>Content Projection\u003C\u002Fstrong> und dem Element \u003Ccode>&lt;ng-content&gt;\u003C\u002Fcode>.\nIn diesem Artikel erklären wir das Konzept im Detail und zeigen, wie du es in deinen Komponenten einsetzen kannst.\u003C\u002Fp>","meta":{"title":"Content Projection: Inhalte an Komponenten übergeben","published":"2026-05-15T00:00:00.000Z","lastModified":"2026-05-15T00:00:00.000Z","sortKey":6}},{"slug":"interceptors","html":"\u003Cp>In diesem Artikel geht es um \u003Cem>Interceptors\u003C\u002Fem> in Angular. Damit lassen sich HTTP-Requests und -Responses zentral erfassen und transformieren.\nSo können wir zum Beispiel Authentifizierungs-Header automatisch setzen, Fehler global behandeln oder die HTTP-Kommunikation loggen, ohne jeden einzelnen Request manuell anpassen zu müssen.\nDabei betrachten wir zunächst die Funktionsweise und Implementierung von Interceptors, bevor wir am Beispiel einer Authentifizierung mit OAuth 2 und OpenID Connect ein praxisnahes Einsatzszenario umsetzen.\u003C\u002Fp>","meta":{"title":"Interceptors: HTTP-Requests erfassen und transformieren","published":"2026-03-06T00:00:00.000Z","lastModified":"2026-05-21T00:00:00.000Z","sortKey":10}},{"slug":"resolvers","html":"\u003Cp>Der Angular-Router bietet mit \u003Cem>Resolvers\u003C\u002Fem> die Möglichkeit, Daten asynchron vorzuladen, bevor eine Komponente aktiviert wird.\nHier betrachten wir die Funktionsweise, Implementierung und den Zugriff auf die aufgelösten Daten in der Komponente.\nAußerdem diskutieren wir, wann Resolvers sinnvoll sind – und wann nicht.\u003C\u002Fp>","meta":{"title":"Resolvers: Daten beim Routing vorladen","published":"2026-05-17T00:00:00.000Z","lastModified":"2026-05-21T00:00:00.000Z","sortKey":11}},{"slug":"guards","html":"\u003Cp>Normalerweise kann jede Route einer Angular-Anwendung uneingeschränkt betreten und wieder verlassen werden.\nIn komplexeren Anwendungen gibt es allerdings Bereiche, die nur unter bestimmten Umständen aufgerufen werden sollen, z. B. abhängig von Authentifizierung, Berechtigungen oder dem Zustand der Anwendung.\nDer Angular-Router bietet dafür ein Feature an, mit dem wir Routen absichern können: \u003Cem>Route Guards\u003C\u002Fem>.\u003C\u002Fp>","meta":{"title":"Guards: Routen absichern","published":"2026-06-10T00:00:00.000Z","lastModified":"2026-06-10T00:00:00.000Z","sortKey":12}},{"slug":"reactive-forms","html":"\u003Cp>Formulare gehören zu den zentralen Bausteinen jeder Webanwendung.\nAngular bietet mit \u003Cstrong>Reactive Forms\u003C\u002Fstrong> einen bewährten Ansatz, um sie strukturiert und typsicher zu verarbeiten. \nDie Lösung ist seit jeher fester Bestandteil von Angular und wird in vielen produktiven Anwendungen eingesetzt.\nIn diesem Artikel stellen wir den Ansatz im Detail vor.\u003C\u002Fp>","meta":{"title":"Formulare mit Reactive Forms","published":"2026-03-26T00:00:00.000Z","lastModified":"2026-03-26T00:00:00.000Z","sortKey":20}},{"slug":"template-forms","html":"\u003Cp>Formulare gehören zu den zentralen Bausteinen jeder Webanwendung.\nMit den älteren \u003Cstrong>Template-Driven Forms\u003C\u002Fstrong> bietet Angular einen Ansatz, bei dem die Formularlogik direkt im Template definiert wird.\nDieser Artikel stellt den Ansatz im Detail vor.\u003C\u002Fp>","meta":{"title":"Formulare mit Template-Driven Forms","published":"2026-04-08T00:00:00.000Z","lastModified":"2026-04-08T00:00:00.000Z","sortKey":21}},{"slug":"ssr","html":"\u003Cp>Single-Page-Anwendungen mit Angular bieten grundsätzlich eine gute Performance:\nIm Gegensatz zu einer herkömmlichen Webanwendung ist der Anwendungscode bereits nach dem Start im Browser verfügbar, und weitere Inhalte werden zur Laufzeit nachgeladen.\nWir profitieren davon mit schnellen Seitenwechseln und Reaktionszeiten.\nIst die Anwendung einmal heruntergeladen, müssen nur noch die darzustellenden Daten und ggf. kleinere Anwendungsteile vom Server geladen werden.\u003C\u002Fp>","meta":{"title":"Server-Side Rendering (SSR) mit Angular","published":"2026-02-23T00:00:00.000Z","lastModified":"2026-03-02T00:00:00.000Z","sortKey":30}},{"slug":"i18n","html":"\u003Cp>In diesem Artikel geht es darum, wie wir unsere Angular-Anwendung für verschiedene Sprachräume lokalisieren und in mehreren Sprachen ausliefern können.\nDabei betrachten wir zunächst die Lokalisierung (l10n) für ein einzelnes Locale und anschließend die vollständige Internationalisierung (i18n) mit dem Übersetzungstooling der Angular CLI.\u003C\u002Fp>","meta":{"title":"Lokalisierung (l10n) und Internationalisierung (i18n) mit Angular","published":"2026-03-02T00:00:00.000Z","lastModified":"2026-03-03T00:00:00.000Z","sortKey":40}},{"slug":"workspace","html":"\u003Cp>Mit \u003Ccode>ng new\u003C\u002Fcode> entsteht nicht nur eine Angular-Anwendung, sondern immer auch ein \u003Cem>Workspace\u003C\u002Fem>.\nOft enthält er genau eine Anwendung, aber das muss nicht so bleiben:\nDie Angular CLI kann in einem einzigen Workspace mehrere Anwendungen und Bibliotheken verwalten.\u003C\u002Fp>","meta":{"title":"Workspace und Monorepo mit der Angular CLI","published":"2026-11-02T00:00:00.000Z","lastModified":"2026-11-02T00:00:00.000Z","sortKey":50}}],"h":{},"s":200,"st":"OK","u":"https:\u002F\u002Fwebsite-articles.angular-buch.com\u002Fmaterial\u002Flist.json","rt":"json"},"d01a803a5d6d878efbb8d46c966753381720be8001a0cd62ac99dc422b2e7894":{"b":{"slug":"workspace","html":"\u003Cp>Mit \u003Ccode>ng new\u003C\u002Fcode> entsteht nicht nur eine Angular-Anwendung, sondern immer auch ein \u003Cem>Workspace\u003C\u002Fem>.\nOft enthält er genau eine Anwendung, aber das muss nicht so bleiben:\nDie Angular CLI kann in einem einzigen Workspace mehrere Anwendungen und Bibliotheken verwalten.\u003C\u002Fp>\n\u003Cp>In diesem Artikel geht es darum, wie du diese Bordmittel der Angular CLI einsetzt.\nDas ist bewusst kein Grundlagenartikel zu Monorepos:\nWir vergleichen keine Repository-Strategien und diskutieren auch nicht, wann sich ein Monorepo für dein Unternehmen lohnt.\nEinen guten allgemeinen Überblick über das Thema findest du auf \u003Ca href=\"https:\u002F\u002Fmonorepo.tools\u002F\">monorepo.tools\u003C\u002Fa>.\u003C\u002Fp>\n\u003Ch2 id=\"inhalt\">Inhalt\u003C\u002Fh2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fworkspace#der-workspace\">Der Workspace\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fworkspace#applikationen-angular-apps-im-workspace\">Applikationen: Angular-Apps im Workspace\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fworkspace#bibliotheken-code-zwischen-anwendungen-teilen\">Bibliotheken: Code zwischen Anwendungen teilen\u003C\u002Fa>\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fworkspace#eine-bibliothek-als-npm-paket-bereitstellen\">Eine Bibliothek als NPM-Paket bereitstellen\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fworkspace#ausblick-nx\">Ausblick: Nx\u003C\u002Fa>\u003Cul>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fworkspace#verwaltung-von-abh%C3%A4ngigkeiten\">Verwaltung von Abhängigkeiten\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fworkspace#affected-builds-und-caching\">Affected Builds und Caching\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fworkspace#nx-verwenden\">Nx verwenden\u003C\u002Fa>\u003C\u002Fli>\n\u003Cli>\u003Ca href=\"\u002Fmaterial\u002Fworkspace#fazit-zu-nx\">Fazit zu Nx\u003C\u002Fa>\u003C\u002Fli>\n\u003C\u002Ful>\n\u003C\u002Fli>\n\u003C\u002Ful>\n\u003Ch2 id=\"der-workspace\">Der Workspace\u003C\u002Fh2>\n\u003Cp>In einem Angular-Projekt existiert auf oberster Ebene immer ein Workspace.\nDieser wird beim Aufruf von \u003Ccode>ng new\u003C\u002Fcode> erzeugt und standardmäßig bereits mit einer Angular-Anwendung aufgesetzt.\nEin Workspace der Angular CLI kann jedoch mehrere Unterprojekte beinhalten, die entweder \u003Cem>Applikationen\u003C\u002Fem> oder \u003Cem>Bibliotheken\u003C\u002Fem> sind.\nNutzen wir einen Workspace für die Verwaltung mehrerer Applikationen oder Bibliotheken, so sprechen wir von einem \u003Cem>Monorepo\u003C\u002Fem>.\u003C\u002Fp>\n\u003Cp>Jedes der Projekte im Workspace besitzt einen eigenen Abschnitt in der Datei \u003Ccode>angular.json\u003C\u002Fcode>.\nDer Schlüssel \u003Ccode>projectType\u003C\u002Fcode> gibt dabei an, ob es sich um eine Applikation (\u003Ccode>application\u003C\u002Fcode>) oder eine Bibliothek (\u003Ccode>library\u003C\u002Fcode>) handelt.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-json\">{\n  \u003Cspan class=\"hljs-string\">&quot;$schema&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;.\u002Fnode_modules\u002F@angular\u002Fcli\u002Flib\u002Fconfig\u002Fschema.json&quot;\u003C\u002Fspan>,\n  \u003Cspan class=\"hljs-string\">&quot;version&quot;\u003C\u002Fspan>: 1,\n  \u003Cspan class=\"hljs-string\">\u002F\u002F\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">...\u003C\u002Fspan>\n  \u003Cspan class=\"hljs-string\">&quot;newProjectRoot&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;projects&quot;\u003C\u002Fspan>,\n  \u003Cspan class=\"hljs-string\">&quot;projects&quot;\u003C\u002Fspan>: {\n    \u003Cspan class=\"hljs-string\">&quot;my-app&quot;\u003C\u002Fspan>: {\n      \u003Cspan class=\"hljs-string\">&quot;projectType&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;application&quot;\u003C\u002Fspan>,\n      \u003Cspan class=\"hljs-string\">\u002F\u002F\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">...\u003C\u002Fspan>\n    },\n    \u003Cspan class=\"hljs-string\">&quot;my-library&quot;\u003C\u002Fspan>: {\n      \u003Cspan class=\"hljs-string\">&quot;projectType&quot;\u003C\u002Fspan>: \u003Cspan class=\"hljs-string\">&quot;library&quot;\u003C\u002Fspan>,\n      \u003Cspan class=\"hljs-string\">\u002F\u002F\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">...\u003C\u002Fspan>\n    }\n  }\n}\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Wenn wir einen Workspace erzeugen, können wir ihn auch gänzlich ohne eine initiale Applikation oder Bibliothek erstellen:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">ng \u003Cspan class=\"hljs-keyword\">new\u003C\u002Fspan> my-workspace --\u003Cspan class=\"hljs-keyword\">create\u003C\u002Fspan>-application=\u003Cspan class=\"hljs-keyword\">false\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Es wird dann lediglich die Basiskonfiguration angelegt.\nAlle enthaltenen Applikationen und Bibliotheken müssen wir anschließend selbst generieren.\u003C\u002Fp>\n\u003Cpre>\u003Ccode>my-workspace\n├── \u003Cspan class=\"hljs-selector-class\">.vscode\u003C\u002Fspan>\n├── node_modules\n├── \u003Cspan class=\"hljs-selector-class\">.editorconfig\u003C\u002Fspan>\n├── \u003Cspan class=\"hljs-selector-class\">.gitignore\u003C\u002Fspan>\n├── \u003Cspan class=\"hljs-selector-class\">.prettierrc\u003C\u002Fspan>\n├── angular\u003Cspan class=\"hljs-selector-class\">.json\u003C\u002Fspan>\n├── package-lock\u003Cspan class=\"hljs-selector-class\">.json\u003C\u002Fspan>\n├── package\u003Cspan class=\"hljs-selector-class\">.json\u003C\u002Fspan>\n├── README\u003Cspan class=\"hljs-selector-class\">.md\u003C\u002Fspan>\n└── tsconfig.json\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch2 id=\"applikationen-angular-apps-im-workspace\">Applikationen: Angular-Apps im Workspace\u003C\u002Fh2>\n\u003Cp>Jede Anwendung, die wir mit der Angular CLI generieren und starten können, ist eine \u003Cem>Applikation\u003C\u002Fem> in einem Workspace.\nEntwickeln wir Anwendungen, die vollkommen unabhängig voneinander sind, so werden wir hier in der Regel eine 1:1-Beziehung vorfinden.\nNutzen wir \u003Ccode>ng new\u003C\u002Fcode> zur Erzeugung eines Workspace, so wird initial auch gleich eine Applikation mit erzeugt.\nDas Hauptverzeichnis der Anwendung befindet sich in diesem Fall standardmäßig unter \u003Ccode>src\u003C\u002Fcode>.\nSo sind die meisten Angular-Projekte aufgebaut: ein Workspace, der eine einzige Anwendung beinhaltet.\u003C\u002Fp>\n\u003Cp>Es gibt jedoch Situationen, in denen die Anwendungen nicht unabhängig voneinander sind.\nAnstatt einzelne Workspaces mit verwandten Anwendungen zu pflegen, können wir einen einzigen Workspace mit mehreren Apps als Monorepo verwalten.\nDadurch können wir in allen Applikationen die gleiche Konfiguration nutzen, und wir können gemeinsam genutzten Code zwischen den Applikationen teilen.\nDieser wiederverwendbare Code wird dabei in Bibliotheken abgelegt.\u003C\u002Fp>\n\u003Cp>Im Beispiel wollen wir eine Anwendung entwickeln, die aus mehreren Features besteht.\nFirmen können die Features separat buchen und zwischen verschiedenen Layouts wählen.\nFür jede Firma kann das Design entsprechend dem Unternehmensbranding angepasst werden.\u003C\u002Fp>\n\u003Cp>\u003Cfigure>\u003Cimg src=\"%%MARKDOWN_BASE_URL%%\u002Fmaterial\u002Fworkspace\u002Fbranded-app.webp\" alt=\"Zwei Browserfenster zeigen dieselbe Anwendung für Company A und Company B mit unterschiedlichem Layout und unterschiedlichen Features.\" title=\"Eine Anwendung in verschiedenen Ausprägungen\">\u003Cfigcaption>Eine Anwendung in verschiedenen Ausprägungen\u003C\u002Ffigcaption>\u003C\u002Ffigure>\u003C\u002Fp>\n\u003Cp>Für diese Aufgabe könnten wir nun den Workspace jeweils duplizieren und anpassen, und die Arbeit wäre damit zunächst getan.\nDas erscheint auf den ersten Blick charmant und geht schnell von der Hand.\nProblematisch wird es jedoch, wenn Änderungen an der Grundanwendung vorgenommen werden: Wir entdecken einen Bug, machen ein Sicherheitsupdate, implementieren ein neues Basisfeature oder führen einfach nur ein Update von Angular durch.\nDiese Anpassungen musst du in allen Kopien des ursprünglichen Workspace durchführen, und diese Aufgabe wird schnell zur Qual.\u003C\u002Fp>\n\u003Cp>Mit einem Monorepo, also einem Workspace, der alle Anwendungen in allen Varianten beinhaltet, lässt sich die Aufgabe effizienter bewältigen.\nUpdates von Angular oder anderen Abhängigkeiten haben eine direkte Auswirkung auf alle Anwendungen und sind somit wesentlich schneller umgesetzt.\nAußerdem können wir gemeinsam genutzten Code in Bibliotheken auslagern und so die Wartung vereinfachen.\u003C\u002Fp>\n\u003Cp>Eine neue Anwendung in einem existierenden Workspace kannst du mit dem folgenden Befehl erzeugen:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">ng g \u003Cspan class=\"hljs-built_in\">application\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">my\u003C\u002Fspan>-app\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Die neue Anwendung befindet sich anschließend im Verzeichnis \u003Ccode>projects\u002Fmy-app\u003C\u002Fcode>.\nAußerdem sorgt Angular CLI dafür, dass ein entsprechender Eintrag in der Datei \u003Ccode>angular.json\u003C\u002Fcode> angelegt wird.\nDas neue Projekt wird auch in der Datei \u003Ccode>tsconfig.json\u003C\u002Fcode> referenziert.\u003C\u002Fp>\n\u003Cp>Haben wir mehrere Anwendungen in unserem Workspace, können wir diese separat starten oder bauen.\nHierfür geben wir nach dem üblichen \u003Ccode>ng build\u003C\u002Fcode> oder \u003Ccode>ng serve\u003C\u002Fcode> zusätzlich den Namen der Anwendung an:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">ng build \u003Cspan class=\"hljs-keyword\">my\u003C\u002Fspan>-app\nng serve \u003Cspan class=\"hljs-keyword\">my\u003C\u002Fspan>-app\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Wollen wir nun wiederverwendbaren Code der Anwendungen teilen, können wir diesen in Bibliotheken auslagern.\u003C\u002Fp>\n\u003Ch2 id=\"bibliotheken-code-zwischen-anwendungen-teilen\">Bibliotheken: Code zwischen Anwendungen teilen\u003C\u002Fh2>\n\u003Cp>Verwalten wir mehrere Applikationen in einem Workspace, können wir wiederverwendbaren Code zwischen diesen Anwendungen teilen.\nDazu werden \u003Cem>Bibliotheken\u003C\u002Fem> verwendet.\nEine Bibliothek ist eine Sammlung von Programmteilen, die separat von den Anwendungen gepflegt werden und gemeinsam genutzt werden können, z. B. Komponenten, Direktiven, Pipes, Services, Konstanten, Funktionen und Interfaces.\nDiese können wir anschließend in anderen Anwendungen des Workspace verwenden oder auch separat als NPM-Paket veröffentlichen.\u003C\u002Fp>\n\u003Cp>Mit dem folgenden Befehl können wir eine Bibliothek in einem existierenden Workspace erzeugen:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">ng g \u003Cspan class=\"hljs-keyword\">library\u003C\u002Fspan> my-\u003Cspan class=\"hljs-keyword\">library\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Das Projekt für die Bibliothek befindet sich danach im Verzeichnis \u003Ccode>projects\u002Fmy-library\u003C\u002Fcode>.\nAuch hier wird ein entsprechender Eintrag in der Datei \u003Ccode>angular.json\u003C\u002Fcode> erzeugt, und es erfolgt eine Referenzierung in der Datei \u003Ccode>tsconfig.json\u003C\u002Fcode>.\u003C\u002Fp>\n\u003Cp>Die CLI legt dort bereits eine Komponente \u003Ccode>MyLibrary\u003C\u002Fcode> an.\nAlles, was die Bibliothek nach außen anbieten soll, exportieren wir in der Datei \u003Ccode>src\u002Fpublic-api.ts\u003C\u002Fcode>.\nNeue Bestandteile wie Komponenten, Pipes, Direktiven oder Services müssen wir hier also ebenfalls eintragen:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-comment\">\u002F*\n * Public API Surface of my-library\n *\u002F\u003C\u002Fspan>\n\n\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> * \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;.\u002Flib\u002Fmy-library&#x27;\u003C\u002Fspan>;\n\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> * \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;.\u002Flib\u002Fbook-card&#x27;\u003C\u002Fspan>;\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Wollen wir die Bibliothek in einer Applikation innerhalb des Workspace nutzen, muss die Bibliothek zunächst gebaut werden:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">ng build \u003Cspan class=\"hljs-keyword\">my\u003C\u002Fspan>-library\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Anschließend können wir die Bibliothek direkt in unseren Applikationen verwenden, als hätten wir sie zuvor als NPM-Paket installiert:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-typescript\">\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { Component } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;@angular\u002Fcore&#x27;\u003C\u002Fspan>;\n\u003Cspan class=\"hljs-keyword\">import\u003C\u002Fspan> { BookCard } \u003Cspan class=\"hljs-keyword\">from\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">&#x27;my-library&#x27;\u003C\u002Fspan>;\n\n@Component({\n  selector: \u003Cspan class=\"hljs-string\">&#x27;app-root&#x27;\u003C\u002Fspan>,\n  imports: [BookCard],\n  template: `\u003Cspan class=\"language-javascript\">&lt;lib-book-card \u002F&gt;\u003C\u002Fspan>`\n})\n\u003Cspan class=\"hljs-keyword\">export\u003C\u002Fspan> \u003Cspan class=\"hljs-keyword\">class\u003C\u002Fspan> \u003Cspan class=\"hljs-title class_\">App\u003C\u002Fspan> {}\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Das Mapping vom Bibliotheksnamen auf den Pfad im Dateisystem wird in der \u003Ccode>tsconfig.json\u003C\u002Fcode> konfiguriert.\nEs zeigt auf das Build-Ergebnis im Ordner \u003Ccode>dist\u003C\u002Fcode>, deshalb ist es notwendig, die Bibliothek vorher zu bauen:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-json\">{\n  \u003Cspan class=\"hljs-string\">&quot;compilerOptions&quot;\u003C\u002Fspan>: {\n    \u003Cspan class=\"hljs-string\">&quot;paths&quot;\u003C\u002Fspan>: {\n      \u003Cspan class=\"hljs-string\">&quot;my-library&quot;\u003C\u002Fspan>: [\n        \u003Cspan class=\"hljs-string\">&quot;.\u002Fdist\u002Fmy-library&quot;\u003C\u002Fspan>\n      ]\n    },\n    \u003Cspan class=\"hljs-string\">\u002F\u002F\u003C\u002Fspan> \u003Cspan class=\"hljs-string\">...\u003C\u002Fspan>\n  }\n}\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Bitte importiere die Bestandteile nicht direkt aus dem Quellcode einer Bibliothek, sondern nutze immer den Pfad-Alias.\u003C\u002Fp>\n\u003Cp>Nehmen wir nun Änderungen am Code der Bibliothek vor, dürfen wir nicht vergessen, erneut den Build für die Bibliothek auszuführen.\nUm diesen Ablauf zu vereinfachen, können wir den \u003Cem>Watch-Modus\u003C\u002Fem> aktivieren, sodass die Bibliothek direkt auf Änderungen überwacht wird und der Build automatisch neu gestartet wird:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">ng build \u003Cspan class=\"hljs-keyword\">my\u003C\u002Fspan>-library \u003Cspan class=\"hljs-comment\">--watch\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch3 id=\"eine-bibliothek-als-npm-paket-bereitstellen\">Eine Bibliothek als NPM-Paket bereitstellen\u003C\u002Fh3>\n\u003Cp>Haben wir eine Bibliothek entwickelt, können wir diese auch außerhalb unseres Workspace nutzen.\nWir können sie dazu als NPM-Paket bereitstellen und so für andere Teams zugänglich machen.\nDie Bibliothek muss zunächst gebaut werden, danach können wir sie mittels \u003Ccode>npm publish\u003C\u002Fcode> veröffentlichen:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">ng build my-\u003Cspan class=\"hljs-keyword\">library\u003C\u002Fspan>\ncd \u003Cspan class=\"hljs-keyword\">dist\u003C\u002Fspan>\u002Fmy-\u003Cspan class=\"hljs-keyword\">library\u003C\u002Fspan>\nnpm publish\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Ch2 id=\"ausblick-nx\">Ausblick: Nx\u003C\u002Fh2>\n\u003Cp>Die Angular CLI liefert die Grundlagen für Monorepos.\nWer das Konzept konsequent weitertreiben möchte, sollte sich das Buildwerkzeug \u003Ca href=\"https:\u002F\u002Fnx.dev\u002F\">Nx\u003C\u002Fa> ansehen.\nNx setzt von Grund auf auf Monorepos und hat die hier vorgestellten Ideen sehr weit durchdacht.\nEs ist dabei nicht auf Angular beschränkt, sondern unterstützt unter anderem Vue, React, Node.js, Java, .NET und reine TypeScript-Bibliotheken.\u003C\u002Fp>\n\u003Cp>Das Konzept „Monorepo“ bedeutet dabei nicht zwangsläufig, dass der \u003Cem>gesamte\u003C\u002Fem> Code des Unternehmens in einem einzigen Git-Repository aufbewahrt wird.\nVielmehr geht es darum, zusammenhängende Teile eines Projekts modular zu organisieren, indem wiederverwendbare Bibliotheken in einem Workspace verwaltet werden.\nDie Applikationen sind idealerweise leichtgewichtige Hüllen, die mehrere Bibliotheken für die konkrete Nutzung aggregieren und verdrahten.\nDie tatsächliche Geschäftslogik und die fachspezifischen Komponenten sind in Bibliotheken ausgelagert.\nSo erreichen wir einen hohen Grad an Wiederverwendbarkeit und Entkopplung.\u003C\u002Fp>\n\u003Cp>Die Angular CLI bietet dafür bereits eine gute Unterstützung, die Anforderungen im Enterprise-Umfeld sind aber spezieller:\nDie Verwaltung von Projekten mit mehreren Dutzend Bibliotheken kann aufwendig und schwerfällig sein.\nAn dieser Stelle kommt Nx ins Spiel.\u003C\u002Fp>\n\u003Cp>Nx ist ursprünglich als Erweiterung für die Angular CLI entstanden, und diese Verwandtschaft ist weiterhin erkennbar.\nKommst du aus der Angular-Welt, wirst du dich in Nx schnell heimisch fühlen.\nMan schreibt hier vorzugsweise einheitlich \u003Ccode>nx generate\u003C\u002Fcode>, \u003Ccode>nx build\u003C\u002Fcode> und so weiter, denn mit Nx werden nicht nur Angular-Anwendungen entwickelt.\u003C\u002Fp>\n\u003Cp>Anstatt die Konfiguration in \u003Cem>einer\u003C\u002Fem> globalen Datei \u003Ccode>angular.json\u003C\u002Fcode> aufzubewahren, ist sie in einem Nx-Workspace auf die einzelnen Projekte verteilt, die jeweils eine Datei \u003Ccode>project.json\u003C\u002Fcode> besitzen.\nDas vermeidet Merge-Konflikte und steigert die Übersichtlichkeit.\u003C\u002Fp>\n\u003Ch3 id=\"verwaltung-von-abhängigkeiten\">Verwaltung von Abhängigkeiten\u003C\u002Fh3>\n\u003Cp>Zur Verwaltung der Bibliotheken bietet Nx einige ausgefeilte Features.\nBibliotheken und Apps hängen voneinander ab, wenn ihre Bestandteile importiert werden.\nDabei ist es besonders wichtig, den Überblick über die Beziehungen zwischen den Projekten zu behalten.\nNx ermittelt dafür einen Graphen, der die Zusammenhänge grafisch darstellt.\nMit dem Befehl \u003Ccode>nx graph\u003C\u002Fcode> kannst du \u003Ca href=\"https:\u002F\u002Fnx.dev\u002Fdocs\u002Ffeatures\u002Fexplore-graph\">im Browser analysieren\u003C\u002Fa>, was wovon abhängt.\u003C\u002Fp>\n\u003Cp>\u003Cfigure>\u003Cimg src=\"%%MARKDOWN_BASE_URL%%\u002Fmaterial\u002Fworkspace\u002Fnx-graph.webp\" alt=\"Der Graph zeigt eine Anwendung, die von den Bibliotheken feature-admin und feature-books abhängt. Diese nutzen wiederum data-access-books und util-books.\" title=\"Abhängigkeiten zwischen den Projekten im Nx-Graphen\">\u003Cfigcaption>Abhängigkeiten zwischen den Projekten im Nx-Graphen\u003C\u002Ffigcaption>\u003C\u002Ffigure>\u003C\u002Fp>\n\u003Cp>Ein gutes Beispiel für die durchdachte Struktur sind die \u003Ca href=\"https:\u002F\u002Fnx.dev\u002Fdocs\u002Fconcepts\u002Fdecisions\u002Fproject-dependency-rules\">empfohlenen Library-Typen\u003C\u002Fa>:\nNx schlägt vor, Bibliotheken nach ihrer Aufgabe einzuteilen, und legt dazu passende Regeln für die Imports nahe.\u003C\u002Fp>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>Typ\u003C\u002Fth>\n\u003Cth>Aufgabe\u003C\u002Fth>\n\u003Cth>darf importieren aus\u003C\u002Fth>\n\u003C\u002Ftr>\n\u003C\u002Fthead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ccode>feature\u003C\u002Fcode>\u003C\u002Ftd>\n\u003Ctd>Komponenten für einen konkreten Use Case\u003C\u002Ftd>\n\u003Ctd>allen Typen\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>\u003Ccode>ui\u003C\u002Fcode>\u003C\u002Ftd>\n\u003Ctd>reine Präsentationskomponenten\u003C\u002Ftd>\n\u003Ctd>\u003Ccode>ui\u003C\u002Fcode>, \u003Ccode>util\u003C\u002Fcode>\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>\u003Ccode>data-access\u003C\u002Fcode>\u003C\u002Ftd>\n\u003Ctd>Kommunikation mit dem Backend, State\u003C\u002Ftd>\n\u003Ctd>\u003Ccode>data-access\u003C\u002Fcode>, \u003Ccode>util\u003C\u002Fcode>\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003Ctr>\n\u003Ctd>\u003Ccode>util\u003C\u002Fcode>\u003C\u002Ftd>\n\u003Ctd>allgemeine Hilfsfunktionen\u003C\u002Ftd>\n\u003Ctd>\u003Ccode>util\u003C\u002Fcode>\u003C\u002Ftd>\n\u003C\u002Ftr>\n\u003C\u002Ftbody>\u003C\u002Ftable>\n\u003Cp>Diese Typen sind eine Empfehlung und keine feste Vorgabe.\nJede Bibliothek und jede App kann mit Tags versehen werden, um ihr einen fachlichen Bereich oder eine Rolle zuzuweisen.\nÜber diese Tags und die ESLint-Regel \u003Ca href=\"https:\u002F\u002Fnx.dev\u002Fdocs\u002Ffeatures\u002Fenforce-module-boundaries\">\u003Ccode>@nx\u002Fenforce-module-boundaries\u003C\u002Fcode>\u003C\u002Fa> lassen sich solche Constraints durchsetzen:\nImportiert eine \u003Ccode>ui\u003C\u002Fcode>-Bibliothek versehentlich aus einer \u003Ccode>feature\u003C\u002Fcode>-Bibliothek, meldet das Linting einen Fehler.\nSo bleibt die Architektur auch mit vielen Bibliotheken sauber.\u003C\u002Fp>\n\u003Ch3 id=\"affected-builds-und-caching\">Affected Builds und Caching\u003C\u002Fh3>\n\u003Cp>Nx bietet \u003Ca href=\"https:\u002F\u002Fnx.dev\u002Fdocs\u002Ffeatures\u002Fci-features\u002Faffected\">\u003Cem>Affected Builds\u003C\u002Fem>\u003C\u002Fa> an:\nDas Tool kennt die Abhängigkeiten zwischen den Projekten und ermittelt daraus, welche Aufgaben von einer Änderung tatsächlich betroffen sind.\nMit dem folgenden Befehl werden nur diese Builds und Tests ausgeführt, alles andere wird übersprungen.\nDas spart besonders in der CI viel Zeit.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">nx affected -t build \u003Cspan class=\"hljs-built_in\">test\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Außerdem verfügt Nx über ein ausgefeiltes Konzept zum \u003Ca href=\"https:\u002F\u002Fnx.dev\u002Fdocs\u002Ffeatures\u002Fcache-task-results\">Caching\u003C\u002Fa>:\nDie Ergebnisse von Aufgaben werden zwischengespeichert, um die nächste Ausführung zu beschleunigen.\nSeine große Stärke entfaltet dieses Konzept beim \u003Ca href=\"https:\u002F\u002Fnx.dev\u002Fdocs\u002Ffeatures\u002Fci-features\u002Fremote-cache\">Remote Caching\u003C\u002Fa>: Anstatt die Caches nur lokal zu halten, können sie über das Netzwerk geteilt werden.\nWurde ein Teil des Codes bereits auf einer anderen Maschine gebaut, muss er nicht noch einmal den Build-Prozess durchlaufen.\nDie Build-Zeit bei großen Projekten lässt sich damit drastisch reduzieren.\u003C\u002Fp>\n\u003Ch3 id=\"nx-verwenden\">Nx verwenden\u003C\u002Fh3>\n\u003Cp>Um einen neuen Nx-Workspace zu erstellen, verwenden wir den folgenden Befehl.\nEin interaktiver Wizard begleitet uns bei der Einrichtung.\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">npx create-nx-\u003Cspan class=\"hljs-keyword\">workspace\u003C\u002Fspan>@latest\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>Haben wir bereits einen von der Angular CLI generierten Workspace, können wir diesen \u003Ca href=\"https:\u002F\u002Fnx.dev\u002Fdocs\u002Ftechnologies\u002Fangular\u002Fmigration\u002Fangular\">zu einem Nx-Workspace migrieren\u003C\u002Fa>:\u003C\u002Fp>\n\u003Cpre>\u003Ccode class=\"language-bash\">npx \u003Cspan class=\"hljs-symbol\">nx@\u003C\u002Fspan>latest \u003Cspan class=\"hljs-keyword\">init\u003C\u002Fspan>\n\u003C\u002Fcode>\u003C\u002Fpre>\u003Cp>In der \u003Ca href=\"https:\u002F\u002Fnx.dev\u002Fdocs\u002Ftechnologies\u002Fangular\u002Fintroduction\">Dokumentation von Nx\u003C\u002Fa> findest du ausführliche Anleitungen und Referenzen für die verschiedenen Befehle.\u003C\u002Fp>\n\u003Ch3 id=\"fazit-zu-nx\">Fazit zu Nx\u003C\u002Fh3>\n\u003Cp>Nx ist ein vielfältiges und umfangreiches Buildwerkzeug, das vor allem für die Verwaltung von Monorepos konzipiert wurde.\nEs legt den Fokus auf Schnelligkeit und eine breite Toolunterstützung.\nDurch die Verwandtschaft mit der Angular CLI fällt der Umstieg in der Regel nicht schwer.\u003C\u002Fp>\n\u003Cp>Für den Anfang reichen die Bordmittel der Angular CLI aber völlig aus.\nEin Workspace mit einigen Anwendungen und Bibliotheken lässt sich damit gut verwalten.\nWenn das Projekt später wächst, kannst du immer noch auf Nx umsteigen.\u003C\u002Fp>\n","meta":{"title":"Workspace und Monorepo mit der Angular CLI","published":"2026-11-02T00:00:00.000Z","lastModified":"2026-11-02T00:00:00.000Z","sortKey":50}},"h":{},"s":200,"st":"OK","u":"https:\u002F\u002Fwebsite-articles.angular-buch.com\u002Fmaterial\u002Fworkspace\u002Fentry.json","rt":"json"},"__nghData__":[{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[],"1":[],"2":[{"i":"t5","r":1,"t":{"1":"t6"},"c":{"1":[]}}]}}]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[],"1":[{"i":"t4","r":1,"t":{"1":"t7"},"c":{"1":[]}}],"2":[]}}]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[],"1":[{"i":"t4","r":1,"t":{"1":"t7"},"c":{"1":[{"i":"t7","r":1}]}}],"2":[]}}]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[{"i":"t3","r":1,"t":{"1":"t8"},"c":{"1":[{"i":"t8","r":1}]}}],"1":[],"2":[]}}]}},{"t":{"10":"t0"},"c":{"10":[{"i":"t0","r":1,"x":5}]}},{"t":{"6":"t18","7":"t19"},"c":{"6":[{"i":"t18","r":1}],"7":[]}},{},{"t":{"4":"t55","5":"t56","6":"t59"},"c":{"4":[],"5":[{"i":"t56","r":1,"n":{"1":"hfnf3n"},"t":{"10":"t57","11":"t58"},"c":{"10":[{"i":"t57","r":2}],"11":[]}}],"6":[]}},{"t":{"0":"t1","1":"t2"},"c":{"0":[],"1":[{"i":"t2","r":4,"t":{"0":"t3","1":"t4","2":"t5"},"c":{"0":[{"i":"t3","r":1,"t":{"1":"t8"},"c":{"1":[]}}],"1":[],"2":[]}}]}},{"t":{"5":"t16"},"c":{"5":[{"i":"t16","r":3,"t":{"1":"t17"},"c":{"1":[{"i":"t17","r":1}]},"x":4},{"i":"t16","r":2,"t":{"1":"t17"},"c":{"1":[]}}]}},{"c":{"2":[{"i":"c1070753640","r":1}]}}]}</script><script>document.querySelectorAll('link[data-beasties-media]').forEach(function(l){l.media=l.getAttribute('data-beasties-media');l.removeAttribute('data-beasties-media')})</script></body></html>
